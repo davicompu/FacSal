@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SalaryEntities.Entities
 {
-    public class DepartmentEmployee
+    public class Employment
     {
         [Column(Order = 0)]
         [Key]

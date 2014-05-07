@@ -11,8 +11,12 @@ namespace SalaryEntities.Entities
 {
     public class Salary : AuditEntityBase
     {
+        [Column(Order = 0)]
+        [Key]
         public long Id { get; set; }
 
+        [Column(Order = 1)]
+        [Key]
         public int CycleYear { get; set; }
 
         [StringLength(128)]
@@ -34,7 +38,7 @@ namespace SalaryEntities.Entities
         public decimal FullTimeEquivalent { get; set; }
 
         [Min(0.00)]
-        public decimal BannerBaseAmount { get; }
+        public decimal BannerBaseAmount { get; private set; }
 
         [Min(0.00)]
         public decimal BaseAmount { get; set; }

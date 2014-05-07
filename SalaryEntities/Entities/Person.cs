@@ -24,7 +24,7 @@ namespace SalaryEntities.Entities
 
         public virtual ICollection<Salary> Salaries { get; set; }
 
-        public virtual ICollection<DepartmentEmployee> DepartmentAssignments { get; set; }
+        public virtual ICollection<Employment> Employments { get; set; }
 
         /* Full name not derived since EF couldn't use CONTAINS on derived 
          * properties at the time of development. CONTAINS needed for Search 

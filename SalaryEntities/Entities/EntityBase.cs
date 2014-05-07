@@ -18,8 +18,7 @@ namespace SalaryEntities.Entities
         [DataType(DataType.DateTime)]
         public DateTimeOffset CreatedDate { get; set; }
 
-        [Display(Name="Created By")]
-        public string UserProfileId { get; set; }
+        public string CreatedBy { get; set; }
 
         public ICollection<Modification> Modifications { get; set; }
     }
@@ -31,6 +30,6 @@ namespace SalaryEntities.Entities
         public string UpdatedBy {get;set;}
 
         [DataType(DataType.DateTime)]
-        public DateTimeOffset CreatedDate { get; set; }
+        public DateTimeOffset UpdatedDate { get; set; }
     }
 }

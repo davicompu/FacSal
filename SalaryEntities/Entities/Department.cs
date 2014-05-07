@@ -19,10 +19,8 @@ namespace SalaryEntities.Entities
         [ForeignKey("Unit")]
         public string UnitID { get; set; }
 
-        public bool IsTemporary { get; set; }
-
         public  Unit Unit { get; set; }
 
-        public ICollection<DepartmentEmployee> Employees { get; set; }
+        public ICollection<Employment> Employees { get; set; }
     }
 }

@@ -47,7 +47,7 @@
   <ItemGroup>
     <Compile Include="Entities\AppointmentType.cs" />
     <Compile Include="Entities\Department.cs" />
-    <Compile Include="Entities\DepartmentEmployee.cs" />
+    <Compile Include="Entities\Employment.cs" />
     <Compile Include="Entities\EntityBase.cs" />
     <Compile Include="Entities\FacultyType.cs" />
     <Compile Include="Entities\Person.cs" />
