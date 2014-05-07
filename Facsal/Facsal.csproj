@@ -144,6 +144,7 @@
     <Compile Include="App_Start\HotTowelConfig.cs" />
     <Compile Include="App_Start\HotTowelRouteConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BreezeController.cs" />
     <Compile Include="Controllers\HotTowelController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -152,9 +153,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App\main.js" />
+    <Content Include="App\services\dataservice.js" />
     <Content Include="App\services\logger.js" />
     <Content Include="App\viewmodels\details.js" />
     <Content Include="App\viewmodels\home.js" />
+    <Content Include="App\viewmodels\persons.js" />
     <Content Include="App\viewmodels\shell.js" />
     <Content Include="App\views\details.html" />
     <Content Include="App\views\footer.html" />
