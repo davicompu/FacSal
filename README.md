@@ -4,4 +4,4 @@ FacSal is salary management application designed to facilitate faculty salary ev
 
 ## MIT License
 
-Copyright 2013 Virginia Tech under the [MIT License](LICENSE).
+Copyright 2014 Virginia Tech under the [MIT License](LICENSE).
