@@ -16,6 +16,7 @@ namespace SalaryEntities.Entities
         /// </summary>
         [Column(Order = 0)]
         [Key]
+        [ForeignKey("Salary")]
         public string PersonId { get; set; }
 
         /// <summary>
@@ -24,12 +25,15 @@ namespace SalaryEntities.Entities
         /// </summary>
         [Column(Order = 1)]
         [Key]
+        [ForeignKey("Salary")]
         public int CycleYear { get; set; }
 
         [Column(Order = 2)]
         [Key]
         [ForeignKey("SpecialAdjustmentType")]
         public int SpecialAdjustmentTypeId { get; set; }
+
+        public Salary Salary { get; set; }
 
         public SpecialAdjustmentType SpecialAdjustmentType { get; set; }
     }

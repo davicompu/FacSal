@@ -67,6 +67,10 @@
     <Compile Include="Migrations\201405122134533_SalaryAdjustments.Designer.cs">
       <DependentUpon>201405122134533_SalaryAdjustments.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201405122141220_SalaryNavPropOnSpecialAdjust.cs" />
+    <Compile Include="Migrations\201405122141220_SalaryNavPropOnSpecialAdjust.Designer.cs">
+      <DependentUpon>201405122141220_SalaryNavPropOnSpecialAdjust.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Repository.cs" />
@@ -92,6 +96,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201405122134533_SalaryAdjustments.resx">
       <DependentUpon>201405122134533_SalaryAdjustments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201405122141220_SalaryNavPropOnSpecialAdjust.resx">
+      <DependentUpon>201405122141220_SalaryNavPropOnSpecialAdjust.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
