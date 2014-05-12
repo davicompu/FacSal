@@ -13,7 +13,8 @@ namespace SalaryEntities.Entities
     {
         [Column(Order = 0)]
         [Key]
-        public long Id { get; set; }
+        [ForeignKey("Person")]
+        public string PersonID { get; set; }
 
         [Column(Order = 1)]
         [Key]
@@ -30,9 +31,6 @@ namespace SalaryEntities.Entities
 
         [ForeignKey("AppointmentType")]
         public int AppointmentTypeId { get; set; }
-
-        [ForeignKey("Person")]
-        public string PersonID { get; set; }
         
         [Max(1.00)]
         public decimal FullTimeEquivalent { get; set; }
@@ -92,6 +90,8 @@ namespace SalaryEntities.Entities
         public AppointmentType AppointmentType { get; set; }
 
         public Person Person { get; set; }
+
+        public ICollection<SalaryModification> Modifications { get; set; }
 
         [Display(Name = "Starting Salary", ShortName = "Starting")]
         public decimal TotalAmount

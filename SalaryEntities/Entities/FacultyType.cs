@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SalaryEntities.Entities
 {
-    public class FacultyType
+    public class FacultyType : AuditEntityBase
     {
         public int Id { get; set; }
 

@@ -15,16 +15,15 @@ namespace SalaryEntities.Entities
 
     public abstract class AuditEntityBase : EntityBase
     {
-        [DataType(DataType.DateTime)]
-        public DateTimeOffset CreatedDate { get; set; }
-
         public string CreatedBy { get; set; }
 
-        public ICollection<Modification> Modifications { get; set; }
+        [DataType(DataType.DateTime)]
+        public DateTimeOffset CreatedDate { get; set; }
     }
 
-    public class Modification
+    public abstract class Modification
     {
+        [Key]
         public long ModificationId { get; set; }
 
         public string UpdatedBy {get;set;}

@@ -22,9 +22,11 @@ namespace SalaryEntities.Entities
 
         public bool IsActive { get; set; }
 
-        public virtual ICollection<Salary> Salaries { get; set; }
+        public ICollection<Salary> Salaries { get; set; }
 
-        public virtual ICollection<Employment> Employments { get; set; }
+        public ICollection<Employment> Employments { get; set; }
+
+        public ICollection<PersonModification> Modifications { get; set; }
 
         /* Full name not derived since EF couldn't use CONTAINS on derived 
          * properties at the time of development. CONTAINS needed for Search 

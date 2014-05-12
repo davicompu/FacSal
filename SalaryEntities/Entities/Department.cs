@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SalaryEntities.Entities
 {
-    public class Department
+    public class Department : AuditEntityBase
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string Id { get; set; }
@@ -22,5 +22,7 @@ namespace SalaryEntities.Entities
         public  Unit Unit { get; set; }
 
         public ICollection<Employment> Employees { get; set; }
+
+        public ICollection<DepartmentModification> Modifications { get; set; }
     }
 }

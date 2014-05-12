@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace SalaryEntities.Entities
 {
-    public class AppointmentType : AuditEntityBase
+    public class SalaryModification : Modification
     {
-        public int Id { get; set; }
-
-        public string Name { get; set; }
     }
 }
