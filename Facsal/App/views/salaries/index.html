@@ -1,0 +1,84 @@
+﻿<div class="row">
+    <div class="large-12 columns">
+        <h4 class="view-heading">Faculty</h4>
+
+        <div class="row">
+            <div class="large-12 columns">
+                <p class="error-message" data-bind="if: error, text: error"></p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="large-4 columns">
+                <label for="Unit">
+                    Unit
+                </label>
+                <select name="Unit" data-bind="foreach: units, value: selectedUnitId">
+                    <option data-bind="attr: { value: Id }, text: Name"></option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="large-4 columns">
+                <label for="Department">
+                    Department
+                </label>
+                <select name="Department" data-bind="foreach: department, value: selectedDepartmentId">
+                    <option data-bind="attr: { value: Id }, text: Name"></option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="large-12 columns">
+                <table class="tabular" data-bind="if: salaries().length > 0">
+                    <thead>
+                        <tr>
+                            <th data-bind="click: sort.bind($data, 'fullName')">
+                                Name
+                            </th>
+                            <th data-bind="click: sort.bind($data, 'rankType')">
+                                Rank
+                            </th>
+                            <th class="hide-for-medium-down" data-bind="click: sort.bind($data, 'totalAmount')">
+                                Salary
+                            </th>
+                            <th class="hide-for-medium-down" data-bind="click: sort.bind($data, 'meritIncrease')">
+                                Merit
+                            </th>
+                            <th class="hide-for-medium-down" data-bind="click: sort.bind($data, 'specialIncrease')">
+                                Special
+                            </th>
+                            <th class="hide-for-medium-down" data-bind="click: sort.bind($data, 'eminentIncrease')">
+                                Eminent
+                            </th>
+                            <th class="hide-for-medium-down" data-bind="click: sort.bind($data, 'newTotalAmount')">
+                                Total
+                            </th>
+                            <th class="hide-for-medium-down" data-bind="click: sort.bind($data, 'percentIncrease')">
+                                Change
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody data-bind="foreach: salaries">
+                        <tr>
+                            <td>
+                                <a data-bind="fastlink: '#/salaries/edit/' + Id, text: fullName"></a>
+                            </td>
+                            <td data-bind="text: rankType"></td>
+                            <td class="hide-for-medium-down" data-bind="text: formattedtotalAmount"></td>
+                            <td class="hide-for-medium-down" data-bind="text: formattedMeritIncrease"></td>
+                            <td class="hide-for-medium-down" data-bind="text: formattedSpecialIncrease"></td>
+                            <td class="hide-for-medium-down" data-bind="text: formattedEminentIncrease"></td>
+                            <td class="hide-for-medium-down" data-bind="text: formattedNewTotalAmount"></td>
+                            <td class="hide-for-medium-down" data-bind="text: percentIncrease"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <p data-bind="ifnot: persons().length">No records</p>
+    </div>
+</div>

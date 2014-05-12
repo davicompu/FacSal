@@ -17,7 +17,7 @@ namespace FacsalData.UnitOfWork
     public class UnitOfWork : IUnitOfWork
     {
         private readonly EFContextProvider<FacsalDbContext> ContextProvider;
-        public IRepository<AdjustmentType> AdjustmentTypeRepository { get; private set; }
+        public IRepository<MeritAdjustmentType> MeritAdjustmentTypeRepository { get; private set; }
         public IRepository<AppointmentType> AppointmentTypeRepository { get; private set; }
         public IRepository<Department> DepartmentRepository { get; private set; }
         public IRepository<Employment> EmploymentRepository { get; private set; }
@@ -33,7 +33,7 @@ namespace FacsalData.UnitOfWork
             ContextProvider.BeforeSaveEntitiesDelegate = breezeValidator.BeforeSaveEntities;
             ContextProvider.BeforeSaveEntityDelegate = breezeValidator.BeforeSaveEntity;
 
-            AdjustmentTypeRepository = new Repository<AdjustmentType>(ContextProvider.Context);
+            MeritAdjustmentTypeRepository = new Repository<MeritAdjustmentType>(ContextProvider.Context);
             AppointmentTypeRepository = new Repository<AppointmentType>(ContextProvider.Context);
             DepartmentRepository = new Repository<Department>(ContextProvider.Context);
             EmploymentRepository = new Repository<Employment>(ContextProvider.Context);

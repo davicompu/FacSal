@@ -14,7 +14,7 @@ namespace SalaryEntities.Entities
         [Column(Order = 0)]
         [Key]
         [ForeignKey("Person")]
-        public string PersonID { get; set; }
+        public string PersonId { get; set; }
 
         [Column(Order = 1)]
         [Key]
@@ -36,34 +36,34 @@ namespace SalaryEntities.Entities
         public decimal FullTimeEquivalent { get; set; }
 
         [Min(0.00)]
-        public decimal BannerBaseAmount { get; private set; }
+        public int BannerBaseAmount { get; private set; }
 
         [Min(0.00)]
-        public decimal BaseAmount { get; set; }
+        public int BaseAmount { get; set; }
 
         [Min(0.00)]
-        public decimal AdminAmount { get; set; }
+        public int AdminAmount { get; set; }
 
         [Min(0.00)]
-        public decimal EminentAmount { get; set; }
+        public int EminentAmount { get; set; }
 
         [Min(0.00)]
-        public decimal PromotionAmount { get; set; }
+        public int PromotionAmount { get; set; }
 
         [Required]
         [Min(0.00)]
         [Display(Name = "Merit Increase", ShortName = "Merit")]
-        public decimal MeritIncrease { get; set; }
+        public int MeritIncrease { get; set; }
 
         [Required]
         [Min(0.00)]
         [Display(Name = "Special Increase", ShortName = "Special")]
-        public decimal SpecialIncrease { get; set; }
+        public int SpecialIncrease { get; set; }
 
         [Required]
         [Min(0.00)]
         [Display(Name = "Eminent Increase", ShortName = "Eminent")]
-        public decimal EminentIncrease { get; set; }
+        public int EminentIncrease { get; set; }
 
         [StringLength(128)]
         public string BaseAdjustReason { get; set; }
@@ -71,8 +71,8 @@ namespace SalaryEntities.Entities
         [StringLength(1024)]
         public string BaseAdjustNote { get; set; }
 
-        [StringLength(128)]
-        public string MeritAdjustReason { get; set; }
+        [ForeignKey("MeritAdjustmentType")]
+        public int MeritAdjustmentTypeId { get; set; }
 
         [StringLength(1024)]
         public string MeritAdjustNote { get; set; }
@@ -89,12 +89,16 @@ namespace SalaryEntities.Entities
 
         public AppointmentType AppointmentType { get; set; }
 
+        public MeritAdjustmentType MeritAdjustmentType { get; set; }
+
         public Person Person { get; set; }
+
+        public ICollection<SpecialSalaryAdjustment> SpecialSalaryAdjustments { get; set; }
 
         public ICollection<SalaryModification> Modifications { get; set; }
 
-        [Display(Name = "Starting Salary", ShortName = "Starting")]
-        public decimal TotalAmount
+        [Display(Name = "Current Salary", ShortName = "Current")]
+        public int TotalAmount
         {
             get
             {
@@ -104,7 +108,7 @@ namespace SalaryEntities.Entities
 
 
         [Display(Name = "New Salary", ShortName = "New")]
-        public decimal NewTotalAmount
+        public int NewTotalAmount
         {
             get
             {

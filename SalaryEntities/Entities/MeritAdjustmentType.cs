@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SalaryEntities.Entities
 {
-    public class AdjustmentType : AuditEntityBase
+    public class MeritAdjustmentType : AuditEntityBase
     {
         public int Id { get; set; }
 

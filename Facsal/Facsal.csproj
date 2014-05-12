@@ -168,8 +168,23 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App\global\session.js" />
+    <Content Include="App\main.js" />
+    <Content Include="App\model\modelBuilder.js" />
+    <Content Include="App\services\config.js" />
     <Content Include="App\services\dataservice.js" />
-    <Content Include="App\viewmodels\persons.js" />
+    <Content Include="App\services\entitymanagerprovider.js" />
+    <Content Include="App\services\errorhandler.js" />
+    <Content Include="App\services\logger.js" />
+    <Content Include="App\services\repository.js" />
+    <Content Include="App\services\security.js" />
+    <Content Include="App\services\sorter.js" />
+    <Content Include="App\services\unitofwork.js" />
+    <Content Include="App\services\utils.js" />
+    <Content Include="App\viewmodels\salaries\index.js" />
+    <Content Include="App\views\salaries\edit.html" />
+    <Content Include="App\views\salaries\index.html" />
+    <Content Include="App\views\shell.html" />
     <Content Include="Content\durandal.css" />
     <Content Include="Content\images\icon.png" />
     <Content Include="Content\images\ios-startup-image-landscape.png" />
@@ -178,6 +193,12 @@
     <Content Include="Content\toastr.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\almond-custom.js" />
+    <Content Include="Scripts\app\chrisjsherm.counter.js" />
+    <Content Include="Scripts\app\google.fastbutton.js" />
+    <Content Include="Scripts\app\javascript.custom.functions.js" />
+    <Content Include="Scripts\app\jquery.utilities.js" />
+    <Content Include="Scripts\app\knockout.custom.bindings.js" />
+    <Content Include="Scripts\app\knockout.custom.extenders.js" />
     <Content Include="Scripts\durandal\activator.js" />
     <Content Include="Scripts\durandal\app.js" />
     <Content Include="Scripts\durandal\binder.js" />
@@ -192,6 +213,7 @@
     <Content Include="Scripts\durandal\plugins\widget.js" />
     <Content Include="Scripts\durandal\system.js" />
     <Content Include="Scripts\durandal\transitions\entrance.js" />
+    <Content Include="Scripts\durandal\transitions\scrollers.js" />
     <Content Include="Scripts\durandal\viewEngine.js" />
     <Content Include="Scripts\durandal\viewLocator.js" />
     <None Include="Scripts\jquery-2.1.0.intellisense.js" />
@@ -226,6 +248,7 @@
     <Content Include="Scripts\jquery-2.1.0.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App\views\shared\" />
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
   </ItemGroup>
