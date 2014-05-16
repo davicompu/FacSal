@@ -13,9 +13,7 @@
                 <label for="Unit">
                     Unit
                 </label>
-                <select name="Unit" data-bind="foreach: units, value: selectedUnitId">
-                    <option data-bind="attr: { value: Id }, text: Name"></option>
-                </select>
+                <select data-bind="options:units, optionsText: name, optionsValue: id, value: selectedUnitId, optionsCaption: 'Choose...'"></select>
             </div>
         </div>
 
@@ -24,9 +22,7 @@
                 <label for="Department">
                     Department
                 </label>
-                <select name="Department" data-bind="foreach: department, value: selectedDepartmentId">
-                    <option data-bind="attr: { value: Id }, text: Name"></option>
-                </select>
+                <select data-bind="options: departments, optionsText: name, optionsValue: id, value: selectedDepartmentId, optionsCaption: 'Choose...'"></select>
             </div>
         </div>
 
