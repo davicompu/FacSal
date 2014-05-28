@@ -21,9 +21,12 @@ namespace Facsal.Controllers
         }
 
         [HttpGet]
-        public string Metadata()
+        public HttpResponseMessage Metadata()
         {
-            return UnitOfWork.Metadata();
+            return new HttpResponseMessage()
+            {
+                Content = new StringContent(UnitOfWork.Metadata(), System.Text.Encoding.UTF8, "application/json")
+            };
         }
 
         [HttpPost]

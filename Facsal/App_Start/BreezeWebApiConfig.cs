@@ -15,8 +15,7 @@ namespace Facsal {
     public static void RegisterBreezePreStart() {
       GlobalConfiguration.Configuration.Routes.MapHttpRoute(
           name: "BreezeApi",
-          routeTemplate: "breeze/{controller}/{action}",
-          defaults: new { Controller = "Metadata", Action = "Get" }
+          routeTemplate: "breeze/{controller}/{action}"
       );
     }
   }
