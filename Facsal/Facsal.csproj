@@ -22,6 +22,8 @@
     <IISExpressUseClassicPipelineMode />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+    <IsCompassProject>True</IsCompassProject>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -41,6 +43,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="Breeze.ContextProvider">
       <HintPath>..\packages\Breeze.Server.ContextProvider.1.4.11\lib\Breeze.ContextProvider.dll</HintPath>
     </Reference>
@@ -119,6 +124,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.1.2\lib\net45\System.Web.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Razor.3.1.2\lib\net45\System.Web.Razor.dll</HintPath>
@@ -149,6 +157,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\WebActivator.1.5.3\lib\net40\WebActivator.dll</HintPath>
     </Reference>
+    <Reference Include="WebGrease">
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
     <Reference Include="WebMatrix.Data, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.3.1.2\lib\net45\WebMatrix.Data.dll</HintPath>
@@ -160,11 +171,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BreezeWebApiConfig.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\SqlClientConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\DataController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\LookupBundle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -182,6 +199,7 @@
     <Content Include="App\services\unitofwork.js" />
     <Content Include="App\services\utils.js" />
     <Content Include="App\viewmodels\salaries\index.js" />
+    <Content Include="App\viewmodels\shell.js" />
     <Content Include="App\views\salaries\edit.html" />
     <Content Include="App\views\salaries\index.html" />
     <Content Include="App\views\shell.html" />
@@ -189,9 +207,12 @@
     <Content Include="Content\images\icon.png" />
     <Content Include="Content\images\ios-startup-image-landscape.png" />
     <Content Include="Content\images\ios-startup-image-portrait.png" />
+    <Content Include="Content\Site.css" />
     <Content Include="Content\toastr.css" />
-    <Content Include="Content\toastr.min.css" />
     <Content Include="Global.asax" />
+    <Content Include="sass\Site.css">
+      <DependentUpon>Site.scss</DependentUpon>
+    </Content>
     <Content Include="Scripts\almond-custom.js" />
     <Content Include="Scripts\app\chrisjsherm.counter.js" />
     <Content Include="Scripts\app\google.fastbutton.js" />
@@ -216,20 +237,124 @@
     <Content Include="Scripts\durandal\transitions\scrollers.js" />
     <Content Include="Scripts\durandal\viewEngine.js" />
     <Content Include="Scripts\durandal\viewLocator.js" />
+    <Content Include="sass\foundation\components\_accordion.scss" />
+    <Content Include="sass\foundation\components\_alert-boxes.scss" />
+    <Content Include="sass\foundation\components\_block-grid.scss" />
+    <Content Include="sass\foundation\components\_breadcrumbs.scss" />
+    <Content Include="sass\foundation\components\_button-groups.scss" />
+    <Content Include="sass\foundation\components\_buttons.scss" />
+    <Content Include="sass\foundation\components\_clearing.scss" />
+    <Content Include="sass\foundation\components\_dropdown-buttons.scss" />
+    <Content Include="sass\foundation\components\_dropdown.scss" />
+    <Content Include="sass\foundation\components\_flex-video.scss" />
+    <Content Include="sass\foundation\components\_forms.scss" />
+    <Content Include="sass\foundation\components\_global.scss" />
+    <Content Include="sass\foundation\components\_grid.scss" />
+    <Content Include="sass\foundation\components\_inline-lists.scss" />
+    <Content Include="sass\foundation\components\_joyride.scss" />
+    <Content Include="sass\foundation\components\_keystrokes.scss" />
+    <Content Include="sass\foundation\components\_labels.scss" />
+    <Content Include="sass\foundation\components\_magellan.scss" />
+    <Content Include="sass\foundation\components\_offcanvas.scss" />
+    <Content Include="sass\foundation\components\_orbit.scss" />
+    <Content Include="sass\foundation\components\_pagination.scss" />
+    <Content Include="sass\foundation\components\_panels.scss" />
+    <Content Include="sass\foundation\components\_pricing-tables.scss" />
+    <Content Include="sass\foundation\components\_progress-bars.scss" />
+    <Content Include="sass\foundation\components\_range-slider.scss" />
+    <Content Include="sass\foundation\components\_reveal-new.scss" />
+    <Content Include="sass\foundation\components\_reveal.scss" />
+    <Content Include="sass\foundation\components\_side-nav.scss" />
+    <Content Include="sass\foundation\components\_split-buttons.scss" />
+    <Content Include="sass\foundation\components\_sub-nav.scss" />
+    <Content Include="sass\foundation\components\_switch.scss" />
+    <Content Include="sass\foundation\components\_tables.scss" />
+    <Content Include="sass\foundation\components\_tabs.scss" />
+    <Content Include="sass\foundation\components\_thumbs.scss" />
+    <Content Include="sass\foundation\components\_tooltips.scss" />
+    <Content Include="sass\foundation\components\_top-bar.scss" />
+    <Content Include="sass\foundation\components\_type.scss" />
+    <Content Include="sass\foundation\components\_visibility.scss" />
+    <Content Include="sass\foundation\_functions.scss" />
+    <Content Include="sass\foundation\_settings.scss" />
+    <Content Include="sass\_foundation.scss">
+      <Compile>False</Compile>
+      <Minify>True</Minify>
+      <OutputFolder>C:\Users\csherman\Desktop\FacSalCloudService\Facsal\stylesheets</OutputFolder>
+      <CompileStyle>Nested</CompileStyle>
+      <DebugInfo>False</DebugInfo>
+    </Content>
+    <Content Include="sass\_normalize.scss">
+      <Compile>False</Compile>
+      <Minify>True</Minify>
+      <OutputFolder>C:\Users\csherman\Desktop\FacSalCloudService\Facsal\stylesheets</OutputFolder>
+      <CompileStyle>Nested</CompileStyle>
+      <DebugInfo>False</DebugInfo>
+    </Content>
+    <Content Include="sass\Site.scss">
+      <Compile>True</Compile>
+      <Minify>True</Minify>
+      <OutputFolder>C:\Users\csherman\Desktop\FacSalCloudService\Facsal\stylesheets</OutputFolder>
+      <CompileStyle>Nested</CompileStyle>
+      <DebugInfo>False</DebugInfo>
+    </Content>
+    <Content Include="sass\app\components\_call-to-action.scss" />
+    <Content Include="sass\app\components\_checkout.scss" />
+    <Content Include="sass\app\components\_contribute-table.scss" />
+    <Content Include="sass\app\components\_fieldset.scss" />
+    <Content Include="sass\app\components\_footer.scss" />
+    <Content Include="sass\app\components\_list.scss" />
+    <Content Include="sass\app\components\_masthead.scss" />
+    <Content Include="sass\app\components\_splash.scss" />
+    <Content Include="sass\app\_app-settings.scss" />
+    <Content Include="sass\app\_content.scss" />
+    <Content Include="sass\app\_shame.scss" />
+    <Content Include="config.rb" />
     <None Include="Scripts\jquery-2.1.0.intellisense.js" />
+    <Content Include="Scripts\foundation\foundation.abide.js" />
+    <Content Include="Scripts\foundation\foundation.accordion.js" />
+    <Content Include="Scripts\foundation\foundation.alert.js" />
+    <Content Include="Scripts\foundation\foundation.clearing.js" />
+    <Content Include="Scripts\foundation\foundation.dropdown.js" />
+    <Content Include="Scripts\foundation\foundation.equalizer.js" />
+    <Content Include="Scripts\foundation\foundation.interchange.js" />
+    <Content Include="Scripts\foundation\foundation.joyride.js" />
+    <Content Include="Scripts\foundation\foundation.js" />
+    <Content Include="Scripts\foundation\foundation.magellan.js" />
+    <Content Include="Scripts\foundation\foundation.offcanvas.js" />
+    <Content Include="Scripts\foundation\foundation.orbit.js" />
+    <Content Include="Scripts\foundation\foundation.reveal.js" />
+    <Content Include="Scripts\foundation\foundation.slider.js" />
+    <Content Include="Scripts\foundation\foundation.tab.js" />
+    <Content Include="Scripts\foundation\foundation.tooltip.js" />
+    <Content Include="Scripts\foundation\foundation.topbar.js" />
     <Content Include="Scripts\jquery-2.1.0.js" />
     <Content Include="Scripts\jquery-2.1.0.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.inputmask\jquery.inputmask-2.5.0.js" />
+    <Content Include="Scripts\jquery.inputmask\jquery.inputmask.date.extensions-2.5.0.js" />
+    <Content Include="Scripts\jquery.inputmask\jquery.inputmask.extensions-2.5.0.js" />
+    <Content Include="Scripts\jquery.inputmask\jquery.inputmask.numeric.extensions-2.5.0.js" />
+    <Content Include="Scripts\jquery.inputmask\jquery.inputmask.phone.extensions-2.5.0.js" />
+    <Content Include="Scripts\jquery.inputmask\jquery.inputmask.regex.extensions-2.5.0.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\knockout-3.1.0.debug.js" />
     <Content Include="Scripts\knockout-3.1.0.js" />
     <Content Include="Scripts\knockout.validation.js" />
     <Content Include="Scripts\modernizr-2.7.2.js" />
+    <Content Include="Scripts\moment-with-langs.js" />
+    <Content Include="Scripts\moment-with-langs.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\r.js" />
     <Content Include="Scripts\require.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
     <Content Include="weyland-config.js" />
     <Content Include="Content\toastr.scss" />
-    <Content Include="Content\toastr.less" />
     <None Include="Scripts\breeze.intellisense.js" />
     <Content Include="Scripts\breeze.debug.js" />
     <Content Include="Scripts\breeze.min.js" />
@@ -246,14 +371,29 @@
     </Content>
     <Content Include="Scripts\toastr.min.js.map" />
     <Content Include="Scripts\jquery-2.1.0.min.map" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App\views\shared\" />
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ChrisJSherm\ChrisJSherm.csproj">
+      <Project>{9e339bc2-acf8-4fa9-82dc-fdacf7dbdc05}</Project>
+      <Name>ChrisJSherm</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FacsalData\FacsalData.csproj">
+      <Project>{709fdb03-673e-4e05-a66c-f8941fcc8814}</Project>
+      <Name>FacsalData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SalaryEntities\SalaryEntities.csproj">
+      <Project>{f3097e14-1c98-43d5-98f3-a14ccc4676dc}</Project>
+      <Name>SalaryEntities</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

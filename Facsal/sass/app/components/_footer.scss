@@ -1,0 +1,27 @@
+footer {
+	background: $footer-bg;
+	padding-top: emCalc(30px);
+
+	.footer {
+		.columns {
+			color: $footer-font-color;
+			font-size: 75%;
+
+			h4 {
+				color: $footer-header-color;
+				//text-transform: uppercase;
+			}
+		}
+	}
+
+	.copyright {
+		border-top: #ccc 1px solid;
+		margin-top: emCalc(15px);
+		padding: emCalc(15px) 0;
+
+		.columns {
+			color: #999;
+			font-size: 70%;
+		}
+	}
+}
