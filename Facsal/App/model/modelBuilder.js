@@ -1,5 +1,5 @@
-﻿define(['services/appsecurity'],
-    function (appsecurity) {
+﻿define([],
+    function () {
         var foreignKeyInvalidValue = 0;
 
         var self = {

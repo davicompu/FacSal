@@ -214,12 +214,9 @@
       <DependentUpon>Site.scss</DependentUpon>
     </Content>
     <Content Include="Scripts\almond-custom.js" />
-    <Content Include="Scripts\app\chrisjsherm.counter.js" />
-    <Content Include="Scripts\app\google.fastbutton.js" />
-    <Content Include="Scripts\app\javascript.custom.functions.js" />
-    <Content Include="Scripts\app\jquery.utilities.js" />
-    <Content Include="Scripts\app\knockout.custom.bindings.js" />
-    <Content Include="Scripts\app\knockout.custom.extenders.js" />
+    <Content Include="Scripts\chrisjsherm\chrisjsherm.ko.extenders.js" />
+    <Content Include="Scripts\chrisjsherm\chrisjsherm.number.js" />
+    <Content Include="Scripts\chrisjsherm\chrisjsherm.string.js" />
     <Content Include="Scripts\durandal\activator.js" />
     <Content Include="Scripts\durandal\app.js" />
     <Content Include="Scripts\durandal\binder.js" />
