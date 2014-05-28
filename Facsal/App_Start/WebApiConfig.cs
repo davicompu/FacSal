@@ -29,7 +29,10 @@ namespace Facsal
             config.EnableQuerySupport();
 
             // Default all routes to require authentication.
-            config.Filters.Add(new System.Web.Http.AuthorizeAttribute());
+            if (!HttpContext.Current.IsDebuggingEnabled)
+            {
+                config.Filters.Add(new System.Web.Http.AuthorizeAttribute());
+            }
 
             // Validate request against model attributes by default.
             config.Filters.Add(new ValidateModelAttribute());
