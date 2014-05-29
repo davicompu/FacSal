@@ -4,8 +4,6 @@
 
             units = ko.observableArray(),
 
-            departments = ko.observableArray(),
-
             persons = ko.observableArray(),
             
             attached = function (view) {
@@ -16,20 +14,23 @@
                         self.units(response);
                     });
 
-                var depts = unitofwork.departments.all()
-                    .then(function (response) {
-                        self.departments(response);
-                    });
-
-                Q.all([units, departments]).fail(self.handleError);
+                Q.all([units]).fail(self.handleError);
             };
 
         var vm = {
             activate: activate,
-            departments: departments,
+            attached: attached,
+            departments: ko.observableArray(),
             persons: persons,
+            selectedUnitId: ko.observable(),
+            selectedDepartmentId: ko.observable(),
             units: units,
         };
+
+        vm.selectedUnitId.subscribe(function (newValue) {
+            var predicate = new breeze.Predicate('unitID', '==', newValue);
+            return vm.departments(unitofwork.departments.findInCache(predicate));
+        });
 
         return vm;
 

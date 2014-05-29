@@ -47,7 +47,7 @@
                 { route: ['', 'salaries', 'salaries/index'], moduleId: 'salaries/index', title: 'Salaries', nav: true, hash: '#salaries/index' }
             ])
             .buildNavigationModel()
-            .mapUnknownRoutes("notfound", "notfound")
+            .mapUnknownRoutes("not-found", "not-found")
             .activate({ pushState: true });
         }
     });

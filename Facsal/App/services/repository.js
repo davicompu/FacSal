@@ -104,7 +104,9 @@ define(function () {
             function executeQuery(query) {
                 return entityManagerProvider.manager()
 					.executeQuery(query.using(fetchStrategy || breeze.FetchStrategy.FromServer))
-					.then(function (data) { return data.results; });
+					.then(function (data) {
+					    return data.results;
+					});
             }
 
             function executeCacheQuery(query) {

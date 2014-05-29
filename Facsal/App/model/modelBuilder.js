@@ -9,7 +9,8 @@
         return self;
 
         function extendMetadata(metadataStore) {
-            extendAdjustmentType(metadataStore);
+            extendMeritAdjustmentType(metadataStore);
+            extendSpecialAdjustmentType(metadataStore);
             extendPaymentType(metadataStore);
             extendDepartment(metadataStore);
             extendFacultyType(metadataStore);
@@ -19,13 +20,22 @@
             extendUnit(metadataStore);
         }
 
-        function extendAdjustmentType(metadataStore) {
+        function extendMeritAdjustmentType(metadataStore) {
             var initializer = function (entity) {
                 addValidationRules(entity);
                 addHasValidationErrorsProperty(entity);
             };
 
-            metadataStore.registerEntityTypeCtor('AdjustmentType', null, initializer);
+            metadataStore.registerEntityTypeCtor('MeritAdjustmentType', null, initializer);
+        }
+
+        function extendSpecialAdjustmentType(metadataStore) {
+            var initializer = function (entity) {
+                addValidationRules(entity);
+                addHasValidationErrorsProperty(entity);
+            };
+
+            metadataStore.registerEntityTypeCtor('SpecialAdjustmentType', null, initializer);
         }
 
         function extendPaymentType(metadataStore) {

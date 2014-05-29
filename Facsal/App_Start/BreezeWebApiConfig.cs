@@ -1,8 +1,8 @@
 using System.Web.Http;
 
 [assembly: WebActivator.PreApplicationStartMethod(
-    typeof(Facsal.BreezeWebApiConfig), "RegisterBreezePreStart")]
-namespace Facsal {
+    typeof(Facsal.App_Start.BreezeWebApiConfig), "RegisterBreezePreStart")]
+namespace Facsal.App_Start {
   ///<summary>
   /// Inserts the Breeze Web API controller route at the front of all Web API routes
   ///</summary>

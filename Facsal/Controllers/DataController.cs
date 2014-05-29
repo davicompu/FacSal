@@ -1,4 +1,5 @@
 ﻿using Breeze.ContextProvider;
+using Breeze.WebApi2;
 using Facsal.Models;
 using Newtonsoft.Json.Linq;
 using SalaryEntities.UnitOfWork;
@@ -11,6 +12,7 @@ using System.Web.Http;
 
 namespace Facsal.Controllers
 {
+    [BreezeController]
     public class DataController : ApiController
     {
         IUnitOfWork UnitOfWork;
@@ -21,12 +23,9 @@ namespace Facsal.Controllers
         }
 
         [HttpGet]
-        public HttpResponseMessage Metadata()
+        public string Metadata()
         {
-            return new HttpResponseMessage()
-            {
-                Content = new StringContent(UnitOfWork.Metadata(), System.Text.Encoding.UTF8, "application/json")
-            };
+            return UnitOfWork.Metadata();
         }
 
         [HttpPost]
