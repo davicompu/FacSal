@@ -22,31 +22,31 @@
 
         <div class="row">
             <div class="large-12 columns">
-                <table class="tabular" data-bind="if: persons().length > 0">
+                <table class="tabular" data-bind="if: salaries().length > 0">
                     <thead>
                         <tr>
-                            <th data-bind="click: sort.bind($data, 'fullName')">
+                            <th>
                                 Name
                             </th>
-                            <th data-bind="click: sort.bind($data, 'rankType')">
+                            <th>
                                 Rank
                             </th>
-                            <th class="hide-for-medium-down" data-bind="click: sort.bind($data, 'totalAmount')">
+                            <th>
                                 Salary
                             </th>
-                            <th class="hide-for-medium-down" data-bind="click: sort.bind($data, 'meritIncrease')">
+                            <th>
                                 Merit
                             </th>
-                            <th class="hide-for-medium-down" data-bind="click: sort.bind($data, 'specialIncrease')">
+                            <th>
                                 Special
                             </th>
-                            <th class="hide-for-medium-down" data-bind="click: sort.bind($data, 'eminentIncrease')">
+                            <th>
                                 Eminent
                             </th>
-                            <th class="hide-for-medium-down" data-bind="click: sort.bind($data, 'newTotalAmount')">
+                            <th>
                                 Total
                             </th>
-                            <th class="hide-for-medium-down" data-bind="click: sort.bind($data, 'percentIncrease')">
+                            <th>
                                 Change
                             </th>
                         </tr>
@@ -54,21 +54,19 @@
                     <tbody data-bind="foreach: salaries">
                         <tr>
                             <td>
-                                <a data-bind="fastlink: '#/salaries/edit/' + Id, text: fullName"></a>
+                                <a data-bind="attr: { href: '#/salaries/edit/' + person().id() }, text: person().fullName"></a>
                             </td>
-                            <td data-bind="text: rankType"></td>
-                            <td class="hide-for-medium-down" data-bind="text: formattedtotalAmount"></td>
-                            <td class="hide-for-medium-down" data-bind="text: formattedMeritIncrease"></td>
-                            <td class="hide-for-medium-down" data-bind="text: formattedSpecialIncrease"></td>
-                            <td class="hide-for-medium-down" data-bind="text: formattedEminentIncrease"></td>
-                            <td class="hide-for-medium-down" data-bind="text: formattedNewTotalAmount"></td>
-                            <td class="hide-for-medium-down" data-bind="text: percentIncrease"></td>
+                            <td data-bind="text: rankTypeId"></td>
+                            <td data-bind="text: totalAmount"></td>
+                            <td data-bind="text: meritIncrease"></td>
+                            <td data-bind="text: specialIncrease"></td>
+                            <td data-bind="text: eminentIncrease"></td>
+                            <td data-bind="text: newTotalAmount"></td>
+                            <td data-bind="text: percentIncrease"></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-
-        <p data-bind="ifnot: persons().length">No records</p>
     </div>
 </div>

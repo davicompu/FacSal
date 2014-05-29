@@ -88,20 +88,32 @@
                 addValidationRules(entity);
                 addHasValidationErrorsProperty(entity);
 
+                entity.totalAmount = ko.computed(function () {
+                    return entity.baseAmount() + entity.adminAmount() +
+                        entity.eminentAmount() + entity.promotionAmount();
+                });
+
+                entity.newTotalAmount = ko.computed(function () {
+                    return entity.totalAmount() +
+                        entity.meritIncrease() +
+                        entity.specialIncrease() +
+                        entity.eminentIncrease();
+                })
+
                 entity.percentIncrease = ko.computed(function () {
-                    return (entity.newTotalAmount() / entity.totalAmount() - 1 * 100).formatNumber(1);
+                    return ((entity.newTotalAmount() / entity.totalAmount() - 1) * 100).formatNumber(1);
                 });
 
                 entity.meritPercentIncrease = ko.computed(function () {
-                    return (entity.meritIncrease() / entity.totalAmount() - 1 * 100).formatNumber(1);
+                    return ((entity.meritIncrease() / entity.totalAmount() - 1) * 100).formatNumber(1);
                 });
 
                 entity.specialPercentIncrease = ko.computed(function () {
-                    return (entity.specialIncrease() / entity.totalAmount() - 1 * 100).formatNumber(1);
+                    return ((entity.specialIncrease() / entity.totalAmount() - 1) * 100).formatNumber(1);
                 });
 
                 entity.eminentPercentIncrease = ko.computed(function () {
-                    return (entity.eminentIncrease() / entity.totalAmount() - 1 * 100).formatNumber(1);
+                    return ((entity.eminentIncrease() / entity.totalAmount() - 1) * 100).formatNumber(1);
                 });
             };
 

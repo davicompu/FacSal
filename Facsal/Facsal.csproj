@@ -218,6 +218,7 @@
     <Content Include="App\services\errorhandler.js" />
     <Content Include="App\services\logger.js" />
     <Content Include="App\services\repository.js" />
+    <Content Include="App\services\salaryrepository.js" />
     <Content Include="App\services\security.js" />
     <Content Include="App\services\sorter.js" />
     <Content Include="App\services\unitofwork.js" />

@@ -19,7 +19,7 @@
             activate: activate,
             attached: attached,
             departments: ko.observableArray(),
-            persons: ko.observableArray(),
+            salaries: ko.observableArray(),
             selectedUnitId: ko.observable(),
             selectedDepartmentId: ko.observable(),
             units: units,
@@ -27,12 +27,19 @@
 
         vm.selectedUnitId.subscribe(function (newValue) {
             var predicate = new breeze.Predicate('unitId', '==', newValue);
-            return vm.departments(unitofwork.departments.findInCache(predicate));
+            return unitofwork.departments.find(predicate)
+                .then(function (response) {
+                    vm.departments(response);
+                });
         });
 
         vm.selectedDepartmentId.subscribe(function (newValue) {
-            var predicate = new breeze.Predicate('')
-        })
+            var predicate = new breeze.Predicate('personId', '==', '001');
+            return unitofwork.salaries.find(predicate)
+                .then(function (response) {
+                    vm.salaries(response);
+                });
+        });
 
         return vm;
 

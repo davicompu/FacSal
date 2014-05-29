@@ -2,6 +2,7 @@
 using Breeze.WebApi2;
 using Facsal.Models;
 using Newtonsoft.Json.Linq;
+using SalaryEntities.Entities;
 using SalaryEntities.UnitOfWork;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,24 @@ namespace Facsal.Controllers
         public string Metadata()
         {
             return UnitOfWork.Metadata();
+        }
+
+        [HttpGet]
+        public IQueryable<Unit> Units()
+        {
+            return UnitOfWork.UnitRepository.All();
+        }
+
+        [HttpGet]
+        public IQueryable<Department> Departments()
+        {
+            return UnitOfWork.DepartmentRepository.All();
+        }
+
+        [HttpGet]
+        public IQueryable<Salary> Salaries()
+        {
+            return UnitOfWork.SalaryRepository.All();
         }
 
         [HttpPost]

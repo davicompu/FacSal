@@ -37,6 +37,60 @@ namespace FacsalData.Migrations
             };
             depts.ForEach(d => context.Departments.AddOrUpdate(x => x.Id, d));
             context.SaveChanges();
+
+            var facultyTypes = new List<FacultyType>
+            {
+                new FacultyType { Id = 1, Name = "Administrative Professional"}
+            };
+            facultyTypes.ForEach(f => context.FacultyTypes.AddOrUpdate(x => x.Name, f));
+            context.SaveChanges();
+
+            var rankTypes = new List<RankType>
+            {
+                new RankType { Id = 1, Name = "Lecturer"}
+            };
+            rankTypes.ForEach(r => context.RankTypes.AddOrUpdate(x => x.Name, r));
+            context.SaveChanges();
+
+            var appointmentTypes = new List<AppointmentType>
+            {
+                new AppointmentType { Id = 1, Name = "Full-time" }
+            };
+            appointmentTypes.ForEach(a => context.AppointmentTypes.AddOrUpdate(x => x.Name, a));
+            context.SaveChanges();
+
+            var meritAdjustmentTypes = new List<MeritAdjustmentType>
+            {
+                new MeritAdjustmentType { Id = 1, Name = "Good performance" }
+            };
+            meritAdjustmentTypes.ForEach(m => context.MeritAdjustmentTypes.AddOrUpdate(x => x.Name, m));
+            context.SaveChanges();
+
+            var persons = new List<Person>
+            {
+                new Person { Id = "001", Pid = "acampb", LastName = "Campbell", FirstName = "Allen", IsActive = true },
+                new Person { Id = "002", Pid = "mjordan", LastName = "Jordan", FirstName = "Michael", IsActive = true }
+            };
+            persons.ForEach(p => context.Persons.AddOrUpdate(x => x.Pid, p));
+            context.SaveChanges();
+
+            var salaries = new List<Salary>
+            {
+                new Salary { 
+                    PersonId = "001", CycleYear = 2014, Title = "Director", FacultyTypeId = 1,
+                    FullTimeEquivalent = 1.00M, BaseAmount = 1000, AdminAmount = 0, EminentAmount = 0,
+                    PromotionAmount = 0, RankTypeId = 1, AppointmentTypeId = 1, MeritAdjustmentTypeId = 1
+                }
+            };
+            salaries.ForEach(s => context.Salaries.AddOrUpdate(x => x.PersonId, s));
+            context.SaveChanges();
+
+            var employments = new List<Employment>
+            {
+                new Employment { PersonId = "001", DepartmentId = "0825" }
+            };
+            employments.ForEach(e => context.Employments.AddOrUpdate(x => x.PersonId, e));
+            context.SaveChanges();
         }
     }
 }

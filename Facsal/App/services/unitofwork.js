@@ -5,8 +5,9 @@
 	* @requires repository 
 */
 
-define(['services/entitymanagerprovider', 'services/repository', 'durandal/app', 'services/config'],
-	function (entityManagerProvider, repository, app, routeconfig) {
+define(['services/entitymanagerprovider', 'services/repository', 'durandal/app',
+    'services/config', 'services/salaryrepository'],
+	function (entityManagerProvider, repository, app, routeconfig, salaryrepository) {
 
 	    var refs = {};
 
@@ -55,6 +56,9 @@ define(['services/entitymanagerprovider', 'services/repository', 'durandal/app',
                     breeze.FetchStrategy.FromLocalCache);
 	            this.departments = repository.create(provider, 'Department',
                     routeconfig.departmentsUrl, breeze.FetchStrategy.FromLocalCache);
+	            this.persons = repository.create(provider, 'Person',
+                    routeconfig.personsUrl);
+	            this.salaries = salaryrepository.create(provider, 'Salary', routeconfig.salariesUrl);
 	        };
 
 	        return unitofwork;
