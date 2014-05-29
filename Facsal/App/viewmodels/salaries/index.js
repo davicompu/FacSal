@@ -3,8 +3,6 @@
         var unitofwork = uow.create(),
 
             units = ko.observableArray(),
-
-            persons = ko.observableArray(),
             
             attached = function (view) {
                 var self = this;
@@ -21,16 +19,20 @@
             activate: activate,
             attached: attached,
             departments: ko.observableArray(),
-            persons: persons,
+            persons: ko.observableArray(),
             selectedUnitId: ko.observable(),
             selectedDepartmentId: ko.observable(),
             units: units,
         };
 
         vm.selectedUnitId.subscribe(function (newValue) {
-            var predicate = new breeze.Predicate('unitID', '==', newValue);
+            var predicate = new breeze.Predicate('unitId', '==', newValue);
             return vm.departments(unitofwork.departments.findInCache(predicate));
         });
+
+        vm.selectedDepartmentId.subscribe(function (newValue) {
+            var predicate = new breeze.Predicate('')
+        })
 
         return vm;
 

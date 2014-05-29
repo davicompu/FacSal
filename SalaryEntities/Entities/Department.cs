@@ -17,7 +17,7 @@ namespace SalaryEntities.Entities
         public string Sequence { get; set; }
 
         [ForeignKey("Unit")]
-        public string UnitID { get; set; }
+        public string UnitId { get; set; }
 
         public  Unit Unit { get; set; }
 

@@ -28,12 +28,12 @@ namespace FacsalData.Migrations
 
             var depts = new List<Department>
             {
-                new Department { Id = "0825", Name = "ATHLETIC DEPARTMENT", Sequence = "A", UnitID = "ATH"},
-                new Department { Id = "0001", Name = "AGRICULTURAL AND APPLIED ECONOMICS", Sequence = "B", UnitID = "S01"},
-                new Department { Id = "0002", Name = "BIOLOGICAL SYSTEMS ENGINEERING", Sequence = "B", UnitID = "S01"},
-                new Department { Id = "0059", Name = "SCHOOL OF VISUAL ARTS", Sequence = "B", UnitID = "S02"},
-                new Department { Id = "0151", Name = "SCHOOL OF ARCHITECTURE AND DESIGN", Sequence = "B", UnitID = "S02"},
-                new Department { Id = "0070", Name = "ACCOUNTING AND INFORMATION SYSTEMS", Sequence = "B", UnitID = "S03"}
+                new Department { Id = "0825", Name = "ATHLETIC DEPARTMENT", Sequence = "A", UnitId = "ATH"},
+                new Department { Id = "0001", Name = "AGRICULTURAL AND APPLIED ECONOMICS", Sequence = "B", UnitId = "S01"},
+                new Department { Id = "0002", Name = "BIOLOGICAL SYSTEMS ENGINEERING", Sequence = "B", UnitId = "S01"},
+                new Department { Id = "0059", Name = "SCHOOL OF VISUAL ARTS", Sequence = "B", UnitId = "S02"},
+                new Department { Id = "0151", Name = "SCHOOL OF ARCHITECTURE AND DESIGN", Sequence = "B", UnitId = "S02"},
+                new Department { Id = "0070", Name = "ACCOUNTING AND INFORMATION SYSTEMS", Sequence = "B", UnitId = "S03"}
             };
             depts.ForEach(d => context.Departments.AddOrUpdate(x => x.Id, d));
             context.SaveChanges();
