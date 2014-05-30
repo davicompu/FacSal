@@ -34,12 +34,17 @@
         });
 
         vm.selectedDepartmentId.subscribe(function (newValue) {
-            var predicate = new breeze.Predicate('personId', '==', '001');
-            return unitofwork.salaries.find(predicate)
+            var predicate = breeze.Predicate.create('person.employments', 'any', 'departmentId', '==', newValue)
+                .and('cycleYear', '==', 2014);
+            var expansionProperties = 'person';
+
+            return unitofwork.salaries.find(predicate, expansionProperties)
                 .then(function (response) {
                     vm.salaries(response);
                 });
         });
+
+
 
         return vm;
 

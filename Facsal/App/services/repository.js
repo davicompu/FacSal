@@ -47,10 +47,17 @@ define(function () {
 			 * @param {string} predicate
 			 * @return {promise}
 			*/
-            this.find = function (predicate) {
-                var query = breeze.EntityQuery
-					.from(resourceName)
-					.where(predicate);
+            this.find = function (predicate, expansionCondition) {
+                if (expansionCondition) {
+                    var query = breeze.EntityQuery
+					    .from(resourceName)
+					    .where(predicate)
+                        .expand(expansionCondition);
+                } else {
+                    var query = breeze.EntityQuery
+                        .from(resourceName)
+                        .where(predicate)
+                }
 
                 return executeQuery(query);
             };

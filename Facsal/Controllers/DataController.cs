@@ -30,21 +30,33 @@ namespace Facsal.Controllers
         }
 
         [HttpGet]
-        public IQueryable<Unit> Units()
-        {
-            return UnitOfWork.UnitRepository.All();
-        }
-
-        [HttpGet]
         public IQueryable<Department> Departments()
         {
             return UnitOfWork.DepartmentRepository.All();
         }
 
         [HttpGet]
+        public IQueryable<Employment> Employments()
+        {
+            return UnitOfWork.EmploymentRepository.All();
+        }
+
+        [HttpGet]
+        public IQueryable<Person> Persons()
+        {
+            return UnitOfWork.PersonRepository.All();
+        }
+
+        [HttpGet]
         public IQueryable<Salary> Salaries()
         {
             return UnitOfWork.SalaryRepository.All();
+        }
+
+        [HttpGet]
+        public IQueryable<Unit> Units()
+        {
+            return UnitOfWork.UnitRepository.All();
         }
 
         [HttpPost]
