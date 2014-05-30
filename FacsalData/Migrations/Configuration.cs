@@ -76,9 +76,16 @@ namespace FacsalData.Migrations
 
             var salaries = new List<Salary>
             {
-                new Salary { 
+                new Salary 
+                { 
                     PersonId = "001", CycleYear = 2014, Title = "Director", FacultyTypeId = 1,
                     FullTimeEquivalent = 1.00M, BaseAmount = 1000, AdminAmount = 0, EminentAmount = 0,
+                    PromotionAmount = 0, RankTypeId = 1, AppointmentTypeId = 1, MeritAdjustmentTypeId = 1
+                },
+                new Salary
+                {
+                    PersonId = "002", CycleYear = 2014, Title = "Director", FacultyTypeId = 1,
+                    FullTimeEquivalent = 1.00M, BaseAmount = 2000, AdminAmount = 0, EminentAmount = 0,
                     PromotionAmount = 0, RankTypeId = 1, AppointmentTypeId = 1, MeritAdjustmentTypeId = 1
                 }
             };
@@ -87,7 +94,8 @@ namespace FacsalData.Migrations
 
             var employments = new List<Employment>
             {
-                new Employment { PersonId = "001", DepartmentId = "0825" }
+                new Employment { PersonId = "001", DepartmentId = "0825" },
+                new Employment { PersonId = "002", DepartmentId = "0825" }
             };
             employments.ForEach(e => context.Employments.AddOrUpdate(x => x.PersonId, e));
             context.SaveChanges();
