@@ -54,7 +54,7 @@
                     <tbody data-bind="foreach: salaries">
                         <tr>
                             <td>
-                                <a data-bind="attr: { href: '#/persons/edit/' + person().id() }, text: person().fullName"></a>
+                                <a data-bind="attr: { href: '#/salaries/edit/' + id() }, text: person().fullName"></a>
                             </td>
                             <td data-bind="text: rankTypeId"></td>
                             <td data-bind="text: totalAmount"></td>

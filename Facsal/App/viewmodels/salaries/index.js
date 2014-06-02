@@ -1,5 +1,5 @@
-﻿define(['services/unitofwork'],
-    function (uow) {
+﻿define(['services/unitofwork', 'services/errorhandler'],
+    function (uow, errorhandler) {
         var unitofwork = uow.create(),
 
             units = ko.observableArray(),
@@ -13,11 +13,14 @@
                     });
 
                 Q.all([units]).fail(self.handleError);
+
+                return true;
             };
 
         var vm = {
             activate: activate,
             attached: attached,
+
             departments: ko.observableArray(),
             salaries: ko.observableArray(),
             selectedUnitId: ko.observable(),
@@ -48,11 +51,12 @@
                 });
         });
 
-
+        errorhandler.includeIn(vm);
 
         return vm;
 
         function activate() {
             ga('send', 'pageview', { 'page': window.location.href, 'title': document.title });
+            return true;
         }
     });

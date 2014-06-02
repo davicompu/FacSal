@@ -23,7 +23,7 @@
                         <label for="FacultyType">
                             Classification
                         </label>
-                        <select name="FacultyType" data-bind="foreach: facultyTypes, value: facultyTypeId">
+                        <select name="FacultyType" data-bind="foreach: $parent.facultyTypes, value: facultyTypeId">
                             <option data-bind="attr: { value: Id }, text: Name"></option>
                         </select>
                     </div>
@@ -34,7 +34,7 @@
                         <label for="RankType">
                             Rank
                         </label>
-                        <select name="RankType" data-bind="foreach: rankTypes, value: rankTypeId">
+                        <select name="RankType" data-bind="foreach: $parent.rankTypes, value: rankTypeId">
                             <option data-bind="attr: { value: Id }, text: Name"></option>
                         </select>
                     </div>
@@ -45,7 +45,7 @@
                         <label for="AppointmentType">
                             Appointment
                         </label>
-                        <select name="AppointmentType" data-bind="foreach: appointmentTypes, value: appointmentTypeId">
+                        <select name="AppointmentType" data-bind="foreach: $parent.appointmentTypes, value: appointmentTypeId">
                             <option data-bind="attr: { value: Id }, text: Name"></option>
                         </select>
                     </div>
@@ -102,7 +102,7 @@
                         <label for="MeritAdjustmentType">
                             Adjustment reason
                         </label>
-                        <select name="MeritAdjustmentType" data-bind="foreach: meritadjustmentTypes, value: meritadjustmentTypeId">
+                        <select name="MeritAdjustmentType" data-bind="foreach: $parent.meritAdjustmentTypes, value: meritAdjustmentTypeId">
                             <option data-bind="attr: { value: Id }, text: Name"></option>
                         </select>
                     </div>
@@ -150,7 +150,7 @@
                         <label for="SpecialAdjustmentType">
                             Special adjustments
                         </label>
-                        <section data-bind="foreach: specialAdjustmentTypes">
+                        <section data-bind="foreach: $parent.specialAdjustmentTypes">
                             <input type="checkbox" name="specialAdjustmentTypes"
                                 data-bind="attr: { value: Id }, text: Name, checked: specialSalaryAdjustments">
                         </section>

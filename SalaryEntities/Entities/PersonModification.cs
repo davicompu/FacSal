@@ -8,5 +8,6 @@ namespace SalaryEntities.Entities
 {
     public class PersonModification : Modification
     {
+
     }
 }

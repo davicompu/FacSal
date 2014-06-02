@@ -11,13 +11,11 @@ namespace SalaryEntities.Entities
 {
     public class Salary : AuditEntityBase
     {
-        [Column(Order = 0)]
-        [Key]
+        public long Id { get; set; }
+
         [ForeignKey("Person")]
         public string PersonId { get; set; }
 
-        [Column(Order = 1)]
-        [Key]
         public int CycleYear { get; set; }
 
         [StringLength(128)]
