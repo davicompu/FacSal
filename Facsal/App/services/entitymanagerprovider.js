@@ -73,7 +73,7 @@ define(['durandal/app', 'services/config'],
 				    }
 
 				    var query = breeze.EntityQuery
-						.from(routeconfig.lookupUrl);
+						.from(routeconfig.lookupsUrl);
 
 				    return masterManager.executeQuery(query);
 				})

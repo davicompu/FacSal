@@ -38,11 +38,25 @@ namespace FacsalData.Migrations
             depts.ForEach(d => context.Departments.AddOrUpdate(x => x.Id, d));
             context.SaveChanges();
 
+            var appointmentTypes = new List<AppointmentType>
+            {
+                new AppointmentType { Id = 1, Name = "Full-time" }
+            };
+            appointmentTypes.ForEach(a => context.AppointmentTypes.AddOrUpdate(x => x.Name, a));
+            context.SaveChanges();
+
             var facultyTypes = new List<FacultyType>
             {
                 new FacultyType { Id = 1, Name = "Administrative Professional"}
             };
             facultyTypes.ForEach(f => context.FacultyTypes.AddOrUpdate(x => x.Name, f));
+            context.SaveChanges();
+
+            var meritAdjustmentTypes = new List<MeritAdjustmentType>
+            {
+                new MeritAdjustmentType { Id = 1, Name = "Good performance" }
+            };
+            meritAdjustmentTypes.ForEach(m => context.MeritAdjustmentTypes.AddOrUpdate(x => x.Name, m));
             context.SaveChanges();
 
             var rankTypes = new List<RankType>
@@ -52,18 +66,11 @@ namespace FacsalData.Migrations
             rankTypes.ForEach(r => context.RankTypes.AddOrUpdate(x => x.Name, r));
             context.SaveChanges();
 
-            var appointmentTypes = new List<AppointmentType>
+            var specialAdjustmentTypes = new List<SpecialAdjustmentType>
             {
-                new AppointmentType { Id = 1, Name = "Full-time" }
+                new SpecialAdjustmentType { Id = 1, Name = "External market factors"}
             };
-            appointmentTypes.ForEach(a => context.AppointmentTypes.AddOrUpdate(x => x.Name, a));
-            context.SaveChanges();
-
-            var meritAdjustmentTypes = new List<MeritAdjustmentType>
-            {
-                new MeritAdjustmentType { Id = 1, Name = "Good performance" }
-            };
-            meritAdjustmentTypes.ForEach(m => context.MeritAdjustmentTypes.AddOrUpdate(x => x.Name, m));
+            specialAdjustmentTypes.ForEach(s => context.SpecialAdjustmentTypes.AddOrUpdate(x => x.Name, s));
             context.SaveChanges();
 
             var persons = new List<Person>

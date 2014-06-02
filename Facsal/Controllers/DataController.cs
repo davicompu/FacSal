@@ -70,8 +70,13 @@ namespace Facsal.Controllers
         {
             return new LookupBundle
             {
-                Units = UnitOfWork.UnitRepository.All(),
-                Departments = UnitOfWork.DepartmentRepository.All()
+                AppointmentTypes = UnitOfWork.AppointmentTypeRepository.All(),
+                Departments = UnitOfWork.DepartmentRepository.All(),
+                FacultyTypes = UnitOfWork.FacultyTypeRepository.All(),
+                MeritAdjustmentTypes = UnitOfWork.MeritAdjustmentTypeRepository.All(),
+                RankTypes = UnitOfWork.RankTypeRepository.All(),
+                SpecialAdjustmentTypes = UnitOfWork.SpecialAdjustmentTypeRepository.All(),
+                Units = UnitOfWork.UnitRepository.All()
             };
         }
     }

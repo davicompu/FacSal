@@ -12,14 +12,15 @@ namespace SalaryEntities.UnitOfWork
 {
     public interface IUnitOfWork
     {
-        IRepository<MeritAdjustmentType> MeritAdjustmentTypeRepository { get; }
         IRepository<AppointmentType> AppointmentTypeRepository { get; }
         IRepository<Department> DepartmentRepository { get; }
         IRepository<Employment> EmploymentRepository { get; }
         IRepository<FacultyType> FacultyTypeRepository { get; }
+        IRepository<MeritAdjustmentType> MeritAdjustmentTypeRepository { get; }
         IRepository<Person> PersonRepository { get; }
         IRepository<RankType> RankTypeRepository { get; }
         IRepository<Salary> SalaryRepository { get; }
+        IRepository<SpecialAdjustmentType> SpecialAdjustmentTypeRepository { get; }
         IRepository<Unit> UnitRepository { get; }
 
         int Commit();

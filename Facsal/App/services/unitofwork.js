@@ -52,12 +52,22 @@ define(['services/entitymanagerprovider', 'services/repository', 'durandal/app',
 	            };
 
 	            // Repositories
-	            this.units = repository.create(provider, 'Unit', routeconfig.unitsUrl,
-                    breeze.FetchStrategy.FromLocalCache);
+	            this.appointmentTypes = repository.create(provider, 'AppointmentType',
+                    routeconfig.appointmentTypesUrl, breeze.FetchStrategy.FromLocalCache);
 	            this.departments = repository.create(provider, 'Department',
                     routeconfig.departmentsUrl, breeze.FetchStrategy.FromLocalCache);
+	            this.facultyTypes = repository.create(provider, 'FacultyType',
+                    routeconfig.facultyTypesUrl, breeze.FetchStrategy.FromLocalCache);
+	            this.meritAdjustmentTypes = repository.create(provider, 'MeritAdjustmentType',
+                    routeconfig.meritAdjustmentTypesUrl, breeze.FetchStrategy.FromLocalCache);
+	            this.rankTypes = repository.create(provider, 'RankType',
+                    routeconfig.rankTypesUrl, breeze.FetchStrategy.FromLocalCache);
 	            this.salaries = repository.create(provider, 'Salary',
                     routeconfig.salariesUrl);
+	            this.specialAdjustmentTypes = repository.create(provider, 'SpecialAdjustmentType',
+                    routeconfig.specialAdjustmentTypesUrl, breeze.FetchStrategy.FromLocalCache);
+	            this.units = repository.create(provider, 'Unit', routeconfig.unitsUrl,
+                    breeze.FetchStrategy.FromLocalCache);
 	        };
 
 	        return unitofwork;

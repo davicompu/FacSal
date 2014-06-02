@@ -9,44 +9,26 @@
         return self;
 
         function extendMetadata(metadataStore) {
-            extendMeritAdjustmentType(metadataStore);
-            extendSpecialAdjustmentType(metadataStore);
-            extendPaymentType(metadataStore);
+            extendAppointmentType(metadataStore);
             extendDepartment(metadataStore);
             extendFacultyType(metadataStore);
+            extendMeritAdjustmentType(metadataStore);
             extendPerson(metadataStore);
             extendRankType(metadataStore);
             extendSalary(metadataStore);
+            extendSpecialAdjustmentType(metadataStore);
             extendUnit(metadataStore);
         }
 
-        function extendMeritAdjustmentType(metadataStore) {
+        function extendAppointmentType(metadataStore) {
             var initializer = function (entity) {
                 addValidationRules(entity);
                 addHasValidationErrorsProperty(entity);
             };
 
-            metadataStore.registerEntityTypeCtor('MeritAdjustmentType', null, initializer);
+            metadataStore.registerEntityTypeCtor('AppointmentType', null, initializer);
         }
-
-        function extendSpecialAdjustmentType(metadataStore) {
-            var initializer = function (entity) {
-                addValidationRules(entity);
-                addHasValidationErrorsProperty(entity);
-            };
-
-            metadataStore.registerEntityTypeCtor('SpecialAdjustmentType', null, initializer);
-        }
-
-        function extendPaymentType(metadataStore) {
-            var initializer = function (entity) {
-                addValidationRules(entity);
-                addHasValidationErrorsProperty(entity);
-            };
-
-            metadataStore.registerEntityTypeCtor('PaymentType', null, initializer);
-        }
-
+        
         function extendDepartment(metadataStore) {
             var initializer = function (entity) {
                 addValidationRules(entity);
@@ -63,6 +45,15 @@
             };
 
             metadataStore.registerEntityTypeCtor('FacultyType', null, initializer);
+        }
+
+        function extendMeritAdjustmentType(metadataStore) {
+            var initializer = function (entity) {
+                addValidationRules(entity);
+                addHasValidationErrorsProperty(entity);
+            };
+
+            metadataStore.registerEntityTypeCtor('MeritAdjustmentType', null, initializer);
         }
 
         function extendPerson(metadataStore) {
@@ -118,6 +109,15 @@
             };
 
             metadataStore.registerEntityTypeCtor('Salary', null, initializer);
+        }
+
+        function extendSpecialAdjustmentType(metadataStore) {
+            var initializer = function (entity) {
+                addValidationRules(entity);
+                addHasValidationErrorsProperty(entity);
+            };
+
+            metadataStore.registerEntityTypeCtor('SpecialAdjustmentType', null, initializer);
         }
 
         function extendUnit(metadataStore) {

@@ -9,10 +9,15 @@
 
             remoteServiceName: '/breeze/data',
             // Breeze Routes. Relative to remote service name.
+            appointmentTypesUrl: 'appointmentTypes',
             departmentsUrl: 'departments',
-            lookupUrl: 'getlookups',
+            facultyTypesUrl: 'facultyTypes',
+            lookupsUrl: 'getLookups',
+            meritAdjustmentTypesUrl: 'meritAdjustmentTypes',
             personsUrl: 'persons',
+            rankTypesUrl: 'rankTypes',
             salariesUrl: 'salaries',
+            specialAdjustmentTypesUrl: 'specialAdjustmentTypes',
             unitsUrl: 'units',
         };
         //#endregion

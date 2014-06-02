@@ -15,13 +15,13 @@ namespace FacsalData
             : base("FacsalDbConnection")
         {}
 
-        public DbSet<MeritAdjustmentType> MeritAdjustmentTypes { get; set; }
         public DbSet<AppointmentType> AppointmentTypes { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<DepartmentModification> DepartmentModifications { get; set; }
         public DbSet<Employment> Employments { get; set; }
         public DbSet<FacultyType> FacultyTypes { get; set; }
         public DbSet<Person> Persons { get; set; }
+        public DbSet<MeritAdjustmentType> MeritAdjustmentTypes { get; set; }
         public DbSet<PersonModification> PersonModifications { get; set; }
         public DbSet<RankType> RankTypes { get; set; }
         public DbSet<Salary> Salaries { get; set; }
