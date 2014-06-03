@@ -47,7 +47,8 @@ namespace FacsalData.Migrations
 
             var facultyTypes = new List<FacultyType>
             {
-                new FacultyType { Id = 1, Name = "Administrative Professional"}
+                new FacultyType { Id = 1, Name = "Administrative Professional"},
+                new FacultyType { Id = 2, Name = "Research Faculty" }
             };
             facultyTypes.ForEach(f => context.FacultyTypes.AddOrUpdate(x => x.Name, f));
             context.SaveChanges();
@@ -68,15 +69,24 @@ namespace FacsalData.Migrations
 
             var specialAdjustmentTypes = new List<SpecialAdjustmentType>
             {
-                new SpecialAdjustmentType { Id = 1, Name = "External market factors"}
+                new SpecialAdjustmentType { Id = 1, Name = "External market factors"},
+                new SpecialAdjustmentType { Id = 2, Name = "Competitiveness"}
             };
             specialAdjustmentTypes.ForEach(s => context.SpecialAdjustmentTypes.AddOrUpdate(x => x.Name, s));
             context.SaveChanges();
 
+            var statusTypes = new List<SalaryEntities.Entities.StatusType>
+            {
+                new SalaryEntities.Entities.StatusType { Id = 1, Name = "Active" },
+                new SalaryEntities.Entities.StatusType { Id = 2, Name = "Inactive" }
+            };
+            statusTypes.ForEach(s => context.StatusTypes.AddOrUpdate(x => x.Name, s));
+            context.SaveChanges();
+
             var persons = new List<Person>
             {
-                new Person { Id = "001", Pid = "acampb", LastName = "Campbell", FirstName = "Allen", IsActive = true },
-                new Person { Id = "002", Pid = "mjordan", LastName = "Jordan", FirstName = "Michael", IsActive = true }
+                new Person { Id = "001", Pid = "acampb", LastName = "Campbell", FirstName = "Allen", StatusTypeId = 2 },
+                new Person { Id = "002", Pid = "mjordan", LastName = "Jordan", FirstName = "Michael", StatusTypeId = 1 }
             };
             persons.ForEach(p => context.Persons.AddOrUpdate(x => x.Pid, p));
             context.SaveChanges();
@@ -85,7 +95,7 @@ namespace FacsalData.Migrations
             {
                 new Salary 
                 { 
-                    PersonId = "001", CycleYear = 2014, Title = "Director", FacultyTypeId = 1,
+                    PersonId = "001", CycleYear = 2014, Title = "Director", FacultyTypeId = 2,
                     FullTimeEquivalent = 1.00M, BaseAmount = 1000, AdminAmount = 0, EminentAmount = 0,
                     PromotionAmount = 0, RankTypeId = 1, AppointmentTypeId = 1, MeritAdjustmentTypeId = 1
                 },

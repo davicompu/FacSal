@@ -85,6 +85,14 @@
     <Compile Include="Migrations\201406022127176_RemoveCompositeKeys.Designer.cs">
       <DependentUpon>201406022127176_RemoveCompositeKeys.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201406031813396_StatusType.cs" />
+    <Compile Include="Migrations\201406031813396_StatusType.Designer.cs">
+      <DependentUpon>201406031813396_StatusType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201406031826274_Fakie.cs" />
+    <Compile Include="Migrations\201406031826274_Fakie.Designer.cs">
+      <DependentUpon>201406031826274_Fakie.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Repository.cs" />
@@ -122,6 +130,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201406022127176_RemoveCompositeKeys.resx">
       <DependentUpon>201406022127176_RemoveCompositeKeys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406031813396_StatusType.resx">
+      <DependentUpon>201406031813396_StatusType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406031826274_Fakie.resx">
+      <DependentUpon>201406031826274_Fakie.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,13 +21,16 @@ namespace SalaryEntities.Entities
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
-        public bool IsActive { get; set; }
+        [ForeignKey("StatusType")]
+        public int StatusTypeId { get; set; }
 
         public ICollection<Salary> Salaries { get; set; }
 
         public ICollection<Employment> Employments { get; set; }
 
         public ICollection<PersonModification> Modifications { get; set; }
+
+        public StatusType StatusType { get; set; }
 
         /* Full name not derived since EF couldn't use CONTAINS on derived 
          * properties at the time of development. CONTAINS needed for Search 

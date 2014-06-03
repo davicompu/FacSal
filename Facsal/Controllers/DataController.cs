@@ -76,6 +76,7 @@ namespace Facsal.Controllers
                 MeritAdjustmentTypes = UnitOfWork.MeritAdjustmentTypeRepository.All(),
                 RankTypes = UnitOfWork.RankTypeRepository.All(),
                 SpecialAdjustmentTypes = UnitOfWork.SpecialAdjustmentTypeRepository.All(),
+                StatusTypes = UnitOfWork.StatusTypeRepository.All(),
                 Units = UnitOfWork.UnitRepository.All()
             };
         }

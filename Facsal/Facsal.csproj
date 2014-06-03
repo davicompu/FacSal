@@ -214,12 +214,10 @@
     <Content Include="App\main.js" />
     <Content Include="App\model\modelBuilder.js" />
     <Content Include="App\services\config.js" />
-    <Content Include="App\services\employmentrepository.js" />
     <Content Include="App\services\entitymanagerprovider.js" />
     <Content Include="App\services\errorhandler.js" />
     <Content Include="App\services\logger.js" />
     <Content Include="App\services\repository.js" />
-    <Content Include="App\services\salaryrepository.js" />
     <Content Include="App\services\security.js" />
     <Content Include="App\services\sorter.js" />
     <Content Include="App\services\unitofwork.js" />
@@ -243,15 +241,9 @@
     <Content Include="sass\Site.css">
       <DependentUpon>Site.scss</DependentUpon>
     </Content>
-    <Content Include="Scripts\almond-custom.js" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
-    <None Include="Scripts\breeze.intellisense.js" />
-    <Content Include="Scripts\breeze.debug.js" />
-    <Content Include="Scripts\breeze.min.js" />
-    <Content Include="Scripts\chrisjsherm\chrisjsherm.ko.extenders.js" />
-    <Content Include="Scripts\chrisjsherm\chrisjsherm.number.js" />
-    <Content Include="Scripts\chrisjsherm\chrisjsherm.string.js" />
+    <Content Include="Scripts\almond-custom.js" />
     <Content Include="Scripts\durandal\activator.js" />
     <Content Include="Scripts\durandal\app.js" />
     <Content Include="Scripts\durandal\binder.js" />
@@ -266,9 +258,17 @@
     <Content Include="Scripts\durandal\plugins\widget.js" />
     <Content Include="Scripts\durandal\system.js" />
     <Content Include="Scripts\durandal\transitions\entrance.js" />
-    <Content Include="Scripts\durandal\transitions\scrollers.js" />
     <Content Include="Scripts\durandal\viewEngine.js" />
     <Content Include="Scripts\durandal\viewLocator.js" />
+    <Content Include="Scripts\knockout.validation.js" />
+    <Content Include="weyland-config.js" />
+    <None Include="Scripts\breeze.intellisense.js" />
+    <Content Include="Scripts\breeze.debug.js" />
+    <Content Include="Scripts\breeze.min.js" />
+    <Content Include="Scripts\chrisjsherm\chrisjsherm.ko.extenders.js" />
+    <Content Include="Scripts\chrisjsherm\chrisjsherm.number.js" />
+    <Content Include="Scripts\chrisjsherm\chrisjsherm.string.js" />
+    <Content Include="Scripts\durandal\transitions\scrollers.js" />
     <Content Include="sass\foundation\components\_accordion.scss" />
     <Content Include="sass\foundation\components\_alert-boxes.scss" />
     <Content Include="sass\foundation\components\_block-grid.scss" />
@@ -375,9 +375,8 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\knockout-3.1.0.debug.js" />
-    <Content Include="Scripts\knockout-3.1.0.js" />
-    <Content Include="Scripts\knockout.validation.js" />
+    <Content Include="Scripts\knockout-2.3.0.debug.js" />
+    <Content Include="Scripts\knockout-2.3.0.js" />
     <Content Include="Scripts\modernizr-2.7.2.js" />
     <Content Include="Scripts\moment-with-langs.js" />
     <Content Include="Scripts\moment-with-langs.min.js" />
@@ -385,12 +384,11 @@
     <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\r.js" />
     <Content Include="Scripts\require.js" />
+    <Content Include="Scripts\text.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
-    <Content Include="weyland-config.js" />
     <Content Include="Scripts\q.js" />
     <Content Include="Scripts\q.min.js" />
-    <Content Include="Scripts\text.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

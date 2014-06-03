@@ -20,6 +20,8 @@ namespace Facsal.Models
 
         public IEnumerable<SpecialAdjustmentType> SpecialAdjustmentTypes { get; set; }
 
+        public IEnumerable<StatusType> StatusTypes { get; set; }
+
         public IEnumerable<Unit> Units { get; set; }
     }
 }

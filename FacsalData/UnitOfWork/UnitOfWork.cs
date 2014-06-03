@@ -26,6 +26,7 @@ namespace FacsalData.UnitOfWork
         public IRepository<RankType> RankTypeRepository { get; private set; }
         public IRepository<Salary> SalaryRepository { get; private set; }
         public IRepository<SpecialAdjustmentType> SpecialAdjustmentTypeRepository { get; private set; }
+        public IRepository<StatusType> StatusTypeRepository { get; private set; }
         public IRepository<Unit> UnitRepository { get; private set; }
 
         public UnitOfWork(IBreezeValidator breezeValidator)
@@ -43,6 +44,7 @@ namespace FacsalData.UnitOfWork
             RankTypeRepository = new Repository<RankType>(ContextProvider.Context);
             SalaryRepository = new Repository<Salary>(ContextProvider.Context);
             SpecialAdjustmentTypeRepository = new Repository<SpecialAdjustmentType>(ContextProvider.Context);
+            StatusTypeRepository = new Repository<StatusType>(ContextProvider.Context);
             UnitRepository = new Repository<Unit>(ContextProvider.Context);
         }
 

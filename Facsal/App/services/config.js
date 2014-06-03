@@ -18,6 +18,8 @@
             rankTypesUrl: 'rankTypes',
             salariesUrl: 'salaries',
             specialAdjustmentTypesUrl: 'specialAdjustmentTypes',
+            specialSalaryAdjustmentsUrl: 'specialSalaryAdjustments',
+            statusTypesUrl: 'statusTypes',
             unitsUrl: 'units',
         };
         //#endregion

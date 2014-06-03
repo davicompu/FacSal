@@ -73,6 +73,7 @@
     <Compile Include="Entities\SalaryModification.cs" />
     <Compile Include="Entities\SpecialAdjustmentType.cs" />
     <Compile Include="Entities\SpecialSalaryAdjustment.cs" />
+    <Compile Include="Entities\StatusType.cs" />
     <Compile Include="Entities\Unit.cs" />
     <Compile Include="Entities\UnitModification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

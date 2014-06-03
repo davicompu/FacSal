@@ -11,10 +11,8 @@
                         <label for="Status">
                             Status
                         </label>
-                        <select name="Status" data-bind="value: isActive">
-                            <option value="1">Active</option>
-                            <option value="0">Inactive</option>
-                        </select>
+                        <select name="Status" data-bind="options: $parent.statusTypes,
+                            optionsValue: 'id', optionsText: 'name', optionsCaption: 'Choose...', value: person().statusTypeId"></select>
                     </div>
                 </div>
 
@@ -23,9 +21,8 @@
                         <label for="FacultyType">
                             Classification
                         </label>
-                        <select name="FacultyType" data-bind="foreach: $parent.facultyTypes, value: facultyTypeId">
-                            <option data-bind="attr: { value: Id }, text: Name"></option>
-                        </select>
+                        <select name="FacultyType" data-bind="options: $parent.facultyTypes,
+                        optionsValue: 'id', optionsText: 'name', optionsCaption: 'Choose...', value: facultyTypeId"></select>
                     </div>
                 </div>
 
@@ -34,9 +31,8 @@
                         <label for="RankType">
                             Rank
                         </label>
-                        <select name="RankType" data-bind="foreach: $parent.rankTypes, value: rankTypeId">
-                            <option data-bind="attr: { value: Id }, text: Name"></option>
-                        </select>
+                        <select name="RankType" data-bind="options: $parent.rankTypes,
+                        optionsValue: 'id', optionsText: 'name', optionsCaption: 'Choose...', value: rankTypeId"></select>
                     </div>
                 </div>
 
@@ -45,9 +41,8 @@
                         <label for="AppointmentType">
                             Appointment
                         </label>
-                        <select name="AppointmentType" data-bind="foreach: $parent.appointmentTypes, value: appointmentTypeId">
-                            <option data-bind="attr: { value: Id }, text: Name"></option>
-                        </select>
+                        <select name="AppointmentType" data-bind="options: $parent.appointmentTypes,
+                        optionsValue: 'id', optionsText: 'name', optionsCaption: 'Choose...', value: appointmentTypeId"></select>
                     </div>
                 </div>
 
@@ -69,7 +64,7 @@
                         <label for="FTE" class="hide-on-print">
                             FTE<span class="required">*</span>
                         </label>
-                        <input name="FTE" type="text" class="hide-on-print" data-bind="value: fullTimeEquivalent, css: { validationElement: true }" />
+                        <input name="FTE" type="text" class="hide-on-print" data-bind="value: fullTimeEquivalent" />
                         <p class="print-only">
                             <span class="text-underline">FTE</span>: <span data-bind="text: fullTimeEquivalent"></span>
                         </p>
@@ -87,9 +82,9 @@
                             Amount<span class="required">*</span>
                         </label>
                         <input name="MeritIncrease" type="text" class="hide-on-print"
-                               data-bind="value: formattedMeritIncrease" />
+                               data-bind="value: meritIncrease" />
                         <p class="print-only">
-                            <span class="text-underline">Amount</span>: <span data-bind="text: formattedMeritIncrease"></span>
+                            <span class="text-underline">Amount</span>: <span data-bind="text: meritIncrease"></span>
                         </p>
                         <label for="MeritIncrease"
                                class="error-message" data-bind="validationMessage: meritIncrease">
@@ -102,9 +97,8 @@
                         <label for="MeritAdjustmentType">
                             Adjustment reason
                         </label>
-                        <select name="MeritAdjustmentType" data-bind="foreach: $parent.meritAdjustmentTypes, value: meritAdjustmentTypeId">
-                            <option data-bind="attr: { value: Id }, text: Name"></option>
-                        </select>
+                        <select name="MeritAdjustmentType" data-bind="options: $parent.meritAdjustmentTypes,
+                        optionsValue: 'id', optionsText: 'name', optionsCaption: 'Choose...', value: meritAdjustmentTypeId"></select>
                     </div>
                 </div>
 
@@ -135,9 +129,9 @@
                             Amount<span class="required">*</span>
                         </label>
                         <input name="SpecialIncrease" type="text" class="hide-on-print"
-                               data-bind="value: formattedSpecialIncrease" />
+                               data-bind="value: specialIncrease" />
                         <p class="print-only">
-                            <span class="text-underline">Amount</span>: <span data-bind="text: formattedSpecialIncrease"></span>
+                            <span class="text-underline">Amount</span>: <span data-bind="text: specialIncrease"></span>
                         </p>
                         <label for="SpecialIncrease"
                                class="error-message" data-bind="validationMessage: specialIncrease">
@@ -150,10 +144,11 @@
                         <label for="SpecialAdjustmentType">
                             Special adjustments
                         </label>
-                        <section data-bind="foreach: $parent.specialAdjustmentTypes">
-                            <input type="checkbox" name="specialAdjustmentTypes"
-                                data-bind="attr: { value: Id }, text: Name, checked: specialSalaryAdjustments">
-                        </section>
+                        <select size="5" multiple
+                                data-bind="options: $parent.specialAdjustmentTypes, optionsValue: 'id',
+                                    optionsText: 'name', selectedOptions: $parent.checkedSpecialAdjustmentTypes"></select>
+
+                        <p data-bind="text: $parent.checkedSpecialAdjustmentTypes"></p>
                     </div>
                 </div>
 
@@ -184,9 +179,9 @@
                             Amount<span class="required">*</span>
                         </label>
                         <input name="PromotionAmount" type="text" class="hide-on-print"
-                               data-bind="value: formattedPromotionAmount" />
+                               data-bind="value: promotionAmount" />
                         <p class="print-only">
-                            <span class="text-underline">Amount</span>: <span data-bind="text: formattedPromotionAmount"></span>
+                            <span class="text-underline">Amount</span>: <span data-bind="text: promotionAmount"></span>
                         </p>
                         <label for="PromotionAmount"
                                class="error-message" data-bind="validationMessage: promotionAmount">
@@ -195,20 +190,9 @@
                 </div>
             </fieldset>
 
-            <div class="row" data-bind="visible: errorMessage">
+            <div class="row">
                 <div class="large-12 columns">
-                    <p>
-                        <span class="error-message"
-                              data-bind="text: errorMessage"></span>
-                    </p>
-                </div>
-            </div>
-
-            <div class="row hide-on-print">
-                <div class="large-12 columns">
-                    <p>
-                        <span class="text-button" data-bind="click: $parent.saveItem">Save</span>
-                    </p>
+                    <button data-bind="click: $parent.saveChanges">Save</button>
                 </div>
             </div>
         </section>

@@ -6,8 +6,8 @@
 */
 
 define(['services/entitymanagerprovider', 'services/repository', 'durandal/app',
-    'services/config', 'services/salaryrepository'],
-	function (entityManagerProvider, repository, app, routeconfig, salaryrepository) {
+    'services/config'],
+	function (entityManagerProvider, repository, app, routeconfig) {
 
 	    var refs = {};
 
@@ -66,6 +66,10 @@ define(['services/entitymanagerprovider', 'services/repository', 'durandal/app',
                     routeconfig.salariesUrl);
 	            this.specialAdjustmentTypes = repository.create(provider, 'SpecialAdjustmentType',
                     routeconfig.specialAdjustmentTypesUrl, breeze.FetchStrategy.FromLocalCache);
+	            this.specialSalaryAdjustments = repository.create(provider, 'SpecialSalaryAdjustment',
+                    routeconfig.specialSalaryAdjustmentsUrl);
+	            this.statusTypes = repository.create(provider, 'StatusType',
+                    routeconfig.statusTypesUrl, breeze.FetchStrategy.FromLocalCache);
 	            this.units = repository.create(provider, 'Unit', routeconfig.unitsUrl,
                     breeze.FetchStrategy.FromLocalCache);
 	        };

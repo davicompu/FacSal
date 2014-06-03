@@ -13,7 +13,9 @@ define('knockout', ko);
 
 define(['durandal/app', 'durandal/viewLocator', 'durandal/system'],
     function (app, viewLocator, system) {
+        //>>excludeStart("build", true);
         system.debug(true);
+        //>>excludeEnd("build");
 
         app.title = 'FacSal';
 

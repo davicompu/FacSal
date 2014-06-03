@@ -28,6 +28,7 @@ namespace FacsalData
         public DbSet<SalaryModification> SalaryModifications { get; set; }
         public DbSet<SpecialAdjustmentType> SpecialAdjustmentTypes { get; set; }
         public DbSet<SpecialSalaryAdjustment> SpecialSalaryAdjustments { get; set; }
+        public DbSet<StatusType> StatusTypes { get; set; }
         public DbSet<Unit> Units { get; set; }
         public DbSet<UnitModification> UnitModifications { get; set; }
 

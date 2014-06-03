@@ -21,6 +21,7 @@ namespace SalaryEntities.UnitOfWork
         IRepository<RankType> RankTypeRepository { get; }
         IRepository<Salary> SalaryRepository { get; }
         IRepository<SpecialAdjustmentType> SpecialAdjustmentTypeRepository { get; }
+        IRepository<StatusType> StatusTypeRepository { get; }
         IRepository<Unit> UnitRepository { get; }
 
         int Commit();

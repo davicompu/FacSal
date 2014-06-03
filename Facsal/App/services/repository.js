@@ -27,19 +27,12 @@ define(function () {
 			 * @param {int/string} key - The entity identity
 			 * @return {promise}
 			*/
-            this.withId = function (key, expansionCondition) {
+            this.withId = function (key) {
                 if (!entityTypeName) {
                     throw new Error('Repository must be created with an entity type specified');
                 }
 
-                manager().fetchEntityByKey(entityTypeName, key, true)
-                    .expand(expansionCondition)
-					.then(function (data) {
-					    if (!data.entity) {
-					        throw new Error('Entity not found!');
-					    }
-					    return data.entity;
-					});
+                return manager().fetchEntityByKey(entityTypeName, key, true);
             };
 
             /**
