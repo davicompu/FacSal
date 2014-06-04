@@ -8,10 +8,13 @@ define(['durandal/app', 'services/config'],
 
 	    breeze.NamingConvention.camelCase.setAsDefault();
 
-	    var ajaxAdapter = breeze.config.getAdapterInstance('ajax');
+	    var ajaxAdapter = breeze.config.getAdapterInstance('ajax'),
 
-	    var serviceName = routeconfig.remoteServiceName;
-	    var masterManager = new breeze.EntityManager(serviceName);
+	        serviceName = routeconfig.remoteServiceName,
+
+	        masterManager = new breeze.EntityManager({
+	            serviceName: serviceName
+	        });
 
 	    /**
 		 * Entity Manager ctor

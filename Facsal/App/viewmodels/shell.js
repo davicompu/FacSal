@@ -44,9 +44,20 @@
             };
 
             return router.map([
-                { route: ['', 'salaries', 'salaries/index'], moduleId: 'salaries/index', title: 'Salaries', nav: true, hash: '#salaries/index' },
+                {
+                    route: ['', 'salaries', 'salaries/index'], moduleId: 'salaries/index',
+                    title: 'Salaries', nav: true, hash: '#salaries/index'
+                },
 
-                { route: 'salaries/edit/:salaryid', moduleId: 'salaries/edit', title: 'Edit Salary', nav: false, hash: '#salaries/edit/:id'},
+                {
+                    route: 'salaries/edit/:salaryid', moduleId: 'salaries/edit',
+                    title: 'Edit Salary', nav: false, hash: '#salaries/edit/:id'
+                },
+
+                {
+                    route: 'salaries/search', moduleId: 'salaries/search',
+                    title: 'Search', nav: true, hash: '#salaries/search'
+                },
 
                 // Route not found.
                 { route: 'not-found', moduleId: 'not-found', title: 'Not found', nav: false }

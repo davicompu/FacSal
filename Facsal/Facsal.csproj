@@ -225,10 +225,12 @@
     <Content Include="App\viewmodels\not-found.js" />
     <Content Include="App\viewmodels\salaries\edit.js" />
     <Content Include="App\viewmodels\salaries\index.js" />
+    <Content Include="App\viewmodels\salaries\search.js" />
     <Content Include="App\viewmodels\shell.js" />
     <Content Include="App\views\not-found.html" />
     <Content Include="App\views\salaries\edit.html" />
     <Content Include="App\views\salaries\index.html" />
+    <Content Include="App\views\salaries\search.html" />
     <Content Include="App\views\shell.html" />
     <Content Include="Content\durandal.css" />
     <Content Include="Content\images\icon.png" />
@@ -402,7 +404,6 @@
     <Content Include="Scripts\toastr.min.js.map" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App\viewmodels\persons\" />
     <Folder Include="App\views\shared\" />
     <Folder Include="App_Data\" />
   </ItemGroup>

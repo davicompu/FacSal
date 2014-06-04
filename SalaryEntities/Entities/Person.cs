@@ -10,7 +10,7 @@ namespace SalaryEntities.Entities
 {
     public class Person : AuditEntityBase
     {
-        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string Id { get; set; }
 
         public string Pid { get; set; }

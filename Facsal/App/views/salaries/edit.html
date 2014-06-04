@@ -1,202 +1,202 @@
-﻿<div class="row">
-    <div class="large-12 columns">
-        <section data-bind="with: salary">
+﻿<section data-bind="with: salary">
+    <div class="row">
+        <div class="large-12 columns">
             <h4 class="view-heading">Details</h4>
-
-            <fieldset>
-                <h5>Faculty information</h5>
-
-                <div class="row hide-on-print">
-                    <div class="large-4 columns end">
-                        <label for="Status">
-                            Status
-                        </label>
-                        <select name="Status" data-bind="options: $parent.statusTypes,
-                            optionsValue: 'id', optionsText: 'name', optionsCaption: 'Choose...', value: person().statusTypeId"></select>
-                    </div>
-                </div>
-
-                <div class="row hide-on-print">
-                    <div class="large-4 columns end">
-                        <label for="FacultyType">
-                            Classification
-                        </label>
-                        <select name="FacultyType" data-bind="options: $parent.facultyTypes,
-                        optionsValue: 'id', optionsText: 'name', optionsCaption: 'Choose...', value: facultyTypeId"></select>
-                    </div>
-                </div>
-
-                <div class="row hide-on-print">
-                    <div class="large-4 columns end">
-                        <label for="RankType">
-                            Rank
-                        </label>
-                        <select name="RankType" data-bind="options: $parent.rankTypes,
-                        optionsValue: 'id', optionsText: 'name', optionsCaption: 'Choose...', value: rankTypeId"></select>
-                    </div>
-                </div>
-
-                <div class="row hide-on-print">
-                    <div class="large-4 columns end">
-                        <label for="AppointmentType">
-                            Appointment
-                        </label>
-                        <select name="AppointmentType" data-bind="options: $parent.appointmentTypes,
-                        optionsValue: 'id', optionsText: 'name', optionsCaption: 'Choose...', value: appointmentTypeId"></select>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="large-8 columns end">
-                        <label for="Title" class="hide-on-print">
-                            Title
-                        </label>
-                        <input name="Title" type="text" class="hide-on-print" data-bind="value: title" />
-                        <p class="print-only">
-                            <span class="text-underline">Title</span>: <span data-bind="text: title"></span>
-                        </p>
-                        <label for="Title" class="error-message" data-bind="validationMessage: title"></label>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="large-4 columns end">
-                        <label for="FTE" class="hide-on-print">
-                            FTE<span class="required">*</span>
-                        </label>
-                        <input name="FTE" type="text" class="hide-on-print" data-bind="value: fullTimeEquivalent" />
-                        <p class="print-only">
-                            <span class="text-underline">FTE</span>: <span data-bind="text: fullTimeEquivalent"></span>
-                        </p>
-                        <label for="FTE" class="error-message" data-bind="validationMessage: fullTimeEquivalent"></label>
-                    </div>
-                </div>
-            </fieldset>
-
-            <fieldset>
-                <h5>Merit adjustment</h5>
-
-                <div class="row">
-                    <div class="large-4 columns end">
-                        <label for="MeritIncrease" class="hide-on-print">
-                            Amount<span class="required">*</span>
-                        </label>
-                        <input name="MeritIncrease" type="text" class="hide-on-print"
-                               data-bind="value: meritIncrease" />
-                        <p class="print-only">
-                            <span class="text-underline">Amount</span>: <span data-bind="text: meritIncrease"></span>
-                        </p>
-                        <label for="MeritIncrease"
-                               class="error-message" data-bind="validationMessage: meritIncrease">
-                        </label>
-                    </div>
-                </div>
-
-                <div class="row hide-on-print">
-                    <div class="large-4 columns end">
-                        <label for="MeritAdjustmentType">
-                            Adjustment reason
-                        </label>
-                        <select name="MeritAdjustmentType" data-bind="options: $parent.meritAdjustmentTypes,
-                        optionsValue: 'id', optionsText: 'name', optionsCaption: 'Choose...', value: meritAdjustmentTypeId"></select>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="large-12 columns">
-                        <label for="MeritAdjustNote" class="hide-on-print">
-                            Brief description of the adjustment<span class="required">*</span>
-                        </label>
-                        <textarea name="MeritAdjustNote" class="hide-on-print"
-                                  data-bind="value: meritAdjustNote"></textarea>
-                        <p class="print-only">
-                            <span class="text-underline">Brief description of the merit adjustment</span>
-                        </p>
-                        <p class="print-only" data-bind="text: meritAdjustNote"></p>
-                        <label for="MeritAdjustNote"
-                               class="error-message" data-bind="validationMessage: meritAdjustNote">
-                        </label>
-                    </div>
-                </div>
-            </fieldset>
-
-            <fieldset>
-                <h5>Special adjustment</h5>
-
-                <div class="row">
-                    <div class="large-4 columns end">
-                        <label for="SpecialIncrease" class="hide-on-print">
-                            Amount<span class="required">*</span>
-                        </label>
-                        <input name="SpecialIncrease" type="text" class="hide-on-print"
-                               data-bind="value: specialIncrease" />
-                        <p class="print-only">
-                            <span class="text-underline">Amount</span>: <span data-bind="text: specialIncrease"></span>
-                        </p>
-                        <label for="SpecialIncrease"
-                               class="error-message" data-bind="validationMessage: specialIncrease">
-                        </label>
-                    </div>
-                </div>
-
-                <div class="row hide-on-print">
-                    <div class="large-4 columns end">
-                        <label for="SpecialAdjustmentType">
-                            Special adjustments
-                        </label>
-                        <!-- ko foreach: $parent.adjustmentVMs -->
-                        <div>
-                            <label>
-                                <input type="checkbox" data-bind="checkedValue: adjustment, checked: isSelected" /> <span data-bind="text: adjustment.name"></span>
-                            </label>
-                        </div>
-                        <!--/ko-->
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="large-12 columns">
-                        <label for="SpecialAdjustNote" class="hide-on-print">
-                            Brief description of the adjustment<span class="required">*</span>
-                        </label>
-                        <textarea name="SpecialAdjustNote" class="hide-on-print"
-                                  data-bind="value: specialAdjustNote"></textarea>
-                        <p class="print-only">
-                            <span class="text-underline">Brief description of the special adjustment</span>
-                        </p>
-                        <p class="print-only" data-bind="text: specialAdjustNote"></p>
-                        <label for="SpecialAdjustNote"
-                               class="error-message" data-bind="validationMessage: specialAdjustNote">
-                        </label>
-                    </div>
-                </div>
-            </fieldset>
-
-            <fieldset>
-                <h5>Promotion and tenure</h5>
-
-                <div class="row">
-                    <div class="large-4 columns end">
-                        <label for="PromotionAmount" class="hide-on-print">
-                            Amount<span class="required">*</span>
-                        </label>
-                        <input name="PromotionAmount" type="text" class="hide-on-print"
-                               data-bind="value: promotionAmount" />
-                        <p class="print-only">
-                            <span class="text-underline">Amount</span>: <span data-bind="text: promotionAmount"></span>
-                        </p>
-                        <label for="PromotionAmount"
-                               class="error-message" data-bind="validationMessage: promotionAmount">
-                        </label>
-                    </div>
-                </div>
-            </fieldset>
-
-            <div class="row">
-                <div class="large-12 columns">
-                    <button data-bind="click: $parent.saveChanges">Save</button>
-                </div>
-            </div>
-        </section>
+        </div>
     </div>
-</div>
+
+    <fieldset>
+        <h5>Faculty information</h5>
+
+        <div class="row hide-on-print">
+            <div class="large-4 columns end">
+                <label for="Status">
+                    Status
+                </label>
+                <select name="Status" data-bind="options: $parent.statusTypes,
+                            optionsValue: 'id', optionsText: 'name', optionsCaption: 'Choose...', value: person().statusTypeId"></select>
+            </div>
+        </div>
+
+        <div class="row hide-on-print">
+            <div class="large-4 columns end">
+                <label for="FacultyType">
+                    Classification
+                </label>
+                <select name="FacultyType" data-bind="options: $parent.facultyTypes,
+                        optionsValue: 'id', optionsText: 'name', optionsCaption: 'Choose...', value: facultyTypeId"></select>
+            </div>
+        </div>
+
+        <div class="row hide-on-print">
+            <div class="large-4 columns end">
+                <label for="RankType">
+                    Rank
+                </label>
+                <select name="RankType" data-bind="options: $parent.rankTypes,
+                        optionsValue: 'id', optionsText: 'name', optionsCaption: 'Choose...', value: rankTypeId"></select>
+            </div>
+        </div>
+
+        <div class="row hide-on-print">
+            <div class="large-4 columns end">
+                <label for="AppointmentType">
+                    Appointment
+                </label>
+                <select name="AppointmentType" data-bind="options: $parent.appointmentTypes,
+                        optionsValue: 'id', optionsText: 'name', optionsCaption: 'Choose...', value: appointmentTypeId"></select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="large-8 columns end">
+                <label for="Title" class="hide-on-print">
+                    Title
+                </label>
+                <input name="Title" type="text" class="hide-on-print" data-bind="value: title" />
+                <p class="print-only">
+                    <span class="text-underline">Title</span>: <span data-bind="text: title"></span>
+                </p>
+                <label for="Title" class="error-message" data-bind="validationMessage: title"></label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="large-4 columns end">
+                <label for="FTE" class="hide-on-print">
+                    FTE<span class="required">*</span>
+                </label>
+                <input name="FTE" type="text" class="hide-on-print" data-bind="value: fullTimeEquivalent" />
+                <p class="print-only">
+                    <span class="text-underline">FTE</span>: <span data-bind="text: fullTimeEquivalent"></span>
+                </p>
+                <label for="FTE" class="error-message" data-bind="validationMessage: fullTimeEquivalent"></label>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <h5>Merit adjustment</h5>
+
+        <div class="row">
+            <div class="large-4 columns end">
+                <label for="MeritIncrease" class="hide-on-print">
+                    Amount<span class="required">*</span>
+                </label>
+                <input name="MeritIncrease" type="text" class="hide-on-print"
+                       data-bind="value: meritIncrease" />
+                <p class="print-only">
+                    <span class="text-underline">Amount</span>: <span data-bind="text: meritIncrease"></span>
+                </p>
+                <label for="MeritIncrease"
+                       class="error-message" data-bind="validationMessage: meritIncrease">
+                </label>
+            </div>
+        </div>
+
+        <div class="row hide-on-print">
+            <div class="large-4 columns end">
+                <label for="MeritAdjustmentType">
+                    Adjustment reason
+                </label>
+                <select name="MeritAdjustmentType" data-bind="options: $parent.meritAdjustmentTypes,
+                        optionsValue: 'id', optionsText: 'name', optionsCaption: 'Choose...', value: meritAdjustmentTypeId"></select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="large-12 columns">
+                <label for="MeritAdjustNote" class="hide-on-print">
+                    Brief description of the adjustment<span class="required">*</span>
+                </label>
+                <textarea name="MeritAdjustNote" class="hide-on-print"
+                          data-bind="value: meritAdjustNote"></textarea>
+                <p class="print-only">
+                    <span class="text-underline">Brief description of the merit adjustment</span>
+                </p>
+                <p class="print-only" data-bind="text: meritAdjustNote"></p>
+                <label for="MeritAdjustNote"
+                       class="error-message" data-bind="validationMessage: meritAdjustNote">
+                </label>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <h5>Special adjustment</h5>
+
+        <div class="row">
+            <div class="large-4 columns end">
+                <label for="SpecialIncrease" class="hide-on-print">
+                    Amount<span class="required">*</span>
+                </label>
+                <input name="SpecialIncrease" type="text" class="hide-on-print"
+                       data-bind="value: specialIncrease" />
+                <p class="print-only">
+                    <span class="text-underline">Amount</span>: <span data-bind="text: specialIncrease"></span>
+                </p>
+                <label for="SpecialIncrease"
+                       class="error-message" data-bind="validationMessage: specialIncrease">
+                </label>
+            </div>
+        </div>
+
+        <div class="row hide-on-print">
+            <div class="large-4 columns end">
+                <label for="SpecialAdjustmentType">
+                    Special adjustments
+                </label>
+                <!-- ko foreach: $parent.adjustmentVMs -->
+                <div>
+                    <label>
+                        <input type="checkbox" data-bind="checkedValue: adjustment, checked: isSelected" /> <span data-bind="text: adjustment.name"></span>
+                    </label>
+                </div>
+                <!--/ko-->
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="large-12 columns">
+                <label for="SpecialAdjustNote" class="hide-on-print">
+                    Brief description of the adjustment<span class="required">*</span>
+                </label>
+                <textarea name="SpecialAdjustNote" class="hide-on-print"
+                          data-bind="value: specialAdjustNote"></textarea>
+                <p class="print-only">
+                    <span class="text-underline">Brief description of the special adjustment</span>
+                </p>
+                <p class="print-only" data-bind="text: specialAdjustNote"></p>
+                <label for="SpecialAdjustNote"
+                       class="error-message" data-bind="validationMessage: specialAdjustNote">
+                </label>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <h5>Promotion and tenure</h5>
+
+        <div class="row">
+            <div class="large-4 columns end">
+                <label for="PromotionAmount" class="hide-on-print">
+                    Amount<span class="required">*</span>
+                </label>
+                <input name="PromotionAmount" type="text" class="hide-on-print"
+                       data-bind="value: promotionAmount" />
+                <p class="print-only">
+                    <span class="text-underline">Amount</span>: <span data-bind="text: promotionAmount"></span>
+                </p>
+                <label for="PromotionAmount"
+                       class="error-message" data-bind="validationMessage: promotionAmount">
+                </label>
+            </div>
+        </div>
+    </fieldset>
+
+    <div class="row">
+        <div class="large-12 columns">
+            <button data-bind="click: $parent.saveChanges">Save</button>
+        </div>
+    </div>
+</section>
