@@ -72,6 +72,7 @@ define(['services/entitymanagerprovider', 'services/repository', 'durandal/app',
                     routeconfig.statusTypesUrl, breeze.FetchStrategy.FromLocalCache);
 	            this.units = repository.create(provider, 'Unit', routeconfig.unitsUrl,
                     breeze.FetchStrategy.FromLocalCache);
+	            this.users = repository.create(provider, 'User', routeconfig.usersUrl);
 	        };
 
 	        return unitofwork;

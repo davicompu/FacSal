@@ -59,6 +59,12 @@ namespace Facsal.Controllers
             return UnitOfWork.UnitRepository.All();
         }
 
+        [HttpGet]
+        public IQueryable<User> Users()
+        {
+            return UnitOfWork.UserRepository.All();
+        }
+
         [HttpPost]
         public SaveResult SaveChanges(JObject saveBundle)
         {

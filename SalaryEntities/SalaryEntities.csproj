@@ -68,6 +68,8 @@
     <Compile Include="Entities\Person.cs" />
     <Compile Include="Entities\PersonModification.cs" />
     <Compile Include="Entities\RankType.cs" />
+    <Compile Include="Entities\Role.cs" />
+    <Compile Include="Entities\RoleAssignment.cs" />
     <Compile Include="Entities\Salary.cs" />
     <Compile Include="Entities\MeritAdjustmentType.cs" />
     <Compile Include="Entities\SalaryModification.cs" />
@@ -76,6 +78,7 @@
     <Compile Include="Entities\StatusType.cs" />
     <Compile Include="Entities\Unit.cs" />
     <Compile Include="Entities\UnitModification.cs" />
+    <Compile Include="Entities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="UnitOfWork\IUnitOfWork.cs" />

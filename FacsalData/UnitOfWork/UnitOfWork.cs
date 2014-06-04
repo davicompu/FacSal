@@ -24,10 +24,12 @@ namespace FacsalData.UnitOfWork
         public IRepository<MeritAdjustmentType> MeritAdjustmentTypeRepository { get; private set; }
         public IRepository<Person> PersonRepository { get; private set; }
         public IRepository<RankType> RankTypeRepository { get; private set; }
+        public IRepository<Role> RoleRepository { get; private set; }
         public IRepository<Salary> SalaryRepository { get; private set; }
         public IRepository<SpecialAdjustmentType> SpecialAdjustmentTypeRepository { get; private set; }
         public IRepository<StatusType> StatusTypeRepository { get; private set; }
         public IRepository<Unit> UnitRepository { get; private set; }
+        public IRepository<User> UserRepository { get; private set; }
 
         public UnitOfWork(IBreezeValidator breezeValidator)
         {
@@ -42,10 +44,12 @@ namespace FacsalData.UnitOfWork
             MeritAdjustmentTypeRepository = new Repository<MeritAdjustmentType>(ContextProvider.Context);
             PersonRepository = new Repository<Person>(ContextProvider.Context);
             RankTypeRepository = new Repository<RankType>(ContextProvider.Context);
+            RoleRepository = new Repository<Role>(ContextProvider.Context);
             SalaryRepository = new Repository<Salary>(ContextProvider.Context);
             SpecialAdjustmentTypeRepository = new Repository<SpecialAdjustmentType>(ContextProvider.Context);
             StatusTypeRepository = new Repository<StatusType>(ContextProvider.Context);
             UnitRepository = new Repository<Unit>(ContextProvider.Context);
+            UserRepository = new Repository<User>(ContextProvider.Context);
         }
 
         public int Commit()

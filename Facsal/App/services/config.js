@@ -21,6 +21,7 @@
             specialSalaryAdjustmentsUrl: 'specialSalaryAdjustments',
             statusTypesUrl: 'statusTypes',
             unitsUrl: 'units',
+            usersUrl: 'users',
         };
         //#endregion
 

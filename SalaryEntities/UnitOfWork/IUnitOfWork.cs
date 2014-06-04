@@ -19,10 +19,12 @@ namespace SalaryEntities.UnitOfWork
         IRepository<MeritAdjustmentType> MeritAdjustmentTypeRepository { get; }
         IRepository<Person> PersonRepository { get; }
         IRepository<RankType> RankTypeRepository { get; }
+        IRepository<Role> RoleRepository { get; }
         IRepository<Salary> SalaryRepository { get; }
         IRepository<SpecialAdjustmentType> SpecialAdjustmentTypeRepository { get; }
         IRepository<StatusType> StatusTypeRepository { get; }
         IRepository<Unit> UnitRepository { get; }
+        IRepository<User> UserRepository { get; }
 
         int Commit();
 

@@ -24,6 +24,8 @@ namespace FacsalData
         public DbSet<MeritAdjustmentType> MeritAdjustmentTypes { get; set; }
         public DbSet<PersonModification> PersonModifications { get; set; }
         public DbSet<RankType> RankTypes { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<RoleAssignment> RoleAssignments { get; set; }
         public DbSet<Salary> Salaries { get; set; }
         public DbSet<SalaryModification> SalaryModifications { get; set; }
         public DbSet<SpecialAdjustmentType> SpecialAdjustmentTypes { get; set; }
@@ -31,6 +33,7 @@ namespace FacsalData
         public DbSet<StatusType> StatusTypes { get; set; }
         public DbSet<Unit> Units { get; set; }
         public DbSet<UnitModification> UnitModifications { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
