@@ -105,7 +105,7 @@
                 <div class="row">
                     <div class="large-12 columns">
                         <label for="MeritAdjustNote" class="hide-on-print">
-                            Brief description of the merit adjustment<span class="required">*</span>
+                            Brief description of the adjustment<span class="required">*</span>
                         </label>
                         <textarea name="MeritAdjustNote" class="hide-on-print"
                                   data-bind="value: meritAdjustNote"></textarea>
@@ -144,18 +144,20 @@
                         <label for="SpecialAdjustmentType">
                             Special adjustments
                         </label>
-                        <select size="5" multiple
-                                data-bind="options: $parent.specialAdjustmentTypes, optionsValue: 'id',
-                                    optionsText: 'name', selectedOptions: $parent.checkedSpecialAdjustmentTypes"></select>
-
-                        <p data-bind="text: $parent.checkedSpecialAdjustmentTypes"></p>
+                        <!-- ko foreach: $parent.adjustmentVMs -->
+                        <div>
+                            <label>
+                                <input type="checkbox" data-bind="checkedValue: adjustment, checked: isSelected" /> <span data-bind="text: adjustment.name"></span>
+                            </label>
+                        </div>
+                        <!--/ko-->
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="large-12 columns">
                         <label for="SpecialAdjustNote" class="hide-on-print">
-                            Brief description of the merit adjustment<span class="required">*</span>
+                            Brief description of the adjustment<span class="required">*</span>
                         </label>
                         <textarea name="SpecialAdjustNote" class="hide-on-print"
                                   data-bind="value: specialAdjustNote"></textarea>
