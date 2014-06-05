@@ -69,6 +69,10 @@
                     route: 'users/edit/:userid', moduleId: 'users/edit',
                     title: 'Edit user', nav: false, hash: '#users/edit/:salaryid'
                 },
+                {
+                    route: 'users/create', moduleId: 'users/create',
+                    title: 'New user', nav: false, hash: '#users/create'
+                },
 
                 // Route not found.
                 { route: 'not-found', moduleId: 'not-found', title: 'Not found', nav: false }
