@@ -7,20 +7,16 @@
 <div class="row">
     <div class="large-4 columns end">
         <label for="Unit">
-            Unit
-        </label>
-        <select data-bind="options:units, optionsText: 'name',
-            optionsValue: 'id', value: selectedUnitId, optionsCaption: 'Choose...'"></select>
-    </div>
-</div>
-
-<div class="row">
-    <div class="large-4 columns end">
-        <label for="Department">
             Department
         </label>
-        <select data-bind="options: departments, optionsText: 'name',
-            optionsValue: 'id', value: selectedDepartmentId, optionsCaption: 'Choose...'"></select>
+        <select data-bind="value: selectedDepartmentId">
+            <option disabled="disabled" hidden="hidden" selected="selected">Choose...</option>
+            <!-- ko foreach: units -->
+            <optgroup data-bind="attr: { label: name }, foreach: departments">
+                <option data-bind="attr: { label: name, value: id }, text: name"></option>
+            </optgroup>
+            <!--/ko-->
+        </select>
     </div>
 </div>
 

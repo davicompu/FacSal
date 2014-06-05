@@ -21,20 +21,10 @@
             activate: activate,
             attached: attached,
 
-            departments: ko.observableArray(),
             salaries: ko.observableArray(),
             selectedDepartmentId: ko.observable(),
-            selectedUnitId: ko.observable(),
             units: units,
         };
-
-        vm.selectedUnitId.subscribe(function (newValue) {
-            var predicate = new breeze.Predicate('unitId', '==', newValue);
-            return unitofwork.departments.find(predicate)
-                .then(function (response) {
-                    vm.departments(response);
-                });
-        });
 
         vm.selectedDepartmentId.subscribe(function (newValue) {
             if (newValue === undefined) {

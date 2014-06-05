@@ -224,6 +224,7 @@
     <Content Include="App\services\unitofwork.js" />
     <Content Include="App\services\utils.js" />
     <Content Include="App\viewmodels\not-found.js" />
+    <Content Include="App\viewmodels\persons\create.js" />
     <Content Include="App\viewmodels\salaries\edit.js" />
     <Content Include="App\viewmodels\salaries\index.js" />
     <Content Include="App\viewmodels\salaries\search.js" />
