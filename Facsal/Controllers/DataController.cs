@@ -81,6 +81,7 @@ namespace Facsal.Controllers
                 FacultyTypes = UnitOfWork.FacultyTypeRepository.All(),
                 MeritAdjustmentTypes = UnitOfWork.MeritAdjustmentTypeRepository.All(),
                 RankTypes = UnitOfWork.RankTypeRepository.All(),
+                Roles = UnitOfWork.RoleRepository.All(),
                 SpecialAdjustmentTypes = UnitOfWork.SpecialAdjustmentTypeRepository.All(),
                 StatusTypes = UnitOfWork.StatusTypeRepository.All(),
                 Units = UnitOfWork.UnitRepository.All()

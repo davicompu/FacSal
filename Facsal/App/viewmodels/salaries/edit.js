@@ -99,7 +99,7 @@
                         };
                     });
 
-                    vm.adjustmentVMs(adjustmentMapVMs)
+                    vm.adjustmentVMs(adjustmentMapVMs);
 
                     return vm.salary(salary);
                 });
@@ -120,7 +120,7 @@
         function saveChanges() {
             var self = this;
 
-            applySelectionsToSalaryAdjustmentMaps();
+            applySelectionsToSalaryAdjustmentMap();
 
             if (!unitofwork.hasChanges()) {
                 return logger.log('No changes were detected.', null, null, true);
@@ -145,7 +145,7 @@
             return adjustmentHash;
         }
 
-        function applySelectionsToSalaryAdjustmentMaps() {
+        function applySelectionsToSalaryAdjustmentMap() {
             var salary = vm.salary(),
 
                 mapVMs = vm.adjustmentVMs(),

@@ -18,6 +18,8 @@ namespace Facsal.Models
 
         public IEnumerable<RankType> RankTypes { get; set; }
 
+        public IEnumerable<Role> Roles { get; set; }
+
         public IEnumerable<SpecialAdjustmentType> SpecialAdjustmentTypes { get; set; }
 
         public IEnumerable<StatusType> StatusTypes { get; set; }

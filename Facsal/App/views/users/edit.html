@@ -1,1 +1,42 @@
-﻿
+﻿<section data-bind="with: user">
+    <div class="row">
+        <div class="large-12 columns">
+            <h4 class="view-heading">User</h4>
+        </div>
+    </div>
+
+    <fieldset>
+        <h5>User information</h5>
+
+        <div class="row">
+            <div class="large-5 columns end">
+                <label>
+                    Pid <input data-bind="value: pid" />
+                </label>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <h5>Roles</h5>
+
+        <div class="row">
+            <div class="large-12 columns">
+                <!-- ko foreach: $parent.assignmentVMs -->
+                <div>
+                    <label>
+                        <input type="checkbox" data-bind="checkedValue: role, checked: isSelected" /> 
+                        <span data-bind="text: role.name"></span>
+                    </label>
+                </div>
+                <!--/ko-->
+            </div>
+        </div>
+    </fieldset>
+
+    <div class="row">
+        <div class="large-12 columns">
+            <button data-bind="click: $parent.saveChanges">Save</button>
+        </div>
+    </div>
+</section>

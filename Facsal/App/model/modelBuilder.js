@@ -74,6 +74,15 @@
             metadataStore.registerEntityTypeCtor('RankType', null, initializer);
         }
 
+        function extendRole(metadataStore) {
+            var initializer = function (entity) {
+                addValidationRules(entity);
+                addHasValidationErrorsProperty(entity);
+            };
+
+            metadataStore.registerEntityTypeCtor('Role', null, initializer);
+        }
+
         function extendSalary(metadataStore) {
             var initializer = function (entity) {
                 addValidationRules(entity);

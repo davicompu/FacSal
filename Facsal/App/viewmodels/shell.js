@@ -52,7 +52,7 @@
 
                 {
                     route: 'salaries/edit/:salaryid', moduleId: 'salaries/edit',
-                    title: 'Edit Salary', nav: false, hash: '#salaries/edit/:id'
+                    title: 'Edit salary', nav: false, hash: '#salaries/edit/:salaryid'
                 },
 
                 {
@@ -64,6 +64,10 @@
                 {
                     route: ['users', 'users/index'], moduleId: 'users/index',
                     title: 'Users', nav: true, hash: '#users/index'
+                },
+                {
+                    route: 'users/edit/:userid', moduleId: 'users/edit',
+                    title: 'Edit user', nav: false, hash: '#users/edit/:salaryid'
                 },
 
                 // Route not found.

@@ -119,7 +119,8 @@ namespace FacsalData.Migrations
 
             var roles = new List<Role>
             {
-                new Role { Id = 1, Name = "update-0825" }
+                new Role { Id = 1, Name = "update-0825" },
+                new Role { Name = "update-0001" }
             };
             roles.ForEach(r => context.Roles.AddOrUpdate(x => x.Name, r));
             context.SaveChanges();

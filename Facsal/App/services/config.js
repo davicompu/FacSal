@@ -16,6 +16,8 @@
             meritAdjustmentTypesUrl: 'meritAdjustmentTypes',
             personsUrl: 'persons',
             rankTypesUrl: 'rankTypes',
+            rolesUrl: 'roles',
+            roleAssignmentsUrl: 'roleAssignments',
             salariesUrl: 'salaries',
             specialAdjustmentTypesUrl: 'specialAdjustmentTypes',
             specialSalaryAdjustmentsUrl: 'specialSalaryAdjustments',
