@@ -97,6 +97,10 @@
     <Compile Include="Migrations\201406041726579_PersonId.Designer.cs">
       <DependentUpon>201406041726579_PersonId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201406051257065_Users.cs" />
+    <Compile Include="Migrations\201406051257065_Users.Designer.cs">
+      <DependentUpon>201406051257065_Users.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Repository.cs" />
@@ -143,6 +147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201406041726579_PersonId.resx">
       <DependentUpon>201406041726579_PersonId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406051257065_Users.resx">
+      <DependentUpon>201406051257065_Users.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

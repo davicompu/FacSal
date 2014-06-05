@@ -228,12 +228,15 @@
     <Content Include="App\viewmodels\salaries\index.js" />
     <Content Include="App\viewmodels\salaries\search.js" />
     <Content Include="App\viewmodels\shell.js" />
+    <Content Include="App\viewmodels\users\edit.js" />
     <Content Include="App\viewmodels\users\index.js" />
     <Content Include="App\views\not-found.html" />
     <Content Include="App\views\salaries\edit.html" />
     <Content Include="App\views\salaries\index.html" />
     <Content Include="App\views\salaries\search.html" />
     <Content Include="App\views\shell.html" />
+    <Content Include="App\views\users\edit.html" />
+    <Content Include="App\views\users\index.html" />
     <Content Include="Content\durandal.css" />
     <Content Include="Content\images\icon.png" />
     <Content Include="Content\images\ios-startup-image-landscape.png" />

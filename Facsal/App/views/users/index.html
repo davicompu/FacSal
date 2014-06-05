@@ -1,0 +1,54 @@
+﻿<div class="row">
+    <div class="large-12 columns">
+        <h4 class="view-heading">Users</h4>
+    </div>
+</div>
+
+<div class="row">
+    <div class="large-4 columns end">
+        <label for="Unit">
+            Unit
+        </label>
+        <select data-bind="options:units, optionsText: 'name',
+            optionsValue: 'id', value: selectedUnitId, optionsCaption: 'Choose...'"></select>
+    </div>
+</div>
+
+<div class="row">
+    <div class="large-4 columns end">
+        <label for="Department">
+            Department
+        </label>
+        <select data-bind="options: departments, optionsText: 'name',
+            optionsValue: 'id', value: selectedDepartmentId, optionsCaption: 'Choose...'"></select>
+    </div>
+</div>
+
+<div class="row">
+    <div class="large-12 columns">
+        <table data-bind="if: users().length > 0">
+            <thead>
+                <tr>
+                    <th>
+                        PID
+                    </th>
+                    <th>
+                        Created
+                    </th>
+                    <th>
+                        Creator
+                    </th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: users">
+                <tr>
+                    <td>
+                        <a data-bind="attr: { href: 'users/edit/' + id() }, text: pid"></a>
+                    </td>
+                    <td data-bind="text: createdDate"></td>
+                    <td data-bind="text: createdBy"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

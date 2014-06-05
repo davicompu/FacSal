@@ -44,6 +44,7 @@
             };
 
             return router.map([
+                //Salaries.
                 {
                     route: ['', 'salaries', 'salaries/index'], moduleId: 'salaries/index',
                     title: 'Salaries', nav: true, hash: '#salaries/index'
@@ -57,6 +58,12 @@
                 {
                     route: 'salaries/search', moduleId: 'salaries/search',
                     title: 'Search', nav: true, hash: '#salaries/search'
+                },
+
+                // Users.
+                {
+                    route: ['users', 'users/index'], moduleId: 'users/index',
+                    title: 'Users', nav: true, hash: '#users/index'
                 },
 
                 // Route not found.

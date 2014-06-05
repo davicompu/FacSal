@@ -23,8 +23,8 @@
 
             departments: ko.observableArray(),
             salaries: ko.observableArray(),
-            selectedUnitId: ko.observable(),
             selectedDepartmentId: ko.observable(),
+            selectedUnitId: ko.observable(),
             units: units,
         };
 

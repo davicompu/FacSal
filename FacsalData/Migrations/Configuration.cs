@@ -116,6 +116,25 @@ namespace FacsalData.Migrations
             };
             employments.ForEach(e => context.Employments.AddOrUpdate(x => x.PersonId, e));
             context.SaveChanges();
+
+            var roles = new List<Role>
+            {
+                new Role { Id = 1, Name = "update-0825" }
+            };
+            roles.ForEach(r => context.Roles.AddOrUpdate(x => x.Name, r));
+            context.SaveChanges();
+
+            var users = new List<User>
+            {
+                new User { Id = 1, Pid = "csherman",
+                    RoleAssignments = new List<RoleAssignment> 
+                    { 
+                        new RoleAssignment { UserId = 1, RoleId = 1 } 
+                    } 
+                }
+            };
+            users.ForEach(u => context.Users.AddOrUpdate(x => x.Pid, u));
+            context.SaveChanges();
         }
     }
 }

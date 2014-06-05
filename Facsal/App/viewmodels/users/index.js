@@ -5,8 +5,11 @@
 
         var vm = {
             activate: activate,
+            attached: attached,
 
             departments: ko.observableArray(),
+            selectedDepartmentId: ko.observable(),
+            selectedUnitId: ko.observable(),
             units: ko.observableArray(),
             users: ko.observableArray(),
         };
@@ -24,11 +27,15 @@
 
         vm.selectedDepartmentId.subscribe(function (newValue) {
             var predicate = new breeze.Predicate(
-                'roleAssignments', 'any', 'role.name', 'update-' + newValue)
-            return unitofwork.users.find(predicate)
+                'roleAssignments', 'any', 'role.name', '==', 'update-' + newValue);
+            var users = unitofwork.users.find(predicate)
                 .then(function (response) {
                     vm.users(response);
                 });
+
+            Q.all([users]).fail(self.handleError);
+
+            return true;
         })
 
         return vm;
