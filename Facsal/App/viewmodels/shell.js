@@ -44,17 +44,21 @@
             };
 
             return router.map([
-                //Salaries.
+                // Persons.
+                {
+                    route: 'persons/create', moduleId: 'persons/create',
+                    title: 'New employee', nav: false, hash: '#persons/create'
+                },
+
+                // Salaries.
                 {
                     route: ['', 'salaries', 'salaries/index'], moduleId: 'salaries/index',
                     title: 'Salaries', nav: true, hash: '#salaries/index'
                 },
-
                 {
                     route: 'salaries/edit/:salaryid', moduleId: 'salaries/edit',
                     title: 'Edit salary', nav: false, hash: '#salaries/edit/:salaryid'
                 },
-
                 {
                     route: 'salaries/search', moduleId: 'salaries/search',
                     title: 'Search', nav: true, hash: '#salaries/search'

@@ -63,20 +63,17 @@ namespace SalaryEntities.Entities
         [Display(Name = "Eminent Increase", ShortName = "Eminent")]
         public int EminentIncrease { get; set; }
 
-        [StringLength(128)]
-        public string BaseAdjustReason { get; set; }
-
         [StringLength(1024)]
-        public string BaseAdjustNote { get; set; }
+        public string BaseSalaryAdjustmentNote { get; set; }
 
         [ForeignKey("MeritAdjustmentType")]
         public int MeritAdjustmentTypeId { get; set; }
 
         [StringLength(1024)]
-        public string MeritAdjustNote { get; set; }
+        public string MeritAdjustmentNote { get; set; }
 
         [StringLength(1024)]
-        public string SpecialAdjustNote { get; set; }
+        public string SpecialAdjustmentNote { get; set; }
 
         [StringLength(1024)]
         public string Comments { get; set; }
@@ -91,60 +88,10 @@ namespace SalaryEntities.Entities
 
         public Person Person { get; set; }
 
+        public ICollection<BaseSalaryAdjustment> BaseSalaryAdjustments { get; set; }
+
         public ICollection<SpecialSalaryAdjustment> SpecialSalaryAdjustments { get; set; }
 
         public ICollection<SalaryModification> Modifications { get; set; }
-
-        //[Display(Name = "Current Salary", ShortName = "Current")]
-        //public int TotalAmount
-        //{
-        //    get
-        //    {
-        //        return (BaseAmount + AdminAmount + EminentAmount + PromotionAmount);
-        //    }
-        //}
-
-
-        //[Display(Name = "New Salary", ShortName = "New")]
-        //public int NewTotalAmount
-        //{
-        //    get
-        //    {
-        //        return (TotalAmount + MeritIncrease + SpecialIncrease + EminentIncrease);
-        //    }
-        //}
-
-        //[Display(Name = "Total Increase")]
-        //public decimal PercentIncrease
-        //{
-        //    get
-        //    {
-        //        return Math.Round(((decimal.Divide(NewTotalAmount, TotalAmount) - 1) * 100), 1);
-        //    }
-        //}
-
-        //public decimal MeritPercentIncrease
-        //{
-        //    get
-        //    {
-        //        return Math.Round((decimal.Divide(MeritIncrease, TotalAmount) * 100), 1);
-        //    }
-        //}
-
-        //public decimal SpecialPercentIncrease
-        //{
-        //    get
-        //    {
-        //        return Math.Round((decimal.Divide(SpecialIncrease, TotalAmount) * 100), 1);
-        //    }
-        //}
-
-        //public decimal EminentPercentIncrease
-        //{
-        //    get
-        //    {
-        //        return Math.Round((decimal.Divide(EminentIncrease, TotalAmount) * 100), 1);
-        //    }
-        //}
     }
 }

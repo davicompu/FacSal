@@ -11,6 +11,7 @@
             // Breeze Routes. Relative to remote service name.
             appointmentTypesUrl: 'appointmentTypes',
             departmentsUrl: 'departments',
+            employmentsUrl: 'employments',
             facultyTypesUrl: 'facultyTypes',
             lookupsUrl: 'getLookups',
             meritAdjustmentTypesUrl: 'meritAdjustmentTypes',

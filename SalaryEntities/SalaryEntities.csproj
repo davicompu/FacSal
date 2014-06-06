@@ -60,6 +60,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\AppointmentType.cs" />
+    <Compile Include="Entities\BaseAdjustmentType.cs" />
+    <Compile Include="Entities\BaseSalaryAdjustment.cs" />
     <Compile Include="Entities\Department.cs" />
     <Compile Include="Entities\DepartmentModification.cs" />
     <Compile Include="Entities\Employment.cs" />

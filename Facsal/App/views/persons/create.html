@@ -1,0 +1,80 @@
+﻿<section data-bind="with: person">
+    <div class="row">
+        <div class="large-12 columns">
+            <h4 class="view-heading">New employee</h4>
+        </div>
+    </div>
+
+    <fieldset>
+        <h5>Employee information</h5>
+
+        <div class="row">
+            <div class="large-5 columns end">
+                <label>
+                    Id <input type="text" data-bind="value: id" />
+                </label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="large-5 columns end">
+                <label>
+                    Pid <input type="text" data-bind="value: pid" />
+                </label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="large-5 columns end">
+                <label>
+                    First name <input type="text" data-bind="value: firstName" />
+                </label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="large-5 columns end">
+                <label>
+                    Last name <input type="text" data-bind="value: lastName" />
+                </label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="large-6 columns end">
+                <label>
+                    Status <select data-bind="options: $parent.statusTypes,
+                            optionsValue: 'id', optionsText: 'name',
+                            optionsCaption: 'Choose...', value: statusTypeId"></select>
+                </label>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <h5>Employment information</h5>
+
+        <div class="row">
+            <div class="large-12 columns end">
+                <label for="Unit">
+                    Department
+
+                    <select data-bind="selectedOptions: $parent.selectedDepartmentIds"
+                            size="20" multiple="multiple">
+                        <!-- ko foreach: $parent.units -->
+                        <optgroup data-bind="attr: { label: name }, foreach: departments">
+                            <option data-bind="attr: { label: name, value: id }, text: name"></option>
+                        </optgroup>
+                        <!--/ko-->
+                    </select>
+                </label>
+            </div>
+        </div>
+    </fieldset>
+
+    <div class="row">
+        <div class="large-12 columns">
+            <button data-bind="click: $parent.savePerson">Save</button>
+        </div>
+    </div>
+</section>

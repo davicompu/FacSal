@@ -101,6 +101,10 @@
     <Compile Include="Migrations\201406051257065_Users.Designer.cs">
       <DependentUpon>201406051257065_Users.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201406061449256_BaseAdjustment.cs" />
+    <Compile Include="Migrations\201406061449256_BaseAdjustment.Designer.cs">
+      <DependentUpon>201406061449256_BaseAdjustment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Repository.cs" />
@@ -150,6 +154,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201406051257065_Users.resx">
       <DependentUpon>201406051257065_Users.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406061449256_BaseAdjustment.resx">
+      <DependentUpon>201406061449256_BaseAdjustment.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

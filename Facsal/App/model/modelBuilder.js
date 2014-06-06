@@ -11,6 +11,7 @@
         function extendMetadata(metadataStore) {
             extendAppointmentType(metadataStore);
             extendDepartment(metadataStore);
+            extendEmployment(metadataStore);
             extendFacultyType(metadataStore);
             extendMeritAdjustmentType(metadataStore);
             extendPerson(metadataStore);
@@ -38,6 +39,15 @@
             metadataStore.registerEntityTypeCtor('Department', null, initializer);
         }
 
+        function extendEmployment(metadataStore) {
+            var initializer = function (entity) {
+                addValidationRules(entity);
+                addHasValidationErrorsProperty(entity);
+            };
+
+            metadataStore.registerEntityTypeCtor('Employment', null, initializer);
+        }
+
         function extendFacultyType(metadataStore) {
             var initializer = function (entity) {
                 addValidationRules(entity);
@@ -57,12 +67,16 @@
         }
 
         function extendPerson(metadataStore) {
+            var personCtor = function () {
+                this.id = ko.observable(breeze.core.getUuid());
+            }
+
             var initializer = function (entity) {
                 addValidationRules(entity);
                 addHasValidationErrorsProperty(entity);
             };
 
-            metadataStore.registerEntityTypeCtor('Person', null, initializer);
+            metadataStore.registerEntityTypeCtor('Person', personCtor, initializer);
         }
 
         function extendRankType(metadataStore) {
