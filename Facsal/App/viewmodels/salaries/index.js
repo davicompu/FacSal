@@ -1,5 +1,6 @@
-﻿define(['services/unitofwork', 'services/errorhandler'],
-    function (uow, errorhandler) {
+﻿define(['services/unitofwork', 'services/errorhandler',
+    'services/config'],
+    function (uow, errorhandler, config) {
         var unitofwork = uow.create(),
 
             units = ko.observableArray(),
@@ -31,8 +32,9 @@
                 return vm.salaries([]);
             }
 
-            var predicate = breeze.Predicate.create('person.employments', 'any', 'departmentId', '==', newValue)
-                .and('cycleYear', '==', 2014);
+            var predicate = breeze.Predicate
+                .create('person.employments', 'any', 'departmentId', '==', newValue)
+                .and('cycleYear', '==', config.currentCycleYear);
             var expansionProperty = 'person';
 
             return unitofwork.salaries.find(predicate, expansionProperty)

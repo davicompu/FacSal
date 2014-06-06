@@ -36,15 +36,6 @@
                 units = unitofwork.units.all()
                     .then(function (response) {
                         vm.units(response);
-
-                        //employmentVMs = $.map(vm.units().departments, function (department) {
-                        //    return {
-                        //        department: department,
-                        //        isSelected: ko.observable(false)
-                        //    };
-                        //});
-
-                        //vm.employmentVMs(employmentVMs);
                     });
 
             vm.person(unitofwork.persons.create());
@@ -70,43 +61,6 @@
                 .fail(self.handleError);
 
             return true;
-        }
-
-        function createEmploymentHash(person) {
-            var employmentHash = {};
-
-            $.each(person.employments(), function (index, map) {
-                employmentHash[map.departmentId()] = map;
-            });
-
-            return employmentHash;
-        }
-
-        function applySelectionsToEmploymentMap() {
-            var person = vm.person(),
-                mapVMs = vm.employmentVMs(),
-                employmentHash = createEmploymentHash(person);
-
-            $.each(mapVMs, function (index, mapVM) {
-                var map = employmentHash[mapVM.department.id()];
-
-                if (mapVM.isSelected()) {
-                    // User selected this employment.
-                    if (!map) {
-                        // No existing map, so create one.
-                        map = unitofwork.employments.create({
-                            departmentId: mapVM.department.id(),
-                            personId: person.id()
-                        });
-                    }
-                } else {
-                    // User unselected this employment.
-                    if (map) {
-                        // If map exists, delete it.
-                        map.entityAspect.setDeleted();
-                    }
-                }
-            });
         }
 
         function applySelectionsToEmploymentCollection() {

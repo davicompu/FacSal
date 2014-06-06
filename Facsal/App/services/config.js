@@ -3,6 +3,8 @@
 
         //#region Public interface.
         var self = {
+            currentCycleYear: 2014,
+
             // Authentication Routes.
             siteUrl: "/",
             userInfoUrl: "/api/account/userinfo",
