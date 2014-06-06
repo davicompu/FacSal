@@ -1,6 +1,6 @@
 ﻿define(['services/unitofwork', 'services/errorhandler',
-    'services/logger'],
-    function (uow, errorhandler, logger) {
+    'services/logger', 'services/config'],
+    function (uow, errorhandler, logger, config) {
 
         var unitofwork = uow.create();
 
@@ -8,7 +8,11 @@
             activate: activate,
             attached: attached,
 
+            appointmentTypes: ko.observableArray(),
+            facultyTypes: ko.observableArray(),
             person: ko.observable(),
+            rankTypes: ko.observableArray(),
+            salary: ko.observable(),
             statusTypes: ko.observableArray(),
             selectedDepartmentIds: ko.observableArray(),
             units: ko.observableArray(),
@@ -28,6 +32,21 @@
         function attached(view) {
             var self = this,
                 
+                appointmentTypes = unitofwork.appointmentTypes.all()
+                    .then(function (response) {
+                        vm.appointmentTypes(response);
+                    }),
+
+                facultyTypes = unitofwork.facultyTypes.all()
+                    .then(function (response) {
+                        vm.facultyTypes(response);
+                    }),
+
+                rankTypes = unitofwork.rankTypes.all()
+                    .then(function (response) {
+                        vm.rankTypes(response);
+                    }),
+
                 statusTypes = unitofwork.statusTypes.all()
                     .then(function (response) {
                         vm.statusTypes(response);
@@ -39,6 +58,8 @@
                     });
 
             vm.person(unitofwork.persons.create());
+
+            vm.salary(unitofwork.salaries.create());
 
             Q.all([statusTypes, units]).fail(self.handleError);
 

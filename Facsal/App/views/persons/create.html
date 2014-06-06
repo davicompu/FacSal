@@ -72,6 +72,98 @@
         </div>
     </fieldset>
 
+    <fieldset data-bind="with: $parent.salary">
+        <h5>Salary information</h5>
+
+        <div class="row hide-on-print">
+            <div class="large-4 columns end">
+                <label for="FacultyType">
+                    Classification
+                </label>
+                <select name="FacultyType" data-bind="options: $parent.facultyTypes,
+                        optionsValue: 'id', optionsText: 'name', optionsCaption: 'Choose...', value: facultyTypeId"></select>
+            </div>
+        </div>
+
+        <div class="row hide-on-print">
+            <div class="large-4 columns end">
+                <label for="RankType">
+                    Rank
+                </label>
+                <select name="RankType" data-bind="options: $parent.rankTypes,
+                        optionsValue: 'id', optionsText: 'name', optionsCaption: 'Choose...', value: rankTypeId"></select>
+            </div>
+        </div>
+
+        <div class="row hide-on-print">
+            <div class="large-4 columns end">
+                <label for="AppointmentType">
+                    Appointment
+                </label>
+                <select name="AppointmentType" data-bind="options: $parent.appointmentTypes,
+                        optionsValue: 'id', optionsText: 'name', optionsCaption: 'Choose...', value: appointmentTypeId"></select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="large-8 columns end">
+                <label for="Title" class="hide-on-print">
+                    Title
+                </label>
+                <input name="Title" type="text" class="hide-on-print" data-bind="value: title" />
+                <p class="print-only">
+                    <span class="text-underline">Title</span>: <span data-bind="text: title"></span>
+                </p>
+                <label for="Title" class="error-message" data-bind="validationMessage: title"></label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="large-4 columns end">
+                <label for="FTE" class="hide-on-print">
+                    FTE<span class="required">*</span>
+                </label>
+                <input name="FTE" type="text" class="hide-on-print" data-bind="value: fullTimeEquivalent" />
+                <p class="print-only">
+                    <span class="text-underline">FTE</span>: <span data-bind="text: fullTimeEquivalent"></span>
+                </p>
+                <label for="FTE" class="error-message" data-bind="validationMessage: fullTimeEquivalent"></label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="large-4 columns end">
+                <label>
+                    Base amount <input type="text" data-bind="value: baseAmount" />
+                </label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="large-4 columns end">
+                <label>
+                    Administrative amount <input type="text" data-bind="value: adminAmount" />
+                </label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="large-4 columns end">
+                <label>
+                    Eminent amount <input type="text" data-bind="value: eminentAmount" />
+                </label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="large-4 columns end">
+                <label>
+                    Promotion amount <input type="text" data-bind="value: promotionAmount" />
+                </label>
+            </div>
+        </div>
+    </fieldset>
+
     <div class="row">
         <div class="large-12 columns">
             <button data-bind="click: $parent.savePerson">Save</button>
