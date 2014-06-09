@@ -11,13 +11,13 @@ namespace SalaryEntities.Entities
 {
     public class Salary : AuditEntityBase
     {
-        [Index("IX_IdAndCycleYear", 1, IsUnique = true)]
         public long Id { get; set; }
 
+        [Index("IX_PersonAndCycleYear", 1, IsUnique = true)]
         [ForeignKey("Person")]
         public string PersonId { get; set; }
 
-        [Index("IX_IdAndCycleYear", 2, IsUnique = true)]
+        [Index("IX_PersonAndCycleYear", 2, IsUnique = true)]
         public int CycleYear { get; set; }
 
         [StringLength(128)]

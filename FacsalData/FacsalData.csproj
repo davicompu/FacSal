@@ -109,6 +109,10 @@
     <Compile Include="Migrations\201406061903210_CycleYearSalaryIX.Designer.cs">
       <DependentUpon>201406061903210_CycleYearSalaryIX.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201406091236354_RankTypeSeq.cs" />
+    <Compile Include="Migrations\201406091236354_RankTypeSeq.Designer.cs">
+      <DependentUpon>201406091236354_RankTypeSeq.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Repository.cs" />
@@ -164,6 +168,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201406061903210_CycleYearSalaryIX.resx">
       <DependentUpon>201406061903210_CycleYearSalaryIX.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406091236354_RankTypeSeq.resx">
+      <DependentUpon>201406091236354_RankTypeSeq.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
