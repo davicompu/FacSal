@@ -36,7 +36,7 @@ namespace SalaryEntities.Entities
         public decimal FullTimeEquivalent { get; set; }
 
         [Min(0.00)]
-        public int BannerBaseAmount { get; private set; }
+        public int? BannerBaseAmount { get; private set; }
 
         [Min(0.00)]
         public int BaseAmount { get; set; }
