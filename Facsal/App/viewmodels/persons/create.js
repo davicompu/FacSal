@@ -59,9 +59,18 @@
 
             vm.person(unitofwork.persons.create());
 
-            vm.salary(unitofwork.salaries.create());
+            vm.salary(unitofwork.salaries.create({
+                personId: vm.person().id(),
+                cycleYear: config.currentCycleYear
+            }));
 
-            Q.all([statusTypes, units]).fail(self.handleError);
+            Q.all([
+                appointmentTypes,
+                facultyTypes,
+                rankTypes,
+                statusTypes,
+                units
+            ]).fail(self.handleError);
 
             return true;
         }
@@ -70,6 +79,8 @@
             var self = this;
 
             applySelectionsToEmploymentCollection();
+
+            vm.person().salary = vm.salary();
 
             if (!unitofwork.hasChanges()) {
                 return logger.log('No changes were detected.', null, null, true);

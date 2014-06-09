@@ -113,6 +113,10 @@
     <Compile Include="Migrations\201406091236354_RankTypeSeq.Designer.cs">
       <DependentUpon>201406091236354_RankTypeSeq.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201406091256545_NullableMeritAdjIdOnSal.cs" />
+    <Compile Include="Migrations\201406091256545_NullableMeritAdjIdOnSal.Designer.cs">
+      <DependentUpon>201406091256545_NullableMeritAdjIdOnSal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Repository.cs" />
@@ -171,6 +175,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201406091236354_RankTypeSeq.resx">
       <DependentUpon>201406091236354_RankTypeSeq.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406091256545_NullableMeritAdjIdOnSal.resx">
+      <DependentUpon>201406091256545_NullableMeritAdjIdOnSal.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

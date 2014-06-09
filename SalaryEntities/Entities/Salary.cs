@@ -69,7 +69,7 @@ namespace SalaryEntities.Entities
         public string BaseSalaryAdjustmentNote { get; set; }
 
         [ForeignKey("MeritAdjustmentType")]
-        public int MeritAdjustmentTypeId { get; set; }
+        public int? MeritAdjustmentTypeId { get; set; }
 
         [StringLength(1024)]
         public string MeritAdjustmentNote { get; set; }

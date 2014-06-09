@@ -80,7 +80,7 @@
                 <label for="FacultyType">
                     Classification
                 </label>
-                <select name="FacultyType" data-bind="options: $parent.facultyTypes,
+                <select name="FacultyType" data-bind="options: $parents[1].facultyTypes,
                         optionsValue: 'id', optionsText: 'name', optionsCaption: 'Choose...', value: facultyTypeId"></select>
             </div>
         </div>
@@ -90,7 +90,7 @@
                 <label for="RankType">
                     Rank
                 </label>
-                <select name="RankType" data-bind="options: $parent.rankTypes,
+                <select name="RankType" data-bind="options: $parents[1].rankTypes,
                         optionsValue: 'id', optionsText: 'name', optionsCaption: 'Choose...', value: rankTypeId"></select>
             </div>
         </div>
@@ -100,7 +100,7 @@
                 <label for="AppointmentType">
                     Appointment
                 </label>
-                <select name="AppointmentType" data-bind="options: $parent.appointmentTypes,
+                <select name="AppointmentType" data-bind="options: $parents[1].appointmentTypes,
                         optionsValue: 'id', optionsText: 'name', optionsCaption: 'Choose...', value: appointmentTypeId"></select>
             </div>
         </div>
