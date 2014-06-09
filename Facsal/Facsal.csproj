@@ -199,6 +199,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\DataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="DataAccess\CasRoleProvider.cs" />
     <Compile Include="DependencyResolution\IoC.cs" />
     <Compile Include="DependencyResolution\StructureMapDependencyResolver.cs" />
@@ -228,6 +229,7 @@
     <Content Include="App\viewmodels\reports\base-salary-adjustment.js" />
     <Content Include="App\viewmodels\reports\meeting.js" />
     <Content Include="App\viewmodels\reports\multiple-employments.js" />
+    <Content Include="App\viewmodels\reports\salaries-by-faculty-type.js" />
     <Content Include="App\viewmodels\salaries\edit.js" />
     <Content Include="App\viewmodels\salaries\index.js" />
     <Content Include="App\viewmodels\salaries\search.js" />
@@ -240,6 +242,7 @@
     <Content Include="App\views\reports\base-salary-adjustment.html" />
     <Content Include="App\views\reports\meeting.html" />
     <Content Include="App\views\reports\multiple-employments.html" />
+    <Content Include="App\views\reports\salaries-by-faculty-type.html" />
     <Content Include="App\views\salaries\edit.html" />
     <Content Include="App\views\salaries\index.html" />
     <Content Include="App\views\salaries\search.html" />

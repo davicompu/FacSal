@@ -65,6 +65,12 @@
                     route: 'reports/multiple-employments/:departmentid', moduleId: 'reports/multiple-employments',
                     title: 'Multiple departments report', nav: false, hash: '#reports/multiple-employments'
                 },
+                {
+                    route: 'reports/salaries-by-faculty-type/:departmentid',
+                    moduleId: 'reports/salaries-by-faculty-type',
+                    title: 'Salaries by faculty type report', nav: false,
+                    hash: '#reports/salaries-by-faculty-type'
+                },
 
                 // Salaries.
                 {

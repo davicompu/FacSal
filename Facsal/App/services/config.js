@@ -24,6 +24,7 @@
             rolesUrl: 'roles',
             roleAssignmentsUrl: 'roleAssignments',
             salariesUrl: 'salaries',
+            salariesByFacultyTypeUrl: '/api/report/getSalariesByFacultyType',
             specialAdjustmentTypesUrl: 'specialAdjustmentTypes',
             specialSalaryAdjustmentsUrl: 'specialSalaryAdjustments',
             statusTypesUrl: 'statusTypes',

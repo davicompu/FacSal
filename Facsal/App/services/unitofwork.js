@@ -87,6 +87,15 @@ define(['services/entitymanagerprovider', 'services/repository', 'durandal/app',
 	            this.units = repository.create(provider, 'Unit', routeconfig.unitsUrl,
                     breeze.FetchStrategy.FromLocalCache);
 	            this.users = repository.create(provider, 'User', routeconfig.usersUrl);
+
+	            this.salariesByFacultyType = function (departmentId) {
+	                return $.ajax({
+	                    type: 'GET',
+	                    url: routeconfig.salariesByFacultyTypeUrl + '?id=' + departmentId,
+	                    cache: false,
+	                    dataType: 'json'
+	                });
+	            }
 	        };
 
 	        return unitofwork;
