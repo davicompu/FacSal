@@ -63,6 +63,11 @@ define(['services/entitymanagerprovider', 'services/repository', 'durandal/app',
 	            this.meritAdjustmentTypes = repository.create(provider, 'MeritAdjustmentType',
                     routeconfig.meritAdjustmentTypesUrl, breeze.FetchStrategy.FromLocalCache);
 	            this.persons = repository.create(provider, 'Person', routeconfig.personsUrl);
+
+	            // BreezeJS 1.4.12 does not support aggregate queries (count, sum, average, etc.).
+	            this.personsWithMutipleEmployments = repository.create(
+                    provider, 'Person', routeconfig.personsWithMutipleEmploymentsUrl);
+
 	            this.rankTypes = repository.create(provider, 'RankType',
                     routeconfig.rankTypesUrl, breeze.FetchStrategy.FromLocalCache);
 	            this.roles = repository.create(provider, 'Role', routeconfig.rolesUrl,

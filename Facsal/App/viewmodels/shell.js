@@ -55,6 +55,10 @@
                     route: 'reports/meeting/:departmentid', moduleId: 'reports/meeting', 
                     title: 'Meeting report', nav: false, hash: '#reports/meeting'
                 },
+                {
+                    route: 'reports/multiple-employments/:departmentid', moduleId: 'reports/multiple-employments',
+                    title: 'Multiple departments report', nav: false, hash: '#reports/multiple-employments'
+                },
 
                 // Salaries.
                 {

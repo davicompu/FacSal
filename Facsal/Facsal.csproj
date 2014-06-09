@@ -226,6 +226,7 @@
     <Content Include="App\viewmodels\not-found.js" />
     <Content Include="App\viewmodels\persons\create.js" />
     <Content Include="App\viewmodels\reports\meeting.js" />
+    <Content Include="App\viewmodels\reports\multiple-employments.js" />
     <Content Include="App\viewmodels\salaries\edit.js" />
     <Content Include="App\viewmodels\salaries\index.js" />
     <Content Include="App\viewmodels\salaries\search.js" />
@@ -236,6 +237,7 @@
     <Content Include="App\views\not-found.html" />
     <Content Include="App\views\persons\create.html" />
     <Content Include="App\views\reports\meeting.html" />
+    <Content Include="App\views\reports\multiple-employments.html" />
     <Content Include="App\views\salaries\edit.html" />
     <Content Include="App\views\salaries\index.html" />
     <Content Include="App\views\salaries\search.html" />

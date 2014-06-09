@@ -32,9 +32,15 @@
                 predicate = breeze.Predicate.and([p1, p2]),
                 expansionCondition = 'person';
 
-            return unitofwork.salaries.find(predicate, expansionCondition)
+            var salaries = unitofwork.salaries.find(predicate, expansionCondition)
                 .then(function (response) {
                     return vm.salaries(response);
                 });
+
+            Q.all([
+                salaries
+            ]).fail(self.handleError);
+
+            return true;
         }
     });

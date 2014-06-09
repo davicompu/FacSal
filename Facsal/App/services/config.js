@@ -18,6 +18,7 @@
             lookupsUrl: 'getLookups',
             meritAdjustmentTypesUrl: 'meritAdjustmentTypes',
             personsUrl: 'persons',
+            personsWithMutipleEmploymentsUrl: 'personsWithMultipleEmployments',
             rankTypesUrl: 'rankTypes',
             rolesUrl: 'roles',
             roleAssignmentsUrl: 'roleAssignments',

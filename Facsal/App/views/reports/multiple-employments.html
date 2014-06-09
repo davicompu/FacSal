@@ -1,0 +1,25 @@
+﻿<div class="row">
+    <div class="large-12 columns">
+        <h4 class="view-heading">Multiple departments report</h4>
+    </div>
+</div>
+
+<div class="row">
+    <div class="large-12 columns">
+        <table class="tabular" data-bind="if: persons().length > 0">
+            <thead>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: persons">
+                <tr>
+                    <td data-bind="text: fullName">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
