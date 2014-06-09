@@ -12,6 +12,7 @@
             remoteServiceName: '/breeze/data',
             // Breeze Routes. Relative to remote service name.
             appointmentTypesUrl: 'appointmentTypes',
+            baseSalaryAdjustmentsUrl: 'baseSalaryAdjustments',
             departmentsUrl: 'departments',
             employmentsUrl: 'employments',
             facultyTypesUrl: 'facultyTypes',

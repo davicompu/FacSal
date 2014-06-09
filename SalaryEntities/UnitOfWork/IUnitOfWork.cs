@@ -13,6 +13,7 @@ namespace SalaryEntities.UnitOfWork
     public interface IUnitOfWork
     {
         IRepository<AppointmentType> AppointmentTypeRepository { get; }
+        IRepository<BaseSalaryAdjustment> BaseSalaryAdjustmentRepository { get; }
         IRepository<Department> DepartmentRepository { get; }
         IRepository<Employment> EmploymentRepository { get; }
         IRepository<FacultyType> FacultyTypeRepository { get; }

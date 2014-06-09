@@ -225,6 +225,7 @@
     <Content Include="App\services\utils.js" />
     <Content Include="App\viewmodels\not-found.js" />
     <Content Include="App\viewmodels\persons\create.js" />
+    <Content Include="App\viewmodels\reports\base-salary-adjustment.js" />
     <Content Include="App\viewmodels\reports\meeting.js" />
     <Content Include="App\viewmodels\reports\multiple-employments.js" />
     <Content Include="App\viewmodels\salaries\edit.js" />
@@ -236,6 +237,7 @@
     <Content Include="App\viewmodels\users\index.js" />
     <Content Include="App\views\not-found.html" />
     <Content Include="App\views\persons\create.html" />
+    <Content Include="App\views\reports\base-salary-adjustment.html" />
     <Content Include="App\views\reports\meeting.html" />
     <Content Include="App\views\reports\multiple-employments.html" />
     <Content Include="App\views\salaries\edit.html" />

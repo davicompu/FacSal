@@ -52,6 +52,12 @@
 
                 // Reports.
                 {
+                    route: 'reports/base-salary-adjustment/:departmentid',
+                    moduleId: 'reports/base-salary-adjustment',
+                    title: 'Base salary adjustment report', nav: false,
+                    hash: '#reports/base-salary-adjustment'
+                },
+                {
                     route: 'reports/meeting/:departmentid', moduleId: 'reports/meeting', 
                     title: 'Meeting report', nav: false, hash: '#reports/meeting'
                 },

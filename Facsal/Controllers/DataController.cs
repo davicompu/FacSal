@@ -30,6 +30,12 @@ namespace Facsal.Controllers
         }
 
         [HttpGet]
+        public IQueryable<BaseSalaryAdjustment> BaseSalaryAdjustments()
+        {
+            return UnitOfWork.BaseSalaryAdjustmentRepository.All();
+        }
+
+        [HttpGet]
         public IQueryable<Department> Departments()
         {
             return UnitOfWork.DepartmentRepository.All();
