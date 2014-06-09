@@ -50,6 +50,12 @@
                     title: 'New employee', nav: false, hash: '#persons/create'
                 },
 
+                // Reports.
+                {
+                    route: 'reports/meeting/:departmentid', moduleId: 'reports/meeting', 
+                    title: 'Meeting report', nav: false, hash: '#reports/meeting'
+                },
+
                 // Salaries.
                 {
                     route: ['', 'salaries', 'salaries/index'], moduleId: 'salaries/index',
