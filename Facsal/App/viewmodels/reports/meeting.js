@@ -6,10 +6,8 @@
 
         var vm = {
             activate: activate,
-            attached: attached,
             deactivate: deactivate,
 
-            departments: ko.observableArray(),
             departmentSalaries: ko.observableArray(),
         };
 
@@ -23,7 +21,7 @@
             if (departmentId) {
                 var department = unitofwork.departments.withId(departmentId)
                     .then(function (response) {
-                        vm.departments([response]);
+                        getData([response.entity]);
                     });
 
                 Q.all([
@@ -35,11 +33,7 @@
 
                     departments = unitofwork.departments.find(predicate)
                         .then(function (response) {
-                            vm.departments([]);
-
-                            $.each(response, function (index, department) {
-                                return vm.departments.push(department);
-                            });
+                            getData(response);
                         });
 
                 Q.all([
@@ -50,10 +44,8 @@
             return true;
         }
 
-        function attached(view) {
-            var self = this;
-
-            $.each(vm.departments(), function (index, department) {
+        function getData(departments) {
+            return $.each(departments, function (index, department) {
                 var p1 = breeze.Predicate.create(
                     'person.employments', 'any', 'departmentId', '==', department.id()),
                     p2 = breeze.Predicate.create(
@@ -72,13 +64,11 @@
                 Q.all([
                     salaries
                 ]).fail(self.handleError);
-            })
-
-            return true;
+            });
         }
 
         function deactivate() {
-            vm.salaries(undefined);
+            vm.departmentSalaries([]);
 
             return true;
         }
