@@ -8,7 +8,7 @@
             activate: activate,
             deactivate: deactivate,
 
-            departmentSalaries: ko.observableArray(),
+            departmentData: ko.observableArray(),
         };
 
         errorhandler.includeIn(vm);
@@ -16,6 +16,8 @@
         return vm;
 
         function activate(unitId, departmentId) {
+            var self = this;
+
             ga('send', 'pageview', { 'page': window.location.href, 'title': document.title });
 
             if (departmentId) {
@@ -44,7 +46,15 @@
             return true;
         }
 
+        function deactivate() {
+            vm.departmentData([]);
+
+            return true;
+        }
+
         function getData(departments) {
+            var self = this;
+
             return $.each(departments, function (index, department) {
                 var p1 = breeze.Predicate.create(
                     'person.employments', 'any', 'departmentId', '==', department.id()),
@@ -55,7 +65,7 @@
 
                 var salaries = unitofwork.salaries.find(predicate, expansionCondition)
                     .then(function (response) {
-                        return vm.departmentSalaries.push({
+                        return vm.departmentData.push({
                             department: department,
                             salaries: response
                         });
@@ -65,11 +75,5 @@
                     salaries
                 ]).fail(self.handleError);
             });
-        }
-
-        function deactivate() {
-            vm.departmentSalaries([]);
-
-            return true;
         }
     });

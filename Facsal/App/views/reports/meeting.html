@@ -6,8 +6,8 @@
 
 <div class="row">
     <div class="large-12 columns">
-        <table class="tabular" data-bind="if: departmentSalaries().length > 0">
-            <!-- ko foreach: departmentSalaries -->
+        <table class="tabular" data-bind="if: departmentData().length > 0">
+            <!-- ko foreach: departmentData -->
             <tbody>
                 <tr>
                     <td data-bind="text: department.name"></td>
