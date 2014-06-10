@@ -25,6 +25,8 @@
         }
 
         function attached(view) {
+            var self = this;
+
             var p1 = breeze.Predicate.create(
                 'meritAdjustmentTypeId', '==', null),
                 p2 = breeze.Predicate.create(

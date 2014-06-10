@@ -25,6 +25,8 @@
         }
 
         function attached(view) {
+            var self = this;
+
             var p1 = breeze.Predicate.create(
                 'person.employments', 'any', 'departmentId', '==', vm.departmentId()),
                 p2 = breeze.Predicate.create(

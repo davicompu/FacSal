@@ -5,7 +5,6 @@
 
         var vm = {
             activate: activate,
-            attached: attached,
 
             instantaneousSearchString: ko.observable(''),
             searchResults: ko.observableArray(),
@@ -42,11 +41,6 @@
 
         function activate() {
             ga('send', 'pageview', { 'page': window.location.href, 'title': document.title });
-            return true;
-        }
-
-        function attached(view) {
-
             return true;
         }
     });

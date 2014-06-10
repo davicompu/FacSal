@@ -25,6 +25,8 @@
         }
 
         function attached(view) {
+            var self = this;
+
             var persons = unitofwork.personsWithMutipleEmployments.all()
                 .then(function (response) {
                     return vm.persons(response);

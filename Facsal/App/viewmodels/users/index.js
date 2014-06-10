@@ -25,7 +25,7 @@
             Q.all([users]).fail(self.handleError);
 
             return true;
-        })
+        });
 
         return vm;
 
@@ -35,9 +35,15 @@
         }
 
         function attached(view) {
+            var self = this;
+
             var units = unitofwork.units.all()
                 .then(function (response) {
                     vm.units(response);
                 });
+
+            Q.all([units]).fail(self.handleError);
+
+            return true;
         }
     });

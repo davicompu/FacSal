@@ -1,4 +1,5 @@
-﻿define(['plugins/router', 'services/security', 'services/errorhandler', 'services/entitymanagerprovider', 'model/modelBuilder'],
+﻿define(['plugins/router', 'services/security', 'services/errorhandler',
+    'services/entitymanagerprovider', 'model/modelBuilder'],
     function (router, appsecurity, errorhandler, entitymanagerprovider, modelBuilder) {
 
         entitymanagerprovider.modelBuilder = modelBuilder.extendMetadata;
@@ -51,6 +52,10 @@
                 },
 
                 // Reports.
+                {
+                    route: ['reports', 'reports/index'], moduleId: 'reports/index',
+                    title: 'Reports', nav: true, hash: '#reports/index'
+                },
                 {
                     route: 'reports/base-salary-adjustment/:departmentid',
                     moduleId: 'reports/base-salary-adjustment',

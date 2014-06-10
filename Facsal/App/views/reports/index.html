@@ -1,0 +1,57 @@
+﻿<div class="row">
+    <div class="large-12 columns">
+        <h4 class="view-heading">Reports</h4>
+    </div>
+</div>
+
+<div class="row">
+    <div class="large-12 columns">
+        <label>
+            Report
+            <select data-bind="options: reportTypes, value: selectedReportType"></select>
+        </label>
+    </div>
+</div>
+
+<div class="row">
+    <div class="large-12 columns">
+        <label>
+            Audience
+            <select data-bind="options: audienceTypes, value: selectedAudienceType">
+            </select>
+        </label>
+    </div>
+</div>
+
+<div class="row" data-bind="if: selectedAudienceType() === 'Unit'">
+    <div class="large-12 columns">
+        <label>
+            Unit
+            <select data-bind="options: units,
+                optionsText: 'name', optionsValue: 'id', optionsCaption: 'Chooose...',
+                value: selectedUnitId"></select>
+        </label>
+    </div>
+</div>
+
+<div class="row" data-bind="if: selectedAudienceType() === 'Department'">
+    <div class="large-4 columns end">
+        <label for="Unit">
+            Department
+            <select data-bind="value: selectedDepartmentId">
+                <option disabled="disabled" hidden="hidden" selected="selected">Choose...</option>
+                <!-- ko foreach: units -->
+                <optgroup data-bind="attr: { label: name }, foreach: departments">
+                    <option data-bind="attr: { label: name, value: id }, text: name"></option>
+                </optgroup>
+                <!--/ko-->
+            </select>
+        </label>
+    </div>
+</div>
+
+<div class="row">
+    <div class="large-12 columns">
+        <button data-bind="click: generateReport">Generate report</button>
+    </div>
+</div>
