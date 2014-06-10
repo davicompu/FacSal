@@ -57,27 +57,30 @@
                     title: 'Reports', nav: true, hash: '#reports/index'
                 },
                 {
-                    route: 'reports/base-salary-adjustment/:departmentid',
+                    route: 'reports/base-salary-adjustment/:unitid(/:departmentid)',
                     moduleId: 'reports/base-salary-adjustment',
                     title: 'Base salary adjustment report', nav: false,
                     hash: '#reports/base-salary-adjustment'
                 },
                 {
-                    route: 'reports/meeting/:departmentid', moduleId: 'reports/meeting', 
+                    route: 'reports/meeting/:unitid(/:departmentid)',
+                    moduleId: 'reports/meeting',
                     title: 'Meeting report', nav: false, hash: '#reports/meeting'
                 },
                 {
-                    route: 'reports/multiple-employments/:departmentid', moduleId: 'reports/multiple-employments',
-                    title: 'Multiple departments report', nav: false, hash: '#reports/multiple-employments'
+                    route: 'reports/multiple-employments/:unitid(/:departmentid)',
+                    moduleId: 'reports/multiple-employments',
+                    title: 'Multiple departments report', nav: false,
+                    hash: '#reports/multiple-employments'
                 },
                 {
-                    route: 'reports/salaries-by-faculty-type/:departmentid',
+                    route: 'reports/salaries-by-faculty-type/:unitid(/:departmentid)',
                     moduleId: 'reports/salaries-by-faculty-type',
                     title: 'Salaries by faculty type report', nav: false,
                     hash: '#reports/salaries-by-faculty-type'
                 },
                 {
-                    route: 'reports/unreviewed/:departmentid',
+                    route: 'reports/unreviewed/:unitid(/:departmentid)',
                     moduleId: 'reports/unreviewed',
                     title: 'Unreviewed faculty report', nav: false,
                     hash: '#reports/unreviewed'

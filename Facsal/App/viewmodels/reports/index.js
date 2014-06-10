@@ -41,11 +41,11 @@
                 ],
 
                 reportTypes = [
-                    'Meeting',
-                    'Faculty with base salary adjustments',
-                    'Faculty with multiple departments',
-                    'Salaries by faculty type',
-                    'Unreviewed faculty'
+                    { route: 'meeting', text: 'Meeting' },
+                    { route: 'base-salary-adjustment', text: 'Faculty with base salary adjustments' },
+                    { route: 'multiple-employments', text: 'Faculty with multiple departments' },
+                    { route: 'salaries-by-faculty-type', text: 'Salaries by faculty type' },
+                    { route: 'unreviewed', text: 'Unreviewed faculty' }
                 ],
 
                 units = unitofwork.units.all()
@@ -65,7 +65,18 @@
         function generateReport() {
             switch (vm.selectedAudienceType()) {
                 case 'Department':
-                    router.navigate('reports/')
+                    var route = 'reports/' +
+                        vm.selectedReportType() +
+                        '/' + vm.selectedDepartmentId();
+
+                    router.navigate(route);
+                    break;
+                case 'Unit':
+                    var route = 'reports/' +
+                        vm.selectedReportType() +
+                        '/' + vm.selectedUnitId().toLowerCase();
+
+                    router.navigate(route);
                     break;
             }
         }

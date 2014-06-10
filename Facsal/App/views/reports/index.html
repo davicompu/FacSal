@@ -8,7 +8,7 @@
     <div class="large-12 columns">
         <label>
             Report
-            <select data-bind="options: reportTypes, value: selectedReportType"></select>
+            <select data-bind="options: reportTypes, optionsText: 'text', optionsValue: 'route', value: selectedReportType"></select>
         </label>
     </div>
 </div>
@@ -42,7 +42,7 @@
                 <option disabled="disabled" hidden="hidden" selected="selected">Choose...</option>
                 <!-- ko foreach: units -->
                 <optgroup data-bind="attr: { label: name }, foreach: departments">
-                    <option data-bind="attr: { label: name, value: id }, text: name"></option>
+                    <option data-bind="attr: { label: name, value: unitId() + '/' + id() }, text: name"></option>
                 </optgroup>
                 <!--/ko-->
             </select>
