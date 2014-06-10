@@ -39,6 +39,7 @@ define(function () {
 			 * Find Entity by predicate
 			 * @method
 			 * @param {string} predicate
+			 * @param {string} expansionCondition
 			 * @return {promise}
 			*/
             this.find = function (predicate, expansionCondition) {
@@ -52,6 +53,22 @@ define(function () {
                         .from(resourceName)
                         .where(predicate)
                 }
+
+                return executeQuery(query);
+            };
+
+            /**
+			 * Find Entity by predicate with projection
+			 * @method
+			 * @param {string} predicate
+			 * @param {string} selectCondition
+			 * @return {promise}
+			*/
+            this.select = function (predicate, selectCondition) {
+                var query = breeze.EntityQuery
+                    .from(resourceName)
+                    .where(predicate)
+                    .select(selectCondition);
 
                 return executeQuery(query);
             };

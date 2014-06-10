@@ -1,0 +1,24 @@
+﻿<div class="row">
+    <div class="large-12 columns">
+        <h4 class="view-heading">Unreviewed faculty report</h4>
+    </div>
+</div>
+
+<div class="row">
+    <div class="large-12 columns">
+        <table class="tabular" data-bind="if: data().length > 0">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: data">
+                <tr>
+                    <td>
+                        <a data-bind="attr: { href: 'salaries/edit/' + id() }, text: person().fullName"></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

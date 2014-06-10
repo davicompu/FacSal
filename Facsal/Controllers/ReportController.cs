@@ -25,7 +25,7 @@ namespace Facsal.Controllers
                 .Where(s => s.Person.Employments.Any(e => e.DepartmentId == "0825"))
                 .GroupBy(s => s.FacultyTypeId)
                 .Select(sg => new {
-                    FacultyType = sg.Select(x => x.FacultyType),
+                    FacultyType = sg.Select(x => x.FacultyType.Name),
                     StartingSalaries = sg.Sum(x => x.BaseAmount + x.AdminAmount +
                         x.EminentAmount + x.PromotionAmount),
                     MeritIncreases = sg.Sum(x => x.MeritIncrease),

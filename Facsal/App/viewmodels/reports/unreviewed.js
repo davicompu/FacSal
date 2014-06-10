@@ -25,7 +25,14 @@
         }
 
         function attached(view) {
-            var data = unitofwork.salariesByFacultyType(vm.departmentId())
+            var p1 = breeze.Predicate.create(
+                'meritAdjustmentTypeId', '==', null),
+                p2 = breeze.Predicate.create(
+                'cycleYear', '==', config.currentCycleYear),
+                predicate = breeze.Predicate.and([p1, p2]),
+                expansionCondition = 'person';
+
+            var data = unitofwork.salaries.find(predicate, expansionCondition)
                 .then(function (response) {
                     return vm.data(response);
                 });

@@ -71,6 +71,12 @@
                     title: 'Salaries by faculty type report', nav: false,
                     hash: '#reports/salaries-by-faculty-type'
                 },
+                {
+                    route: 'reports/unreviewed/:departmentid',
+                    moduleId: 'reports/unreviewed',
+                    title: 'Unreviewed faculty report', nav: false,
+                    hash: '#reports/unreviewed'
+                },
 
                 // Salaries.
                 {
