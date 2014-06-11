@@ -19,7 +19,8 @@
             lookupsUrl: 'getLookups',
             meritAdjustmentTypesUrl: 'meritAdjustmentTypes',
             personsUrl: 'persons',
-            personsWithMutipleEmploymentsUrl: 'personsWithMultipleEmployments',
+            personsWithMultipleEmploymentsUrl:
+                '/api/report/getPersonsWithMultipleEmployments',
             rankTypesUrl: 'rankTypes',
             rolesUrl: 'roles',
             roleAssignmentsUrl: 'roleAssignments',

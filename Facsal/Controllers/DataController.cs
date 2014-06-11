@@ -53,14 +53,6 @@ namespace Facsal.Controllers
             return UnitOfWork.PersonRepository.All();
         }
 
-        // BreezeJS 1.4.12 does not support aggregate queries (count, sum, average, etc.).
-        [HttpGet]
-        public IQueryable<Person> PersonsWithMultipleEmployments()
-        {
-            return UnitOfWork.PersonRepository
-                .Find(p => p.Employments.Count > 1);
-        }
-
         [HttpGet]
         public IQueryable<Salary> Salaries()
         {

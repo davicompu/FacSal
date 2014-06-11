@@ -6,20 +6,39 @@
 
 <div class="row">
     <div class="large-12 columns">
-        <table class="tabular" data-bind="if: persons().length > 0">
-            <thead>
-                <tr>
-                    <th>
-                        Name
-                    </th>
-                </tr>
-            </thead>
-            <tbody data-bind="foreach: persons">
-                <tr>
-                    <td data-bind="text: fullName">
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <table class="tabular" data-bind="if: departmentData().length > 0">
+            <table class="tabular" data-bind="if: departmentData().length > 0">
+                <!-- ko foreach: departmentData -->
+                <tbody>
+                    <tr>
+                        <td data-bind="text: department.name"></td>
+                    </tr>
+                </tbody>
+
+                <tbody data-bind="if: data.length > 0">
+                    <tr>
+                        <td>
+                            Name
+                        </td>
+                    </tr>
+                </tbody>
+
+                <tbody data-bind="if: data.length === 0">
+                    <tr>
+                        <td>
+                            No records
+                        </td>
+                    </tr>
+                </tbody>
+
+                <tbody data-bind="foreach: data">
+                    <tr>
+                        <td>
+                            <a data-bind="attr: { href: 'salaries/edit/' + salaryId }, text: fullName"></a>
+                        </td>
+                    </tr>
+                </tbody>
+                <!--/ko-->
+            </table>
     </div>
 </div>

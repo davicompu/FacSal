@@ -2,6 +2,7 @@
 using SalaryEntities.UnitOfWork;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -11,18 +12,20 @@ namespace Facsal.Controllers
 {
     public class ReportController : ApiController
     {
-        FacsalDbContext UnitOfWork;
+        FacsalDbContext DbContext;
+        int CycleYear;
 
-        public ReportController(FacsalDbContext unitOfWork)
+        public ReportController(FacsalDbContext dbContext)
         {
-            UnitOfWork = unitOfWork;
+            DbContext = dbContext;
+            int.TryParse(ConfigurationManager.AppSettings["CycleYear"], out CycleYear);
         }
 
         [HttpGet]
-        public IHttpActionResult GetSalariesByFacultyType([FromUri]int id)
+        public IHttpActionResult GetSalariesByFacultyType([FromUri]string id)
         {
-            var salaries = UnitOfWork.Salaries
-                .Where(s => s.Person.Employments.Any(e => e.DepartmentId == "0825"))
+            var salaries = DbContext.Salaries
+                .Where(s => s.Person.Employments.Any(e => e.DepartmentId == id))
                 .GroupBy(s => s.FacultyTypeId)
                 .Select(sg => new {
                     FacultyType = sg.Select(x => x.FacultyType.Name),
@@ -37,6 +40,24 @@ namespace Facsal.Controllers
                 });
 
             return Ok(salaries);
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetPersonsWithMultipleEmployments([FromUri] string id)
+        {
+            var data = DbContext.Persons
+                .Include("Salaries")
+                .Where(p => p.Employments.Count > 1 &&
+                    p.Employments.Any(e => e.DepartmentId == id)
+                )
+                .Select(pg => new
+                {
+                    FullName = pg.FullName,
+                    SalaryId = pg.Salaries.Where(s => s.CycleYear == CycleYear)
+                        .FirstOrDefault().Id
+                });
+
+            return Ok(data);
         }
     }
 }
