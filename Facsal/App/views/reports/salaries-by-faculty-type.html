@@ -6,27 +6,43 @@
 
 <div class="row">
     <div class="large-12 columns">
-        <table class="tabular" data-bind="if: data().length > 0">
-            <thead>
+        <table class="tabular" data-bind="if: departmentData().length > 0">
+            <!-- ko foreach: departmentData -->
+            <tbody>
                 <tr>
-                    <th></th>
-                    <th>
-                        Starting salaries
-                    </th>
-                    <th>
-                        Merit increases
-                    </th>
-                    <th>
-                        Special increases
-                    </th>
-                    <th>
-                        Eminent increases
-                    </th>
-                    <th>
-                        New salaries
-                    </th>
+                    <td data-bind="text: department.name"></td>
                 </tr>
-            </thead>
+            </tbody>
+
+            <tbody data-bind="if: data.length === 0">
+                <tr>
+                    <td>
+                        No records
+                    </td>
+                </tr>
+            </tbody>
+
+            <tbody data-bind="if: data.length > 0">
+                <tr>
+                    <td></td>
+                    <td>
+                        Starting salaries
+                    </td>
+                    <td>
+                        Merit increases
+                    </td>
+                    <td>
+                        Special increases
+                    </td>
+                    <td>
+                        Eminent increases
+                    </td>
+                    <td>
+                        New salaries
+                    </td>
+                </tr>
+            </tbody>
+
             <tbody data-bind="foreach: data">
                 <tr>
                     <td data-bind="text: facultyType[0]"></td>
@@ -37,6 +53,7 @@
                     <td data-bind="text: newSalaries"></td>
                 </tr>
             </tbody>
+            <!--/ko-->
         </table>
     </div>
 </div>

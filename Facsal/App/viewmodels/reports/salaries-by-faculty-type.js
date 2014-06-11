@@ -6,22 +6,68 @@
 
         var vm = {
             activate: activate,
-            attached: attached,
+            deactivate: deactivate,
 
-            departmentId: ko.observable(),
-            data: ko.observableArray(),
+            departmentData: ko.observableArray(),
         };
 
         errorhandler.includeIn(vm);
 
         return vm;
 
-        function activate(departmentId) {
+        function activate(unitId, departmentId) {
+            var self = this;
+
             ga('send', 'pageview', { 'page': window.location.href, 'title': document.title });
 
-            vm.departmentId(departmentId);
+            if (departmentId) {
+                var department = unitofwork.departments.withId(departmentId)
+                    .then(function (response) {
+                        getData([response.entity]);
+                    });
+
+                Q.all([
+                    department
+                ]).fail(self.handleError);
+            } else {
+                var predicate = breeze.Predicate.create(
+                    'toLower(unitId)', '==', unitId.toLowerCase()),
+
+                    departments = unitofwork.departments.find(predicate)
+                        .then(function (response) {
+                            getData(response);
+                        });
+
+                Q.all([
+                    departments
+                ]).fail(self.handleError);
+            }
 
             return true;
+        }
+
+        function deactivate() {
+            vm.departmentData([]);
+
+            return true;
+        }
+
+        function getData(departments) {
+            var self = this;
+
+            return $.each(departments, function (index, department) {
+                var salaries = unitofwork.salariesByFacultyType(department.id())
+                    .then(function (response) {
+                        return vm.departmentData.push({
+                            department: department,
+                            data: response
+                        });
+                    });
+
+                Q.all([
+                    salaries
+                ]).fail(self.handleError);
+            });
         }
 
         function attached(view) {

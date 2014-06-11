@@ -16,6 +16,8 @@
         return vm;
 
         function activate(unitId, departmentId) {
+            var self = this;
+
             ga('send', 'pageview', { 'page': window.location.href, 'title': document.title });
 
             if (departmentId) {
