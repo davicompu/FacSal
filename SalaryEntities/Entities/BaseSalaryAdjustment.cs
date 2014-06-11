@@ -11,6 +11,10 @@ namespace SalaryEntities.Entities
     {
         public long Id { get; set; }
 
+        public int StartingBaseAmount { get; set; }
+
+        public int NewBaseAmount { get; set; }
+
         [ForeignKey("Salary")]
         public long SalaryId { get; set; }
 

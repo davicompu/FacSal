@@ -1,5 +1,5 @@
-﻿define([],
-    function () {
+﻿define(['services/utils'],
+    function (utils) {
         var foreignKeyInvalidValue = 0;
 
         var self = {
@@ -10,6 +10,7 @@
 
         function extendMetadata(metadataStore) {
             extendAppointmentType(metadataStore);
+            extendBaseSalaryAdjustment(metadataStore);
             extendDepartment(metadataStore);
             extendEmployment(metadataStore);
             extendFacultyType(metadataStore);
@@ -28,6 +29,19 @@
             };
 
             metadataStore.registerEntityTypeCtor('AppointmentType', null, initializer);
+        }
+
+        function extendBaseSalaryAdjustment(metadataStore) {
+            var initializer = function (entity) {
+                addValidationRules(entity);
+                addHasValidationErrorsProperty(entity);
+
+                entity.formattedCreatedDate = ko.computed(function () {
+                    return moment(entity.createdDate()).format('MM/DD/YYYY');
+                });
+            };
+
+            metadataStore.registerEntityTypeCtor('BaseSalaryAdjustment', null, initializer);
         }
         
         function extendDepartment(metadataStore) {

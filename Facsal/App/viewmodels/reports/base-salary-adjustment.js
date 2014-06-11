@@ -57,27 +57,22 @@
 
             return $.each(departments, function (index, department) {
                 var p1 = breeze.Predicate.create(
-                    'salary.cycleYear', '==', config.currentCycleYear),
-                    p2 = breeze.Predicate.create(
                     'salary.person.employments', 'any', 'departmentId', '==', department.id()),
+                    p2 = breeze.Predicate.create(
+                    'salary.cycleYear', '==', config.currentCycleYear),
                     predicate = breeze.Predicate.and([p1, p2]),
                     expansionCondition = 'salary, salary.person';
 
-                var salaries = unitofwork.baseSalaryAdjustments.find(predicate, expansionCondition)
+                var adjustments = unitofwork.baseSalaryAdjustments.find(predicate, expansionCondition)
                     .then(function (response) {
-                        vm.departmentData.push({
+                        return vm.departmentData.push({
                             department: department,
-                            salaries: $.each(response, function (index, value) {
-                                return value.salary().entityAspect
-                            })
+                            adjustments: response
                         });
-
-                        console.log('DeptData: ' + vm.departmentData());
                     });
 
-
                 Q.all([
-                    salaries
+                    adjustments
                 ]).fail(self.handleError);
             });
         }
