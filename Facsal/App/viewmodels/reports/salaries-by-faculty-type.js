@@ -69,19 +69,4 @@
                 ]).fail(self.handleError);
             });
         }
-
-        function attached(view) {
-            var self = this;
-
-            var data = unitofwork.salariesByFacultyType(vm.departmentId())
-                .then(function (response) {
-                    return vm.data(response);
-                });
-
-            Q.all([
-                data
-            ]).fail(self.handleError);
-
-            return true;
-        }
     });
