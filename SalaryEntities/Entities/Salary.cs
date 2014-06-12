@@ -95,5 +95,21 @@ namespace SalaryEntities.Entities
         public ICollection<SpecialSalaryAdjustment> SpecialSalaryAdjustments { get; set; }
 
         public ICollection<SalaryModification> Modifications { get; set; }
+
+        public int TotalAmount
+        {
+            get
+            {
+                return BaseAmount + AdminAmount + EminentAmount + PromotionAmount;
+            }
+        }
+
+        public int NewTotalAmount
+        {
+            get
+            {
+                return TotalAmount + MeritIncrease + SpecialIncrease + EminentIncrease;
+            }
+        }
     }
 }
