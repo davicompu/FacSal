@@ -23,6 +23,8 @@
         vm.selectedAudienceType.subscribe(function (newValue) {
             vm.selectedDepartmentId(undefined);
             vm.selectedUnitId(undefined);
+
+            return true;
         });
 
         return vm;

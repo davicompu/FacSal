@@ -166,6 +166,7 @@ namespace Facsal.DataAccess
 
                 return (IList<string>)roles;
             }
+
             return EMPTY_LIST;
         }
     }

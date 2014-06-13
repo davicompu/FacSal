@@ -11,8 +11,9 @@
 define('jquery', function () { return jQuery; });
 define('knockout', ko);
 
-define(['durandal/app', 'durandal/viewLocator', 'durandal/system'],
-    function (app, viewLocator, system) {
+define(['durandal/app', 'durandal/viewLocator', 'durandal/system',
+    'global/session'],
+    function (app, viewLocator, system, session) {
         //>>excludeStart("build", true);
         system.debug(true);
         //>>excludeEnd("build");

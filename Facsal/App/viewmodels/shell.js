@@ -45,6 +45,24 @@
             };
 
             return router.map([
+                // Nav.
+                {
+                    route: ['', 'salaries', 'salaries/index'], moduleId: 'salaries/index',
+                    title: 'Salaries', nav: true, hash: '#salaries/index'
+                },
+                {
+                    route: ['reports', 'reports/index'], moduleId: 'reports/index',
+                    title: 'Reports', nav: true, hash: '#reports/index'
+                },
+                {
+                    route: 'salaries/search', moduleId: 'salaries/search',
+                    title: 'Search', nav: true, hash: '#salaries/search'
+                },
+                {
+                    route: ['users', 'users/index'], moduleId: 'users/index',
+                    title: 'Users', nav: true, hash: '#users/index'
+                },
+
                 // Persons.
                 {
                     route: 'persons/create', moduleId: 'persons/create',
@@ -52,10 +70,6 @@
                 },
 
                 // Reports.
-                {
-                    route: ['reports', 'reports/index'], moduleId: 'reports/index',
-                    title: 'Reports', nav: true, hash: '#reports/index'
-                },
                 {
                     route: 'reports/base-salary-adjustment/:unitid(/:departmentid)',
                     moduleId: 'reports/base-salary-adjustment',
@@ -88,23 +102,11 @@
 
                 // Salaries.
                 {
-                    route: ['', 'salaries', 'salaries/index'], moduleId: 'salaries/index',
-                    title: 'Salaries', nav: true, hash: '#salaries/index'
-                },
-                {
                     route: 'salaries/edit/:salaryid', moduleId: 'salaries/edit',
                     title: 'Edit salary', nav: false, hash: '#salaries/edit/:salaryid'
                 },
-                {
-                    route: 'salaries/search', moduleId: 'salaries/search',
-                    title: 'Search', nav: true, hash: '#salaries/search'
-                },
 
                 // Users.
-                {
-                    route: ['users', 'users/index'], moduleId: 'users/index',
-                    title: 'Users', nav: true, hash: '#users/index'
-                },
                 {
                     route: 'users/edit/:userid', moduleId: 'users/edit',
                     title: 'Edit user', nav: false, hash: '#users/edit/:salaryid'

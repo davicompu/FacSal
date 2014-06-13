@@ -5,11 +5,10 @@
 @import "normalize";
 @import "foundation";
 
-/* Compass mixins */
-@import "compass/layout/sticky-footer";
-
-
 @import "app/app-settings";
 @import "app/content";
+
+@import 
+	"app/components/footer";
 
 @import "app/shame";

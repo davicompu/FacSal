@@ -437,6 +437,11 @@ th {
   padding: 0;
 }
 
+/*$body-bg: #23282A; 
+$body-font-color: #A6A3AB;
+$header-font-color: #A6A3AB;
+$form-label-font-color: #A6A3AB;
+$medium-range: (670px, 64em);*/
 /* line 311, ../sass/foundation/components/_global.scss */
 meta.foundation-version {
   font-family: "/5.2.2/";
@@ -3789,7 +3794,7 @@ button.disabled.alert:hover, button.disabled.alert:focus, button[disabled].alert
 }
 
 /* Standard Forms */
-/* line 328, ../sass/foundation/components/_forms.scss */
+/* line 334, ../sass/foundation/components/_forms.scss */
 form {
   margin: 0 0 1rem;
 }
@@ -3827,7 +3832,7 @@ form .row textarea.columns {
 }
 
 /* Label Styles */
-/* line 334, ../sass/foundation/components/_forms.scss */
+/* line 340, ../sass/foundation/components/_forms.scss */
 label {
   font-size: 0.875rem;
   color: #4d4d4d;
@@ -3838,41 +3843,29 @@ label {
   margin-bottom: 0;
   /* Styles for required inputs */
 }
-/* line 335, ../sass/foundation/components/_forms.scss */
+/* line 341, ../sass/foundation/components/_forms.scss */
 label.right {
   float: none !important;
   text-align: right;
 }
-/* line 336, ../sass/foundation/components/_forms.scss */
+/* line 342, ../sass/foundation/components/_forms.scss */
 label.inline {
   margin: 0 0 1rem 0;
   padding: 0.5625rem 0;
 }
-/* line 338, ../sass/foundation/components/_forms.scss */
+/* line 344, ../sass/foundation/components/_forms.scss */
 label small {
   text-transform: capitalize;
   color: #676767;
 }
 
-/* line 344, ../sass/foundation/components/_forms.scss */
+/* line 350, ../sass/foundation/components/_forms.scss */
 select::-ms-expand {
   display: none;
 }
 
-@-moz-document url-prefix() {
-  /* line 349, ../sass/foundation/components/_forms.scss */
-  select {
-    background: #fafafa;
-  }
-
-  /* line 350, ../sass/foundation/components/_forms.scss */
-  select:hover {
-    background: #f3f3f3;
-  }
-}
-
 /* Attach elements to the beginning or end of an input */
-/* line 354, ../sass/foundation/components/_forms.scss */
+/* line 356, ../sass/foundation/components/_forms.scss */
 .prefix,
 .postfix {
   display: block;
@@ -3891,7 +3884,7 @@ select::-ms-expand {
 }
 
 /* Adjust padding, alignment and radius if pre/post element is a button */
-/* line 357, ../sass/foundation/components/_forms.scss */
+/* line 359, ../sass/foundation/components/_forms.scss */
 .postfix.button {
   padding-left: 0;
   padding-right: 0;
@@ -3902,7 +3895,7 @@ select::-ms-expand {
   border: none;
 }
 
-/* line 358, ../sass/foundation/components/_forms.scss */
+/* line 360, ../sass/foundation/components/_forms.scss */
 .prefix.button {
   padding-left: 0;
   padding-right: 0;
@@ -3913,28 +3906,28 @@ select::-ms-expand {
   border: none;
 }
 
-/* line 360, ../sass/foundation/components/_forms.scss */
+/* line 362, ../sass/foundation/components/_forms.scss */
 .prefix.button.radius {
   border-radius: 0;
   border-bottom-left-radius: 3px;
   border-top-left-radius: 3px;
 }
 
-/* line 361, ../sass/foundation/components/_forms.scss */
+/* line 363, ../sass/foundation/components/_forms.scss */
 .postfix.button.radius {
   border-radius: 0;
   border-bottom-right-radius: 3px;
   border-top-right-radius: 3px;
 }
 
-/* line 362, ../sass/foundation/components/_forms.scss */
+/* line 364, ../sass/foundation/components/_forms.scss */
 .prefix.button.round {
   border-radius: 0;
   border-bottom-left-radius: 1000px;
   border-top-left-radius: 1000px;
 }
 
-/* line 363, ../sass/foundation/components/_forms.scss */
+/* line 365, ../sass/foundation/components/_forms.scss */
 .postfix.button.round {
   border-radius: 0;
   border-bottom-right-radius: 1000px;
@@ -3942,28 +3935,28 @@ select::-ms-expand {
 }
 
 /* Separate prefix and postfix styles when on span or label so buttons keep their own */
-/* line 366, ../sass/foundation/components/_forms.scss */
+/* line 368, ../sass/foundation/components/_forms.scss */
 span.prefix, label.prefix {
   background: #f2f2f2;
   border-right: none;
   color: #333333;
   border-color: #cccccc;
 }
-/* line 367, ../sass/foundation/components/_forms.scss */
+/* line 369, ../sass/foundation/components/_forms.scss */
 span.prefix.radius, label.prefix.radius {
   border-radius: 0;
   border-bottom-left-radius: 3px;
   border-top-left-radius: 3px;
 }
 
-/* line 369, ../sass/foundation/components/_forms.scss */
+/* line 371, ../sass/foundation/components/_forms.scss */
 span.postfix, label.postfix {
   background: #f2f2f2;
   border-left: none;
   color: #333333;
   border-color: #cccccc;
 }
-/* line 370, ../sass/foundation/components/_forms.scss */
+/* line 372, ../sass/foundation/components/_forms.scss */
 span.postfix.radius, label.postfix.radius {
   border-radius: 0;
   border-bottom-right-radius: 3px;
@@ -3971,7 +3964,7 @@ span.postfix.radius, label.postfix.radius {
 }
 
 /* We use this to get basic styling on all basic form elements */
-/* line 387, ../sass/foundation/components/_forms.scss */
+/* line 389, ../sass/foundation/components/_forms.scss */
 input[type="text"],
 input[type="password"],
 input[type="date"],
@@ -4070,7 +4063,7 @@ textarea[disabled], fieldset[disabled]
 textarea {
   background-color: #dddddd;
 }
-/* line 393, ../sass/foundation/components/_forms.scss */
+/* line 395, ../sass/foundation/components/_forms.scss */
 input[type="text"].radius,
 input[type="password"].radius,
 input[type="date"].radius,
@@ -4088,25 +4081,25 @@ textarea.radius {
   border-radius: 3px;
 }
 
-/* line 398, ../sass/foundation/components/_forms.scss */
+/* line 400, ../sass/foundation/components/_forms.scss */
 input[type="submit"] {
   -webkit-appearance: none;
 }
 
 /* Respect enforced amount of rows for textarea */
-/* line 403, ../sass/foundation/components/_forms.scss */
+/* line 405, ../sass/foundation/components/_forms.scss */
 textarea[rows] {
   height: auto;
 }
 
 /* Add height value for select elements to match text input height */
-/* line 408, ../sass/foundation/components/_forms.scss */
+/* line 410, ../sass/foundation/components/_forms.scss */
 select {
   -webkit-appearance: none !important;
   background-color: #fafafa;
-  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMHB4IiB5PSIwcHgiIHdpZHRoPSI2cHgiIGhlaWdodD0iM3B4IiB2aWV3Qm94PSIwIDAgNiAzIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA2IDMiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxwb2x5Z29uIHBvaW50cz0iNS45OTIsMCAyLjk5MiwzIC0wLjAwOCwwICIvPjwvc3ZnPg==");
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMTJweCIgeT0iMHB4IiB3aWR0aD0iMjRweCIgaGVpZ2h0PSIzcHgiIHZpZXdCb3g9IjAgMCA2IDMiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDYgMyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PHBvbHlnb24gcG9pbnRzPSI1Ljk5MiwwIDIuOTkyLDMgLTAuMDA4LDAgIi8+PC9zdmc+);
+  background-position: 100% center;
   background-repeat: no-repeat;
-  background-position: 97% center;
   border: 1px solid #cccccc;
   padding: 0.5rem;
   font-size: 0.875rem;
@@ -4115,18 +4108,18 @@ select {
   border-radius: 0;
   height: 2.3125rem;
 }
-/* line 318, ../sass/foundation/components/_forms.scss */
+/* line 324, ../sass/foundation/components/_forms.scss */
 select.radius {
   border-radius: 3px;
 }
-/* line 319, ../sass/foundation/components/_forms.scss */
+/* line 325, ../sass/foundation/components/_forms.scss */
 select:hover {
   background-color: #f3f3f3;
   border-color: #999999;
 }
 
 /* Adjust margin for form elements below */
-/* line 417, ../sass/foundation/components/_forms.scss */
+/* line 419, ../sass/foundation/components/_forms.scss */
 input[type="file"],
 input[type="checkbox"],
 input[type="radio"],
@@ -4134,7 +4127,7 @@ select {
   margin: 0 0 1rem 0;
 }
 
-/* line 422, ../sass/foundation/components/_forms.scss */
+/* line 424, ../sass/foundation/components/_forms.scss */
 input[type="checkbox"] + label,
 input[type="radio"] + label {
   display: inline-block;
@@ -4145,13 +4138,13 @@ input[type="radio"] + label {
 }
 
 /* Normalize file input width */
-/* line 431, ../sass/foundation/components/_forms.scss */
+/* line 433, ../sass/foundation/components/_forms.scss */
 input[type="file"] {
   width: 100%;
 }
 
 /* We add basic fieldset styling */
-/* line 436, ../sass/foundation/components/_forms.scss */
+/* line 438, ../sass/foundation/components/_forms.scss */
 fieldset {
   border: 1px solid #dddddd;
   padding: 1.25rem;
@@ -4167,7 +4160,7 @@ fieldset legend {
 }
 
 /* Error Handling */
-/* line 443, ../sass/foundation/components/_forms.scss */
+/* line 445, ../sass/foundation/components/_forms.scss */
 [data-abide] .error small.error, [data-abide] span.error, [data-abide] small.error {
   display: block;
   padding: 0.375rem 0.5625rem 0.5625rem;
@@ -4179,12 +4172,12 @@ fieldset legend {
   background: #f04124;
   color: white;
 }
-/* line 446, ../sass/foundation/components/_forms.scss */
+/* line 448, ../sass/foundation/components/_forms.scss */
 [data-abide] span.error, [data-abide] small.error {
   display: none;
 }
 
-/* line 449, ../sass/foundation/components/_forms.scss */
+/* line 451, ../sass/foundation/components/_forms.scss */
 span.error, small.error {
   display: block;
   padding: 0.375rem 0.5625rem 0.5625rem;
@@ -4197,23 +4190,23 @@ span.error, small.error {
   color: white;
 }
 
-/* line 456, ../sass/foundation/components/_forms.scss */
+/* line 458, ../sass/foundation/components/_forms.scss */
 .error input,
 .error textarea,
 .error select {
   margin-bottom: 0;
 }
-/* line 461, ../sass/foundation/components/_forms.scss */
+/* line 463, ../sass/foundation/components/_forms.scss */
 .error input[type="checkbox"],
 .error input[type="radio"] {
   margin-bottom: 1rem;
 }
-/* line 466, ../sass/foundation/components/_forms.scss */
+/* line 468, ../sass/foundation/components/_forms.scss */
 .error label,
 .error label.error {
   color: #f04124;
 }
-/* line 470, ../sass/foundation/components/_forms.scss */
+/* line 472, ../sass/foundation/components/_forms.scss */
 .error small.error {
   display: block;
   padding: 0.375rem 0.5625rem 0.5625rem;
@@ -4225,7 +4218,7 @@ span.error, small.error {
   background: #f04124;
   color: white;
 }
-/* line 475, ../sass/foundation/components/_forms.scss */
+/* line 477, ../sass/foundation/components/_forms.scss */
 .error > label > small {
   color: #676767;
   background: transparent;
@@ -4236,18 +4229,18 @@ span.error, small.error {
   margin: 0;
   display: inline;
 }
-/* line 487, ../sass/foundation/components/_forms.scss */
+/* line 489, ../sass/foundation/components/_forms.scss */
 .error span.error-message {
   display: block;
 }
 
-/* line 493, ../sass/foundation/components/_forms.scss */
+/* line 495, ../sass/foundation/components/_forms.scss */
 input.error,
 textarea.error {
   margin-bottom: 0;
 }
 
-/* line 496, ../sass/foundation/components/_forms.scss */
+/* line 498, ../sass/foundation/components/_forms.scss */
 label.error {
   color: #f04124;
 }
@@ -6879,7 +6872,7 @@ meta.foundation-mq-topbar {
 /* line 109, ../sass/foundation/components/_top-bar.scss */
 .contain-to-grid {
   width: 100%;
-  background: #333333;
+  background: #111111;
 }
 /* line 113, ../sass/foundation/components/_top-bar.scss */
 .contain-to-grid .top-bar {
@@ -6919,7 +6912,7 @@ meta.foundation-mq-topbar {
   height: 45px;
   line-height: 45px;
   position: relative;
-  background: #333333;
+  background: #111111;
   margin-bottom: 0;
 }
 /* line 152, ../sass/foundation/components/_top-bar.scss */
@@ -7032,7 +7025,7 @@ meta.foundation-mq-topbar {
 }
 /* line 258, ../sass/foundation/components/_top-bar.scss */
 .top-bar.expanded .title-area {
-  background: #333333;
+  background: #111111;
 }
 /* line 261, ../sass/foundation/components/_top-bar.scss */
 .top-bar.expanded .toggle-topbar a {
@@ -7062,14 +7055,14 @@ meta.foundation-mq-topbar {
 /* line 293, ../sass/foundation/components/_top-bar.scss */
 .top-bar-section .divider,
 .top-bar-section [role="separator"] {
-  border-top: solid 1px #1a1a1a;
+  border-top: solid 1px #090909;
   clear: both;
   height: 1px;
   width: 100%;
 }
 /* line 300, ../sass/foundation/components/_top-bar.scss */
 .top-bar-section ul li {
-  background: #333333;
+  background: #111111;
 }
 /* line 302, ../sass/foundation/components/_top-bar.scss */
 .top-bar-section ul li > a {
@@ -7323,7 +7316,7 @@ meta.foundation-mq-topbar {
 @media only screen and (min-width: 40.063em) {
   /* line 435, ../sass/foundation/components/_top-bar.scss */
   .top-bar {
-    background: #333333;
+    background: #111111;
     overflow: visible;
   }
   /* line 163, ../sass/foundation/components/_global.scss */
@@ -7357,7 +7350,7 @@ meta.foundation-mq-topbar {
   }
   /* line 453, ../sass/foundation/components/_top-bar.scss */
   .top-bar.expanded {
-    background: #333333;
+    background: #111111;
   }
 
   /* line 456, ../sass/foundation/components/_top-bar.scss */
@@ -7395,7 +7388,7 @@ meta.foundation-mq-topbar {
   .top-bar-section li:not(.has-form) a:not(.button) {
     padding: 0 15px;
     line-height: 45px;
-    background: #333333;
+    background: #111111;
   }
   /* line 489, ../sass/foundation/components/_top-bar.scss */
   .top-bar-section li:not(.has-form) a:not(.button):hover {
@@ -7473,12 +7466,12 @@ meta.foundation-mq-topbar {
     line-height: 45px;
     white-space: nowrap;
     padding: 12px 15px;
-    background: #333333;
+    background: #111111;
   }
   /* line 560, ../sass/foundation/components/_top-bar.scss */
   .top-bar-section .dropdown li:not(.has-form) a:not(.button) {
     color: white;
-    background: #333333;
+    background: #111111;
   }
   /* line 564, ../sass/foundation/components/_top-bar.scss */
   .top-bar-section .dropdown li:not(.has-form):hover > a:not(.button) {
@@ -7499,14 +7492,14 @@ meta.foundation-mq-topbar {
   .top-bar-section > ul > .divider, .top-bar-section > ul > [role="separator"] {
     border-bottom: none;
     border-top: none;
-    border-right: solid 1px #4e4e4e;
+    border-right: solid 1px #303030;
     clear: none;
     height: 45px;
     width: 0;
   }
   /* line 592, ../sass/foundation/components/_top-bar.scss */
   .top-bar-section .has-form {
-    background: #333333;
+    background: #111111;
     padding: 0 15px;
     height: 45px;
   }
@@ -8365,14 +8358,39 @@ th.hide-for-touch {
   display: table-cell !important;
 }
 
-/* Compass mixins */
 /* line 1, ../sass/app/_content.scss */
 #content {
-  background-color: #e5e5e5;
+  background-color: white;
   padding: 2em 0;
 }
 
-/* line 6, ../sass/app/_content.scss */
-.indent {
-  padding-left: 1em;
+/* line 1, ../sass/app/components/_footer.scss */
+footer {
+  background: white;
+  padding-top: 1.875rem;
+}
+/* line 6, ../sass/app/components/_footer.scss */
+footer .footer .columns {
+  color: #777777;
+  font-size: 75%;
+}
+/* line 10, ../sass/app/components/_footer.scss */
+footer .footer .columns h4 {
+  color: #555555;
+}
+/* line 17, ../sass/app/components/_footer.scss */
+footer .copyright {
+  border-top: #ccc 1px solid;
+  margin-top: 0.9375rem;
+  padding: 0.9375rem 0;
+}
+/* line 22, ../sass/app/components/_footer.scss */
+footer .copyright .columns {
+  color: #999;
+  font-size: 70%;
+}
+
+/* line 1, ../sass/app/_shame.scss */
+table {
+  width: 100%;
 }

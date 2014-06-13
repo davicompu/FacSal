@@ -7,7 +7,7 @@
         </ul>
 
         <section class="top-bar-section">
-            <ul class="left" data-bind="foreach: router.navigationModel">
+            <ul class="right" data-bind="foreach: router.navigationModel">
                 <li class="menu-item" data-bind="css: { active: isActive }">
                     <a data-bind="attr: { href: $parent.router.convertRouteToHash('/' + hash) }, text: title"></a>
                 </li>
@@ -16,21 +16,31 @@
     </nav>
 </div>
 
-<div class="row view-background">
-    <div class="large-12 columns">
+<section id="content" data-bind="router: { transition: 'scrollers', cacheViews: true }"></section>
 
-        <section id="content" data-bind="router: { transition: 'scrollers', cacheViews: true }"></section>
+<div id="timeoutModal" class="small reveal-modal" data-options="closeOnBackgroundClick: false">
+    <h4>Your session is about to timeout.</h4>
+    <p>
+        You will be logged out in <span class="counter"></span> seconds. Click continue to
+        extend your session.
+    </p>
 
-        <div id="timeoutModal" class="small reveal-modal" data-options="closeOnBackgroundClick: false">
-            <h4>Your session is about to timeout.</h4>
-            <p>
-                You will be logged out in <span class="counter"></span> seconds. Click continue to
-                extend your session.
-            </p>
+    <span class="text-button button-close-reveal-modal">Continue</span>
 
-            <span class="text-button button-close-reveal-modal">Continue</span>
+    <a class="close-reveal-modal">&#215;</a>
+</div>
 
-            <a class="close-reveal-modal">&#215;</a>
+<!--<footer>
+    <div class="row copyright">
+        <div class="small-12 medium-6 large-6 columns">
+            Copyright &copy;2014 Virginia Tech Finance IT
+        </div>
+
+        <div class="small-12 columns show-for-small">
+            Developed by <a href="http://www.linkedin.com/in/chrisjsherm/‎">Chris Sherman</a>
+        </div>
+        <div class="medium-4 large-6 columns hide-for-small text-right">
+            Developed by <a href="http://www.linkedin.com/in/chrisjsherm/">Chris Sherman</a>
         </div>
     </div>
-</div>
+</footer>-->

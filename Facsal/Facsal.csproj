@@ -292,6 +292,7 @@
     <Content Include="Scripts\durandal\viewLocator.js" />
     <Content Include="Scripts\knockout.validation.js" />
     <Content Include="weyland-config.js" />
+    <Content Include="sass\app\components\_fieldset.scss" />
     <None Include="Scripts\breeze.intellisense.js" />
     <Content Include="Scripts\breeze.debug.js" />
     <Content Include="Scripts\breeze.min.js" />
@@ -360,14 +361,7 @@
       <CompileStyle>Nested</CompileStyle>
       <DebugInfo>False</DebugInfo>
     </Content>
-    <Content Include="sass\app\components\_call-to-action.scss" />
-    <Content Include="sass\app\components\_checkout.scss" />
-    <Content Include="sass\app\components\_contribute-table.scss" />
-    <Content Include="sass\app\components\_fieldset.scss" />
     <Content Include="sass\app\components\_footer.scss" />
-    <Content Include="sass\app\components\_list.scss" />
-    <Content Include="sass\app\components\_masthead.scss" />
-    <Content Include="sass\app\components\_splash.scss" />
     <Content Include="sass\app\_app-settings.scss" />
     <Content Include="sass\app\_content.scss" />
     <Content Include="sass\app\_shame.scss" />
@@ -434,7 +428,6 @@
   <ItemGroup>
     <Folder Include="App\views\shared\" />
     <Folder Include="App_Data\" />
-    <Folder Include="Views\ReportFile\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

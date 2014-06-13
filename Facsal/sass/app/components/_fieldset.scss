@@ -1,3 +1,12 @@
-fieldset {
-	background-color: $fieldset-bg;
+fieldset
+{
+    background-color: #434C55;
+    
+    #{headings()} {
+        color: #F7F6F5;
+    }
+
+    label {
+        color: #F7F6F5;
+    }
 }
