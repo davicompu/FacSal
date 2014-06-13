@@ -126,6 +126,10 @@
     <Compile Include="Migrations\201406111416081_BaseAdjustmentAmounts.Designer.cs">
       <DependentUpon>201406111416081_BaseAdjustmentAmounts.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201406132034540_DataAnnotations.cs" />
+    <Compile Include="Migrations\201406132034540_DataAnnotations.Designer.cs">
+      <DependentUpon>201406132034540_DataAnnotations.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Repository.cs" />
@@ -193,6 +197,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201406111416081_BaseAdjustmentAmounts.resx">
       <DependentUpon>201406111416081_BaseAdjustmentAmounts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406132034540_DataAnnotations.resx">
+      <DependentUpon>201406132034540_DataAnnotations.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

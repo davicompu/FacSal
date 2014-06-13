@@ -18,6 +18,8 @@ namespace SalaryEntities.Entities
         public string PersonId { get; set; }
 
         [Index("IX_PersonAndCycleYear", 2, IsUnique = true)]
+        [Max(2050)]
+        [Min(2000)]
         public int CycleYear { get; set; }
 
         [StringLength(128)]
@@ -32,36 +34,45 @@ namespace SalaryEntities.Entities
         [ForeignKey("AppointmentType")]
         public int AppointmentTypeId { get; set; }
         
+        [Required]
         [Max(1.00)]
+        [Min(0.00)]
         public decimal FullTimeEquivalent { get; set; }
 
-        [Min(0.00)]
+        [Min(0)]
         public int? BannerBaseAmount { get; private set; }
 
-        [Min(0.00)]
+        [Max(100000000)]
+        [Min(0)]
         public int BaseAmount { get; set; }
 
-        [Min(0.00)]
+        [Max(100000000)]
+        [Min(0)]
         public int AdminAmount { get; set; }
 
-        [Min(0.00)]
+        [Max(100000000)]
+        [Min(0)]
         public int EminentAmount { get; set; }
 
-        [Min(0.00)]
+        [Max(100000000)]
+        [Min(0)]
         public int PromotionAmount { get; set; }
 
         [Required]
-        [Min(0.00)]
+        [Max(100000000)]
+        [Min(0)]
         [Display(Name = "Merit Increase", ShortName = "Merit")]
         public int MeritIncrease { get; set; }
 
         [Required]
-        [Min(0.00)]
+        [Max(100000000)]
+        [Min(0)]
         [Display(Name = "Special Increase", ShortName = "Special")]
         public int SpecialIncrease { get; set; }
 
         [Required]
-        [Min(0.00)]
+        [Max(100000000)]
+        [Min(0)]
         [Display(Name = "Eminent Increase", ShortName = "Eminent")]
         public int EminentIncrease { get; set; }
 

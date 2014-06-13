@@ -13,12 +13,18 @@ namespace SalaryEntities.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string Id { get; set; }
 
+        [Required]
+        [StringLength(30)]
         public string Pid { get; set; }
 
+        [Required]
         [Display(Name = "Last Name")]
+        [StringLength(35)]
         public string LastName { get; set; }
 
+        [Required]
         [Display(Name = "First Name")]
+        [StringLength(35)]
         public string FirstName { get; set; }
 
         [ForeignKey("StatusType")]

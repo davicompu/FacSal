@@ -62,7 +62,7 @@ namespace FacsalData.Migrations
 
             var rankTypes = new List<RankType>
             {
-                new RankType { Id = 1, Name = "Lecturer"}
+                new RankType { Id = 1, Name = "Lecturer", Sequence = "A"}
             };
             rankTypes.ForEach(r => context.RankTypes.AddOrUpdate(x => x.Name, r));
             context.SaveChanges();

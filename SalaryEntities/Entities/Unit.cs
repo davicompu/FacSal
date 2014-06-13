@@ -13,9 +13,12 @@ namespace SalaryEntities.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string Id { get; set; }
 
-        [StringLength(1024)]
+        [Required]
+        [StringLength(50)]
         public string Name { get; set; }
 
+        [Required]
+        [StringLength(3)]
         public string Sequence { get; set; }
 
         public ICollection<Department> Departments { get; set; }
