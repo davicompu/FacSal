@@ -34,6 +34,7 @@ namespace Facsal
                   .Include("~/Scripts/Q.js")
                   .Include("~/Scripts/chrisjsherm/chrisjsherm.*")
                   .Include("~/Scripts/breeze.debug.js")
+                  .Include("~/Scripts/breeze.saveErrorExtensions.js")
                   .Include("~/Scripts/fastclick.js")
                   .Include("~/Scripts/foundation/foundation.js")
                   .Include("~/Scripts/foundation/foundation.*")

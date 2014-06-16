@@ -44,7 +44,7 @@ define(['durandal/app', 'durandal/viewLocator', 'durandal/system',
             });
 
             configureKnockout();
-
+            Q.stopUnhandledRejectionTracking();
             //Show the app by setting the root view model for our application with a transition.
             app.setRoot('viewmodels/shell');
         });

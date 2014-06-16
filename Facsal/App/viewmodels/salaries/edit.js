@@ -39,8 +39,6 @@
             saveChanges: saveChanges,
         };
 
-        vm.errors = ko.validation.group(vm);
-
         errorhandler.includeIn(vm);
 
         return vm;
@@ -119,20 +117,16 @@
 
         function saveChanges() {
             var self = this;
-
             applySelectionsToSalaryAdjustmentMap();
 
             if (!unitofwork.hasChanges()) {
                 return logger.log('No changes were detected.', null, null, true);
             }
 
-            unitofwork.commit()
+            return unitofwork.commit()
                 .then(function () {
                     return logger.logSuccess('Save successful', null, null, true);
-                })
-                .fail(self.handleError);
-
-            return true;
+                });
         }
 
         function createSalaryAdjustmentHash(salary) {

@@ -274,6 +274,7 @@
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
     <Content Include="Scripts\almond-custom.js" />
+    <Content Include="Scripts\breeze.saveErrorExtensions.js" />
     <Content Include="Scripts\durandal\activator.js" />
     <Content Include="Scripts\durandal\app.js" />
     <Content Include="Scripts\durandal\binder.js" />

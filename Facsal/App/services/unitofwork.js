@@ -6,8 +6,8 @@
 */
 
 define(['services/entitymanagerprovider', 'services/repository', 'durandal/app',
-    'services/config'],
-	function (entityManagerProvider, repository, app, routeconfig) {
+    'services/config', 'services/logger'],
+	function (entityManagerProvider, repository, app, routeconfig, logger) {
 
 	    var refs = {};
 
@@ -40,7 +40,14 @@ define(['services/entitymanagerprovider', 'services/repository', 'durandal/app',
 	                return provider.manager().saveChanges(null, saveOptions)
 						.then(function (saveResult) {
 						    app.trigger('saved', saveResult.entities);
-						});
+						})
+	                    .fail(function (error) {
+	                        var msg = 'Save failed: ' +
+                                breeze.saveErrorMessageService.getErrorMessage(error);
+	                        error.message = msg;
+	                        logger.logError(msg, null, null, true);
+	                        throw error;
+	                    });
 	            };
 
 	            /**
