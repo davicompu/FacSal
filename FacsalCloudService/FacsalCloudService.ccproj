@@ -37,22 +37,30 @@
     <ServiceConfiguration Include="ServiceConfiguration.Cloud.cscfg" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WebRole\WebRole.csproj">
-      <Name>WebRole</Name>
-      <Project>{3764f125-5c47-48a3-b46d-b6fe532527ab}</Project>
+    <ProjectReference Include="..\Facsal\Facsal.csproj">
+      <Name>Facsal</Name>
+      <Project>{1b253982-c1d8-4d0f-ba4c-ef4d21fb795b}</Project>
       <Private>True</Private>
       <RoleType>Web</RoleType>
-      <RoleName>WebRole</RoleName>
+      <RoleName>Facsal</RoleName>
       <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="FacsalContent\" />
+    <Folder Include="Profiles" />
     <Folder Include="WebRoleContent\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="FacsalContent\diagnostics.wadcfg">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="WebRoleContent\diagnostics.wadcfg">
       <SubType>Content</SubType>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <PublishProfile Include="Profiles\foundationportal-testProduction.azurePubxml" />
   </ItemGroup>
   <!-- Import the target files for this project template -->
   <PropertyGroup>

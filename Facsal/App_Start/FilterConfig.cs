@@ -11,10 +11,10 @@ namespace Facsal
             filters.Add(new HandleErrorAttribute());
 
             // Require HTTPS when not running in debug mode.
-            //if (!HttpContext.Current.IsDebuggingEnabled)
-            //{
-            //    filters.Add(new RequireHttpsAttribute());
-            //}
+            if (!HttpContext.Current.IsDebuggingEnabled)
+            {
+                filters.Add(new RequireHttpsAttribute());
+            }
         }
     }
 }

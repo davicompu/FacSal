@@ -13,11 +13,11 @@ namespace SalaryEntities.Entities
     {
         public long Id { get; set; }
 
-        [Index("IX_PersonAndCycleYear", 1, IsUnique = true)]
+        //[Index("IX_PersonAndCycleYear", 1, IsUnique = true, IsClustered = true)]
         [ForeignKey("Person")]
         public string PersonId { get; set; }
 
-        [Index("IX_PersonAndCycleYear", 2, IsUnique = true)]
+        //[Index("IX_PersonAndCycleYear", 2, IsUnique = true, IsClustered = true)]
         [Max(2050)]
         [Min(2000)]
         public int CycleYear { get; set; }

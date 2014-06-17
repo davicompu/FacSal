@@ -11,6 +11,7 @@ using DotNetCasClient;
 using DotNetCasClient.Security;
 using SalaryEntities.UnitOfWork;
 using SalaryEntities.Entities;
+using FacsalData;
 
 namespace Facsal.DataAccess
 {
@@ -19,12 +20,6 @@ namespace Facsal.DataAccess
         public const string ROLE_ATTRIBUTE_NAME = "roleAttributeName";
         private readonly static IList<string> EMPTY_LIST = new List<string>(0).AsReadOnly();
         private string roleAttribute;
-        IUnitOfWork UnitOfWork;
-
-        public CasRoleProvider(IUnitOfWork unitOfWork)
-        {
-            UnitOfWork = unitOfWork;
-        }
 
         public override string ApplicationName
         {
@@ -155,7 +150,8 @@ namespace Facsal.DataAccess
 
         public IList<string> GetStoredUserRoles()
         {
-            User user = UnitOfWork.UserRepository.Find(u => u.Pid ==
+            FacsalDbContext DbContext = new FacsalDbContext();
+            User user = DbContext.Users.Where(u => u.Pid ==
                 CasAuthentication.CurrentPrincipal.Identity.Name)
                 .First();
 

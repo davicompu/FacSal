@@ -31,7 +31,7 @@ namespace Facsal
             // Default all routes to require authentication.
             if (!HttpContext.Current.IsDebuggingEnabled)
             {
-                config.Filters.Add(new System.Web.Http.AuthorizeAttribute());
+                //config.Filters.Add(new System.Web.Http.AuthorizeAttribute());
             }
 
             // Validate request against model attributes by default.
@@ -41,10 +41,10 @@ namespace Facsal
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
             // Require HTTPS when not running in debug mode.
-            //if (!HttpContext.Current.IsDebuggingEnabled)
-            //{
-            //    config.Filters.Add(new RequireHttpsWebApiAttribute());
-            //}
+            if (!HttpContext.Current.IsDebuggingEnabled)
+            {
+                config.Filters.Add(new RequireHttpsWebApiAttribute());
+            }
         }
     }
 }

@@ -7,13 +7,13 @@ namespace FacsalData.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.0-30225")]
-    public sealed partial class RankTypeSeq : IMigrationMetadata
+    public sealed partial class Initial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(RankTypeSeq));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
         
         string IMigrationMetadata.Id
         {
-            get { return "201406091236354_RankTypeSeq"; }
+            get { return "201406172026529_Initial"; }
         }
         
         string IMigrationMetadata.Source

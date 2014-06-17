@@ -1,18 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ServiceDefinition name="FacsalCloudService" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2014-01.2.3">
-  <WebRole name="WebRole" vmsize="Small">
+  <WebRole name="Facsal" vmsize="ExtraSmall">
     <Sites>
-      <Site name="Facsal" physicalDirectory="..\..\..\Facsal">
+      <Site name="Web">
         <Bindings>
           <Binding name="Endpoint1" endpointName="Endpoint1" />
+          <Binding name="Endpoint2" endpointName="Https" />
         </Bindings>
       </Site>
     </Sites>
     <Endpoints>
       <InputEndpoint name="Endpoint1" protocol="http" port="80" />
+      <InputEndpoint name="Https" protocol="https" port="443" certificate="fundportaltest" />
     </Endpoints>
     <Imports>
       <Import moduleName="Diagnostics" />
+      <Import moduleName="RemoteAccess" />
+      <Import moduleName="RemoteForwarder" />
     </Imports>
+    <Certificates>
+      <Certificate name="fundportaltest" storeLocation="LocalMachine" storeName="My" />
+    </Certificates>
   </WebRole>
 </ServiceDefinition>

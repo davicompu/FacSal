@@ -62,73 +62,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FacsalDbContext.cs" />
-    <Compile Include="Migrations\201405121323249_InitialCreate.cs" />
-    <Compile Include="Migrations\201405121323249_InitialCreate.Designer.cs">
-      <DependentUpon>201405121323249_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201406172026529_Initial.cs" />
+    <Compile Include="Migrations\201406172026529_Initial.Designer.cs">
+      <DependentUpon>201406172026529_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201405122134533_SalaryAdjustments.cs" />
-    <Compile Include="Migrations\201405122134533_SalaryAdjustments.Designer.cs">
-      <DependentUpon>201405122134533_SalaryAdjustments.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201405122141220_SalaryNavPropOnSpecialAdjust.cs" />
-    <Compile Include="Migrations\201405122141220_SalaryNavPropOnSpecialAdjust.Designer.cs">
-      <DependentUpon>201405122141220_SalaryNavPropOnSpecialAdjust.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201405281551340_SelfReferencingLoopFix.cs" />
-    <Compile Include="Migrations\201405281551340_SelfReferencingLoopFix.Designer.cs">
-      <DependentUpon>201405281551340_SelfReferencingLoopFix.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201405291531390_UnitNavigationPropertyCase.cs" />
-    <Compile Include="Migrations\201405291531390_UnitNavigationPropertyCase.Designer.cs">
-      <DependentUpon>201405291531390_UnitNavigationPropertyCase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201406022127176_RemoveCompositeKeys.cs" />
-    <Compile Include="Migrations\201406022127176_RemoveCompositeKeys.Designer.cs">
-      <DependentUpon>201406022127176_RemoveCompositeKeys.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201406031813396_StatusType.cs" />
-    <Compile Include="Migrations\201406031813396_StatusType.Designer.cs">
-      <DependentUpon>201406031813396_StatusType.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201406031826274_Fakie.cs" />
-    <Compile Include="Migrations\201406031826274_Fakie.Designer.cs">
-      <DependentUpon>201406031826274_Fakie.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201406041726579_PersonId.cs" />
-    <Compile Include="Migrations\201406041726579_PersonId.Designer.cs">
-      <DependentUpon>201406041726579_PersonId.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201406051257065_Users.cs" />
-    <Compile Include="Migrations\201406051257065_Users.Designer.cs">
-      <DependentUpon>201406051257065_Users.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201406061449256_BaseAdjustment.cs" />
-    <Compile Include="Migrations\201406061449256_BaseAdjustment.Designer.cs">
-      <DependentUpon>201406061449256_BaseAdjustment.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201406061903210_CycleYearSalaryIX.cs" />
-    <Compile Include="Migrations\201406061903210_CycleYearSalaryIX.Designer.cs">
-      <DependentUpon>201406061903210_CycleYearSalaryIX.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201406091236354_RankTypeSeq.cs" />
-    <Compile Include="Migrations\201406091236354_RankTypeSeq.Designer.cs">
-      <DependentUpon>201406091236354_RankTypeSeq.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201406091256545_NullableMeritAdjIdOnSal.cs" />
-    <Compile Include="Migrations\201406091256545_NullableMeritAdjIdOnSal.Designer.cs">
-      <DependentUpon>201406091256545_NullableMeritAdjIdOnSal.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201406091745504_SalaryBannerBaseNullable.cs" />
-    <Compile Include="Migrations\201406091745504_SalaryBannerBaseNullable.Designer.cs">
-      <DependentUpon>201406091745504_SalaryBannerBaseNullable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201406111416081_BaseAdjustmentAmounts.cs" />
-    <Compile Include="Migrations\201406111416081_BaseAdjustmentAmounts.Designer.cs">
-      <DependentUpon>201406111416081_BaseAdjustmentAmounts.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201406132034540_DataAnnotations.cs" />
-    <Compile Include="Migrations\201406132034540_DataAnnotations.Designer.cs">
-      <DependentUpon>201406132034540_DataAnnotations.cs</DependentUpon>
+    <Compile Include="Migrations\201406172120189_CamelCasing.cs" />
+    <Compile Include="Migrations\201406172120189_CamelCasing.Designer.cs">
+      <DependentUpon>201406172120189_CamelCasing.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -150,59 +90,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201405121323249_InitialCreate.resx">
-      <DependentUpon>201405121323249_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201406172026529_Initial.resx">
+      <DependentUpon>201406172026529_Initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201405122134533_SalaryAdjustments.resx">
-      <DependentUpon>201405122134533_SalaryAdjustments.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201405122141220_SalaryNavPropOnSpecialAdjust.resx">
-      <DependentUpon>201405122141220_SalaryNavPropOnSpecialAdjust.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201405281551340_SelfReferencingLoopFix.resx">
-      <DependentUpon>201405281551340_SelfReferencingLoopFix.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201405291531390_UnitNavigationPropertyCase.resx">
-      <DependentUpon>201405291531390_UnitNavigationPropertyCase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201406022127176_RemoveCompositeKeys.resx">
-      <DependentUpon>201406022127176_RemoveCompositeKeys.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201406031813396_StatusType.resx">
-      <DependentUpon>201406031813396_StatusType.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201406031826274_Fakie.resx">
-      <DependentUpon>201406031826274_Fakie.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201406041726579_PersonId.resx">
-      <DependentUpon>201406041726579_PersonId.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201406051257065_Users.resx">
-      <DependentUpon>201406051257065_Users.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201406061449256_BaseAdjustment.resx">
-      <DependentUpon>201406061449256_BaseAdjustment.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201406061903210_CycleYearSalaryIX.resx">
-      <DependentUpon>201406061903210_CycleYearSalaryIX.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201406091236354_RankTypeSeq.resx">
-      <DependentUpon>201406091236354_RankTypeSeq.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201406091256545_NullableMeritAdjIdOnSal.resx">
-      <DependentUpon>201406091256545_NullableMeritAdjIdOnSal.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201406091745504_SalaryBannerBaseNullable.resx">
-      <DependentUpon>201406091745504_SalaryBannerBaseNullable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201406111416081_BaseAdjustmentAmounts.resx">
-      <DependentUpon>201406111416081_BaseAdjustmentAmounts.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201406132034540_DataAnnotations.resx">
-      <DependentUpon>201406132034540_DataAnnotations.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201406172120189_CamelCasing.resx">
+      <DependentUpon>201406172120189_CamelCasing.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

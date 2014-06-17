@@ -7,13 +7,13 @@ namespace FacsalData.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.0-30225")]
-    public sealed partial class CycleYearSalaryIX : IMigrationMetadata
+    public sealed partial class CamelCasing : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CycleYearSalaryIX));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(CamelCasing));
         
         string IMigrationMetadata.Id
         {
-            get { return "201406061903210_CycleYearSalaryIX"; }
+            get { return "201406172120189_CamelCasing"; }
         }
         
         string IMigrationMetadata.Source

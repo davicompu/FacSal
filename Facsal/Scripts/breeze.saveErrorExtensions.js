@@ -97,7 +97,7 @@
         }
         name = name ? name += ' - ' : '';
 
-        return name + '\'' + entityError.errorMessage + '\'';
+        return name + entityError.errorMessage;
     }
 
     // default implementation of service.getEntityName

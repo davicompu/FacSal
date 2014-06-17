@@ -19,6 +19,6 @@ namespace SalaryEntities.Entities
 
         [Required]
         [StringLength(3)]
-        public string Sequence { get; set; }
+        public string ValSeq { get; set; }
     }
 }
