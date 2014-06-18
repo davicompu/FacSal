@@ -132,7 +132,7 @@ namespace FacsalData.Migrations
                     RoleAssignments = new List<RoleAssignment> 
                     { 
                         new RoleAssignment { UserId = 1, RoleId = 1 },
-                        new RoleAssignment { UserId = 1, RoleId = 1 }
+                        new RoleAssignment { UserId = 1, RoleId = 3 }
                     } 
                 }
             };

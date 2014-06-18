@@ -28,7 +28,7 @@
         };
 
         vm.selectedDepartmentId.subscribe(function (newValue) {
-            if (newValue === undefined) {
+            if (newValue === 'Select a department...' || newValue === undefined) {
                 return vm.salaries([]);
             }
 

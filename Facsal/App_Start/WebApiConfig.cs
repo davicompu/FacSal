@@ -31,7 +31,7 @@ namespace Facsal
             // Default all routes to require authentication.
             if (!HttpContext.Current.IsDebuggingEnabled)
             {
-                //config.Filters.Add(new System.Web.Http.AuthorizeAttribute());
+                config.Filters.Add(new System.Web.Http.AuthorizeAttribute() { Roles = "VT-EMPLOYEE" });
             }
 
             // Validate request against model attributes by default.
