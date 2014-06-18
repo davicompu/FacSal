@@ -5,6 +5,8 @@
 
             units = ko.observableArray(),
             
+            selectedDepartmentId = ko.observable(),
+
             attached = function (view) {
                 var self = this;
 
@@ -23,7 +25,7 @@
             attached: attached,
 
             salaries: ko.observableArray(),
-            selectedDepartmentId: ko.observable(),
+            selectedDepartmentId: selectedDepartmentId,
             units: units,
         };
 

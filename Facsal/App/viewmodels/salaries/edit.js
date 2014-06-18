@@ -83,7 +83,7 @@
                 });
 
             var predicate = new breeze.Predicate('id', '==', vm.salaryId());
-            var expansionProperties = 'person, specialSalaryAdjustments';
+            var expansionProperties = 'person, person.employments, specialSalaryAdjustments';
             var salary = unitofwork.salaries.find(predicate, expansionProperties)
                 .then(function (response) {
                     var salary = response[0];

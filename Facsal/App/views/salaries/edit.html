@@ -5,12 +5,12 @@
                 <a name="info"></a>
                 <h4 data-magellan-destination="info">Faculty information</h4>
 
-                <div class="row hide-on-print">
+                <div class="row hide-on-print" data-bind="ifIsInRole: 'update-person'">
                     <div class="large-4 columns end">
                         <label>
                             Status
                         </label>
-                            <select data-bind="options: $parent.statusTypes,
+                        <select data-bind="options: $parent.statusTypes,
                             optionsValue: 'id', optionsText: 'name', optionsCaption: 'Choose...', value: person().statusTypeId"></select>
                     </div>
                 </div>
@@ -68,6 +68,15 @@
                             <span class="text-underline">FTE</span>: <span data-bind="text: fullTimeEquivalent"></span>
                         </p>
                         <label for="FTE" class="error-message" data-bind="validationMessage: fullTimeEquivalent"></label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="large-12 columns">
+                        <h5>Departments</h5>
+                        <ul data-bind="foreach: person().employments">
+                            <li data-bind="text: department().name"></li>
+                        </ul>
                     </div>
                 </div>
             </fieldset>
@@ -172,7 +181,7 @@
                 </div>
             </fieldset>
 
-            <fieldset>
+            <fieldset data-bind="ifIsInRole: 'update-person'">
                 <h4>Promotion and tenure</h4>
 
                 <div class="row">
