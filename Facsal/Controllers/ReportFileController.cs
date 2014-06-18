@@ -18,7 +18,7 @@ namespace Facsal.Controllers
         public ReportFileController(IUnitOfWork unitOfWork)
         {
             UnitOfWork = unitOfWork;
-            UserRoles = Roles.GetRolesForUser().ToList();
+            UserRoles = Roles.GetRolesForUser().ToList<string>();
         }
 
         public ActionResult Meeting(string id)

@@ -11,10 +11,13 @@ namespace Facsal
             filters.Add(new HandleErrorAttribute());
 
             // Require HTTPS when not running in debug mode.
-            if (!HttpContext.Current.IsDebuggingEnabled)
-            {
+            //if (!HttpContext.Current.IsDebuggingEnabled)
+            //{
                 filters.Add(new RequireHttpsAttribute());
-            }
+            //}
+
+                // Force requests into role authorization pipeline.
+                filters.Add(new AuthorizeAttribute() { Roles = "VT-EMPLOYEE, VT-STUDENT-WAGE" });
         }
     }
 }

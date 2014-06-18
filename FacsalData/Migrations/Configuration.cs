@@ -120,7 +120,8 @@ namespace FacsalData.Migrations
             var roles = new List<Role>
             {
                 new Role { Id = 1, Name = "update-0825" },
-                new Role { Name = "update-0001" }
+                new Role { Name = "update-0001" },
+                new Role { Id = 3, Name = "read-0825" }
             };
             roles.ForEach(r => context.Roles.AddOrUpdate(x => x.Name, r));
             context.SaveChanges();
@@ -130,7 +131,8 @@ namespace FacsalData.Migrations
                 new User { Id = 1, Pid = "csherman",
                     RoleAssignments = new List<RoleAssignment> 
                     { 
-                        new RoleAssignment { UserId = 1, RoleId = 1 } 
+                        new RoleAssignment { UserId = 1, RoleId = 1 },
+                        new RoleAssignment { UserId = 1, RoleId = 1 }
                     } 
                 }
             };

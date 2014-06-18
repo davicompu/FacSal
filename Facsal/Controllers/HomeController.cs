@@ -14,5 +14,24 @@ namespace Facsal.Controllers
         {
             return View();
         }
-	}
+
+        [AllowAnonymous]
+        public ActionResult NotAuthorized()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        public ActionResult CookiesRequired()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        public ActionResult Logout()
+        {
+            DotNetCasClient.CasAuthentication.SingleSignOut();
+            return RedirectToAction("Index");
+        }
+    }
 }

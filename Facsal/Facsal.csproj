@@ -431,6 +431,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Scripts\toastr.min.js.map" />
+    <Content Include="Views\Home\CookiesRequired.cshtml" />
+    <Content Include="Views\Home\NotAuthorized.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App\views\shared\" />

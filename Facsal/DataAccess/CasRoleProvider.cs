@@ -151,16 +151,15 @@ namespace Facsal.DataAccess
         public IList<string> GetStoredUserRoles()
         {
             FacsalDbContext DbContext = new FacsalDbContext();
-            User user = DbContext.Users.Where(u => u.Pid ==
-                CasAuthentication.CurrentPrincipal.Identity.Name)
-                .First();
 
-            if (user != null)
+            var roles = DbContext.RoleAssignments
+                .Where(ra => ra.User.Pid == CasAuthentication.CurrentPrincipal.Identity.Name)
+                .Select(ra => ra.Role.Name)
+                .ToList<string>();
+
+            if (roles != null)
             {
-                IEnumerable<string> roles = user.RoleAssignments
-                    .Select(ra => ra.Role.Name);
-
-                return (IList<string>)roles;
+                return roles;
             }
 
             return EMPTY_LIST;
