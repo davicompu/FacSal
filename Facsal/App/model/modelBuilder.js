@@ -126,10 +126,10 @@
                         entity.meritIncrease() +
                         entity.specialIncrease() +
                         entity.eminentIncrease();
-                })
+                });
 
                 entity.percentIncrease = ko.computed(function () {
-                    return ((entity.newTotalAmount() / entity.totalAmount() - 1) * 100).formatNumber(1);
+                    return (entity.newTotalAmount() / entity.totalAmount() - 1);
                 });
 
                 entity.meritPercentIncrease = ko.computed(function () {
@@ -143,6 +143,18 @@
                 entity.eminentPercentIncrease = ko.computed(function () {
                     return ((entity.eminentIncrease() / entity.totalAmount() - 1) * 100).formatNumber(1);
                 });
+
+                entity.formattedTotalAmount = ko.observable(entity.totalAmount()).extend({ currency: [0] });
+
+                entity.formattedMeritIncrease = ko.observable(entity.meritIncrease()).extend({ currency: [0] });
+
+                entity.formattedSpecialIncrease = ko.observable(entity.specialIncrease()).extend({ currency: [0] });
+
+                entity.formattedEminentIncrease = ko.observable(entity.eminentIncrease()).extend({ currency: [0] });
+
+                entity.formattedNewTotalAmount = ko.observable(entity.newTotalAmount()).extend({ currency: [0] });
+
+                entity.formattedPercentIncrease = ko.observable(entity.percentIncrease()).extend({ percent: 1 });
             };
 
             metadataStore.registerEntityTypeCtor('Salary', null, initializer);

@@ -27,6 +27,18 @@
     return result;
 };
 
+ko.extenders.percent = function (target, precision) {
+    var result = ko.computed({
+        read: function () {
+            return (target() * 100).toFixed(precision) + "%";
+        },
+        write: function (newValue) {
+            target(parseFloat(newValue) / 100);
+        }
+    });
+    return result;
+};
+
 ko.extenders.currency = function (target, configArray) {
     var precision = configArray[0],
         rawValueObservable = configArray[1] || ko.observable();
