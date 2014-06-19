@@ -116,6 +116,15 @@ define(['services/entitymanagerprovider', 'services/repository', 'durandal/app',
 	                    dataType: 'json'
 	                });
 	            }
+
+	            this.usersByDepartment = function (departmentId) {
+	                return $.ajax({
+	                    type: 'GET',
+	                    url: routeconfig.usersByDepartment + '/' + departmentId,
+	                    cache: false,
+	                    dataType: 'json'
+	                });
+	            }
 	        };
 
 	        return unitofwork;

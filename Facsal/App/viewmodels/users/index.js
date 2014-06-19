@@ -1,5 +1,6 @@
-﻿define(['services/unitofwork', 'services/errorhandler'],
-    function (uow, errorhandler) {
+﻿define(['services/unitofwork', 'services/errorhandler',
+    'services/logger'],
+    function (uow, errorhandler, logger) {
 
         var unitofwork = uow.create();
 
@@ -15,14 +16,23 @@
         errorhandler.includeIn(vm);
 
         vm.selectedDepartmentId.subscribe(function (newValue) {
-            var predicate = new breeze.Predicate(
-                'roleAssignments', 'any', 'role.name', '==', 'update-' + newValue);
-            var users = unitofwork.users.find(predicate)
-                .then(function (response) {
-                    vm.users(response);
-                });
+            if (newValue != 'Choose...') {
+                var users = unitofwork.usersByDepartment(newValue)
+                    .then(function (response) {
+                        $.each(response, function (index, value) {
+                            response[index].formattedCreatedDate = ko.computed(function () {
+                                return moment(response[index].createdDate).format('MM/DD/YYYY');
+                            });
+                        });
+                        vm.users(response);
+                    })
+                    .fail(function (response) {
+                        logger.logError(response.statusText, null, null, true);
+                    });
 
-            Q.all([users]).fail(self.handleError);
+                Q.all([users]).fail(self.handleError);
+            }
+
 
             return true;
         });

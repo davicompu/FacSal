@@ -31,6 +31,7 @@
             specialSalaryAdjustmentsUrl: 'specialSalaryAdjustments',
             statusTypesUrl: 'statusTypes',
             unitsUrl: 'units',
+            usersByDepartment: '/api/user/getByDepartmentalAccess',
             usersUrl: 'users',
         };
         //#endregion

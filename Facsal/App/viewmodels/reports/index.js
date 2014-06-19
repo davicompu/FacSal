@@ -1,6 +1,6 @@
 ﻿define(['services/unitofwork', 'services/errorhandler',
-    'services/config', 'plugins/router'],
-    function (uow, errorhandler, config, router) {
+    'services/config', 'plugins/router', 'services/logger'],
+    function (uow, errorhandler, config, router, logger) {
         var unitofwork = uow.create();
 
         var vm = {
@@ -67,18 +67,28 @@
         function generateReport() {
             switch (vm.selectedAudienceType()) {
                 case 'Department':
-                    var route = 'reports/' +
+                    if (vm.selectedDepartmentId() && vm.selectedDepartmentId() !== 'Choose...') {
+                        var route = 'reports/' +
                         vm.selectedReportType() +
                         '/' + vm.selectedDepartmentId();
 
-                    router.navigate(route);
+                        router.navigate(route);
+                    } else {
+                        logger.logError('Choose a department to continue', null, null, true);
+                    }
+
                     break;
                 case 'Unit':
-                    var route = 'reports/' +
-                        vm.selectedReportType() +
-                        '/' + vm.selectedUnitId().toLowerCase();
+                    if (vm.selectedUnitId()) {
+                        var route = 'reports/' +
+                            vm.selectedReportType() +
+                            '/' + vm.selectedUnitId().toLowerCase();
 
-                    router.navigate(route);
+                        router.navigate(route);
+                    } else {
+                        logger.logError('Choose a unit to continue', null, null, true);
+                    }
+
                     break;
             }
         }

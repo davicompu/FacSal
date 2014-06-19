@@ -20,6 +20,7 @@
             extendSalary(metadataStore);
             extendSpecialAdjustmentType(metadataStore);
             extendUnit(metadataStore);
+            extendUser(metadataStore);
         }
 
         function extendAppointmentType(metadataStore) {
@@ -180,6 +181,19 @@
             };
 
             metadataStore.registerEntityTypeCtor('Unit', null, initializer);
+        }
+
+        function extendUser(metadataStore) {
+            var initializer = function (entity) {
+                addValidationRules(entity);
+                addHasValidationErrorsProperty(entity);
+
+                entity.formattedCreatedDate = ko.computed(function () {
+                    return moment(entity.createdDate()).format('MM/DD/YYYY');
+                });
+            };
+
+            metadataStore.registerEntityTypeCtor('User', null, initializer);
         }
 
         //#region Internal Methods

@@ -24,7 +24,10 @@ namespace Facsal.Controllers
         public DataController(IUnitOfWork unitOfWork)
         {
             UnitOfWork = unitOfWork;
-            UserRoles = new List<string>() { "read-0825", "update-0825" }; //Roles.GetRolesForUser().ToList<string>();
+            UserRoles = UnitOfWork.RoleAssignmentRepository
+                .Find(ra => ra.User.Pid == User.Identity.Name)
+                .Select(ra => ra.Role.Name)
+                .ToList();
         }
 
         [HttpGet]

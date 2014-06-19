@@ -58,10 +58,6 @@
                     route: ['reports', 'reports/index'], moduleId: 'reports/index',
                     title: 'Reports', nav: true, hash: '#reports/index'
                 },
-                {
-                    route: ['users', 'users/index'], moduleId: 'users/index',
-                    title: 'Users', nav: true, hash: '#users/index'
-                },
 
                 // Persons.
                 {
@@ -107,6 +103,10 @@
                 },
 
                 // Users.
+                {
+                    route: ['users', 'users/index'], moduleId: 'users/index',
+                    title: 'Users', nav: false, hash: '#users/index'
+                },
                 {
                     route: 'users/edit/:userid', moduleId: 'users/edit',
                     title: 'Edit user', nav: false, hash: '#users/edit/:salaryid'

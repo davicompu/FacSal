@@ -1,6 +1,6 @@
 ﻿define(['services/unitofwork', 'services/errorhandler',
-        'services/logger'],
-    function (uow, errorhandler, logger) {
+        'services/logger', 'global/session'],
+    function (uow, errorhandler, logger, session) {
 
         var unitofwork = uow.create();
 
@@ -28,6 +28,9 @@
 
         function attached(view) {
             var self = this,
+
+                p1 = new breeze.Predicate('name', 'endsWith', )
+
                 roles = unitofwork.roles.all()
                 .then(function (response) {
                     vm.roles(response);

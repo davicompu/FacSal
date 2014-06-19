@@ -159,6 +159,15 @@ namespace Facsal.Validators
 
         private bool IsAuthorizedToUpdateRoleAssignment(RoleAssignment roleAssignment)
         {
+            var departmentId = DbContext.Roles
+                .Find(roleAssignment.RoleId)
+                .Name.GetLast(4);
+
+            if (HttpContext.Current.User.IsInRole("manage-users" + departmentId))
+            {
+                return true;
+            }
+
             return false;
         }
 

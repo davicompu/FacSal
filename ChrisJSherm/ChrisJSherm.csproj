@@ -97,6 +97,7 @@
     <Compile Include="Extensions\DataAnnotationsHelper.cs" />
     <Compile Include="Extensions\EntityExtensions.cs" />
     <Compile Include="Extensions\HtmlMenuExtensions.cs" />
+    <Compile Include="Extensions\StringExtension.cs" />
     <Compile Include="Extensions\TypeSwitch.cs" />
     <Compile Include="Filters\ConditionalRequireAttribute.cs" />
     <Compile Include="Filters\RequireHttpsWebApiAttribute.cs" />
