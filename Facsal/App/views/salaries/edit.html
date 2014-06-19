@@ -70,12 +70,15 @@
                         <label for="FTE" class="error-message" data-bind="validationMessage: fullTimeEquivalent"></label>
                     </div>
                 </div>
+            </fieldset>
+
+            <fieldset>
+                <h4>Funding</h4>
 
                 <div class="row">
                     <div class="large-12 columns">
-                        <h5>Departments</h5>
-                        <ul data-bind="foreach: person().employments">
-                            <li data-bind="text: department().name"></li>
+                        <ul data-bind="foreach: $parent.employments">
+                            <li data-bind="text: $data"></li>
                         </ul>
                     </div>
                 </div>
@@ -181,25 +184,27 @@
                 </div>
             </fieldset>
 
-            <fieldset data-bind="ifIsInRole: 'update-person'">
-                <h4>Promotion and tenure</h4>
+            <section data-bind="ifIsInRole: 'update-person'">
+                <fieldset>
+                    <h4>Promotion and tenure</h4>
 
-                <div class="row">
-                    <div class="large-4 columns end">
-                        <label class="hide-on-print">
-                            Amount<span class="required">*</span>
-                            <input type="text" class="hide-on-print"
-                                   data-bind="value: promotionAmount" />
-                        </label>
-                        <p class="print-only">
-                            <span class="text-underline">Amount</span>: <span data-bind="text: promotionAmount"></span>
-                        </p>
-                        <label for="PromotionAmount"
-                               class="error-message" data-bind="validationMessage: promotionAmount">
-                        </label>
+                    <div class="row">
+                        <div class="large-4 columns end">
+                            <label class="hide-on-print">
+                                Amount<span class="required">*</span>
+                                <input type="text" class="hide-on-print"
+                                       data-bind="value: promotionAmount" />
+                            </label>
+                            <p class="print-only">
+                                <span class="text-underline">Amount</span>: <span data-bind="text: promotionAmount"></span>
+                            </p>
+                            <label for="PromotionAmount"
+                                   class="error-message" data-bind="validationMessage: promotionAmount">
+                            </label>
+                        </div>
                     </div>
-                </div>
-            </fieldset>
+                </fieldset>
+            </section>
 
             <div class="row">
                 <div class="large-12 columns">

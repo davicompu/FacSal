@@ -13,6 +13,7 @@
             // Breeze Routes. Relative to remote service name.
             appointmentTypesUrl: 'appointmentTypes',
             baseSalaryAdjustmentsUrl: 'baseSalaryAdjustments',
+            departmentNamesForPerson: '/api/person/getDepartmentNames',
             departmentsUrl: 'departments',
             employmentsUrl: 'employments',
             facultyTypesUrl: 'facultyTypes',

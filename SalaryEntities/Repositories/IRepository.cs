@@ -14,6 +14,7 @@ namespace SalaryEntities.Repositories
         TEntity FirstOrDefault(Expression<Func<TEntity, bool>> predicate);
         TEntity First(Expression<Func<TEntity, bool>> predicate);
         TEntity GetById(int id);
+        TEntity GetById(string id);
 
         TEntity Add(TEntity entity);
         TEntity AddOrUpdate(TEntity entity);

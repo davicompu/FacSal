@@ -51,12 +51,12 @@
                     title: 'Salaries', nav: true, hash: '#salaries/index'
                 },
                 {
-                    route: ['reports', 'reports/index'], moduleId: 'reports/index',
-                    title: 'Reports', nav: true, hash: '#reports/index'
-                },
-                {
                     route: 'salaries/search', moduleId: 'salaries/search',
                     title: 'Search', nav: true, hash: '#salaries/search'
+                },
+                {
+                    route: ['reports', 'reports/index'], moduleId: 'reports/index',
+                    title: 'Reports', nav: true, hash: '#reports/index'
                 },
                 {
                     route: ['users', 'users/index'], moduleId: 'users/index',

@@ -43,6 +43,12 @@ namespace FacsalData.Repositories
             return this.Context.Set<TEntity>().Find(id);
         }
 
+        public virtual TEntity GetById(string id)
+        {
+            return this.Context.Set<TEntity>().Find(id);
+        }
+
+
         public virtual TEntity Add(TEntity entity)
         {
             return this.Context.Set<TEntity>().Add(entity);

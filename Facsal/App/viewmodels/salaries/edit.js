@@ -28,6 +28,7 @@
 
             adjustmentVMs: ko.observableArray(),
             appointmentTypes: appointmentTypes,
+            employments: ko.observableArray(),
             facultyTypes: facultyTypes,
             meritAdjustmentTypes: meritAdjustmentTypes,
             rankTypes: rankTypes,
@@ -83,23 +84,31 @@
                 });
 
             var predicate = new breeze.Predicate('id', '==', vm.salaryId());
-            var expansionProperties = 'person, person.employments, specialSalaryAdjustments';
+            var expansionProperties = 'person, specialSalaryAdjustments';
             var salary = unitofwork.salaries.find(predicate, expansionProperties)
                 .then(function (response) {
-                    var salary = response[0];
+                    if (response.length > 0)
+                    {
+                        var salary = response[0];
 
-                    var adjustmentHash = createSalaryAdjustmentHash(salary);
+                        var adjustmentHash = createSalaryAdjustmentHash(salary);
 
-                    var adjustmentMapVMs = $.map(self.adjustmentTypes(), function (adjustment) {
-                        return {
-                            adjustment: adjustment,
-                            isSelected: ko.observable(!!adjustmentHash[adjustment.id()])
-                        };
-                    });
+                        var adjustmentMapVMs = $.map(self.adjustmentTypes(), function (adjustment) {
+                            return {
+                                adjustment: adjustment,
+                                isSelected: ko.observable(!!adjustmentHash[adjustment.id()])
+                            };
+                        });
 
-                    vm.adjustmentVMs(adjustmentMapVMs);
+                        vm.adjustmentVMs(adjustmentMapVMs);
 
-                    return vm.salary(salary);
+                        employments = unitofwork.departmentNamesForPerson(salary.person().id())
+                            .then(function (response) {
+                                return vm.employments(response);
+                            });
+
+                        return vm.salary(salary);
+                    }
                 });
 
             Q.all([

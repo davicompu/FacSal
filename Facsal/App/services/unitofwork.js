@@ -90,6 +90,15 @@ define(['services/entitymanagerprovider', 'services/repository', 'durandal/app',
                     breeze.FetchStrategy.FromLocalCache);
 	            this.users = repository.create(provider, 'User', routeconfig.usersUrl);
 
+	            this.departmentNamesForPerson = function (personId) {
+	                return $.ajax({
+	                    type: 'GET',
+	                    url: routeconfig.departmentNamesForPerson + '/' + personId,
+	                    cache: false,
+	                    dataType: 'json'
+	                });
+	            }
+
 	            this.personsWithMultipleEmployments = function (departmentId) {
 	                return $.ajax({
 	                    type: 'GET',
