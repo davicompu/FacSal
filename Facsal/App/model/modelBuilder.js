@@ -39,6 +39,10 @@
                 entity.formattedCreatedDate = ko.computed(function () {
                     return moment(entity.createdDate()).format('MM/DD/YYYY');
                 });
+
+                entity.formattedStartingBaseAmount = ko.observable(entity.startingBaseAmount()).extend({ currency: [0] });
+
+                entity.formattedNewBaseAmount = ko.observable(entity.newBaseAmount()).extend({ currency: [0] });
             };
 
             metadataStore.registerEntityTypeCtor('BaseSalaryAdjustment', null, initializer);

@@ -58,6 +58,19 @@
             return $.each(departments, function (index, department) {
                 var salaries = unitofwork.salariesByFacultyType(department.id())
                     .then(function (response) {
+                        $.each(response, function (index, value) {
+                            response[index].formattedStartingSalaries =
+                                ko.observable(response[index].startingSalaries).extend({ currency: [0] });
+                            response[index].formattedMeritIncreases =
+                                ko.observable(response[index].meritIncreases).extend({ currency: [0] });
+                            response[index].formattedSpecialIncreases =
+                                ko.observable(response[index].specialIncreases).extend({ currency: [0] });
+                            response[index].formattedEminentIncreases =
+                                ko.observable(response[index].eminentIncreases).extend({ currency: [0] });
+                            response[index].formattedNewSalaries =
+                                ko.observable(response[index].newSalaries).extend({ currency: [0] });
+                        });
+
                         return vm.departmentData.push({
                             department: department,
                             data: response
