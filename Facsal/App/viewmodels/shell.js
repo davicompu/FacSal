@@ -1,6 +1,8 @@
 ﻿define(['plugins/router', 'services/security', 'services/errorhandler',
-    'services/entitymanagerprovider', 'model/modelBuilder'],
-    function (router, appsecurity, errorhandler, entitymanagerprovider, modelBuilder) {
+    'services/entitymanagerprovider', 'model/modelBuilder', 'services/logger',
+    'global/session'],
+    function (router, appsecurity, errorhandler, entitymanagerprovider, modelBuilder,
+        logger, session) {
 
         entitymanagerprovider.modelBuilder = modelBuilder.extendMetadata;
 
@@ -12,7 +14,7 @@
                 var self = this;
 
                 return entitymanagerprovider.prepare()
-                    .then(initializeRouting)
+                    .then(init)
                     .fail(self.handlevalidationerrors);
             }
         };
@@ -122,5 +124,34 @@
             .buildNavigationModel()
             .mapUnknownRoutes("not-found", "not-found")
             .activate({ pushState: true });
+        }
+
+        function init() {
+            return appsecurity.getUserInfo()
+                .done(function (data) {
+                    if (data.userName) {
+                        session.setUser(data);
+                        initializeRouting();
+                    } else {
+                        logger.log("Access denied. Navigation canceled.",
+                            null,
+                            'viewmodels/shell',
+                            true,
+                            "warning"
+                        );
+
+                        initializeRouting();
+                    }
+                })
+                .fail(function () {
+                    logger.log("Access denied. Navigation canceled.",
+                        null,
+                        'viewmodels/shell',
+                        true,
+                        "warning"
+                    );
+
+                    initializeRouting();
+                });
         }
     });

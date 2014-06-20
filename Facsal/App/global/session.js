@@ -15,7 +15,7 @@
         function setUser(user, remember) {
             if (user) {
 
-                session.userName(user.UserName);
+                session.userName(user.userName);
 
                 if (user.hasOwnProperty("accessToken")) {
                     setAccessToken(user.accessToken, remember);
@@ -23,7 +23,7 @@
                     setAccessToken(user.access_token, remember);
                 }
 
-                var roles = user.UserRoles.split(",");
+                var roles = user.userRoles.split(",");
 
                 $.each(roles, function (i, v) {
                     session.userRoles.push(v);

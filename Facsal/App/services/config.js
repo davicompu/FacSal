@@ -7,7 +7,7 @@
 
             // Authentication Routes.
             siteUrl: "/",
-            userInfoUrl: "/api/account/userinfo",
+            userInfoUrl: "/api/account/getUserInfo",
 
             remoteServiceName: '/breeze/data',
             // Breeze Routes. Relative to remote service name.

@@ -1,6 +1,6 @@
 ﻿define(['services/unitofwork', 'services/errorhandler',
-    'services/logger'],
-    function (uow, errorhandler, logger) {
+    'services/logger', 'plugins/router'],
+    function (uow, errorhandler, logger, router) {
 
         var unitofwork = uow.create();
 

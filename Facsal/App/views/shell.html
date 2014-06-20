@@ -13,7 +13,9 @@
                         <a data-bind="attr: { href: $parent.router.convertRouteToHash('/' + hash) }, text: title"></a>
                     </li>
                 <!--/ko-->
-                <li class="menu-item" data-bind="css: { active: router.navigationModel.isActive }, ifIsInRole: 'manage-users'">
+                <li class="menu-item"
+                    data-bind="css: { active: router.activeInstruction().fragment === 'users/index' ||
+                        router.activeInstruction().fragment === 'users' }, ifIsInRole: 'manage-users'">
                     <a href="/users/index">Users</a>
                 </li>
             </ul>
