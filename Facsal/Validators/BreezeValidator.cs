@@ -20,95 +20,123 @@ namespace Facsal.Validators
 
         public bool BeforeSaveEntity(Breeze.ContextProvider.EntityInfo entityInfo)
         {
+            #region EntityState.Added
             if (entityInfo.EntityState == EntityState.Added)
             {
                 if (entityInfo.Entity.GetType().IsSubclassOf(typeof(AuditEntityBase)))
                 {
                     SetAuditEntityFields(entityInfo);
                 }
-            }
-            
-            if (entityInfo.Entity.GetType() == typeof(BaseSalaryAdjustment))
-            {
-                if (!IsAuthorizedToUpdateBaseSalaryAdjustment((BaseSalaryAdjustment)entityInfo.Entity))
+
+                if (entityInfo.Entity.GetType() == typeof(RoleAssignment))
                 {
-                    ThrowEntityError("You are not authorized to modify base salary adjustment entities.",
-                        "Unauthorized", HttpStatusCode.Unauthorized);
+                    if (!IsAuthorizedToCreateRoleAssignment((RoleAssignment)entityInfo.Entity))
+                    {
+                        ThrowEntityError("You are not authorized to create role assignment entities.",
+                            "Unauthorized", HttpStatusCode.Unauthorized);
+                    }
                 }
-            } 
-            else if (entityInfo.Entity.GetType() == typeof(Employment))
-            {
-                if (!IsAuthorizedToUpdateEmployment((Employment)entityInfo.Entity))
+                else if (entityInfo.Entity.GetType() == typeof(SpecialSalaryAdjustment))
                 {
-                    ThrowEntityError("You are not authorized to modify base employment entities.",
-                        "Unauthorized", HttpStatusCode.Unauthorized);
+                    if (!IsAuthorizedToCreateSpecialSalaryAdjustment((SpecialSalaryAdjustment)entityInfo.Entity))
+                    {
+                        ThrowEntityError("You are not authorized to create special salary adjustment entities.",
+                            "Unauthorized", HttpStatusCode.Unauthorized);
+                    }
                 }
-            }
-            else if (entityInfo.Entity.GetType() == typeof(Person))
-            {
-                if (!IsAuthorizedToUpdatePerson((Person)entityInfo.Entity))
+                else if (entityInfo.Entity.GetType() == typeof(User))
                 {
-                    ThrowEntityError("You are not authorized to modify person entities.",
-                        "Unauthorized", HttpStatusCode.Unauthorized);
+                    if (!IsAuthorizedToCreateUser((User)entityInfo.Entity))
+                    {
+                        ThrowEntityError("You are not authorized to create user entities.",
+                            "Unauthorized", HttpStatusCode.Unauthorized);
+                    }
                 }
-            }
-            else if (entityInfo.Entity.GetType() == typeof(RoleAssignment))
-            {
-                if (!IsAuthorizedToUpdateRoleAssignment((RoleAssignment)entityInfo.Entity))
+                else
                 {
-                    ThrowEntityError("You are not authorized to modify role assignment entities.",
-                        "Unauthorized", HttpStatusCode.Unauthorized);
+                    ThrowEntityError("You cannot use this method to create this entity.",
+                        "Bad request", HttpStatusCode.BadRequest);
                 }
             }
-            else if (entityInfo.Entity.GetType() == typeof(Salary))
+            #endregion
+
+            #region EntityState.Modified
+            if (entityInfo.EntityState == EntityState.Modified)
             {
-                if (!IsAuthorizedToUpdateSalary((Salary)entityInfo.Entity))
+                if (entityInfo.Entity.GetType() == typeof(BaseSalaryAdjustment))
                 {
-                    ThrowEntityError("You are not authorized to modify this salary.",
-                        "Unauthorized", HttpStatusCode.Unauthorized);
+                    if (!IsAuthorizedToUpdateBaseSalaryAdjustment((BaseSalaryAdjustment)entityInfo.Entity))
+                    {
+                        ThrowEntityError("You are not authorized to modify base salary adjustment entities.",
+                            "Unauthorized", HttpStatusCode.Unauthorized);
+                    }
+                }
+                else if (entityInfo.Entity.GetType() == typeof(Employment))
+                {
+                    if (!IsAuthorizedToUpdateEmployment((Employment)entityInfo.Entity))
+                    {
+                        ThrowEntityError("You are not authorized to modify base employment entities.",
+                            "Unauthorized", HttpStatusCode.Unauthorized);
+                    }
+                }
+                else if (entityInfo.Entity.GetType() == typeof(Person))
+                {
+                    if (!IsAuthorizedToUpdatePerson((Person)entityInfo.Entity))
+                    {
+                        ThrowEntityError("You are not authorized to modify person entities.",
+                            "Unauthorized", HttpStatusCode.Unauthorized);
+                    }
+                }
+                else if (entityInfo.Entity.GetType() == typeof(RoleAssignment))
+                {
+                    if (!IsAuthorizedToUpdateRoleAssignment((RoleAssignment)entityInfo.Entity))
+                    {
+                        ThrowEntityError("You are not authorized to modify role assignment entities.",
+                            "Unauthorized", HttpStatusCode.Unauthorized);
+                    }
+                }
+                else if (entityInfo.Entity.GetType() == typeof(Salary))
+                {
+                    if (!IsAuthorizedToUpdateSalary((Salary)entityInfo.Entity))
+                    {
+                        ThrowEntityError("You are not authorized to modify this salary.",
+                            "Unauthorized", HttpStatusCode.Unauthorized);
+                    }
+                }
+                else if (entityInfo.Entity.GetType() == typeof(SpecialSalaryAdjustment))
+                {
+                    if (!IsAuthorizedToUpdateSpecialSalaryAdjustment((SpecialSalaryAdjustment)entityInfo.Entity))
+                    {
+                        ThrowEntityError("You are not authorized to modify this salary.",
+                            "Unauthorized", HttpStatusCode.Unauthorized);
+                    }
+                }
+                else
+                {
+                    ThrowEntityError("You cannot use this method to modify this entity.",
+                        "Bad request", HttpStatusCode.BadRequest);
                 }
             }
-            else if (entityInfo.Entity.GetType() == typeof(SpecialSalaryAdjustment))
+            #endregion
+
+            #region EntityState.Deleted
+            if (entityInfo.EntityState == EntityState.Deleted)
             {
-                if (!IsAuthorizedToUpdateSpecialSalaryAdjustment((SpecialSalaryAdjustment)entityInfo.Entity))
+                if (entityInfo.Entity.GetType() == typeof(RoleAssignment))
                 {
-                    ThrowEntityError("You are not authorized to modify this salary.",
-                        "Unauthorized", HttpStatusCode.Unauthorized);
+                    if (!IsAuthorizedToDeleteRoleAssignment((RoleAssignment)entityInfo.Entity))
+                    {
+                        ThrowEntityError("You are not authorized to delete this role assignment entity.",
+                            "Unauthorized", HttpStatusCode.Unauthorized);
+                    }
+                }
+                else
+                {
+                    ThrowEntityError("You cannot use this method to delete this entity.",
+                        "Bad request", HttpStatusCode.BadRequest);
                 }
             }
-            else if (entityInfo.Entity.GetType() == typeof(User))
-            {
-                if (!IsAuthorizedToUpdateUser((User)entityInfo.Entity))
-                {
-                    ThrowEntityError("You are not authorized to modify this user.",
-                        "Unauthorized", HttpStatusCode.Unauthorized);
-                }
-            }
-            else
-            {
-                ThrowEntityError("You cannot use this method to modify this entity.",
-                    "Bad request", HttpStatusCode.BadRequest);
-            }
-
-            //TypeSwitch.Do(
-            //    entityInfo.Entity.GetType(),
-
-            //    TypeSwitch.Case<BaseSalaryAdjustment>(x => 
-            //        IsAuthorizedToUpdateBaseSalaryAdjustment(x)),
-
-            //    TypeSwitch.Case<Employment>(x => 
-            //        IsAuthorizedToUpdateEmployment(x)),
-
-            //    TypeSwitch.Case<Person>(x => IsAuthorizedToUpdatePerson(x)),
-
-            //    TypeSwitch.Case<RoleAssignment>(x => IsAuthorizedToUpdateRoleAssignment(x)),
-                
-            //    TypeSwitch.Case<Salary>(x => IsAuthorizedToUpdateSalary(x)),
-
-            //    TypeSwitch.Case<SpecialSalaryAdjustment>(x => 
-            //        IsAuthorizedToUpdateSpecialSalaryAdjustment(x)),
-
-            //    TypeSwitch.Case<User>(x => IsAuthorizedToUpdateUser(x)));
+            #endregion
 
             return true;
         }
@@ -127,6 +155,39 @@ namespace Facsal.Validators
             return entity;
         }
 
+        #region Create entity authorization methods
+        private bool IsAuthorizedToCreateRoleAssignment(RoleAssignment roleAssignment)
+        {
+            if (IsAuthorizedToModifyRoleAssignment(roleAssignment))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private bool IsAuthorizedToCreateSpecialSalaryAdjustment(SpecialSalaryAdjustment adjustment)
+        {
+            if (IsAuthorizedToModifySpecialSalaryAdjustment(adjustment))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private bool IsAuthorizedToCreateUser(User user)
+        {
+            if (HttpContext.Current.User.IsInRole("create-users"))
+            {
+                return true;
+            }
+
+            return false;
+        }
+        #endregion
+        
+        #region Update entity authorization methods
         private bool IsAuthorizedToUpdateBaseSalaryAdjustment(BaseSalaryAdjustment adjustment)
         {
             if (HttpContext.Current.User.IsInRole("update-basesalaries"))
@@ -159,11 +220,7 @@ namespace Facsal.Validators
 
         private bool IsAuthorizedToUpdateRoleAssignment(RoleAssignment roleAssignment)
         {
-            var departmentId = DbContext.Roles
-                .Find(roleAssignment.RoleId)
-                .Name.GetLast(4);
-
-            if (HttpContext.Current.User.IsInRole("manage-users" + departmentId))
+            if (IsAuthorizedToModifyRoleAssignment(roleAssignment))
             {
                 return true;
             }
@@ -190,6 +247,35 @@ namespace Facsal.Validators
 
         private bool IsAuthorizedToUpdateSpecialSalaryAdjustment(SpecialSalaryAdjustment adjustment)
         {
+            if (IsAuthorizedToModifySpecialSalaryAdjustment(adjustment))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private bool IsAuthorizedToUpdateUser(User user)
+        {
+            return false;
+        }
+        #endregion
+
+        #region Delete entity authorization methods
+        private bool IsAuthorizedToDeleteRoleAssignment(RoleAssignment roleAssignment)
+        {
+            if (IsAuthorizedToModifyRoleAssignment(roleAssignment))
+            {
+                return true;
+            }
+
+            return false;
+        }
+        #endregion
+
+        #region Authorization method helpers
+        private bool IsAuthorizedToModifySpecialSalaryAdjustment(SpecialSalaryAdjustment adjustment)
+        {
             var salary = DbContext.Salaries
                 .FirstOrDefault(s => s.Id == adjustment.SalaryId);
 
@@ -200,11 +286,21 @@ namespace Facsal.Validators
 
             return false;
         }
-
-        private bool IsAuthorizedToUpdateUser(User user)
+        
+        private bool IsAuthorizedToModifyRoleAssignment(RoleAssignment roleAssignment)
         {
+            var departmentId = DbContext.Roles
+                .Find(roleAssignment.RoleId)
+                .Name.GetLast(4);
+
+            if (HttpContext.Current.User.IsInRole("manage-users-" + departmentId))
+            {
+                return true;
+            }
+
             return false;
         }
+        #endregion
 
         private void ThrowEntityError(string errorMessage, string errorName, HttpStatusCode statusCode)
         {

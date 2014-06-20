@@ -99,6 +99,15 @@ define(['services/entitymanagerprovider', 'services/repository', 'durandal/app',
 	                });
 	            }
 
+	            this.getAssignableRoles = function () {
+	                return $.ajax({
+	                    type: 'GET',
+	                    url: routeconfig.getAssignableRolesUrl,
+	                    cache: false,
+	                    dataType: 'json'
+	                });
+	            }
+
 	            this.personsWithMultipleEmployments = function (departmentId) {
 	                return $.ajax({
 	                    type: 'GET',

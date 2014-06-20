@@ -20,17 +20,16 @@ namespace Facsal.Controllers
         [HttpGet]
         public IHttpActionResult GetByDepartmentalAccess([FromUri]string id)
         {
-            //// TODO: Comment.
-            //if (User.IsInRole("manage-users-" + id))
-            //{
+            if (User.IsInRole("manage-users-" + id))
+            {
                 var users = UnitOfWork.UserRepository
                     .Find(u => u.RoleAssignments
                         .Any(ra => ra.Role.Name.EndsWith(id)));
 
                 return Ok(users);
-            //}
+            }
 
-            //return Unauthorized();
+            return Unauthorized();
         }
     }
 }

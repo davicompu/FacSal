@@ -27,9 +27,9 @@
         function attached(view) {
             var self = this,
 
-                roles = unitofwork.roles.all()
-                .then(function (response) {
-                    vm.roles(response);
+                roles = unitofwork.getAssignableRoles()
+                    .then(function (response) {
+                        vm.roles(response);
 
                     assignmentMapVMs = $.map(vm.roles(), function (role) {
                         return {
@@ -84,14 +84,14 @@
                 assignmentHash = createRoleAssignmentHash(user);
 
             $.each(mapVMs, function (index, mapVM) {
-                var map = assignmentHash[mapVM.role.id()];
+                var map = assignmentHash[mapVM.role.id];
 
                 if (mapVM.isSelected()) {
                     // User selected this assignment.
                     if (!map) {
                         // No existing map, so create one.
                         map = unitofwork.roleAssignments.create({
-                            roleId: mapVM.role.id(),
+                            roleId: mapVM.role.id,
                             userId: user.id()
                         });
                     }

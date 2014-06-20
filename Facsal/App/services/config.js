@@ -17,6 +17,7 @@
             departmentsUrl: 'departments',
             employmentsUrl: 'employments',
             facultyTypesUrl: 'facultyTypes',
+            getAssignableRolesUrl: '/api/role/getAssignableRoles',
             lookupsUrl: 'getLookups',
             meritAdjustmentTypesUrl: 'meritAdjustmentTypes',
             personsUrl: 'persons',
