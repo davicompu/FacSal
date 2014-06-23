@@ -1,5 +1,5 @@
-﻿define(['services/utils'],
-    function (utils) {
+﻿define(['services/utils', 'services/config'],
+    function (utils, config) {
         var foreignKeyInvalidValue = 0;
 
         var self = {
@@ -160,6 +160,29 @@
                 entity.formattedNewTotalAmount = ko.observable(entity.newTotalAmount()).extend({ currency: [0] });
 
                 entity.formattedPercentIncrease = ko.observable(entity.percentIncrease()).extend({ percent: 1 });
+
+                entity.meritAdjustmentNote = ko.observable(entity.meritAdjustmentNote())
+                    .extend({
+                        required: {
+                            onlyIf: function () {
+                                var increase = entity.meritIncrease() / entity.totalAmount();
+
+                                return increase > config.highPercentIncreaseThreshold ||
+                                    increase < config.lowPercentIncreaseThreshold
+                            },
+                            message: 'This field is required.'
+                        }
+                    });
+
+                entity.specialAdjustmentNote = ko.observable(entity.meritAdjustmentNote())
+                    .extend({
+                        required: {
+                            onlyIf: function () {
+                                return entity.specialIncrease() !== 0;
+                            },
+                            message: 'This field is required.'
+                        }
+                    });
             };
 
             metadataStore.registerEntityTypeCtor('Salary', null, initializer);

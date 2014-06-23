@@ -32,7 +32,7 @@ define(['durandal/app', 'durandal/viewLocator', 'durandal/system',
             viewLocator.useConvention();
 
             // toastr.js pop-up configuration
-            toastr.options.timeOut = 0;
+            toastr.options.timeOut = 5000;
             toastr.options.extendedTimeOut = 0;
             toastr.options.closeButton = true;
 
@@ -51,7 +51,8 @@ define(['durandal/app', 'durandal/viewLocator', 'durandal/system',
 
         function configureKnockout() {
             ko.validation.init({
-                insertMessages: false
+                insertMessages: true,
+                decorateInputElement: true
             });
 
             if (!ko.utils.cloneNodes) {

@@ -1,6 +1,6 @@
 ﻿define(['services/unitofwork', 'services/errorhandler',
-        'services/logger', 'global/session'],
-    function (uow, errorhandler, logger, session) {
+        'services/logger', 'global/session', 'durandal/system'],
+    function (uow, errorhandler, logger, session, system) {
 
         var unitofwork = uow.create();
 
@@ -32,15 +32,6 @@
                 roles = unitofwork.getAssignableRoles()
                     .then(function (response) {
                         vm.roles(response);
-
-                        //assignmentMapVMs = $.map(vm.roles(), function (role) {
-                        //    return {
-                        //        role: role,
-                        //        isSelected: ko.observable(false)
-                        //    };
-                        //});
-
-                        //vm.assignmentVMs(assignmentMapVMs);
                     });
 
                 predicate = new breeze.Predicate('id', '==', vm.userId()),
@@ -75,12 +66,13 @@
             applySelectionsToRoleAssignmentMap();
 
             if (!unitofwork.hasChanges()) {
-                return logger.log('No changes were detected.', null, null, true);
+                return logger.log('No changes were detected.', null, system.getModuleId(vm), true);
             }
 
             unitofwork.commit()
-                .then(function () {
-                    return logger.logSuccess('Save successful', null, null, true);
+                .then(function (response) {
+                    logger.logSuccess('Save successful', response, system.getModuleId(vm), true);
+                    return router.navigateBack();
                 })
                 .fail(self.handleError);
 

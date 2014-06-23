@@ -1,6 +1,6 @@
 ﻿define(['services/unitofwork', 'services/errorhandler',
-    'services/logger', 'plugins/router'],
-    function (uow, errorhandler, logger, router) {
+    'services/logger', 'plugins/router', 'durandal/system'],
+    function (uow, errorhandler, logger, router, system) {
 
         var unitofwork = uow.create();
 
@@ -27,7 +27,7 @@
                         vm.users(response);
                     })
                     .fail(function (response) {
-                        logger.logError(response.statusText, null, null, true);
+                        logger.logError(response.statusText, response, system.getModuleId(vm), true);
                     });
 
                 Q.all([users]).fail(self.handleError);

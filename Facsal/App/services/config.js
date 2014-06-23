@@ -4,6 +4,8 @@
         //#region Public interface.
         var self = {
             currentCycleYear: 2014,
+            highPercentIncreaseThreshold: 0.08,
+            lowPercentIncreaseThreshold: 0.0175,
 
             // Authentication Routes.
             siteUrl: "/",

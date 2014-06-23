@@ -7,15 +7,33 @@ using System.Threading.Tasks;
 
 namespace ChrisJSherm.Filters
 {
-    public class ConditionalRequireAttribute : ValidationAttribute
+    public class ConditionalRequireNoteAttribute : ValidationAttribute
     {
+        public string ValidationMessage { get; private set; }
         public string NumericPropertyName { get; private set; }
         public int MinimumNoteLength { get; private set; }
+        public decimal? FloorValue { get; private set; }
+        public decimal? CeilingValue { get; private set; }
 
-        public ConditionalRequireAttribute(string numericPropertyName, int minimumNoteLength)
+        public ConditionalRequireNoteAttribute(string validationMessage,
+            string numericPropertyName,
+            int minimumNoteLength, decimal? floorValue, decimal? ceilingValue)
         {
-            this.NumericPropertyName = numericPropertyName;
-            this.MinimumNoteLength = minimumNoteLength;
+            ValidationMessage = validationMessage;
+            NumericPropertyName = numericPropertyName;
+            MinimumNoteLength = minimumNoteLength;
+            FloorValue = 0;
+            CeilingValue = 0;
+
+            if (floorValue != null)
+            {
+                FloorValue = floorValue;
+            }
+
+            if (ceilingValue != null)
+            {
+                CeilingValue = ceilingValue;
+            }
         }
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
@@ -39,13 +57,13 @@ namespace ChrisJSherm.Filters
             }
 
             // Check if the user has entered an adjustment.
-            if (numericValue > 0)
+            if (numericValue < FloorValue || numericValue > CeilingValue)
             {
                 // Check if the user has entered an adjustment explanation.
                 if (Convert.ToString(value).Length < this.MinimumNoteLength)
                 {
                     return new ValidationResult(
-                        String.Format("Budget adjustments require a note explaining the change."));
+                        String.Format(ValidationMessage));
                 }
             }
 

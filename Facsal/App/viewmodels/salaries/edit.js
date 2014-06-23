@@ -1,5 +1,6 @@
-﻿define(['services/unitofwork', 'services/errorhandler', 'services/logger'],
-    function (uow, errorhandler, logger) {
+﻿define(['services/unitofwork', 'services/errorhandler', 'services/logger',
+    'plugins/router', 'durandal/system'],
+    function (uow, errorhandler, logger, router, system) {
         var unitofwork = uow.create(),
 
             salary = ko.observable(),
@@ -107,7 +108,14 @@
                                 return vm.employments(response);
                             });
 
-                        return vm.salary(salary);
+                        vm.salary(salary);
+
+                        vm.errors = ko.validation.group([
+                            vm.salary().meritAdjustmentNote,
+                            vm.salary().specialAdjustmentNote
+                        ]);
+
+                        return true;
                     }
                 });
 
@@ -128,13 +136,19 @@
             var self = this;
             applySelectionsToSalaryAdjustmentMap();
 
+            if (vm.errors().length !== 0) {
+                vm.errors.showAllMessages();
+                return;
+            }
+
             if (!unitofwork.hasChanges()) {
-                return logger.log('No changes were detected.', null, null, true);
+                return logger.log('No changes were detected.', null, system.getModuleId(vm), true);
             }
 
             return unitofwork.commit()
-                .then(function () {
-                    return logger.logSuccess('Save successful', null, null, true);
+                .then(function (response) {
+                    logger.logSuccess('Save successful', response, system.getModuleId(vm), true);
+                    return router.navigateBack();
                 });
         }
 

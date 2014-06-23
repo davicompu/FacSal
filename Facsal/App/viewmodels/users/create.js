@@ -1,6 +1,6 @@
 ﻿define(['services/unitofwork', 'services/errorhandler',
-    'services/logger'],
-    function (uow, errorhandler, logger) {
+    'services/logger', 'plugins/router', 'durandal/system'],
+    function (uow, errorhandler, logger, router, system) {
 
         var unitofwork = uow.create();
 
@@ -56,12 +56,13 @@
             applySelectionsToRoleAssignmentMap();
 
             if (!unitofwork.hasChanges()) {
-                return logger.log('No changes were detected.', null, null, true);
+                return logger.log('No changes were detected.', null, system.getModuleId(vm), true);
             }
 
             unitofwork.commit()
-                .then(function () {
-                    return logger.logSuccess('Save successful', null, null, true);
+                .then(function (response) {
+                    logger.logSuccess('Save successful', response, system.getModuleId(vm), true);
+                    return router.navigateBack();
                 })
                 .fail(self.handleError);
 
