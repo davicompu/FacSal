@@ -122,7 +122,15 @@ namespace Facsal.Validators
             #region EntityState.Deleted
             if (entityInfo.EntityState == EntityState.Deleted)
             {
-                if (entityInfo.Entity.GetType() == typeof(RoleAssignment))
+                if (entityInfo.Entity.GetType() == typeof(SpecialSalaryAdjustment))
+                {
+                    if (!IsAuthorizedToDeleteSpecialSalaryAdjustment((SpecialSalaryAdjustment)entityInfo.Entity))
+                    {
+                        ThrowEntityError("You are not authorized to modify this salary.",
+                            "Unauthorized", HttpStatusCode.Unauthorized);
+                    }
+                }
+                else if (entityInfo.Entity.GetType() == typeof(RoleAssignment))
                 {
                     if (!IsAuthorizedToDeleteRoleAssignment((RoleAssignment)entityInfo.Entity))
                     {
@@ -262,6 +270,16 @@ namespace Facsal.Validators
         #endregion
 
         #region Delete entity authorization methods
+        private bool IsAuthorizedToDeleteSpecialSalaryAdjustment(SpecialSalaryAdjustment adjustment)
+        {
+            if (IsAuthorizedToModifySpecialSalaryAdjustment(adjustment))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         private bool IsAuthorizedToDeleteRoleAssignment(RoleAssignment roleAssignment)
         {
             if (IsAuthorizedToModifyRoleAssignment(roleAssignment))
