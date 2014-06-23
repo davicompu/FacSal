@@ -9,6 +9,7 @@
         var viewmodel = {
 
             router: router,
+            username: ko.observable(),
 
             activate: function () {
                 var self = this;
@@ -131,6 +132,7 @@
                 .done(function (data) {
                     if (data.userName) {
                         session.setUser(data);
+                        viewmodel.username(data.userName);
                         initializeRouting();
                     } else {
                         logger.log("Access denied. Navigation canceled.",

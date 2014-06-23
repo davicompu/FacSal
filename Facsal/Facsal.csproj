@@ -306,6 +306,13 @@
     <Content Include="Scripts\knockout.validation.js" />
     <Content Include="weyland-config.js" />
     <Content Include="sass\app\components\_fieldset.scss" />
+    <Content Include="sass\app\components\_heading.scss" />
+    <Content Include="sass\fonts\_google-apis.scss" />
+    <Content Include="Content\fonts\YanoneKaffeesatz-Regular.woff" />
+    <Content Include="Content\fonts\Signika-Regular.woff" />
+    <Content Include="sass\app\components\_select.scss" />
+    <Content Include="sass\app\components\_input.scss" />
+    <Content Include="sass\app\components\_table.scss" />
     <None Include="Scripts\breeze.intellisense.js" />
     <Content Include="Scripts\breeze.debug.js" />
     <Content Include="Scripts\breeze.min.js" />

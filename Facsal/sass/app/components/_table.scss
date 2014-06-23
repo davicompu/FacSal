@@ -1,0 +1,11 @@
+table {
+    thead { 
+        background-color: $content-elements-bg;
+
+            tr {
+                th {
+                    color: $body-font-color;
+                }
+            }
+        }
+    }

@@ -1,0 +1,9 @@
+select {
+    background-color: $content-elements-bg;
+    color: $body-font-color;
+    margin-bottom: 2em;
+
+    &:hover {
+        background-color: scale-color($content-elements-bg, $lightness: -10%);
+    }
+}

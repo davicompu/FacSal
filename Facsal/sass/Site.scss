@@ -8,7 +8,14 @@
 @import "app/app-settings";
 @import "app/content";
 
-@import 
-	"app/components/footer";
+@import     
+    "app/components/fieldset",
+	"app/components/footer",
+    "app/components/heading",
+    "app/components/input",
+    "app/components/select",
+    "app/components/table";
 
-@import "app/shame";
+@import "fonts/google-apis";
+
+@import "app/shame"; 

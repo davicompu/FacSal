@@ -1,5 +1,11 @@
 ﻿<div class="row">
     <div class="large-12 columns">
+        <h2 class="background"><span>REPORTING</span></h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="large-4 columns end">
         <label>
             Report
             <select data-bind="options: reportTypes, optionsText: 'text', optionsValue: 'route', value: selectedReportType"></select>
@@ -8,17 +14,16 @@
 </div>
 
 <div class="row">
-    <div class="large-12 columns">
+    <div class="large-4 columns end">
         <label>
             Audience
-            <select data-bind="options: audienceTypes, value: selectedAudienceType">
-            </select>
+            <select data-bind="options: audienceTypes, value: selectedAudienceType"></select>
         </label>
     </div>
 </div>
 
 <div class="row" data-bind="if: selectedAudienceType() === 'Unit'">
-    <div class="large-12 columns">
+    <div class="large-6 columns end">
         <label>
             Unit
             <select data-bind="options: units,
@@ -29,7 +34,7 @@
 </div>
 
 <div class="row" data-bind="if: selectedAudienceType() === 'Department'">
-    <div class="large-4 columns end">
+    <div class="large-6 columns end">
         <label for="Unit">
             Department
             <select data-bind="value: selectedDepartmentId">

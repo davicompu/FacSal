@@ -1,4 +1,10 @@
-﻿<div class="row" data-bind="ifIsInRole: 'create-person'">
+﻿<div class="row">
+    <div class="large-12 columns">
+        <h2 class="background"><span>SALARIES</span></h2>
+    </div>
+</div>
+
+<div class="row" data-bind="ifIsInRole: 'create-person'">
     <div class="large-12 columns">
         <p>
             <a href="/persons/create">Create</a>
@@ -7,18 +13,18 @@
 </div>
 
 <div class="row">
-    <div class="large-12 columns">
+    <div class="large-6 columns end">
         <label>
             Department
-            <select data-bind="value: selectedDepartmentId">
-                <option disabled="disabled" hidden="hidden" selected="selected">Select a department...</option>
-                <!-- ko foreach: units -->
-                <optgroup data-bind="attr: { label: name }, foreach: departments">
-                    <option data-bind="attr: { label: name, value: id }, text: name"></option>
-                </optgroup>
-                <!--/ko-->
-            </select>
         </label>
+        <select data-bind="value: selectedDepartmentId">
+            <option disabled="disabled" hidden="hidden" selected="selected">Select a department...</option>
+            <!-- ko foreach: units -->
+            <optgroup data-bind="attr: { label: name }, foreach: departments">
+                <option data-bind="attr: { label: name, value: id }, text: name"></option>
+            </optgroup>
+            <!--/ko-->
+        </select>
     </div>
 </div>
 

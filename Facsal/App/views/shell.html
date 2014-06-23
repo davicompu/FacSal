@@ -1,4 +1,12 @@
-﻿<div class="contain-to-grid hide-on-print">
+﻿<div class="row">
+    <div class="large-12 columns">
+        <a href="/">
+            <h1>FacSal</h1>
+        </a>
+    </div>
+</div>
+
+<div class="contain-to-grid hide-on-print">
     <nav class="top-bar" data-topbar data-options="is_hover: false" role="navigation">
         <ul class="title-area">
             <li class="name">
@@ -8,16 +16,18 @@
 
         <section class="top-bar-section">
             <ul class="right">
+                <li class="divider"></li>
                 <!-- ko foreach: router.navigationModel -->
-                    <li class="menu-item" data-bind="css: { active: isActive }">
-                        <a data-bind="attr: { href: $parent.router.convertRouteToHash('/' + hash) }, text: title"></a>
-                    </li>
+                <li class="menu-item">
+                    <a data-bind="attr: { href: $parent.router.convertRouteToHash('/' + hash) }, text: title"></a>
+                </li>
+                <li class="divider"></li>
                 <!--/ko-->
                 <li class="menu-item"
-                    data-bind="css: { active: router.activeInstruction().fragment === 'users/index' ||
-                        router.activeInstruction().fragment === 'users' }, ifIsInRole: 'manage-users'">
+                    data-bind="ifIsInRole: 'manage-users'">
                     <a href="/users/index">Users</a>
                 </li>
+                <li class="divider" data-bind="ifIsInRole: 'manage-users'"></li>
             </ul>
         </section>
     </nav>
