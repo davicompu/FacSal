@@ -8360,12 +8360,12 @@ th.hide-for-touch {
 }
 
 /* line 1, ../sass/app/components/_button.scss */
-.text-button, .cancel-button {
+.save-button, .cancel-button {
   border: 0.125rem solid #008cba;
   color: #008cba;
   font-size: 1.25em;
   margin-top: 0.3125rem;
-  padding: 0.3125rem;
+  padding: 0.3125rem 1rem;
 }
 
 /* line 9, ../sass/app/components/_button.scss */
@@ -8414,16 +8414,19 @@ footer .copyright .columns {
 h2 {
   font: 33px;
   margin-bottom: 30px;
+  overflow: hidden;
   text-align: center;
   text-transform: uppercase;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-/* line 8, ../sass/app/components/_heading.scss */
+/* line 11, ../sass/app/components/_heading.scss */
 h2.background {
   position: relative;
   z-index: 1;
 }
-/* line 12, ../sass/app/components/_heading.scss */
+/* line 15, ../sass/app/components/_heading.scss */
 h2.background:before {
   border-top: 2px solid #dfdfdf;
   content: "";
@@ -8438,20 +8441,20 @@ h2.background:before {
   width: 95%;
   z-index: -1;
 }
-/* line 22, ../sass/app/components/_heading.scss */
+/* line 25, ../sass/app/components/_heading.scss */
 h2.background span {
   /* to hide the lines from behind the text, you have to set the background color the same as the container */
   background: #1d1d1e;
   padding: 0 15px;
 }
 
-/* line 29, ../sass/app/components/_heading.scss */
+/* line 32, ../sass/app/components/_heading.scss */
 h2.double:before {
   /* this is just to undo the :before styling from above */
   border-top: none;
 }
 
-/* line 34, ../sass/app/components/_heading.scss */
+/* line 37, ../sass/app/components/_heading.scss */
 h2.double:after {
   border-bottom: 1px solid blue;
   -webkit-box-shadow: 0 1px 0 0 red;
@@ -8468,12 +8471,12 @@ h2.double:after {
   z-index: -1;
 }
 
-/* line 47, ../sass/app/components/_heading.scss */
+/* line 50, ../sass/app/components/_heading.scss */
 h2.no-background {
   position: relative;
   overflow: hidden;
 }
-/* line 51, ../sass/app/components/_heading.scss */
+/* line 54, ../sass/app/components/_heading.scss */
 h2.no-background span {
   display: inline-block;
   vertical-align: baseline;
@@ -8483,7 +8486,7 @@ h2.no-background span {
   position: relative;
   padding: 0 20px;
 }
-/* line 60, ../sass/app/components/_heading.scss */
+/* line 63, ../sass/app/components/_heading.scss */
 h2.no-background span:before, h2.no-background span:after {
   content: '';
   display: block;
@@ -8492,21 +8495,21 @@ h2.no-background span:before, h2.no-background span:after {
   top: 0.73em;
   border-top: 1px solid red;
 }
-/* line 69, ../sass/app/components/_heading.scss */
+/* line 72, ../sass/app/components/_heading.scss */
 h2.no-background span:before {
   right: 100%;
 }
-/* line 70, ../sass/app/components/_heading.scss */
+/* line 73, ../sass/app/components/_heading.scss */
 h2.no-background span:after {
   left: 100%;
 }
 
-/* line 74, ../sass/app/components/_heading.scss */
+/* line 77, ../sass/app/components/_heading.scss */
 h2.no-span {
   display: table;
   white-space: nowrap;
 }
-/* line 77, ../sass/app/components/_heading.scss */
+/* line 80, ../sass/app/components/_heading.scss */
 h2.no-span:before, h2.no-span:after {
   border-top: 1px solid green;
   content: '';
@@ -8515,11 +8518,11 @@ h2.no-span:before, h2.no-span:after {
   top: 0.5em;
   width: 45%;
 }
-/* line 85, ../sass/app/components/_heading.scss */
+/* line 88, ../sass/app/components/_heading.scss */
 h2.no-span:before {
   right: 1.5%;
 }
-/* line 86, ../sass/app/components/_heading.scss */
+/* line 89, ../sass/app/components/_heading.scss */
 h2.no-span:after {
   left: 1.5%;
 }
@@ -8572,12 +8575,24 @@ select:hover {
   background-color: #343437;
 }
 
-/* line 2, ../sass/app/components/_table.scss */
-table thead {
+/* line 1, ../sass/app/components/_table.scss */
+table {
+  border-collapse: separate;
+}
+/* line 4, ../sass/app/components/_table.scss */
+table thead, table .thead {
   background-color: #3a3a3d;
 }
-/* line 6, ../sass/app/components/_table.scss */
-table thead tr th {
+/* line 8, ../sass/app/components/_table.scss */
+table thead tr th, table thead tr td, table .thead tr th, table .thead tr td {
+  color: #dfdfdf;
+}
+/* line 14, ../sass/app/components/_table.scss */
+table tbody.department-heading {
+  background-color: #660000;
+}
+/* line 18, ../sass/app/components/_table.scss */
+table tbody.department-heading tr td {
   color: #dfdfdf;
 }
 

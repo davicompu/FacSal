@@ -1,11 +1,23 @@
 table {
-    thead { 
+    border-collapse: separate; 
+
+    thead, .thead { 
         background-color: $content-elements-bg;
 
-            tr {
-                th {
-                    color: $body-font-color;
-                }
+        tr {
+            th, td {
+                color: $body-font-color;
             }
         }
     }
+
+    tbody.department-heading {
+        background-color: $maroon;
+
+        tr {
+            td {
+                color: $body-font-color;
+            }
+        }
+    }
+}

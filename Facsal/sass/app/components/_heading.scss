@@ -1,8 +1,11 @@
 h2 {
     font: 33px;
     margin-bottom: 30px;
+    overflow: hidden;
     text-align: center;
     text-transform: uppercase;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 h2.background {

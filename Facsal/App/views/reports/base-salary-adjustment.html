@@ -8,13 +8,13 @@
     <div class="large-12 columns">
         <table data-bind="if: departmentData().length > 0">
             <!-- ko foreach: departmentData -->
-            <tbody>
+            <tbody class="department-heading">
                 <tr>
-                    <td data-bind="text: department.name"></td>
+                    <td colspan="7" class="text-center" data-bind="text: department.name"></td>
                 </tr>
             </tbody>
             
-            <tbody data-bind="if: adjustments.length > 0">
+            <tbody class="thead" data-bind="if: adjustments.length > 0">
                 <tr>
                     <td>
                         Name
