@@ -1,6 +1,6 @@
 fieldset
 {
-    background-color: scale-color($maroon, $lightness: -25%);
+    background-color: $content-elements-bg;
 
     &:last-of-type {
         margin-bottom: emCalc(30px);

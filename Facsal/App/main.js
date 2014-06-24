@@ -52,7 +52,9 @@ define(['durandal/app', 'durandal/viewLocator', 'durandal/system',
         function configureKnockout() {
             ko.validation.init({
                 insertMessages: true,
-                decorateInputElement: true
+                decorateElement: true,
+                errorMessageClass: 'error',
+                errorElementClass: 'error'
             });
 
             if (!ko.utils.cloneNodes) {
