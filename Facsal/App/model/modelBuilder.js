@@ -48,7 +48,7 @@
 
             metadataStore.registerEntityTypeCtor('BaseSalaryAdjustment', null, initializer);
         }
-        
+
         function extendDepartment(metadataStore) {
             var initializer = function (entity) {
                 addValidationRules(entity);
@@ -161,20 +161,20 @@
 
                 entity.formattedPercentIncrease = ko.observable(entity.percentIncrease()).extend({ percent: 1 });
 
-                entity.meritAdjustmentNote = ko.observable(entity.meritAdjustmentNote())
-                    .extend({
-                        required: {
-                            onlyIf: function () {
-                                var increase = entity.meritIncrease() / entity.totalAmount();
+                entity.meritAdjustmentNote
+                .extend({
+                    required: {
+                        onlyIf: function () {
+                            var increase = entity.meritIncrease() / entity.totalAmount();
 
-                                return increase > config.highPercentIncreaseThreshold ||
-                                    increase < config.lowPercentIncreaseThreshold
-                            },
-                            message: 'This field is required.'
-                        }
-                    });
+                            return increase > config.highPercentIncreaseThreshold ||
+                                increase < config.lowPercentIncreaseThreshold
+                        },
+                        message: 'This field is required.'
+                    }
+                });
 
-                entity.specialAdjustmentNote = ko.observable(entity.meritAdjustmentNote())
+                entity.specialAdjustmentNote
                     .extend({
                         required: {
                             onlyIf: function () {
