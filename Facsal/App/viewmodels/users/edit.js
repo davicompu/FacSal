@@ -13,6 +13,7 @@
             user: ko.observable(),
             userId: ko.observable(),
 
+            cancelChanges: cancelChanges,
             saveChanges: saveChanges,
         };
 
@@ -77,6 +78,11 @@
                 .fail(self.handleError);
 
             return true;
+        }
+
+        function cancelChanges() {
+            unitofwork.rollback();
+            return router.navigateBack();
         }
 
         function createRoleAssignmentHash(user) {

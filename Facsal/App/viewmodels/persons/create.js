@@ -17,6 +17,7 @@
             selectedDepartmentIds: ko.observableArray(),
             units: ko.observableArray(),
 
+            cancelPerson: cancelPerson,
             savePerson: savePerson,
         };
 
@@ -94,6 +95,11 @@
                 .fail(self.handleError);
 
             return true;
+        }
+
+        function cancelPerson() {
+            unitofwork.rollback();
+            return router.navigateBack();
         }
 
         function applySelectionsToEmploymentCollection() {
