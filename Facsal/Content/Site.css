@@ -8359,9 +8359,29 @@ th.hide-for-touch {
   padding: 2em 0;
 }
 
+/* line 1, ../sass/app/components/_button.scss */
+.text-button, .cancel-button {
+  border: 0.125rem solid #008cba;
+  color: #008cba;
+  font-size: 1.25em;
+  margin-top: 0.3125rem;
+  padding: 0.3125rem;
+}
+
+/* line 9, ../sass/app/components/_button.scss */
+.cancel-button {
+  border-color: #f04124;
+  color: #f04124;
+  margin-left: 0.9375rem;
+}
+
 /* line 2, ../sass/app/components/_fieldset.scss */
 fieldset {
   background-color: #3a3a3d;
+}
+/* line 5, ../sass/app/components/_fieldset.scss */
+fieldset:last-of-type {
+  margin-bottom: 1.875rem;
 }
 
 /* line 1, ../sass/app/components/_footer.scss */

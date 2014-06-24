@@ -55,7 +55,7 @@ define(['services/entitymanagerprovider', 'services/repository', 'durandal/app',
 				* @method
 				*/
 	            this.rollback = function () {
-	                provider.manager().rejectChanges();
+	                return provider.manager().rejectChanges();
 	            };
 
 	            // Repositories

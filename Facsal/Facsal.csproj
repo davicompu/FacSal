@@ -313,6 +313,7 @@
     <Content Include="sass\app\components\_select.scss" />
     <Content Include="sass\app\components\_input.scss" />
     <Content Include="sass\app\components\_table.scss" />
+    <Content Include="sass\app\components\_button.scss" />
     <None Include="Scripts\breeze.intellisense.js" />
     <Content Include="Scripts\breeze.debug.js" />
     <Content Include="Scripts\breeze.min.js" />

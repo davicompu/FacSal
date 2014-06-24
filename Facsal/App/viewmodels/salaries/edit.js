@@ -38,6 +38,7 @@
             adjustmentTypes: adjustmentTypes,
             statusTypes: statusTypes,
 
+            cancelChanges: cancelChanges,
             saveChanges: saveChanges,
         };
 
@@ -150,6 +151,11 @@
                     logger.logSuccess('Save successful', response, system.getModuleId(vm), true);
                     return router.navigateBack();
                 });
+        }
+
+        function cancelChanges() {
+            unitofwork.rollback();
+            return router.navigateBack();
         }
 
         function createSalaryAdjustmentHash(salary) {
