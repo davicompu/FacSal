@@ -36,19 +36,19 @@
                     <th>
                         Name
                     </th>
-                    <th>
+                    <th class="hide-for-small-down">
                         Rank
                     </th>
-                    <th>
+                    <th class="hide-for-small-down">
                         Salary
                     </th>
-                    <th>
+                    <th class="hide-for-small-down">
                         Merit
                     </th>
-                    <th>
+                    <th class="hide-for-small-down">
                         Special
                     </th>
-                    <th>
+                    <th class="hide-for-small-down">
                         Eminent
                     </th>
                     <th>
@@ -65,11 +65,11 @@
                     <td>
                         <a data-bind="attr: { href: 'salaries/edit/' + id() }, text: person().fullName"></a>
                     </td>
-                    <td data-bind="text: rankType().name"></td>
-                    <td data-bind="text: formattedTotalAmount"></td>
-                    <td data-bind="text: formattedMeritIncrease"></td>
-                    <td data-bind="text: formattedSpecialIncrease"></td>
-                    <td data-bind="text: formattedEminentIncrease"></td>
+                    <td class="hide-for-small-down" data-bind="text: rankType().name"></td>
+                    <td class="hide-for-small-down" data-bind="text: formattedTotalAmount"></td>
+                    <td class="hide-for-small-down" data-bind="text: formattedMeritIncrease"></td>
+                    <td class="hide-for-small-down" data-bind="text: formattedSpecialIncrease"></td>
+                    <td class="hide-for-small-down" data-bind="text: formattedEminentIncrease"></td>
                     <td data-bind="text: formattedNewTotalAmount"></td>
                     <td data-bind="text: formattedPercentIncrease"></td>
                 </tr>

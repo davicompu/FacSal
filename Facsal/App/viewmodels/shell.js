@@ -7,17 +7,19 @@
         entitymanagerprovider.modelBuilder = modelBuilder.extendMetadata;
 
         var viewmodel = {
-
-            router: router,
-            username: ko.observable(),
-
             activate: function () {
                 var self = this;
 
                 return entitymanagerprovider.prepare()
                     .then(init)
                     .fail(self.handlevalidationerrors);
-            }
+            },
+            attached: function (view) {
+                $(view).foundation();
+            },
+
+            router: router,
+            username: ko.observable(),
         };
 
         errorhandler.includeIn(viewmodel);

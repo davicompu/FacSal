@@ -7057,7 +7057,7 @@ meta.foundation-mq-topbar {
 }
 /* line 300, ../sass/foundation/components/_top-bar.scss */
 .top-bar-section ul li {
-  background: #3a3a3d;
+  background: #111111;
 }
 /* line 302, ../sass/foundation/components/_top-bar.scss */
 .top-bar-section ul li > a {
@@ -8393,18 +8393,17 @@ footer .copyright .columns {
 /* line 1, ../sass/app/components/_heading.scss */
 h2 {
   font: 33px;
-  margin-top: 30px;
   margin-bottom: 30px;
   text-align: center;
   text-transform: uppercase;
 }
 
-/* line 9, ../sass/app/components/_heading.scss */
+/* line 8, ../sass/app/components/_heading.scss */
 h2.background {
   position: relative;
   z-index: 1;
 }
-/* line 13, ../sass/app/components/_heading.scss */
+/* line 12, ../sass/app/components/_heading.scss */
 h2.background:before {
   border-top: 2px solid #dfdfdf;
   content: "";
@@ -8419,20 +8418,20 @@ h2.background:before {
   width: 95%;
   z-index: -1;
 }
-/* line 23, ../sass/app/components/_heading.scss */
+/* line 22, ../sass/app/components/_heading.scss */
 h2.background span {
   /* to hide the lines from behind the text, you have to set the background color the same as the container */
   background: #1d1d1e;
   padding: 0 15px;
 }
 
-/* line 30, ../sass/app/components/_heading.scss */
+/* line 29, ../sass/app/components/_heading.scss */
 h2.double:before {
   /* this is just to undo the :before styling from above */
   border-top: none;
 }
 
-/* line 35, ../sass/app/components/_heading.scss */
+/* line 34, ../sass/app/components/_heading.scss */
 h2.double:after {
   border-bottom: 1px solid blue;
   -webkit-box-shadow: 0 1px 0 0 red;
@@ -8449,12 +8448,12 @@ h2.double:after {
   z-index: -1;
 }
 
-/* line 48, ../sass/app/components/_heading.scss */
+/* line 47, ../sass/app/components/_heading.scss */
 h2.no-background {
   position: relative;
   overflow: hidden;
 }
-/* line 52, ../sass/app/components/_heading.scss */
+/* line 51, ../sass/app/components/_heading.scss */
 h2.no-background span {
   display: inline-block;
   vertical-align: baseline;
@@ -8464,7 +8463,7 @@ h2.no-background span {
   position: relative;
   padding: 0 20px;
 }
-/* line 61, ../sass/app/components/_heading.scss */
+/* line 60, ../sass/app/components/_heading.scss */
 h2.no-background span:before, h2.no-background span:after {
   content: '';
   display: block;
@@ -8473,21 +8472,21 @@ h2.no-background span:before, h2.no-background span:after {
   top: 0.73em;
   border-top: 1px solid red;
 }
-/* line 70, ../sass/app/components/_heading.scss */
+/* line 69, ../sass/app/components/_heading.scss */
 h2.no-background span:before {
   right: 100%;
 }
-/* line 71, ../sass/app/components/_heading.scss */
+/* line 70, ../sass/app/components/_heading.scss */
 h2.no-background span:after {
   left: 100%;
 }
 
-/* line 75, ../sass/app/components/_heading.scss */
+/* line 74, ../sass/app/components/_heading.scss */
 h2.no-span {
   display: table;
   white-space: nowrap;
 }
-/* line 78, ../sass/app/components/_heading.scss */
+/* line 77, ../sass/app/components/_heading.scss */
 h2.no-span:before, h2.no-span:after {
   border-top: 1px solid green;
   content: '';
@@ -8496,11 +8495,11 @@ h2.no-span:before, h2.no-span:after {
   top: 0.5em;
   width: 45%;
 }
-/* line 86, ../sass/app/components/_heading.scss */
+/* line 85, ../sass/app/components/_heading.scss */
 h2.no-span:before {
   right: 1.5%;
 }
-/* line 87, ../sass/app/components/_heading.scss */
+/* line 86, ../sass/app/components/_heading.scss */
 h2.no-span:after {
   left: 1.5%;
 }

@@ -19,25 +19,25 @@
                     <td>
                         Name
                     </td>
-                    <td>
+                    <td class="hide-for-small-down">
                         Rank
                     </td>
-                    <td>
+                    <td class="hide-for-small-down">
                         Appointment
                     </td>
-                    <td>
+                    <td class="hide-for-small-down">
                         FTE
                     </td>
-                    <td>
+                    <td class="hide-for-small-down">
                         Salary
                     </td>
-                    <td>
+                    <td class="hide-for-small-down">
                         Merit
                     </td>
-                    <td>
+                    <td class="hide-for-small-down">
                         Special
                     </td>
-                    <td>
+                    <td class="hide-for-small-down">
                         Eminent
                     </td>
                     <td>
@@ -62,13 +62,13 @@
                     <td>
                         <a data-bind="attr: { href: 'salaries/edit/' + id() }, text: person().fullName"></a>
                     </td>
-                    <td data-bind="text: rankType().name"></td>
-                    <td data-bind="text: appointmentType().name"></td>
-                    <td data-bind="text: fullTimeEquivalent"></td>
-                    <td data-bind="text: formattedTotalAmount"></td>
-                    <td data-bind="text: formattedMeritIncrease"></td>
-                    <td data-bind="text: formattedSpecialIncrease"></td>
-                    <td data-bind="text: formattedEminentIncrease"></td>
+                    <td class="hide-for-small-down" data-bind="text: rankType().name"></td>
+                    <td class="hide-for-small-down" data-bind="text: appointmentType().name"></td>
+                    <td class="hide-for-small-down" data-bind="text: fullTimeEquivalent"></td>
+                    <td class="hide-for-small-down" data-bind="text: formattedTotalAmount"></td>
+                    <td class="hide-for-small-down" data-bind="text: formattedMeritIncrease"></td>
+                    <td class="hide-for-small-down" data-bind="text: formattedSpecialIncrease"></td>
+                    <td class="hide-for-small-down" data-bind="text: formattedEminentIncrease"></td>
                     <td data-bind="text: formattedNewTotalAmount"></td>
                     <td data-bind="text: formattedPercentIncrease"></td>
                 </tr>

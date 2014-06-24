@@ -6,7 +6,7 @@
 
 <div class="row">
     <div class="large-12 columns">
-        <table class="tabular" data-bind="if: departmentData().length > 0">
+        <table data-bind="if: departmentData().length > 0">
             <!-- ko foreach: departmentData -->
             <tbody>
                 <tr>
@@ -19,16 +19,16 @@
                     <td>
                         Name
                     </td>
-                    <td>
+                    <td class="hide-for-small-down">
                         Date
                     </td>
-                    <td>
+                    <td class="hide-for-small-down">
                         Rank
                     </td>
-                    <td>
+                    <td class="hide-for-small-down">
                         Appointment
                     </td>
-                    <td>
+                    <td class="hide-for-small-down">
                         FTE
                     </td>
                     <td>
@@ -53,10 +53,10 @@
                     <td>
                         <a data-bind="attr: { href: 'salaries/edit/' + id() }, text: person().fullName"></a>
                     </td>
-                    <td data-bind="text: $parent.formattedCreatedDate"></td>
-                    <td data-bind="text: rankType().name"></td>
-                    <td data-bind="text: appointmentType().name"></td>
-                    <td data-bind="text: fullTimeEquivalent"></td>
+                    <td class="hide-for-small-down" data-bind="text: $parent.formattedCreatedDate"></td>
+                    <td class="hide-for-small-down" data-bind="text: rankType().name"></td>
+                    <td class="hide-for-small-down" data-bind="text: appointmentType().name"></td>
+                    <td class="hide-for-small-down" data-bind="text: fullTimeEquivalent"></td>
                     <td data-bind="text: $parent.formattedStartingBaseAmount"></td>
                     <td data-bind="text: $parent.formattedNewBaseAmount"></td>
                 </tr>
