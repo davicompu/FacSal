@@ -8377,7 +8377,7 @@ th.hide-for-touch {
 
 /* line 2, ../sass/app/components/_fieldset.scss */
 fieldset {
-  background-color: #3a3a3d;
+  background-color: #4d0000;
 }
 /* line 5, ../sass/app/components/_fieldset.scss */
 fieldset:last-of-type {
@@ -8581,7 +8581,7 @@ table {
 }
 /* line 4, ../sass/app/components/_table.scss */
 table thead, table .thead {
-  background-color: #3a3a3d;
+  background-color: #660000;
 }
 /* line 8, ../sass/app/components/_table.scss */
 table thead tr th, table thead tr td, table .thead tr th, table .thead tr td {
@@ -8589,7 +8589,7 @@ table thead tr th, table thead tr td, table .thead tr th, table .thead tr td {
 }
 /* line 14, ../sass/app/components/_table.scss */
 table tbody.department-heading {
-  background-color: #660000;
+  background-color: #3a3a3d;
 }
 /* line 18, ../sass/app/components/_table.scss */
 table tbody.department-heading tr td {

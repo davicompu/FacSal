@@ -2,7 +2,7 @@ table {
     border-collapse: separate; 
 
     thead, .thead { 
-        background-color: $content-elements-bg;
+        background-color: $maroon;
 
         tr {
             th, td {
@@ -12,7 +12,7 @@ table {
     }
 
     tbody.department-heading {
-        background-color: $maroon;
+        background-color: $content-elements-bg;
 
         tr {
             td {
