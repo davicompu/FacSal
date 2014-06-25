@@ -8603,6 +8603,15 @@ select.error {
   margin-bottom: 0 !important;
 }
 
+/* line 1, ../sass/app/components/_reveal.scss */
+#timeoutModal {
+  color: #111;
+}
+/* line 4, ../sass/app/components/_reveal.scss */
+#timeoutModal h4 {
+  color: #111;
+}
+
 /* line 1, ../sass/app/components/_table.scss */
 table {
   border-collapse: separate;

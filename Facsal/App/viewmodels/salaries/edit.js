@@ -55,8 +55,6 @@
         function attached(view) {
             var self = this;
 
-            $(view).foundation();
-
             var appointmentTypes = unitofwork.appointmentTypes.all()
                 .then(function (response) {
                     self.appointmentTypes(response);

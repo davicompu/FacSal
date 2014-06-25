@@ -215,6 +215,7 @@
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\ReportFileController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\SessionController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DataAccess\CasRoleProvider.cs" />
     <Compile Include="DependencyResolution\IoC.cs" />
@@ -288,6 +289,7 @@
     <Content Include="Content\toastr.less" />
     <Content Include="Scripts\almond-custom.js" />
     <Content Include="Scripts\breeze.saveErrorExtensions.js" />
+    <Content Include="Scripts\chrisjsherm\chrisjsherm.counter.js" />
     <Content Include="Scripts\durandal\activator.js" />
     <Content Include="Scripts\durandal\app.js" />
     <Content Include="Scripts\durandal\binder.js" />
@@ -316,6 +318,7 @@
     <Content Include="sass\app\components\_input.scss" />
     <Content Include="sass\app\components\_table.scss" />
     <Content Include="sass\app\components\_button.scss" />
+    <Content Include="sass\app\components\_reveal.scss" />
     <None Include="Scripts\breeze.intellisense.js" />
     <Content Include="Scripts\breeze.debug.js" />
     <Content Include="Scripts\breeze.min.js" />
@@ -348,7 +351,6 @@
     <Content Include="sass\foundation\components\_pricing-tables.scss" />
     <Content Include="sass\foundation\components\_progress-bars.scss" />
     <Content Include="sass\foundation\components\_range-slider.scss" />
-    <Content Include="sass\foundation\components\_reveal-new.scss" />
     <Content Include="sass\foundation\components\_reveal.scss" />
     <Content Include="sass\foundation\components\_side-nav.scss" />
     <Content Include="sass\foundation\components\_split-buttons.scss" />

@@ -7,16 +7,8 @@
         entitymanagerprovider.modelBuilder = modelBuilder.extendMetadata;
 
         var viewmodel = {
-            activate: function () {
-                var self = this;
-
-                return entitymanagerprovider.prepare()
-                    .then(init)
-                    .fail(self.handlevalidationerrors);
-            },
-            attached: function (view) {
-                $(view).foundation();
-            },
+            activate: activate,
+            attached: attached,
 
             router: router,
             username: ko.observable(),
@@ -27,6 +19,55 @@
         errorhandler.includeIn(viewmodel);
 
         return viewmodel;
+
+        function activate() {
+            var self = this;
+
+            return entitymanagerprovider.prepare()
+                .then(init)
+                .fail(self.handlevalidationerrors);
+        }
+
+        function attached(view) {
+            // Initialize Foundation scripts
+            $(view).foundation();
+
+            // Create Counter object
+            var countdown = new chrisjsherm.Counter({
+                seconds: config.logOutCounterSeconds,
+
+                onUpdateStatus: function (second) {
+                    // change the UI that displays the seconds remaining in the timeout.
+                    if (parseInt(second, 10) < 91) {
+                        $('#timeoutModal').foundation('reveal', 'open');
+                        $('.counter').text(second);
+                    }
+                },
+
+                onCounterEnd: function () {
+                    window.location.assign(config.logOutUrl);
+                },
+            });
+
+            // Start counter
+            countdown.start();
+
+            // Restart the counter after successful Ajax requests. Close the timeout modal if it's open.
+            $(document).ajaxSuccess(function () {
+                countdown.restart();
+                $('#timeoutModal').foundation('reveal', 'close');
+            });
+
+            // Hit the dummy session extension Controller action when the user closes the modal.
+            $('.close-reveal-modal').on('click', function () {
+                $.get(config.extendSessionUrl);
+            });
+
+            // Hook up the 'Continue' button to the default close anchor.
+            $('span.button-close-reveal-modal').on('click', function () {
+                $('a.close-reveal-modal').trigger('click');
+            });
+        }
 
         function logOut() {
             window.location.assign(config.logOutUrl);

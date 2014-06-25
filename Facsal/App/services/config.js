@@ -4,6 +4,7 @@
         //#region Public interface.
         var self = {
             currentCycleYear: 2014,
+            logOutCounterSeconds: 1170,
             highPercentIncreaseThreshold: 0.08,
             lowPercentIncreaseThreshold: 0.0175,
 
@@ -18,6 +19,7 @@
             departmentNamesForPerson: '/api/person/getDepartmentNames',
             departmentsUrl: 'departments',
             employmentsUrl: 'employments',
+            extendSessionUrl: '/api/session/extend',
             facultyTypesUrl: 'facultyTypes',
             getAssignableRolesUrl: '/api/role/getAssignableRoles',
             logOutUrl: '/cas/logOut',
