@@ -74,7 +74,7 @@
 
                         router.navigate(route);
                     } else {
-                        logger.logError('Choose a department to continue', null, null, true);
+                        logger.logError('Choose a department to continue.', null, null, true);
                     }
 
                     break;
@@ -86,7 +86,7 @@
 
                         router.navigate(route);
                     } else {
-                        logger.logError('Choose a unit to continue', null, null, true);
+                        logger.logError('Choose a unit to continue.', null, null, true);
                     }
 
                     break;

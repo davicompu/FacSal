@@ -55,6 +55,8 @@
         function attached(view) {
             var self = this;
 
+            $(view).foundation();
+
             var appointmentTypes = unitofwork.appointmentTypes.all()
                 .then(function (response) {
                     self.appointmentTypes(response);
@@ -139,6 +141,7 @@
 
             if (vm.errors().length !== 0) {
                 vm.errors.showAllMessages();
+                logger.logError('Errors detected.', null, system.getModuleId(vm), true);
                 return;
             }
 

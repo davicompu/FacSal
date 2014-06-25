@@ -4,7 +4,8 @@
         'text': '../Scripts/text',
         'durandal': '../Scripts/durandal',
         'plugins': '../Scripts/durandal/plugins',
-        'transitions': '../Scripts/durandal/transitions'
+        'transitions': '../Scripts/durandal/transitions',
+        'pace': '../Scripts/pace'
     }
 });
 
@@ -12,8 +13,8 @@ define('jquery', function () { return jQuery; });
 define('knockout', ko);
 
 define(['durandal/app', 'durandal/viewLocator', 'durandal/system',
-    'global/session'],
-    function (app, viewLocator, system, session) {
+    'global/session', 'pace'],
+    function (app, viewLocator, system, session, pace) {
         //>>excludeStart("build", true);
         system.debug(true);
         //>>excludeEnd("build");
@@ -43,6 +44,7 @@ define(['durandal/app', 'durandal/viewLocator', 'durandal/system',
                 }
             });
 
+            pace.start();
             configureKnockout();
             Q.stopUnhandledRejectionTracking();
             //Show the app by setting the root view model for our application with a transition.

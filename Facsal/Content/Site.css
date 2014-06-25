@@ -8392,12 +8392,12 @@ footer {
 }
 /* line 6, ../sass/app/components/_footer.scss */
 footer .footer .columns {
-  color: #777777;
+  color: #dfdfdf;
   font-size: 75%;
 }
 /* line 10, ../sass/app/components/_footer.scss */
 footer .footer .columns h4 {
-  color: #555555;
+  color: #dfdfdf;
 }
 /* line 17, ../sass/app/components/_footer.scss */
 footer .copyright {
@@ -8407,8 +8407,12 @@ footer .copyright {
 }
 /* line 22, ../sass/app/components/_footer.scss */
 footer .copyright .columns {
-  color: #999;
+  color: #dfdfdf;
   font-size: 70%;
+}
+/* line 27, ../sass/app/components/_footer.scss */
+footer .copyright .small-attribution {
+  margin-top: 0.5rem;
 }
 
 /* line 1, ../sass/app/components/_heading.scss */
@@ -8637,4 +8641,138 @@ table tbody.department-heading tr td {
 /* line 1, ../sass/app/_shame.scss */
 table {
   width: 100%;
+}
+
+/* line 5, ../sass/app/_shame.scss */
+.pace {
+  -webkit-pointer-events: none;
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+/* line 13, ../sass/app/_shame.scss */
+.pace-inactive {
+  display: none;
+}
+
+/* line 17, ../sass/app/_shame.scss */
+.pace .pace-progress {
+  background: #29d;
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+  height: 2px;
+  -webkit-transition: width 1s;
+  -moz-transition: width 1s;
+  -o-transition: width 1s;
+  transition: width 1s;
+}
+
+/* line 31, ../sass/app/_shame.scss */
+.pace .pace-progress-inner {
+  display: block;
+  position: absolute;
+  right: 0px;
+  width: 100px;
+  height: 100%;
+  box-shadow: 0 0 10px #29d, 0 0 5px #29d;
+  opacity: 1.0;
+  -webkit-transform: rotate(3deg) translate(0px, -4px);
+  -moz-transform: rotate(3deg) translate(0px, -4px);
+  -ms-transform: rotate(3deg) translate(0px, -4px);
+  -o-transform: rotate(3deg) translate(0px, -4px);
+  transform: rotate(3deg) translate(0px, -4px);
+}
+
+/* line 46, ../sass/app/_shame.scss */
+.pace .pace-activity {
+  display: block;
+  position: fixed;
+  z-index: 2000;
+  top: 15px;
+  right: 15px;
+  width: 14px;
+  height: 14px;
+  border: solid 2px transparent;
+  border-top-color: #29d;
+  border-left-color: #29d;
+  border-radius: 10px;
+  -webkit-animation: pace-spinner 400ms linear infinite;
+  -moz-animation: pace-spinner 400ms linear infinite;
+  -ms-animation: pace-spinner 400ms linear infinite;
+  -o-animation: pace-spinner 400ms linear infinite;
+  animation: pace-spinner 400ms linear infinite;
+}
+
+@-webkit-keyframes pace-spinner {
+  /* line 66, ../sass/app/_shame.scss */
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  /* line 67, ../sass/app/_shame.scss */
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes pace-spinner {
+  /* line 70, ../sass/app/_shame.scss */
+  0% {
+    -moz-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  /* line 71, ../sass/app/_shame.scss */
+  100% {
+    -moz-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@-o-keyframes pace-spinner {
+  /* line 74, ../sass/app/_shame.scss */
+  0% {
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  /* line 75, ../sass/app/_shame.scss */
+  100% {
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@-ms-keyframes pace-spinner {
+  /* line 78, ../sass/app/_shame.scss */
+  0% {
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  /* line 79, ../sass/app/_shame.scss */
+  100% {
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pace-spinner {
+  /* line 82, ../sass/app/_shame.scss */
+  0% {
+    transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  /* line 83, ../sass/app/_shame.scss */
+  100% {
+    transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }

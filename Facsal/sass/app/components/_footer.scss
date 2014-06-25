@@ -4,11 +4,11 @@ footer {
 
 	.footer {
 		.columns {
-			color: $footer-font-color;
+			color: $body-font-color;
 			font-size: 75%;
 
 			h4 {
-				color: $footer-header-color;
+				color: $header-font-color;
 				//text-transform: uppercase;
 			}
 		}
@@ -20,8 +20,12 @@ footer {
 		padding: emCalc(15px) 0;
 
 		.columns {
-			color: #999;
+			color: $body-font-color;
 			font-size: 70%;
 		}
+
+        .small-attribution {
+            margin-top: emCalc(8px);
+        }
 	}
 }

@@ -304,6 +304,7 @@
     <Content Include="Scripts\durandal\viewEngine.js" />
     <Content Include="Scripts\durandal\viewLocator.js" />
     <Content Include="Scripts\knockout.validation.js" />
+    <Content Include="Scripts\pace.js" />
     <Content Include="weyland-config.js" />
     <Content Include="sass\app\components\_fieldset.scss" />
     <Content Include="sass\app\components\_heading.scss" />
