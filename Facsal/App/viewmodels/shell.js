@@ -1,8 +1,8 @@
 ﻿define(['plugins/router', 'services/security', 'services/errorhandler',
     'services/entitymanagerprovider', 'model/modelBuilder', 'services/logger',
-    'global/session'],
+    'global/session', 'services/config'],
     function (router, appsecurity, errorhandler, entitymanagerprovider, modelBuilder,
-        logger, session) {
+        logger, session, config) {
 
         entitymanagerprovider.modelBuilder = modelBuilder.extendMetadata;
 
@@ -20,11 +20,17 @@
 
             router: router,
             username: ko.observable(),
+
+            logOut: logOut,
         };
 
         errorhandler.includeIn(viewmodel);
 
         return viewmodel;
+
+        function logOut() {
+            window.location.assign(config.logOutUrl);
+        }
 
         function initializeRouting() {
             //configure routing

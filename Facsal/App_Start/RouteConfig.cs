@@ -14,6 +14,12 @@ namespace Facsal
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Cas",
+                url: "Cas/{action}",
+                defaults: new { controller = "Cas", action = "Logout" }
+            );
+            
+            routes.MapRoute(
                 name: "Default",
                 url: "{*url}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

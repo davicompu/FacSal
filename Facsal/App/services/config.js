@@ -20,6 +20,7 @@
             employmentsUrl: 'employments',
             facultyTypesUrl: 'facultyTypes',
             getAssignableRolesUrl: '/api/role/getAssignableRoles',
+            logOutUrl: '/cas/logOut',
             lookupsUrl: 'getLookups',
             meritAdjustmentTypesUrl: 'meritAdjustmentTypes',
             personsUrl: 'persons',

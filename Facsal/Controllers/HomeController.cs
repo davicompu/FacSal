@@ -26,12 +26,5 @@ namespace Facsal.Controllers
         {
             return View();
         }
-
-        [AllowAnonymous]
-        public ActionResult Logout()
-        {
-            DotNetCasClient.CasAuthentication.SingleSignOut();
-            return RedirectToAction("Index");
-        }
     }
 }

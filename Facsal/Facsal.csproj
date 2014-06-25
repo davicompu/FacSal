@@ -207,6 +207,7 @@
     <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CasController.cs" />
     <Compile Include="Controllers\DataController.cs" />
     <Compile Include="Controllers\FromUristring.cs" />
     <Compile Include="Controllers\PersonController.cs" />
@@ -452,6 +453,7 @@
   <ItemGroup>
     <Folder Include="App\views\shared\" />
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Cas\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
