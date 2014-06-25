@@ -8615,20 +8615,21 @@ select.error {
 /* line 1, ../sass/app/components/_table.scss */
 table {
   border-collapse: separate;
+  width: 100%;
 }
-/* line 4, ../sass/app/components/_table.scss */
+/* line 5, ../sass/app/components/_table.scss */
 table thead, table .thead {
   background-color: #660000;
 }
-/* line 8, ../sass/app/components/_table.scss */
+/* line 9, ../sass/app/components/_table.scss */
 table thead tr th, table thead tr td, table .thead tr th, table .thead tr td {
   color: #dfdfdf;
 }
-/* line 14, ../sass/app/components/_table.scss */
+/* line 15, ../sass/app/components/_table.scss */
 table tbody.department-heading {
   background-color: #3a3a3d;
 }
-/* line 18, ../sass/app/components/_table.scss */
+/* line 19, ../sass/app/components/_table.scss */
 table tbody.department-heading tr td {
   color: #dfdfdf;
 }
@@ -8647,12 +8648,7 @@ table tbody.department-heading tr td {
   src: url("fonts/YanoneKaffeesatz-Regular.woff") format("woff");
 }
 
-/* line 1, ../sass/app/_shame.scss */
-table {
-  width: 100%;
-}
-
-/* line 5, ../sass/app/_shame.scss */
+/* line 1, ../sass/app/_pace.scss */
 .pace {
   -webkit-pointer-events: none;
   pointer-events: none;
@@ -8661,12 +8657,12 @@ table {
   user-select: none;
 }
 
-/* line 13, ../sass/app/_shame.scss */
+/* line 9, ../sass/app/_pace.scss */
 .pace-inactive {
   display: none;
 }
 
-/* line 17, ../sass/app/_shame.scss */
+/* line 13, ../sass/app/_pace.scss */
 .pace .pace-progress {
   background: #29d;
   position: fixed;
@@ -8680,7 +8676,7 @@ table {
   transition: width 1s;
 }
 
-/* line 31, ../sass/app/_shame.scss */
+/* line 27, ../sass/app/_pace.scss */
 .pace .pace-progress-inner {
   display: block;
   position: absolute;
@@ -8696,7 +8692,7 @@ table {
   transform: rotate(3deg) translate(0px, -4px);
 }
 
-/* line 46, ../sass/app/_shame.scss */
+/* line 42, ../sass/app/_pace.scss */
 .pace .pace-activity {
   display: block;
   position: fixed;
@@ -8717,13 +8713,13 @@ table {
 }
 
 @-webkit-keyframes pace-spinner {
-  /* line 66, ../sass/app/_shame.scss */
+  /* line 62, ../sass/app/_pace.scss */
   0% {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
 
-  /* line 67, ../sass/app/_shame.scss */
+  /* line 63, ../sass/app/_pace.scss */
   100% {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
@@ -8731,13 +8727,13 @@ table {
 }
 
 @-moz-keyframes pace-spinner {
-  /* line 70, ../sass/app/_shame.scss */
+  /* line 66, ../sass/app/_pace.scss */
   0% {
     -moz-transform: rotate(0deg);
     transform: rotate(0deg);
   }
 
-  /* line 71, ../sass/app/_shame.scss */
+  /* line 67, ../sass/app/_pace.scss */
   100% {
     -moz-transform: rotate(360deg);
     transform: rotate(360deg);
@@ -8745,13 +8741,13 @@ table {
 }
 
 @-o-keyframes pace-spinner {
-  /* line 74, ../sass/app/_shame.scss */
+  /* line 70, ../sass/app/_pace.scss */
   0% {
     -o-transform: rotate(0deg);
     transform: rotate(0deg);
   }
 
-  /* line 75, ../sass/app/_shame.scss */
+  /* line 71, ../sass/app/_pace.scss */
   100% {
     -o-transform: rotate(360deg);
     transform: rotate(360deg);
@@ -8759,13 +8755,13 @@ table {
 }
 
 @-ms-keyframes pace-spinner {
-  /* line 78, ../sass/app/_shame.scss */
+  /* line 74, ../sass/app/_pace.scss */
   0% {
     -ms-transform: rotate(0deg);
     transform: rotate(0deg);
   }
 
-  /* line 79, ../sass/app/_shame.scss */
+  /* line 75, ../sass/app/_pace.scss */
   100% {
     -ms-transform: rotate(360deg);
     transform: rotate(360deg);
@@ -8773,13 +8769,13 @@ table {
 }
 
 @keyframes pace-spinner {
-  /* line 82, ../sass/app/_shame.scss */
+  /* line 78, ../sass/app/_pace.scss */
   0% {
     transform: rotate(0deg);
     transform: rotate(0deg);
   }
 
-  /* line 83, ../sass/app/_shame.scss */
+  /* line 79, ../sass/app/_pace.scss */
   100% {
     transform: rotate(360deg);
     transform: rotate(360deg);

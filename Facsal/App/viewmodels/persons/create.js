@@ -1,6 +1,8 @@
 ﻿define(['services/unitofwork', 'services/errorhandler',
-    'services/logger', 'services/config', 'durandal/system'],
-    function (uow, errorhandler, logger, config, system) {
+    'services/logger', 'services/config', 'durandal/system',
+    'plugins/router'],
+    function (uow, errorhandler, logger, config, system,
+        router) {
 
         var unitofwork = uow.create();
 
