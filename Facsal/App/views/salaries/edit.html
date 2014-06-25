@@ -8,7 +8,7 @@
     <div class="large-12 columns">
         <section data-bind="with: salary">
             <fieldset>
-                <h4>Faculty information</h4>
+                <h4 data-bind="text: person().fullName() + ' | ' + person().id()"></h4>
 
                 <div class="row hide-on-print" data-bind="ifIsInRole: 'update-person'">
                     <div class="large-4 columns end">
@@ -21,27 +21,23 @@
                 </div>
 
                 <div class="row hide-on-print">
-                    <div class="large-4 columns end">
+                    <div class="large-4 columns">
                         <label>
                             Classification
                         </label>
                         <select data-bind="options: $parent.facultyTypes,
                         optionsValue: 'id', optionsText: 'name', optionsCaption: 'Choose...', value: facultyTypeId"></select>
                     </div>
-                </div>
 
-                <div class="row hide-on-print">
-                    <div class="large-4 columns end">
+                    <div class="large-4 columns">
                         <label>
                             Rank
                         </label>
                         <select data-bind="options: $parent.rankTypes,
                         optionsValue: 'id', optionsText: 'name', optionsCaption: 'Choose...', value: rankTypeId"></select>
                     </div>
-                </div>
 
-                <div class="row hide-on-print">
-                    <div class="large-4 columns end">
+                    <div class="large-4 columns">
                         <label>
                             Appointment
                         </label>
@@ -51,7 +47,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="large-8 columns end">
+                    <div class="large-8 columns">
                         <label class="hide-on-print">
                             Title
                             <input name="Title" type="text" class="hide-on-print" data-bind="value: title" />
@@ -60,10 +56,8 @@
                             <span class="text-underline">Title</span>: <span data-bind="text: title"></span>
                         </p>
                     </div>
-                </div>
 
-                <div class="row">
-                    <div class="large-4 columns end">
+                    <div class="large-4 columns">
                         <label class="hide-on-print">
                             Full-time equivalent<span class="required">*</span>
                             <input type="text" class="hide-on-print" data-bind="value: fullTimeEquivalent" />
@@ -116,7 +110,8 @@
                 <div class="row">
                     <div class="large-12 columns">
                         <label class="hide-on-print">
-                            Brief description of the adjustment<span class="required">*</span>
+                            Brief description of the adjustment
+                            <span class="required" data-bind="visible: isMeritAdjustmentNoteRequired">*</span>
                             <textarea class="hide-on-print"
                                       data-bind="value: meritAdjustmentNote"></textarea>
                         </label>
@@ -162,7 +157,8 @@
                 <div class="row">
                     <div class="large-12 columns">
                         <label class="hide-on-print">
-                            Brief description of the adjustment<span class="required">*</span>
+                            Brief description of the adjustment
+                            <span class="required" data-bind="visible: isSpecialAdjustmentNoteRequired">*</span>
                             <textarea class="hide-on-print"
                                       data-bind="value: specialAdjustmentNote"></textarea>
                         </label>

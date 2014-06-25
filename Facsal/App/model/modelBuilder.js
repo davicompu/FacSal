@@ -161,24 +161,32 @@
 
                 entity.formattedPercentIncrease = ko.observable(entity.percentIncrease()).extend({ percent: 1 });
 
+                entity.isMeritAdjustmentNoteRequired = ko.computed(function () {
+                    var increase = entity.meritIncrease() / entity.totalAmount();
+
+                    return increase > config.highPercentIncreaseThreshold ||
+                        increase < config.lowPercentIncreaseThreshold
+                });
+
                 entity.meritAdjustmentNote
                 .extend({
                     required: {
                         onlyIf: function () {
-                            var increase = entity.meritIncrease() / entity.totalAmount();
-
-                            return increase > config.highPercentIncreaseThreshold ||
-                                increase < config.lowPercentIncreaseThreshold
+                            return entity.isMeritAdjustmentNoteRequired();
                         },
                         message: 'This field is required.'
                     }
+                });
+
+                entity.isSpecialAdjustmentNoteRequired = ko.computed(function () {
+                    return entity.specialIncrease() !== 0;
                 });
 
                 entity.specialAdjustmentNote
                     .extend({
                         required: {
                             onlyIf: function () {
-                                return entity.specialIncrease() !== 0;
+                                return entity.isSpecialAdjustmentNoteRequired();
                             },
                             message: 'This field is required.'
                         }

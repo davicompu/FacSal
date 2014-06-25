@@ -8587,6 +8587,11 @@ textarea.error {
   margin-bottom: 0 !important;
 }
 
+/* line 2, ../sass/app/components/_label.scss */
+label span.required {
+  color: #f04124;
+}
+
 /* line 1, ../sass/app/components/_select.scss */
 select {
   background-color: #3a3a3d;

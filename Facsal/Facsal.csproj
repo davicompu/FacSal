@@ -320,6 +320,7 @@
     <Content Include="sass\app\components\_button.scss" />
     <Content Include="sass\app\components\_reveal.scss" />
     <Content Include="sass\app\_pace.scss" />
+    <Content Include="sass\app\components\_label.scss" />
     <None Include="Scripts\breeze.intellisense.js" />
     <Content Include="Scripts\breeze.debug.js" />
     <Content Include="Scripts\breeze.min.js" />
