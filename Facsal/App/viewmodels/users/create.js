@@ -9,12 +9,39 @@
             attached: attached,
 
             assignmentVMs: ko.observableArray(),
+            columnLength: ko.observable(4),
             roles: ko.observable(),
             user: ko.observable(),
 
             cancelUser: cancelUser,
             saveUser: saveUser,
         };
+
+        vm.assignmentVMRows = ko.computed(function () {
+            var result = [],
+                row,
+                colLength = parseInt(vm.columnLength(), 10);
+
+            /* Loop through items and push each into a row array that gets
+               pushed into the final result.
+            */
+            for (var i = 0, j = vm.assignmentVMs().length; i < j; i++) {
+                if (i % colLength === 0) {
+                    if (row) {
+                        result.push(row);
+                    }
+                    row = [];
+                }
+                row.push(vm.assignmentVMs()[i]);
+            }
+
+            // Push the final row.
+            if (row) {
+                result.push(row);
+            }
+
+            return result;
+        });
 
         errorhandler.includeIn(vm);
 

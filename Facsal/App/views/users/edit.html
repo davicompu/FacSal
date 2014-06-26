@@ -20,18 +20,16 @@
             <fieldset>
                 <h4>Departmental roles</h4>
 
-                <div class="row">
-                    <div class="large-12 columns">
-                        <!-- ko foreach: $parent.assignmentVMs -->
-                        <div>
-                            <label>
-                                <input type="checkbox" data-bind="checkedValue: role, checked: isSelected" />
-                                <span data-bind="text: role.name"></span>
-                            </label>
-                        </div>
-                        <!--/ko-->
+                <!-- ko foreach: $parent.assignmentVMRows -->
+                <div class="row" data-bind="foreach: $data">
+                    <div class="large-3 columns">
+                        <label>
+                            <input type="checkbox" data-bind="checkedValue: role, checked: isSelected" />
+                            <span data-bind="text: role.name"></span>
+                        </label>
                     </div>
                 </div>
+                <!--/ko-->
             </fieldset>
 
             <div class="row">

@@ -5,8 +5,8 @@
         var self = {
             currentCycleYear: 2014,
             logOutCounterSeconds: 1170,
-            highPercentIncreaseThreshold: 0.08,
-            lowPercentIncreaseThreshold: 0.0175,
+            highPercentIncreaseThreshold: 0.07,
+            lowPercentIncreaseThreshold: 0.0125,
 
             // Authentication Routes.
             siteUrl: "/",
