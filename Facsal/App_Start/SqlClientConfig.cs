@@ -13,9 +13,9 @@ namespace Facsal
         {
             if (bool.Parse(ConfigurationManager.AppSettings["MigrateDatabaseToLatestVersion"]))
             {
-                var configuration = new FacsalData.Migrations.Configuration();
-                var migrator = new DbMigrator(configuration);
-                migrator.Update();
+                //var configuration = new FacsalData.Migrations.Configuration();
+                //var migrator = new DbMigrator(configuration);
+                //migrator.Update();
             }
         }
     }

@@ -17,6 +17,7 @@ namespace SalaryEntities.UnitOfWork
         IRepository<Department> DepartmentRepository { get; }
         IRepository<Employment> EmploymentRepository { get; }
         IRepository<FacultyType> FacultyTypeRepository { get; }
+        IRepository<LeaveType> LeaveTypeRepository { get; }
         IRepository<MeritAdjustmentType> MeritAdjustmentTypeRepository { get; }
         IRepository<Person> PersonRepository { get; }
         IRepository<RankType> RankTypeRepository { get; }

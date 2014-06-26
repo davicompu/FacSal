@@ -22,6 +22,7 @@ namespace FacsalData.UnitOfWork
         public IRepository<Department> DepartmentRepository { get; private set; }
         public IRepository<Employment> EmploymentRepository { get; private set; }
         public IRepository<FacultyType> FacultyTypeRepository { get; private set; }
+        public IRepository<LeaveType> LeaveTypeRepository { get; private set; }
         public IRepository<MeritAdjustmentType> MeritAdjustmentTypeRepository { get; private set; }
         public IRepository<Person> PersonRepository { get; private set; }
         public IRepository<RankType> RankTypeRepository { get; private set; }
@@ -44,6 +45,7 @@ namespace FacsalData.UnitOfWork
             DepartmentRepository = new Repository<Department>(ContextProvider.Context);
             EmploymentRepository = new Repository<Employment>(ContextProvider.Context);
             FacultyTypeRepository = new Repository<FacultyType>(ContextProvider.Context);
+            LeaveTypeRepository = new Repository<LeaveType>(ContextProvider.Context);
             MeritAdjustmentTypeRepository = new Repository<MeritAdjustmentType>(ContextProvider.Context);
             PersonRepository = new Repository<Person>(ContextProvider.Context);
             RankTypeRepository = new Repository<RankType>(ContextProvider.Context);

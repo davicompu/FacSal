@@ -29,10 +29,13 @@ namespace SalaryEntities.Entities
         public int FacultyTypeId { get; set; }
 
         [ForeignKey("RankType")]
-        public int RankTypeId { get; set; }
+        public string RankTypeId { get; set; }
 
         [ForeignKey("AppointmentType")]
         public int AppointmentTypeId { get; set; }
+
+        [ForeignKey("LeaveType")]
+        public int LeaveTypeId { get; set; }
         
         [Required]
         [Max(1.00)]
@@ -98,6 +101,8 @@ namespace SalaryEntities.Entities
         public AppointmentType AppointmentType { get; set; }
 
         public MeritAdjustmentType MeritAdjustmentType { get; set; }
+
+        public LeaveType LeaveType { get; set; }
 
         public Person Person { get; set; }
 

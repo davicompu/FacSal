@@ -13,7 +13,6 @@
     <meta name="fragment" content="!">
 
     @Styles.Render("~/Content/css")
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     @Scripts.Render("~/bundles/modernizr")
 
     <script>
@@ -42,7 +41,7 @@
     }
     else
     {
-        @Scripts.Render("~/Scripts/main-built")
+        <script type="text/javascript" src="/Scripts/require.js" data-main="/App/main"></script>
     }
 </body>
 </html>

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SalaryEntities.Entities
 {
-    public class SpecialAdjustmentType
+    public class SpecialAdjustmentType : AuditEntityBase
     {
         public int Id { get; set; }
 

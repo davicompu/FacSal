@@ -11,6 +11,7 @@
             attached: attached,
 
             assignmentVMs: ko.observableArray(),
+            columnLength: ko.observable(4),
             roles: ko.observable(),
             user: ko.observable(),
             userId: ko.observable(),

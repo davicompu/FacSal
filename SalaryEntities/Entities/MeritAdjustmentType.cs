@@ -12,7 +12,7 @@ namespace SalaryEntities.Entities
         public int Id { get; set; }
 
         [Required]
-        [StringLength(35)]
+        [StringLength(60)]
         public string Name { get; set; }
     }
 }

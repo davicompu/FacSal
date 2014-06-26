@@ -62,13 +62,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FacsalDbContext.cs" />
-    <Compile Include="Migrations\201406172026529_Initial.cs" />
-    <Compile Include="Migrations\201406172026529_Initial.Designer.cs">
-      <DependentUpon>201406172026529_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201406172120189_CamelCasing.cs" />
-    <Compile Include="Migrations\201406172120189_CamelCasing.Designer.cs">
-      <DependentUpon>201406172120189_CamelCasing.cs</DependentUpon>
+    <Compile Include="Migrations\201406261850154_Initial.cs" />
+    <Compile Include="Migrations\201406261850154_Initial.Designer.cs">
+      <DependentUpon>201406261850154_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -90,11 +86,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201406172026529_Initial.resx">
-      <DependentUpon>201406172026529_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201406172120189_CamelCasing.resx">
-      <DependentUpon>201406172120189_CamelCasing.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201406261850154_Initial.resx">
+      <DependentUpon>201406261850154_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

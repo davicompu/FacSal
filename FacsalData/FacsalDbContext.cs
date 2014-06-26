@@ -21,6 +21,7 @@ namespace FacsalData
         public DbSet<Employment> Employments { get; set; }
         public DbSet<FacultyType> FacultyTypes { get; set; }
         public DbSet<Person> Persons { get; set; }
+        public DbSet<LeaveType> LeaveTypes { get; set; }
         public DbSet<MeritAdjustmentType> MeritAdjustmentTypes { get; set; }
         public DbSet<PersonModification> PersonModifications { get; set; }
         public DbSet<RankType> RankTypes { get; set; }

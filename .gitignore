@@ -8,6 +8,8 @@ app.Release.config
 *.Cloud.cscfg
 *.Local.cscfg
 main-built.js
+*.mdf
+*.ldf
 # ==========================
 # End custom: private config files
 # ==========================

@@ -11,7 +11,7 @@ namespace SalaryEntities.Entities
     public class RankType : AuditEntityBase
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         [Required]
         [StringLength(35)]

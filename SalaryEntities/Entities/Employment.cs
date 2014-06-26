@@ -21,5 +21,7 @@ namespace SalaryEntities.Entities
         public Person Person { get; set; }
 
         public Department Department { get; set; }
+
+        public bool IsHome { get; set; }
     }
 }

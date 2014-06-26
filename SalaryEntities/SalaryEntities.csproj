@@ -67,6 +67,7 @@
     <Compile Include="Entities\Employment.cs" />
     <Compile Include="Entities\EntityBase.cs" />
     <Compile Include="Entities\FacultyType.cs" />
+    <Compile Include="Entities\LeaveType.cs" />
     <Compile Include="Entities\Person.cs" />
     <Compile Include="Entities\PersonModification.cs" />
     <Compile Include="Entities\RankType.cs" />
