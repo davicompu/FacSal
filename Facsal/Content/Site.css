@@ -8388,29 +8388,28 @@ fieldset:last-of-type {
 /* line 1, ../sass/app/components/_footer.scss */
 footer {
   background: #1d1d1e;
-  padding-top: 1.875rem;
 }
-/* line 6, ../sass/app/components/_footer.scss */
+/* line 5, ../sass/app/components/_footer.scss */
 footer .footer .columns {
   color: #dfdfdf;
   font-size: 75%;
 }
-/* line 10, ../sass/app/components/_footer.scss */
+/* line 9, ../sass/app/components/_footer.scss */
 footer .footer .columns h4 {
   color: #dfdfdf;
 }
-/* line 17, ../sass/app/components/_footer.scss */
+/* line 16, ../sass/app/components/_footer.scss */
 footer .copyright {
   border-top: #ccc 1px solid;
   margin-top: 0.9375rem;
   padding: 0.9375rem 0;
 }
-/* line 22, ../sass/app/components/_footer.scss */
+/* line 21, ../sass/app/components/_footer.scss */
 footer .copyright .columns {
   color: #dfdfdf;
   font-size: 70%;
 }
-/* line 27, ../sass/app/components/_footer.scss */
+/* line 26, ../sass/app/components/_footer.scss */
 footer .copyright .small-attribution {
   margin-top: 0.5rem;
 }

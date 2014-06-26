@@ -61,7 +61,7 @@
                     p2 = breeze.Predicate.create(
                     'cycleYear', '==', config.currentCycleYear),
                     p3 = breeze.Predicate.create(
-                    'meritAdjustmentTypeId', '==', null),
+                    'meritAdjustmentTypeId', '==', 1),
                     predicate = breeze.Predicate.and([p1, p2, p3]),
                     expansionCondition = 'person';
 

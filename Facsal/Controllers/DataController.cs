@@ -19,14 +19,19 @@ namespace Facsal.Controllers
     public class DataController : ApiController
     {
         IUnitOfWork UnitOfWork;
-        ICollection<string> UserRoles;
+        ICollection<Role> UserRoles;
+        ICollection<string> UserRoleNames;
 
         public DataController(IUnitOfWork unitOfWork)
         {
             UnitOfWork = unitOfWork;
             UserRoles = UnitOfWork.RoleAssignmentRepository
                 .Find(ra => ra.User.Pid == User.Identity.Name)
-                .Select(ra => ra.Role.Name)
+                .Select(ra => ra.Role)
+                .ToList();
+
+            UserRoleNames = UserRoles
+                .Select(r => r.Name)
                 .ToList();
         }
 
@@ -52,7 +57,7 @@ namespace Facsal.Controllers
         public IQueryable<Employment> Employments()
         {
             return UnitOfWork.EmploymentRepository
-                .Find(e => UserRoles
+                .Find(e => UserRoleNames
                     .Any(ur => ur == "read-" + e.DepartmentId));
         }
 
@@ -67,7 +72,7 @@ namespace Facsal.Controllers
         {
             return UnitOfWork.SalaryRepository
                 .Find(s => s.Person.Employments
-                    .Any(e => UserRoles
+                    .Any(e => UserRoleNames
                         .Any(ur => ur == "read-" + e.DepartmentId)));
         }
 
@@ -96,15 +101,15 @@ namespace Facsal.Controllers
             {
                 AppointmentTypes = UnitOfWork.AppointmentTypeRepository.All(),
                 Departments = UnitOfWork.DepartmentRepository
-                    .Find(d => UserRoles.Any(ur => ur == "read-" + d.Id)),
+                    .Find(d => UserRoleNames.Any(ur => ur == "read-" + d.Id)),
                 FacultyTypes = UnitOfWork.FacultyTypeRepository.All(),
                 MeritAdjustmentTypes = UnitOfWork.MeritAdjustmentTypeRepository.All(),
                 RankTypes = UnitOfWork.RankTypeRepository.All(),
-                Roles = UnitOfWork.RoleRepository.All(),
+                Roles = UserRoles,
                 SpecialAdjustmentTypes = UnitOfWork.SpecialAdjustmentTypeRepository.All(),
                 StatusTypes = UnitOfWork.StatusTypeRepository.All(),
                 Units = UnitOfWork.UnitRepository
-                    .Find(u => u.Departments.Any(d => UserRoles.Any(ur => ur == "read-" + d.Id)))
+                    .Find(u => u.Departments.Any(d => UserRoleNames.Any(ur => ur == "read-" + d.Id)))
             };
         }
     }
