@@ -26,6 +26,7 @@
         var vm = {
             activate: activate,
             attached: attached,
+            deactivate: deactivate,
 
             adjustmentVMs: ko.observableArray(),
             appointmentTypes: appointmentTypes,
@@ -54,6 +55,8 @@
 
         function attached(view) {
             var self = this;
+
+            $('html,body').animate({ scrollTop: 0 }, 0);
 
             var appointmentTypes = unitofwork.appointmentTypes.all()
                 .then(function (response) {
@@ -131,6 +134,10 @@
             ]).fail(self.handleError);
 
             return true;
+        }
+
+        function deactivate() {
+            vm.salary(undefined);
         }
 
         function saveChanges() {
