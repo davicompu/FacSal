@@ -20,6 +20,7 @@ exports.config = function(weyland) {
                     'text': '../Scripts/text',
                     'durandal': '../Scripts/durandal',
                     'plugins': '../Scripts/durandal/plugins',
+                    'pace': '../Scripts/pace',
                     'transitions': '../Scripts/durandal/transitions',
                     'knockout': 'empty:',
                     'bootstrap': 'empty:',
