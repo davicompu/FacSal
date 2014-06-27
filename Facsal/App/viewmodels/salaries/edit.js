@@ -148,6 +148,11 @@
                 vm.errors.showAllMessages();
                 logger.logError('Errors detected.', null, system.getModuleId(vm), true);
                 return;
+            } 
+
+            if (vm.salary().isSpecialAdjustmentNoteRequired() && vm.salary().specialSalaryAdjustments.length === 0) {
+                logger.logError('Select a special adjustment reason.', null, system.getModuleId(vm), true);
+                return;
             }
 
             if (!unitofwork.hasChanges()) {

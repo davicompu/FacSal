@@ -5,7 +5,7 @@ namespace FacsalData.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    public sealed class Configuration : DbMigrationsConfiguration<FacsalData.FacsalDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<FacsalData.FacsalDbContext>
     {
         public Configuration()
         {

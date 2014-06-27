@@ -16,6 +16,7 @@ namespace SalaryEntities.Entities
 
         [Required]
         [StringLength(30)]
+        [Index(IsUnique = true)]
         public string Pid { get; set; }
 
         public ICollection<RoleAssignment> RoleAssignments { get; set; }
