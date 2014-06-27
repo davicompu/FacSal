@@ -10,6 +10,8 @@ namespace SalaryEntities.Entities
 {
     public class Employment : AuditEntityBase
     {
+        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
 
         [ForeignKey("Person")]
@@ -18,10 +20,13 @@ namespace SalaryEntities.Entities
         [ForeignKey("Department")]
         public string DepartmentId { get; set; }
 
+        [ForeignKey("HomeDepartment")]
+        public string HomeDepartmentId { get; set; }
+
         public Person Person { get; set; }
 
         public Department Department { get; set; }
 
-        public bool IsHome { get; set; }
+        public Department HomeDepartment { get; set; }
     }
 }

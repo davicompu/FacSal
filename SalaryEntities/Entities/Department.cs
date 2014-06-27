@@ -10,6 +10,7 @@ namespace SalaryEntities.Entities
 {
     public class Department : AuditEntityBase
     {
+        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string Id { get; set; }
 
@@ -19,7 +20,7 @@ namespace SalaryEntities.Entities
 
         [Required]
         [StringLength(3)]
-        public string ValSeq { get; set; }
+        public string SequenceValue { get; set; }
 
         [ForeignKey("Unit")]
         public string UnitId { get; set; }

@@ -13,7 +13,7 @@ namespace FacsalData.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201406261850154_Initial"; }
+            get { return "201406272128300_Initial"; }
         }
         
         string IMigrationMetadata.Source

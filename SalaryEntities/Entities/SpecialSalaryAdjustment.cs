@@ -10,6 +10,8 @@ namespace SalaryEntities.Entities
 {
     public class SpecialSalaryAdjustment : AuditEntityBase
     {
+        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
 
         [ForeignKey("Salary")]

@@ -16,24 +16,20 @@
 
         <section class="top-bar-section">
             <ul class="right">
-                <li class="divider"></li>
                 <!-- ko foreach: router.navigationModel -->
                 <li class="menu-item">
                     <a data-bind="attr: { href: $parent.router.convertRouteToHash('/' + hash) }, text: title"></a>
                 </li>
-                <li class="divider"></li>
                 <!--/ko-->
 
                 <li class="menu-item"
                     data-bind="ifIsInRole: 'manage-users'">
                     <a href="/users/index">Users</a>
                 </li>
-                <li class="divider" data-bind="ifIsInRole: 'manage-users'"></li>
                 
                 <li class="menu-item">
                     <a data-bind="click: logOut">Log out</a>
                 </li>
-                <li class="divider"></li>
             </ul>
         </section>
     </nav>

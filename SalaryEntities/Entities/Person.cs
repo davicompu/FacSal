@@ -10,6 +10,7 @@ namespace SalaryEntities.Entities
 {
     public class Person : AuditEntityBase
     {
+        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string Id { get; set; }
 
@@ -48,10 +49,6 @@ namespace SalaryEntities.Entities
             get
             {
                 return string.Format("{0} {1}", FirstName, LastName);
-            }
-            set
-            {
-                string.Format("{0} {1}", FirstName, LastName);
             }
         }
 

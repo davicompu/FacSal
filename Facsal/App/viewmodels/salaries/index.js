@@ -10,10 +10,12 @@
             attached = function (view) {
                 var self = this;
 
-                var units = unitofwork.units.all()
-                    .then(function (response) {
-                        self.units(response);
-                    });
+                if (vm.units() == false) {
+                    var units = unitofwork.units.all()
+                        .then(function (response) {
+                            self.units(response);
+                        });
+                }
 
                 Q.all([units]).fail(self.handleError);
 

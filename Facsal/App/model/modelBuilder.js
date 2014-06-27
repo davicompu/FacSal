@@ -126,11 +126,16 @@
                         entity.eminentAmount() + entity.promotionAmount();
                 });
 
+                entity.newEminentAmount = ko.computed(function () {
+                    return entity.eminentAmount() + ((entity.eminentAmount() / entity.totalAmount()) *
+                        (entity.meritIncrease() + entity.specialIncrease())) + entity.eminentIncrease();
+                });
+
                 entity.newTotalAmount = ko.computed(function () {
                     return entity.totalAmount() +
                         entity.meritIncrease() +
                         entity.specialIncrease() +
-                        entity.eminentIncrease();
+                        entity.newEminentAmount();
                 });
 
                 entity.percentIncrease = ko.computed(function () {
@@ -149,7 +154,16 @@
                     return ((entity.eminentIncrease() / entity.totalAmount() - 1) * 100).formatNumber(1);
                 });
 
-                entity.formattedTotalAmount = ko.observable(entity.totalAmount()).extend({ currency: [0] });
+                entity.formattedTotalAmount = ko.computed(function () {
+                    return entity.baseAmount() + entity.adminAmount() +
+                        entity.eminentAmount() + entity.promotionAmount();
+                }).extend({currency: [0, entity.totalAmount]});
+
+                entity.formattedAdminAmount = ko.observable(entity.adminAmount()).extend({ currency: [0] });
+
+                entity.formattedEminentAmount = ko.observable(entity.eminentAmount()).extend({ currency: [0] });
+
+                entity.formattedPromotionAmount = ko.observable(entity.promotionAmount()).extend({ currency: [0] });
 
                 entity.formattedMeritIncrease = ko.observable(entity.meritIncrease()).extend({ currency: [0] });
 

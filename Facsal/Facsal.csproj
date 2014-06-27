@@ -307,6 +307,7 @@
     <Content Include="Scripts\durandal\transitions\entrance.js" />
     <Content Include="Scripts\durandal\viewEngine.js" />
     <Content Include="Scripts\durandal\viewLocator.js" />
+    <Content Include="Scripts\jquery.formatCurrency-1.4.0.js" />
     <Content Include="Scripts\knockout.validation.js" />
     <Content Include="Scripts\pace.js" />
     <Content Include="weyland-config.js" />

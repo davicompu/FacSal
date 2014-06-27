@@ -9,6 +9,7 @@
         var vm = {
             activate: activate,
             attached: attached,
+            deactivate: deactivate,
 
             assignmentVMs: ko.observableArray(),
             columnLength: ko.observable(4),
@@ -88,6 +89,10 @@
             ]).fail(self.handleError);
 
             return true;
+        }
+
+        function deactivate() {
+            vm.user(undefined);
         }
 
         function saveChanges() {

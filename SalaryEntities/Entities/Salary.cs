@@ -11,6 +11,8 @@ namespace SalaryEntities.Entities
 {
     public class Salary : AuditEntityBase
     {
+        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
 
         //[Index("IX_PersonAndCycleYear", 1, IsUnique = true, IsClustered = true)]

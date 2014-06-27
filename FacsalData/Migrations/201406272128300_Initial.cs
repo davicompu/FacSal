@@ -38,7 +38,7 @@ namespace FacsalData.Migrations
                     {
                         Id = c.String(nullable: false, maxLength: 128),
                         Name = c.String(nullable: false, maxLength: 50),
-                        ValSeq = c.String(nullable: false, maxLength: 3),
+                        SequenceValue = c.String(nullable: false, maxLength: 3),
                         UnitId = c.String(maxLength: 128),
                         CreatedBy = c.String(),
                         CreatedDate = c.DateTimeOffset(nullable: false, precision: 7),
@@ -55,16 +55,21 @@ namespace FacsalData.Migrations
                         Id = c.Long(nullable: false, identity: true),
                         PersonId = c.String(maxLength: 128),
                         DepartmentId = c.String(maxLength: 128),
-                        IsHome = c.Boolean(nullable: false),
+                        HomeDepartmentId = c.String(maxLength: 128),
                         CreatedBy = c.String(),
                         CreatedDate = c.DateTimeOffset(nullable: false, precision: 7),
                         RowVersion = c.Int(nullable: false),
+                        Department_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Department", t => t.DepartmentId)
+                .ForeignKey("dbo.Department", t => t.HomeDepartmentId)
                 .ForeignKey("dbo.Person", t => t.PersonId)
+                .ForeignKey("dbo.Department", t => t.Department_Id)
                 .Index(t => t.PersonId)
-                .Index(t => t.DepartmentId);
+                .Index(t => t.DepartmentId)
+                .Index(t => t.HomeDepartmentId)
+                .Index(t => t.Department_Id);
             
             CreateTable(
                 "dbo.Person",
@@ -75,7 +80,6 @@ namespace FacsalData.Migrations
                         LastName = c.String(nullable: false, maxLength: 35),
                         FirstName = c.String(nullable: false, maxLength: 35),
                         StatusTypeId = c.Int(nullable: false),
-                        FullName = c.String(),
                         CreatedBy = c.String(),
                         CreatedDate = c.DateTimeOffset(nullable: false, precision: 7),
                         RowVersion = c.Int(nullable: false),
@@ -227,7 +231,7 @@ namespace FacsalData.Migrations
                     {
                         Id = c.String(nullable: false, maxLength: 128),
                         Name = c.String(nullable: false, maxLength: 35),
-                        ValSeq = c.String(nullable: false, maxLength: 3),
+                        SequenceValue = c.String(nullable: false, maxLength: 3),
                         CreatedBy = c.String(),
                         CreatedDate = c.DateTimeOffset(nullable: false, precision: 7),
                         RowVersion = c.Int(nullable: false),
@@ -281,7 +285,7 @@ namespace FacsalData.Migrations
                     {
                         Id = c.String(nullable: false, maxLength: 128),
                         Name = c.String(nullable: false, maxLength: 50),
-                        ValSeq = c.String(nullable: false, maxLength: 3),
+                        SequenceValue = c.String(nullable: false, maxLength: 3),
                         CreatedBy = c.String(),
                         CreatedDate = c.DateTimeOffset(nullable: false, precision: 7),
                         RowVersion = c.Int(nullable: false),
@@ -351,6 +355,7 @@ namespace FacsalData.Migrations
             DropForeignKey("dbo.Department", "UnitId", "dbo.Unit");
             DropForeignKey("dbo.UnitModification", "Unit_Id", "dbo.Unit");
             DropForeignKey("dbo.DepartmentModification", "Department_Id", "dbo.Department");
+            DropForeignKey("dbo.Employment", "Department_Id", "dbo.Department");
             DropForeignKey("dbo.Employment", "PersonId", "dbo.Person");
             DropForeignKey("dbo.Person", "StatusTypeId", "dbo.StatusType");
             DropForeignKey("dbo.SpecialSalaryAdjustment", "SpecialAdjustmentTypeId", "dbo.SpecialAdjustmentType");
@@ -365,6 +370,7 @@ namespace FacsalData.Migrations
             DropForeignKey("dbo.BaseSalaryAdjustment", "BaseAdjustmentTypeId", "dbo.BaseAdjustmentType");
             DropForeignKey("dbo.Salary", "AppointmentTypeId", "dbo.AppointmentType");
             DropForeignKey("dbo.PersonModification", "Person_Id", "dbo.Person");
+            DropForeignKey("dbo.Employment", "HomeDepartmentId", "dbo.Department");
             DropForeignKey("dbo.Employment", "DepartmentId", "dbo.Department");
             DropIndex("dbo.RoleAssignment", new[] { "UserId" });
             DropIndex("dbo.RoleAssignment", new[] { "RoleId" });
@@ -382,6 +388,8 @@ namespace FacsalData.Migrations
             DropIndex("dbo.Salary", new[] { "PersonId" });
             DropIndex("dbo.PersonModification", new[] { "Person_Id" });
             DropIndex("dbo.Person", new[] { "StatusTypeId" });
+            DropIndex("dbo.Employment", new[] { "Department_Id" });
+            DropIndex("dbo.Employment", new[] { "HomeDepartmentId" });
             DropIndex("dbo.Employment", new[] { "DepartmentId" });
             DropIndex("dbo.Employment", new[] { "PersonId" });
             DropIndex("dbo.Department", new[] { "UnitId" });

@@ -73,7 +73,9 @@ namespace Facsal.Controllers
             return UnitOfWork.SalaryRepository
                 .Find(s => s.Person.Employments
                     .Any(e => UserRoleNames
-                        .Any(ur => ur == "read-" + e.DepartmentId)));
+                        .Any(ur => ur == "read-" + e.DepartmentId)))
+                .OrderBy(s => s.RankType.SequenceValue)
+                    .ThenBy(s => s.Person.LastName);
         }
 
         [HttpGet]

@@ -10,6 +10,24 @@
             <fieldset>
                 <h4 data-bind="text: person().fullName() + ' | ' + person().id()"></h4>
 
+                <div class="row">
+                    <div class="large-3 columns">
+                        <p data-bind="text: 'Starting salary: ' + formattedTotalAmount()"></p>
+                    </div>
+
+                    <div class="large-3 columns" data-bind="if: adminAmount > 0">
+                        <p data-bind="text: 'Admin: ' + formattedAdminAmount()"></p>
+                    </div>
+
+                    <div class="large-3 columns" data-bind="if: eminentAmount > 0">
+                        <p data-bind="text: 'Eminent: ' + formattedEminentAmount()"></p>
+                    </div>
+
+                    <div class="large-3 columns" data-bind="if: promotionAmount > 0">
+                        <p data-bind="text: 'P&T: ' + formattedPromotionAmount()"></p>
+                    </div>
+                </div>
+
                 <div class="row hide-on-print" data-bind="ifIsInRole: 'update-person'">
                     <div class="large-4 columns end">
                         <label>
