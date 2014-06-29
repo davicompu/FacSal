@@ -15,7 +15,8 @@ namespace SalaryEntities.Entities
         public int Id { get; set; }
 
         [Required]
-        [Index(IsUnique = true)]
+        [Index(IsUnique = true, IsClustered = false)]
+        [StringLength(50)]
         public string Name { get; set; }
 
         public ICollection<RoleAssignment> RoleAssignments { get; set; }
