@@ -179,7 +179,7 @@
                         increase < config.lowPercentIncreaseThreshold
                 });
 
-                entity.meritAdjustmentTypeId = ko.observable(entity.meritAdjustmentTypeId())
+                entity.meritAdjustmentTypeId
                 .extend({
                     validation: {
                         validator: function (value) {
@@ -214,6 +214,20 @@
                                 return entity.isSpecialAdjustmentNoteRequired();
                             },
                             message: 'This field is required.'
+                        }
+                    });
+
+                entity.specialSalaryAdjustments
+                    .extend({
+                        validation: {
+                            validator: function (value) {
+                                if (entity.isSpecialAdjustmentNoteRequired()) {
+                                    return value.length > 0
+                                } else {
+                                    return true;
+                                }
+                            },
+                            message: 'Designate a special adjustment reason.'
                         }
                     });
             };

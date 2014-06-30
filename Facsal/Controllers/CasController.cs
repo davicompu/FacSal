@@ -12,7 +12,7 @@ namespace Facsal.Controllers
         public ActionResult Logout()
         {
             DotNetCasClient.CasAuthentication.SingleSignOut();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Home");
         }
     }
 }

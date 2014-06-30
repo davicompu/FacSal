@@ -117,7 +117,8 @@
                         vm.errors = ko.validation.group([
                             vm.salary().meritAdjustmentTypeId,
                             vm.salary().meritAdjustmentNote,
-                            vm.salary().specialAdjustmentNote
+                            vm.salary().specialAdjustmentNote,
+                            vm.salary().specialSalaryAdjustments
                         ]);
 
                         return true;
@@ -150,11 +151,6 @@
                 logger.logError('Errors detected.', null, system.getModuleId(vm), true);
                 return;
             } 
-
-            if (vm.salary().isSpecialAdjustmentNoteRequired() && vm.salary().specialSalaryAdjustments.length === 0) {
-                logger.logError('Select a special adjustment reason.', null, system.getModuleId(vm), true);
-                return;
-            }
 
             if (!unitofwork.hasChanges()) {
                 return logger.log('No changes were detected.', null, system.getModuleId(vm), true);
