@@ -15,11 +15,11 @@ namespace SalaryEntities.Entities
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
 
-        //[Index("IX_PersonAndCycleYear", 1, IsUnique = true, IsClustered = true)]
+        [Index("IX_PersonAndCycleYear", 1, IsUnique = true, IsClustered = false)]
         [ForeignKey("Person")]
         public string PersonId { get; set; }
 
-        //[Index("IX_PersonAndCycleYear", 2, IsUnique = true, IsClustered = true)]
+        [Index("IX_PersonAndCycleYear", 2, IsUnique = true, IsClustered = false)]
         [Max(2050)]
         [Min(2000)]
         public int CycleYear { get; set; }
@@ -85,7 +85,7 @@ namespace SalaryEntities.Entities
         public string BaseSalaryAdjustmentNote { get; set; }
 
         [ForeignKey("MeritAdjustmentType")]
-        public int? MeritAdjustmentTypeId { get; set; }
+        public int MeritAdjustmentTypeId { get; set; }
 
         [StringLength(1024)]
         public string MeritAdjustmentNote { get; set; }

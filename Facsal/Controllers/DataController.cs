@@ -41,17 +41,17 @@ namespace Facsal.Controllers
             return UnitOfWork.Metadata();
         }
 
-        [HttpGet]
-        public IQueryable<BaseSalaryAdjustment> BaseSalaryAdjustments()
-        {
-            return UnitOfWork.BaseSalaryAdjustmentRepository.All();
-        }
+        //[HttpGet]
+        //public IQueryable<BaseSalaryAdjustment> BaseSalaryAdjustments()
+        //{
+        //    return UnitOfWork.BaseSalaryAdjustmentRepository.All();
+        //}
 
-        [HttpGet]
-        public IQueryable<Department> Departments()
-        {
-            return UnitOfWork.DepartmentRepository.All();
-        }
+        //[HttpGet]
+        //public IQueryable<Department> Departments()
+        //{
+        //    return UnitOfWork.DepartmentRepository.All();
+        //}
 
         [HttpGet]
         public IQueryable<Employment> Employments()
@@ -61,11 +61,11 @@ namespace Facsal.Controllers
                     .Any(ur => ur == "read-" + e.DepartmentId));
         }
 
-        [HttpGet]
-        public IQueryable<Person> Persons()
-        {
-            return UnitOfWork.PersonRepository.All();
-        }
+        //[HttpGet]
+        //public IQueryable<Person> Persons()
+        //{
+        //    return UnitOfWork.PersonRepository.All();
+        //}
 
         [HttpGet]
         public IQueryable<Salary> Salaries()
@@ -78,11 +78,11 @@ namespace Facsal.Controllers
                     .ThenBy(s => s.Person.LastName);
         }
 
-        [HttpGet]
-        public IQueryable<Unit> Units()
-        {
-            return UnitOfWork.UnitRepository.All();
-        }
+        //[HttpGet]
+        //public IQueryable<Unit> Units()
+        //{
+        //    return UnitOfWork.UnitRepository.All();
+        //}
 
         [HttpGet]
         public IQueryable<User> Users()

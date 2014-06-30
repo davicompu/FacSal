@@ -115,6 +115,7 @@
                         vm.salary(salary);
 
                         vm.errors = ko.validation.group([
+                            vm.salary().meritAdjustmentTypeId,
                             vm.salary().meritAdjustmentNote,
                             vm.salary().specialAdjustmentNote
                         ]);

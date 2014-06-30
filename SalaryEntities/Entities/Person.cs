@@ -16,6 +16,7 @@ namespace SalaryEntities.Entities
 
         [Required]
         [StringLength(30)]
+        [Index(IsUnique = true, IsClustered = false)]
         public string Pid { get; set; }
 
         [Required]

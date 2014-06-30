@@ -8587,7 +8587,7 @@ textarea.error {
 }
 
 /* line 2, ../sass/app/components/_label.scss */
-label span.required {
+label span.required, h5 span.required {
   color: #f04124;
 }
 

@@ -19,7 +19,7 @@ namespace Facsal
             // Force requests into role authorization pipeline.
             if (!HttpContext.Current.IsDebuggingEnabled)
             {
-                filters.Add(new AuthorizeAttribute() { Roles = "VT-EMPLOYEE, VT-STUDENT-WAGE" });
+                filters.Add(new AuthorizeAttribute() { Roles = "VT-EMPLOYEE" });
             }
         }
     }

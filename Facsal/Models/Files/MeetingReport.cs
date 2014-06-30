@@ -54,8 +54,7 @@ namespace Facsal.Models.Files
             sheet.Cells[Row, ++column].Value =
                 DataAnnotationsHelper.GetPropertyName<Salary>(s => s.SpecialIncrease);
             sheet.Cells[Row, ++column].Value =
-                DataAnnotationsHelper.GetPropertyName<Salary>(s => s.EminentIncrease);
-            sheet.Cells[Row, ++column].Value =
+                DataAnnotationsHelper.GetPropertyName<Salary>(s => s.NewTotalAmount);
             sheet.Cells[Row, ++column].Value =
                 DataAnnotationsHelper.GetPropertyName<Salary>(s => s.Comments);
             
@@ -97,7 +96,6 @@ namespace Facsal.Models.Files
                     sheet.Cells[Row, ++column].Value = salary.TotalAmount;
                     sheet.Cells[Row, ++column].Value = salary.MeritIncrease;
                     sheet.Cells[Row, ++column].Value = salary.SpecialIncrease;
-                    sheet.Cells[Row, ++column].Value = salary.EminentIncrease;
                     sheet.Cells[Row, ++column].Value = salary.NewTotalAmount;
                     sheet.Cells[Row, ++column].Value = salary.Comments;
                 }

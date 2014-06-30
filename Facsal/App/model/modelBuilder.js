@@ -134,7 +134,7 @@
                 entity.newTotalAmount = ko.computed(function () {
                     return entity.totalAmount() +
                         entity.meritIncrease() +
-                        entity.specialIncrease() +
+                        entity.specialIncrease() + 0
                         entity.newEminentAmount();
                 });
 
@@ -154,10 +154,7 @@
                     return ((entity.eminentIncrease() / entity.totalAmount() - 1) * 100).formatNumber(1);
                 });
 
-                entity.formattedTotalAmount = ko.computed(function () {
-                    return entity.baseAmount() + entity.adminAmount() +
-                        entity.eminentAmount() + entity.promotionAmount();
-                }).extend({currency: [0, entity.totalAmount]});
+                entity.formattedTotalAmount = ko.observable(entity.totalAmount()).extend({ currency: [0] });
 
                 entity.formattedAdminAmount = ko.observable(entity.adminAmount()).extend({ currency: [0] });
 
@@ -180,6 +177,20 @@
 
                     return increase > config.highPercentIncreaseThreshold ||
                         increase < config.lowPercentIncreaseThreshold
+                });
+
+                entity.meritAdjustmentTypeId = ko.observable(entity.meritAdjustmentTypeId())
+                .extend({
+                    validation: {
+                        validator: function (value) {
+                            if (entity.meritIncrease() > 0) {
+                                return value > 1;
+                            } else {
+                                return value > 0;
+                            }
+                        },
+                        message: 'Choose an adjustment reason.'
+                    }
                 });
 
                 entity.meritAdjustmentNote
