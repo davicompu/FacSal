@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Security;
 
 namespace Facsal.Controllers
 {
@@ -26,11 +27,7 @@ namespace Facsal.Controllers
                 UserName = User.Identity.Name,
             };
 
-            var rolesNames = UnitOfWork.RoleAssignmentRepository
-                .Find(ra => ra.User.Pid == User.Identity.Name)
-                .Select(ra => ra.Role.Name);
-
-            userInfo.UserRoles = string.Join(",", rolesNames);
+            userInfo.UserRoles = string.Join(",", Roles.GetRolesForUser());
 
             return Request.CreateResponse<UserInfoViewModel>(HttpStatusCode.OK, userInfo);
         }

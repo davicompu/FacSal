@@ -24,40 +24,51 @@ namespace Facsal.Controllers
         [HttpGet]
         public IHttpActionResult GetSalariesByFacultyType([FromUri]string id)
         {
-            var salaries = DbContext.Salaries
-                .Where(s => s.Person.Employments.Any(e => e.DepartmentId == id))
-                .GroupBy(s => s.FacultyTypeId)
-                .Select(sg => new {
-                    FacultyType = sg.Select(x => x.FacultyType.Name),
-                    StartingSalaries = sg.Sum(x => x.BaseAmount + x.AdminAmount +
-                        x.EminentAmount + x.PromotionAmount),
-                    MeritIncreases = sg.Sum(x => x.MeritIncrease),
-                    SpecialIncreases = sg.Sum(x => x.SpecialIncrease),
-                    EminentIncreases = sg.Sum(x => x.EminentIncrease),
-                    NewSalaries = sg.Sum(x => x.BaseAmount + x.AdminAmount +
-                        x.EminentAmount + x.PromotionAmount + x.MeritIncrease +
-                        x.SpecialIncrease + x.EminentIncrease)
-                });
+            if (User.IsInRole("read-" + id))
+            {
+                var salaries = DbContext.Salaries
+                    .Where(s => s.Person.Employments.Any(e => e.DepartmentId == id))
+                    .GroupBy(s => s.FacultyTypeId)
+                    .Select(sg => new
+                    {
+                        FacultyType = sg.Select(x => x.FacultyType.Name),
+                        StartingSalaries = sg.Sum(x => x.BaseAmount + x.AdminAmount +
+                            x.EminentAmount + x.PromotionAmount),
+                        MeritIncreases = sg.Sum(x => x.MeritIncrease),
+                        SpecialIncreases = sg.Sum(x => x.SpecialIncrease),
+                        EminentIncreases = sg.Sum(x => x.EminentIncrease),
+                        NewSalaries = sg.Sum(x => x.BaseAmount + x.AdminAmount +
+                            x.EminentAmount + x.PromotionAmount + x.MeritIncrease +
+                            x.SpecialIncrease + x.EminentIncrease)
+                    });
 
-            return Ok(salaries);
+                return Ok(salaries);
+            }
+
+            return Unauthorized();
         }
 
         [HttpGet]
         public IHttpActionResult GetPersonsWithMultipleEmployments([FromUri] string id)
         {
-            var data = DbContext.Persons
-                .Include("Salaries")
-                .Where(p => p.Employments.Count > 1 &&
-                    p.Employments.Any(e => e.DepartmentId == id)
-                )
-                .Select(pg => new
-                {
-                    FullName = pg.FullName,
-                    SalaryId = pg.Salaries.Where(s => s.CycleYear == CycleYear)
-                        .FirstOrDefault().Id
-                });
+            if (User.IsInRole("read-" + id))
+            {
+                var data = DbContext.Persons
+                    .Include("Salaries")
+                    .Where(p => p.Employments.Count > 1 &&
+                        p.Employments.Any(e => e.DepartmentId == id)
+                    )
+                    .Select(pg => new
+                    {
+                        FullName = pg.FullName,
+                        SalaryId = pg.Salaries.Where(s => s.CycleYear == CycleYear)
+                            .FirstOrDefault().Id
+                    });
 
-            return Ok(data);
+                return Ok(data);
+            }
+
+            return Unauthorized();
         }
     }
 }

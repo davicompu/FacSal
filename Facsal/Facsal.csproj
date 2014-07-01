@@ -209,7 +209,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CasController.cs" />
     <Compile Include="Controllers\DataController.cs" />
-    <Compile Include="Controllers\FromUristring.cs" />
     <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
