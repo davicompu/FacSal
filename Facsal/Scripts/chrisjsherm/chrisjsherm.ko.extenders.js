@@ -1,13 +1,13 @@
-﻿ko.extenders.numeric = function(target, precision) {
+﻿ko.extenders.numeric = function (target, precision) {
     // Create a writeable computed observable to intercept writes to our observable.
     var result = ko.computed({
         read: target,  //always return the original observables value
-        write: function(newValue) {
+        write: function (newValue) {
             var current = target(),
                 roundingMultiplier = Math.pow(10, precision),
                 newValueAsNum = isNaN(newValue) ? 0 : parseFloat(+newValue),
                 valueToWrite = Math.round(newValueAsNum * roundingMultiplier) / roundingMultiplier;
- 
+
             // Only write if value changed.
             if (valueToWrite !== current) {
                 target(valueToWrite);
@@ -19,10 +19,10 @@
             }
         }
     }).extend({ notify: 'always' });
- 
+
     // Initialize with current value to make sure it is rounded appropriately.
     result(target());
- 
+
     // Return the new computed observable.
     return result;
 };
@@ -44,8 +44,8 @@ ko.extenders.currency = function (target, configArray) {
         rawValueObservable = configArray[1] || ko.observable();
     // Create a writeable computed observable to intercept writes to our observable.
     var result = ko.computed({
-    	// Always return the original observable's value.
-        read: target,  
+        // Always return the original observable's value.
+        read: target,
         write: function (newValue) {
             var current = target(),
                 cleansedValue = parseFloat(newValue.toString().replace(/[^\d.-]/g, '')),
@@ -55,22 +55,43 @@ ko.extenders.currency = function (target, configArray) {
                 formattedValue = valueToFormat.formatNumber(precision),
                 valueToWrite = isNegativeValue ? '($' + formattedValue + ')' : '$' + formattedValue;
 
-        	// Only write if value changed.
+            // Only write if value changed.
             if (valueToWrite !== current) {
                 rawValueObservable(newValueAsNum);
                 target(valueToWrite);
             } else {
-            	// If the rounded value is the same but a different value was written, force a notification for the current field.
-            	if (newValue !== current) {
+                // If the rounded value is the same but a different value was written, force a notification for the current field.
+                if (newValue !== current) {
                     target.notifySubscribers(valueToWrite);
                 }
             }
         }
     }).extend({ notify: 'always' });
 
-	// Initialize with current value to make sure it is rounded appropriately.
+    // Initialize with current value to make sure it is rounded appropriately.
     result(target());
 
-	// Return the new computed observable.
+    // Return the new computed observable.
     return result;
 };
+
+ko.extenders.computedCurrency = function (target, configArray) {
+    var precision = configArray[0],
+        
+        result = ko.computed({
+            read: function () {
+                newValue = target(),
+
+                cleansedValue = parseFloat(newValue.toString().replace(/[^\d.-]/g, '')),
+                newValueAsNum = isNaN(cleansedValue) ? 0 : parseFloat(+cleansedValue),
+                isNegativeValue = newValueAsNum < 0 ? true : false,
+                valueToFormat = parseFloat(newValue.toString().replace(/[^\.\d]/g, '')),
+                formattedValue = valueToFormat.formatNumber(precision),
+                valueToWrite = isNegativeValue ? '($' + formattedValue + ')' : '$' + formattedValue;
+
+                return valueToWrite;
+            }
+        }).extend({ notify: 'always' });
+
+    return result;
+}

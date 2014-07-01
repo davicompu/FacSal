@@ -154,23 +154,31 @@
                     return ((entity.eminentIncrease() / entity.totalAmount() - 1) * 100).formatNumber(1);
                 });
 
-                entity.formattedTotalAmount = ko.observable(entity.totalAmount()).extend({ currency: [0] });
+                entity.formattedTotalAmount = entity.totalAmount.extend({ computedCurrency: [0] });
 
-                entity.formattedAdminAmount = ko.observable(entity.adminAmount()).extend({ currency: [0] });
+                entity.formattedAdminAmount = ko.observable(entity.adminAmount())
+                    .extend({ currency: [0, entity.adminAmount] });
 
-                entity.formattedEminentAmount = ko.observable(entity.eminentAmount()).extend({ currency: [0] });
+                entity.formattedEminentAmount = ko.observable(entity.eminentAmount())
+                    .extend({ currency: [0, entity.eminentAmount] });
 
-                entity.formattedPromotionAmount = ko.observable(entity.promotionAmount()).extend({ currency: [0] });
+                entity.formattedPromotionAmount = ko.observable(entity.promotionAmount())
+                    .extend({ currency: [0, entity.promotionAmount] });
 
-                entity.formattedMeritIncrease = ko.observable(entity.meritIncrease()).extend({ currency: [0] });
+                entity.formattedMeritIncrease = ko.observable(entity.meritIncrease())
+                    .extend({ currency: [0, entity.meritIncrease] });
 
-                entity.formattedSpecialIncrease = ko.observable(entity.specialIncrease()).extend({ currency: [0] });
+                entity.formattedSpecialIncrease = ko.observable(entity.specialIncrease())
+                    .extend({ currency: [0, entity.specialIncrease] });
 
-                entity.formattedEminentIncrease = ko.observable(entity.eminentIncrease()).extend({ currency: [0] });
+                entity.formattedEminentIncrease = ko.observable(entity.eminentIncrease())
+                    .extend({ currency: [0, entity.eminentIncrease] });
 
-                entity.formattedNewTotalAmount = ko.observable(entity.newTotalAmount()).extend({ currency: [0] });
+                entity.formattedNewTotalAmount = entity.newTotalAmount
+                    .extend({ computedCurrency: [0] });
 
-                entity.formattedPercentIncrease = ko.observable(entity.percentIncrease()).extend({ percent: 1 });
+                entity.formattedPercentIncrease = ko.observable(entity.percentIncrease())
+                    .extend({ percent: 1 });
 
                 entity.isMeritAdjustmentNoteRequired = ko.computed(function () {
                     var increase = entity.meritIncrease() / entity.totalAmount();

@@ -18,6 +18,12 @@ namespace Facsal
                 url: "Cas/{action}",
                 defaults: new { controller = "Cas", action = "Logout" }
             );
+
+            routes.MapRoute(
+                name: "ReportFile",
+                url: "ReportFile/{action}/{id}",
+                defaults: new { controller = "ReportFile", action = "Meeting", id = UrlParameter.Optional }
+            );
             
             routes.MapRoute(
                 name: "Default",

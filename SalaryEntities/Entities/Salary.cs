@@ -31,6 +31,7 @@ namespace SalaryEntities.Entities
         public int FacultyTypeId { get; set; }
 
         [ForeignKey("RankType")]
+        [Display(Name = "Rank type")]
         public string RankTypeId { get; set; }
 
         [ForeignKey("AppointmentType")]
@@ -42,6 +43,7 @@ namespace SalaryEntities.Entities
         [Required]
         [Max(1.00)]
         [Min(0.00)]
+        [Display(Name = "Full-time equivalent")]
         public decimal FullTimeEquivalent { get; set; }
 
         [Min(0)]
@@ -49,36 +51,40 @@ namespace SalaryEntities.Entities
 
         [Max(100000000)]
         [Min(0)]
+        [Display(Name = "Base salary")]
         public int BaseAmount { get; set; }
 
         [Max(100000000)]
         [Min(0)]
+        [Display(Name = "Admin salary")]
         public int AdminAmount { get; set; }
 
         [Max(100000000)]
         [Min(0)]
+        [Display(Name = "Eminent salary")]
         public int EminentAmount { get; set; }
 
         [Max(100000000)]
         [Min(0)]
+        [Display(Name = "Promotion salary")]
         public int PromotionAmount { get; set; }
 
         [Required]
         [Max(100000000)]
         [Min(0)]
-        [Display(Name = "Merit Increase", ShortName = "Merit")]
+        [Display(Name = "Merit increase", ShortName = "Merit")]
         public int MeritIncrease { get; set; }
 
         [Required]
         [Max(100000000)]
         [Min(0)]
-        [Display(Name = "Special Increase", ShortName = "Special")]
+        [Display(Name = "Special increase", ShortName = "Special")]
         public int SpecialIncrease { get; set; }
 
         [Required]
         [Max(100000000)]
         [Min(0)]
-        [Display(Name = "Eminent Increase", ShortName = "Eminent")]
+        [Display(Name = "Eminent increase", ShortName = "Eminent")]
         public int EminentIncrease { get; set; }
 
         [StringLength(1024)]
@@ -115,6 +121,7 @@ namespace SalaryEntities.Entities
 
         public ICollection<SalaryModification> Modifications { get; set; }
 
+        [Display(Name = "Total salary")]
         public int TotalAmount
         {
             get
@@ -123,6 +130,17 @@ namespace SalaryEntities.Entities
             }
         }
 
+        [Display(Name = "New eminent salary")]
+        public int NewEminentAmount
+        {
+            get
+            {
+                return EminentAmount + (EminentAmount / TotalAmount) *
+                    (MeritIncrease + SpecialIncrease) + EminentIncrease;
+            }
+        }
+
+        [Display(Name = "New total salary")]
         public int NewTotalAmount
         {
             get

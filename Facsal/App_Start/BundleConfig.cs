@@ -32,7 +32,7 @@ namespace Facsal
                   .Include("~/Scripts/knockout-{version}.js")
                   .Include("~/Scripts/knockout.validation.js")
                   .Include("~/Scripts/Q.js")
-                  .Include("~/Scripts/chrisjsherm/chrisjsherm.*")
+                  //.Include("~/Scripts/chrisjsherm/chrisjsherm.*")
                   .Include("~/Scripts/breeze.debug.js")
                   .Include("~/Scripts/breeze.saveErrorExtensions.js")
                   .Include("~/Scripts/fastclick.js")

@@ -9,6 +9,10 @@
             deactivate: deactivate,
 
             departmentData: ko.observableArray(),
+            departmentId: ko.observable(),
+            unitId: ko.observable(),
+
+            downloadExcel: dowloadExcel,
         };
 
         errorhandler.includeIn(vm);
@@ -17,6 +21,9 @@
 
         function activate(unitId, departmentId) {
             var self = this;
+
+            vm.unitId(unitId);
+            vm.departmentId(departmentId);
 
             ga('send', 'pageview', { 'page': window.location.href, 'title': document.title });
 
@@ -50,6 +57,14 @@
             vm.departmentData([]);
 
             return true;
+        }
+
+        function dowloadExcel() {
+            if (vm.departmentId()) {
+                window.location.assign('/ReportFile/DepartmentMeeting/' + vm.departmentId());
+            } else if (vm.unitId()) {
+                window.location.assign('/ReportFile/UnitMeeting/' + vm.unitId());
+            }
         }
 
         function getData(departments) {

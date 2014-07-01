@@ -17,10 +17,10 @@ namespace Facsal.Models.Files
 
         int Row { get; set; }
 
-        public MeetingReport(Department department, IEnumerable<Salary> salaries)
+        public MeetingReport(Department department, IEnumerable<Salary> salaries) : base()
         {
             ExcelPackage package = new ExcelPackage();
-            ExcelWorksheet sheet = package.Workbook.Worksheets.Add("Funding Request Report");
+            ExcelWorksheet sheet = package.Workbook.Worksheets.Add(department.Name);
 
             #region Table Labels
             Row++;
@@ -28,9 +28,49 @@ namespace Facsal.Models.Files
             #endregion
 
             #region Department Data
+            sheet = WriteDepartmentData(sheet, department, salaries);
+            #endregion
+
+            sheet = PerformFinalFormatting(sheet);
+
+            BinaryData = package.GetAsByteArray();
+            FileType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            FileName = "FacSal_MeetingReport_" + 
+                TimeZoneInfo.ConvertTimeBySystemTimeZoneId(
+                    System.DateTime.Now, TimeZoneInfo.Local.Id, "Eastern Standard Time").ToString()
+                + ".xlsx";
+            
+        }
+
+        public MeetingReport(IEnumerable<Department> departments, IEnumerable<Salary> salaries) : base()
+        {
+            ExcelPackage package = new ExcelPackage();
+
+            foreach (var department in departments)
+            {
+                ExcelWorksheet sheet = package.Workbook.Worksheets.Add(department.Name);
+
+                #region Table Labels
+                Row++;
+                sheet = WriteTableLabels(sheet);
+                #endregion
+
+                #region Department Data
                 sheet = WriteDepartmentData(sheet, department, salaries
                     .Where(s => s.Person.Employments.Any(e => e.DepartmentId == department.Id)));
-            #endregion
+                #endregion
+
+                sheet = PerformFinalFormatting(sheet);
+
+                Row = 0;
+            }
+
+            BinaryData = package.GetAsByteArray();
+            FileType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            FileName = "FacSal_MeetingReport_" +
+                TimeZoneInfo.ConvertTimeBySystemTimeZoneId(
+                    System.DateTime.Now, TimeZoneInfo.Local.Id, "Eastern Standard Time").ToString()
+                + ".xlsx";
         }
 
         private ExcelWorksheet WriteTableLabels(ExcelWorksheet sheet)
@@ -46,17 +86,20 @@ namespace Facsal.Models.Files
 
             sheet.Cells[Row, ++column].Value = DataAnnotationsHelper.GetPropertyName<Salary>(s => s.Person.FullName);
             sheet.Cells[Row, ++column].Value = DataAnnotationsHelper.GetPropertyName<Salary>(s => s.RankType.Name);
-            sheet.Cells[Row, ++column].Value = DataAnnotationsHelper.GetPropertyName<Salary>(s => s.AppointmentType.Name);
             sheet.Cells[Row, ++column].Value = DataAnnotationsHelper.GetPropertyName<Salary>(s => s.FullTimeEquivalent);
+            sheet.Cells[Row, ++column].Value = DataAnnotationsHelper.GetPropertyName<Salary>(s => s.BaseAmount);
+            sheet.Cells[Row, ++column].Value = DataAnnotationsHelper.GetPropertyName<Salary>(s => s.AdminAmount);
+            sheet.Cells[Row, ++column].Value = DataAnnotationsHelper.GetPropertyName<Salary>(s => s.EminentAmount);
+            sheet.Cells[Row, ++column].Value = DataAnnotationsHelper.GetPropertyName<Salary>(s => s.PromotionAmount);
             sheet.Cells[Row, ++column].Value = DataAnnotationsHelper.GetPropertyName<Salary>(s => s.TotalAmount);
             sheet.Cells[Row, ++column].Value =
                 DataAnnotationsHelper.GetPropertyName<Salary>(s => s.MeritIncrease);
             sheet.Cells[Row, ++column].Value =
                 DataAnnotationsHelper.GetPropertyName<Salary>(s => s.SpecialIncrease);
             sheet.Cells[Row, ++column].Value =
-                DataAnnotationsHelper.GetPropertyName<Salary>(s => s.NewTotalAmount);
+                DataAnnotationsHelper.GetPropertyName<Salary>(s => s.NewEminentAmount);
             sheet.Cells[Row, ++column].Value =
-                DataAnnotationsHelper.GetPropertyName<Salary>(s => s.Comments);
+                DataAnnotationsHelper.GetPropertyName<Salary>(s => s.NewTotalAmount);
             
             return sheet;
         }
@@ -91,13 +134,17 @@ namespace Facsal.Models.Files
                     Row++;
                     column = 0;
                     sheet.Cells[Row, ++column].Value = salary.Person.FullName;
-                    sheet.Cells[Row, ++column].Value = salary.AppointmentType.Name;
+                    sheet.Cells[Row, ++column].Value = salary.RankType.Name;
                     sheet.Cells[Row, ++column].Value = salary.FullTimeEquivalent;
+                    sheet.Cells[Row, ++column].Value = salary.BaseAmount;
+                    sheet.Cells[Row, ++column].Value = salary.AdminAmount;
+                    sheet.Cells[Row, ++column].Value = salary.EminentAmount;
+                    sheet.Cells[Row, ++column].Value = salary.PromotionAmount;
                     sheet.Cells[Row, ++column].Value = salary.TotalAmount;
                     sheet.Cells[Row, ++column].Value = salary.MeritIncrease;
                     sheet.Cells[Row, ++column].Value = salary.SpecialIncrease;
+                    sheet.Cells[Row, ++column].Value = salary.NewEminentAmount;
                     sheet.Cells[Row, ++column].Value = salary.NewTotalAmount;
-                    sheet.Cells[Row, ++column].Value = salary.Comments;
                 }
             }
             #endregion
@@ -123,7 +170,7 @@ namespace Facsal.Models.Files
             sheet.PrinterSettings.FitToWidth = 1;
             sheet.PrinterSettings.FitToHeight = 0;
             ExcelRange range_numberFormatting =
-                sheet.Cells[1, NUM_COLUMNS - SUMMARY_DATA_COLUMNS + 1, 100, NUM_COLUMNS];
+                sheet.Cells[1, 4, Row, NUM_COLUMNS];
 
             //Cell styling
             range_numberFormatting.Style.Numberformat.Format = "_($* #,##0_);_($* (#,##0);_($* \"-\"_);_(@_)";

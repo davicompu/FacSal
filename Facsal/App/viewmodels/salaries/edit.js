@@ -150,7 +150,7 @@
                 vm.errors.showAllMessages();
                 logger.logError('Errors detected.', null, system.getModuleId(vm), true);
                 return;
-            } 
+            }
 
             if (!unitofwork.hasChanges()) {
                 return logger.log('No changes were detected.', null, system.getModuleId(vm), true);

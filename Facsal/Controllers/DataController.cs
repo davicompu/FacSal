@@ -41,18 +41,6 @@ namespace Facsal.Controllers
             return UnitOfWork.Metadata();
         }
 
-        //[HttpGet]
-        //public IQueryable<BaseSalaryAdjustment> BaseSalaryAdjustments()
-        //{
-        //    return UnitOfWork.BaseSalaryAdjustmentRepository.All();
-        //}
-
-        //[HttpGet]
-        //public IQueryable<Department> Departments()
-        //{
-        //    return UnitOfWork.DepartmentRepository.All();
-        //}
-
         [HttpGet]
         public IQueryable<Employment> Employments()
         {
@@ -61,28 +49,20 @@ namespace Facsal.Controllers
                     .Any(ur => ur == "read-" + e.DepartmentId));
         }
 
-        //[HttpGet]
-        //public IQueryable<Person> Persons()
-        //{
-        //    return UnitOfWork.PersonRepository.All();
-        //}
-
         [HttpGet]
         public IQueryable<Salary> Salaries()
         {
-            return UnitOfWork.SalaryRepository
-                .Find(s => s.Person.Employments
-                    .Any(e => UserRoleNames
-                        .Any(ur => ur == "read-" + e.DepartmentId)))
+            //return UnitOfWork.SalaryRepository.Find(s => s.Person.Employments
+            //    .Any(e => UnitOfWork.RoleAssignmentRepository
+            //    .Find(ra => ra.User.Pid == User.Identity.Name)
+            //    .Select(ra => ra.Role).Any(ur => ur.Name == "read-" + e.DepartmentId)))
+            //    .OrderBy(s => s.RankType.SequenceValue)
+            //        .ThenBy(s => s.Person.LastName);
+
+            return UnitOfWork.SalaryRepository.All()
                 .OrderBy(s => s.RankType.SequenceValue)
                     .ThenBy(s => s.Person.LastName);
         }
-
-        //[HttpGet]
-        //public IQueryable<Unit> Units()
-        //{
-        //    return UnitOfWork.UnitRepository.All();
-        //}
 
         [HttpGet]
         public IQueryable<User> Users()
@@ -102,16 +82,17 @@ namespace Facsal.Controllers
             return new LookupBundle
             {
                 AppointmentTypes = UnitOfWork.AppointmentTypeRepository.All(),
-                Departments = UnitOfWork.DepartmentRepository
-                    .Find(d => UserRoleNames.Any(ur => ur == "read-" + d.Id)),
+                Departments = UnitOfWork.RoleAssignmentRepository.Find(ra => ra.User.Pid == User.Identity.Name)
+                    .Select(ra => ra.Role.Department),
                 FacultyTypes = UnitOfWork.FacultyTypeRepository.All(),
                 MeritAdjustmentTypes = UnitOfWork.MeritAdjustmentTypeRepository.All(),
                 RankTypes = UnitOfWork.RankTypeRepository.All(),
-                Roles = UserRoles,
+                Roles = UnitOfWork.RoleAssignmentRepository.Find(ra => ra.User.Pid == User.Identity.Name)
+                    .Select(ra => ra.Role),
                 SpecialAdjustmentTypes = UnitOfWork.SpecialAdjustmentTypeRepository.All(),
                 StatusTypes = UnitOfWork.StatusTypeRepository.All(),
-                Units = UnitOfWork.UnitRepository
-                    .Find(u => u.Departments.Any(d => UserRoleNames.Any(ur => ur == "read-" + d.Id)))
+                Units = UnitOfWork.RoleAssignmentRepository.Find(ra => ra.User.Pid == User.Identity.Name)
+                    .Select(ra => ra.Role.Unit),
             };
         }
     }

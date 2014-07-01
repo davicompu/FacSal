@@ -39,7 +39,7 @@
             var predicate = breeze.Predicate
                 .create('person.employments', 'any', 'departmentId', '==', newValue)
                 .and('cycleYear', '==', config.currentCycleYear);
-            var expansionProperty = 'person';
+            var expansionProperty = 'person, specialSalaryAdjustments';
 
             return unitofwork.salaries.find(predicate, expansionProperty)
                 .then(function (response) {

@@ -74,6 +74,10 @@
     <Compile Include="Migrations\201406301409462_Indexes.Designer.cs">
       <DependentUpon>201406301409462_Indexes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201406302025536_RoleRef.cs" />
+    <Compile Include="Migrations\201406302025536_RoleRef.Designer.cs">
+      <DependentUpon>201406302025536_RoleRef.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Repository.cs" />
@@ -102,6 +106,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201406301409462_Indexes.resx">
       <DependentUpon>201406301409462_Indexes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406302025536_RoleRef.resx">
+      <DependentUpon>201406302025536_RoleRef.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
