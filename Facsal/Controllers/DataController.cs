@@ -19,20 +19,10 @@ namespace Facsal.Controllers
     public class DataController : ApiController
     {
         IUnitOfWork UnitOfWork;
-        ICollection<Role> UserRoles;
-        ICollection<string> UserRoleNames;
 
         public DataController(IUnitOfWork unitOfWork)
         {
             UnitOfWork = unitOfWork;
-            UserRoles = UnitOfWork.RoleAssignmentRepository
-                .Find(ra => ra.User.Pid == User.Identity.Name)
-                .Select(ra => ra.Role)
-                .ToList();
-
-            UserRoleNames = UserRoles
-                .Select(r => r.Name)
-                .ToList();
         }
 
         [HttpGet]
@@ -44,24 +34,36 @@ namespace Facsal.Controllers
         [HttpGet]
         public IQueryable<Employment> Employments()
         {
+            var userRoles = Roles.GetRolesForUser();
+
             return UnitOfWork.EmploymentRepository
-                .Find(e => UserRoleNames
-                    .Any(ur => ur == "read-" + e.DepartmentId));
+                .Find(e => userRoles
+                .Contains("read-" + e.DepartmentId));
         }
 
         [HttpGet]
         public IQueryable<Salary> Salaries()
         {
-            //return UnitOfWork.SalaryRepository.Find(s => s.Person.Employments
-            //    .Any(e => UnitOfWork.RoleAssignmentRepository
-            //    .Find(ra => ra.User.Pid == User.Identity.Name)
-            //    .Select(ra => ra.Role).Any(ur => ur.Name == "read-" + e.DepartmentId)))
-            //    .OrderBy(s => s.RankType.SequenceValue)
-            //        .ThenBy(s => s.Person.LastName);
+            var userRoles = Roles.GetRolesForUser();
 
-            return UnitOfWork.SalaryRepository.All()
-                .OrderBy(s => s.RankType.SequenceValue)
-                    .ThenBy(s => s.Person.LastName);
+            return UnitOfWork.SalaryRepository
+                .Find(s => s.Person.Employments
+                    .Any(e => userRoles
+                .Contains("read-" + e.DepartmentId)));
+        }
+
+        [HttpGet]
+        public IQueryable<Salary> Salaries(string id)
+        {
+            if (User.IsInRole("read-" + id))
+            {
+                return UnitOfWork.SalaryRepository
+                    .Find(s => s.Person.Employments.Any(e => e.DepartmentId == id))
+                    .OrderBy(s => s.RankType.SequenceValue)
+                        .ThenBy(s => s.Person.LastName);
+            }
+
+            return new List<Salary>().AsQueryable();
         }
 
         [HttpGet]

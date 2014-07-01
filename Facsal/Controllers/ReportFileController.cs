@@ -73,7 +73,7 @@ namespace Facsal.Controllers
                     .ThenBy(s => s.Person.LastName)
                     .ToList();
 
-                var report = new MeetingReport(authorizedDepartments, salaries);
+                var report = new MeetingReport(authorizedDepartments, salaries, true);
 
                 return File(report.BinaryData, report.FileType, report.FileName);
             }

@@ -42,27 +42,49 @@ namespace Facsal.Models.Files
             
         }
 
-        public MeetingReport(IEnumerable<Department> departments, IEnumerable<Salary> salaries) : base()
+        public MeetingReport(IEnumerable<Department> departments, IEnumerable<Salary> salaries, bool singleSheet) : base()
         {
             ExcelPackage package = new ExcelPackage();
 
-            foreach (var department in departments)
+            if (singleSheet)
             {
-                ExcelWorksheet sheet = package.Workbook.Worksheets.Add(department.Name);
+                ExcelWorksheet sheet = package.Workbook.Worksheets.Add("Unit");
 
                 #region Table Labels
                 Row++;
                 sheet = WriteTableLabels(sheet);
                 #endregion
-
-                #region Department Data
-                sheet = WriteDepartmentData(sheet, department, salaries
-                    .Where(s => s.Person.Employments.Any(e => e.DepartmentId == department.Id)));
-                #endregion
+                
+                foreach (var department in departments)
+                {
+                    #region Department Data
+                    sheet = WriteDepartmentData(sheet, department, salaries
+                        .Where(s => s.Person.Employments.Any(e => e.DepartmentId == department.Id)));
+                    #endregion
+                }
 
                 sheet = PerformFinalFormatting(sheet);
+            }
+            else
+            {
+                foreach (var department in departments)
+                {
+                    ExcelWorksheet sheet = package.Workbook.Worksheets.Add(department.Name);
 
-                Row = 0;
+                    #region Table Labels
+                    Row++;
+                    sheet = WriteTableLabels(sheet);
+                    #endregion
+
+                    #region Department Data
+                    sheet = WriteDepartmentData(sheet, department, salaries
+                        .Where(s => s.Person.Employments.Any(e => e.DepartmentId == department.Id)));
+                    #endregion
+
+                    sheet = PerformFinalFormatting(sheet);
+
+                    Row = 0;
+                }
             }
 
             BinaryData = package.GetAsByteArray();

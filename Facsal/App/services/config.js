@@ -32,6 +32,9 @@
             rolesUrl: 'roles',
             roleAssignmentsUrl: 'roleAssignments',
             salariesUrl: 'salaries',
+            //salariesUrl: function (departmentId) {
+            //    return 'salaries/' + departmentId;
+            //},
             salariesByFacultyTypeUrl: '/api/report/getSalariesByFacultyType',
             specialAdjustmentTypesUrl: 'specialAdjustmentTypes',
             specialSalaryAdjustmentsUrl: 'specialSalaryAdjustments',
