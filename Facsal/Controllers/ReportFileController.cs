@@ -1,5 +1,6 @@
 ﻿using Facsal.Models.Files;
 using FacsalData;
+using SalaryEntities.Entities;
 using SalaryEntities.UnitOfWork;
 using System;
 using System.Collections.Generic;
@@ -23,21 +24,26 @@ namespace Facsal.Controllers
 
         public ActionResult DepartmentMeeting(string id)
         {
-            var department = DbContext.Departments
-                .Where(d => d.Id == id)
-                .ToList()[0];
+            if (User.IsInRole("read-" + id))
+            {
+                var department = DbContext.Departments
+                    .Where(d => d.Id == id)
+                    .ToList()[0];
 
-            var salaries = DbContext.Salaries
-                .Include("Person")
-                .Include("RankType")
-                .Where(s => s.Person.Employments.Any(e => e.DepartmentId == id))
-                .OrderBy(s => s.RankType.SequenceValue)
-                    .ThenBy(s => s.Person.LastName)
-                .ToList();
+                var salaries = DbContext.Salaries
+                    .Include("Person")
+                    .Include("RankType")
+                    .Where(s => s.Person.Employments.Any(e => e.DepartmentId == id))
+                    .OrderBy(s => s.RankType.SequenceValue)
+                        .ThenBy(s => s.Person.LastName)
+                    .ToList();
 
-            var report = new MeetingReport(department, salaries);
+                var report = new MeetingReport(department, salaries);
 
-            return File(report.BinaryData, report.FileType, report.FileName);
+                return File(report.BinaryData, report.FileType, report.FileName);
+            }
+
+            return new HttpUnauthorizedResult();
         }
 
         public ActionResult UnitMeeting(string id)
@@ -46,18 +52,33 @@ namespace Facsal.Controllers
                 .Where(d => d.UnitId == id)
                 .ToList();
 
-            var salaries = DbContext.Salaries
-                .Include("Person")
-                .Include("Person.Employments")
-                .Include("RankType")
-                .Where(s => s.Person.Employments.Any(e => e.Department.UnitId == id))
-                .OrderBy(s => s.RankType.SequenceValue)
+            var authorizedDepartments = new List<Department>();
+
+            foreach (var department in departments)
+            {
+                if (User.IsInRole("read-" + department.Id))
+                {
+                    authorizedDepartments.Add(department);
+                }
+            }
+
+            if (authorizedDepartments.Count > 0)
+            {
+                var salaries = DbContext.Salaries
+                    .Include("Person")
+                    .Include("Person.Employments")
+                    .Include("RankType")
+                    .Where(s => s.Person.Employments.Any(e => e.Department.UnitId == id))
+                    .OrderBy(s => s.RankType.SequenceValue)
                     .ThenBy(s => s.Person.LastName)
-                .ToList();
+                    .ToList();
 
-            var report = new MeetingReport(departments, salaries);
+                var report = new MeetingReport(authorizedDepartments, salaries);
 
-            return File(report.BinaryData, report.FileType, report.FileName);
+                return File(report.BinaryData, report.FileType, report.FileName);
+            }
+
+            return new HttpUnauthorizedResult();
         }
     }
 }
