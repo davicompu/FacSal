@@ -69,6 +69,7 @@ namespace Facsal.Controllers
         [HttpGet]
         public IQueryable<User> Users()
         {
+            // TODO: User authorization.
             return UnitOfWork.UserRepository.All();
         }
 

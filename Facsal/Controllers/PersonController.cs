@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Security;
 
 namespace Facsal.Controllers
 {
@@ -20,8 +21,11 @@ namespace Facsal.Controllers
         [HttpGet]
         public IHttpActionResult GetDepartmentNames([FromUri]string id)
         {
+            var userRoles = Roles.GetRolesForUser();
+
             var names = UnitOfWork.EmploymentRepository
-                .Find(e => e.PersonId == id)
+                .Find(e => e.PersonId == id &&
+                    userRoles.Contains("read-" + e.DepartmentId))
                 .Select(e => e.Department.Name);
             
             return Ok(names);

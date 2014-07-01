@@ -19,7 +19,6 @@
             if (!newValue.isNullOrWhiteSpace()) {
                 searchString = newValue.trim().toLowerCase();
 
-                // TODO: Check for case sensitivity.
                 var p1 = breeze.Predicate.create('personId', '==', searchString),
                     p2 = breeze.Predicate.create(
                         'toLower(person.pid)', '==', searchString),
