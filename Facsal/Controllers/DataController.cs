@@ -44,6 +44,11 @@ namespace Facsal.Controllers
         [HttpGet]
         public IQueryable<Salary> Salaries()
         {
+            //if (User.IsInRole("read-all-entities"))
+            //{
+            //    return UnitOfWork.SalaryRepository.All();
+            //}
+
             var userRoles = Roles.GetRolesForUser();
 
             return UnitOfWork.SalaryRepository
@@ -82,6 +87,22 @@ namespace Facsal.Controllers
         [HttpGet]
         public LookupBundle GetLookups()
         {
+            //if (User.IsInRole("read-all-entities"))
+            //{
+            //    return new LookupBundle
+            //    {
+            //        AppointmentTypes = UnitOfWork.AppointmentTypeRepository.All(),
+            //        Departments = UnitOfWork.DepartmentRepository.All(),
+            //        FacultyTypes = UnitOfWork.FacultyTypeRepository.All(),
+            //        MeritAdjustmentTypes = UnitOfWork.MeritAdjustmentTypeRepository.All(),
+            //        RankTypes = UnitOfWork.RankTypeRepository.All(),
+            //        Roles = UnitOfWork.RoleRepository.All(),
+            //        SpecialAdjustmentTypes = UnitOfWork.SpecialAdjustmentTypeRepository.All(),
+            //        StatusTypes = UnitOfWork.StatusTypeRepository.All(),
+            //        Units = UnitOfWork.UnitRepository.All(),
+            //    };
+            //}
+
             return new LookupBundle
             {
                 AppointmentTypes = UnitOfWork.AppointmentTypeRepository.All(),

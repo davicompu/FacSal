@@ -1,10 +1,11 @@
 exports.config = function(weyland) {
     weyland.build('main')
         .task.jshint({
-            include:'App/**/*.js'
+            include: 'App/**/*.js',
+            exclude: 'App/main-built.js'
         })
         .task.uglifyjs({
-            include:['App/**/*.js', 'Scripts/durandal/**/*.js']
+            include: ['App/**/*.js', 'Scripts/durandal/**/*.js']
         })
         .task.rjs({
             include:['App/**/*.{js,html}', 'Scripts/durandal/**/*.js'],

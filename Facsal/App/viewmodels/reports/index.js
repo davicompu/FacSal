@@ -20,7 +20,7 @@
 
         errorhandler.includeIn(vm);
 
-        vm.selectedAudienceType.subscribe(function (newValue) {
+        vm.selectedAudienceType.subscribe(function () {
             vm.selectedDepartmentId(undefined);
             vm.selectedUnitId(undefined);
 
@@ -34,7 +34,7 @@
             return true;
         }
 
-        function attached(view) {
+        function attached() {
             var self = this,
 
                 audienceTypes = [
@@ -65,10 +65,12 @@
         }
 
         function generateReport() {
+            var route;
+
             switch (vm.selectedAudienceType()) {
                 case 'Department':
                     if (vm.selectedDepartmentId() && vm.selectedDepartmentId() !== 'Choose...') {
-                        var route = 'reports/' +
+                        route = 'reports/' +
                         vm.selectedReportType() +
                         '/' + vm.selectedDepartmentId();
 
@@ -80,9 +82,9 @@
                     break;
                 case 'Unit':
                     if (vm.selectedUnitId()) {
-                        var route = 'reports/' +
+                        route = 'reports/' +
                             vm.selectedReportType() +
-                            '/' + vm.selectedUnitId().toLowerCase();
+                            '/' + vm.selectedUnitId();
 
                         router.navigate(route);
                     } else {

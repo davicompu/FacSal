@@ -33,10 +33,6 @@
     </div>
 
     @Scripts.Render("~/Scripts/vendor")
-    @Scripts.Render("~/Scripts/chrisjsherm/chrisjsherm.counter.js")
-    @Scripts.Render("~/Scripts/chrisjsherm/chrisjsherm.ko.extenders.js")
-    @Scripts.Render("~/Scripts/chrisjsherm/chrisjsherm.number.js")
-    @Scripts.Render("~/Scripts/chrisjsherm/chrisjsherm.string.js")
 
 
     @if (HttpContext.Current.IsDebuggingEnabled)
@@ -45,9 +41,7 @@
     }
     else
     {
-        <script type="text/javascript" src="/Scripts/require.js" data-main="/App/main"></script>
-
-        @*@Scripts.Render("~/Scripts/main-built")*@
+        @Scripts.Render("~/Scripts/main-built")
     }
 </body>
 </html>

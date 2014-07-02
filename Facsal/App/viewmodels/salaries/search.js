@@ -17,7 +17,7 @@
 
         vm.throttledSearchString.subscribe(function (newValue) {
             if (!newValue.isNullOrWhiteSpace()) {
-                searchString = newValue.trim().toLowerCase();
+                var searchString = newValue.trim().toLowerCase();
 
                 var p1 = breeze.Predicate.create('personId', '==', searchString),
                     p2 = breeze.Predicate.create(
@@ -34,7 +34,7 @@
                         return vm.searchResults(response);
                     });
             }
-        })
+        });
 
         return vm;
 

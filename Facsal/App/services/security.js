@@ -1,7 +1,7 @@
 ﻿define(['services/config'],
     function (config) {
         // Routes.
-        userInfoUrl = config.userInfoUrl;
+        var userInfoUrl = config.userInfoUrl;
 
         var securityService = {
             getUserInfo: getUserInfo,

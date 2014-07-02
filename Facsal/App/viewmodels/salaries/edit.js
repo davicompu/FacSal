@@ -3,8 +3,6 @@
     function (uow, errorhandler, logger, router, system) {
         var unitofwork = uow.create(),
 
-            salary = ko.observable(),
-
             appointmentTypes = ko.observableArray(),
 
             facultyTypes = ko.observableArray(),
@@ -15,13 +13,7 @@
 
             adjustmentTypes = ko.observableArray(),
 
-            statusTypes = ko.observableArray(),
-
-            adjustmentItemVM = {
-                id: ko.observable(),
-                name: ko.observable(),
-                isSelected: ko.observable()
-            };
+            statusTypes = ko.observableArray();
 
         var vm = {
             activate: activate,
@@ -53,7 +45,7 @@
             return true;
         }
 
-        function attached(view) {
+        function attached() {
             var self = this;
 
             $('html,body').animate({ scrollTop: 0 }, 0);
@@ -107,7 +99,7 @@
 
                         vm.adjustmentVMs(adjustmentMapVMs);
 
-                        employments = unitofwork.departmentNamesForPerson(salary.person().id())
+                        unitofwork.departmentNamesForPerson(salary.person().id())
                             .then(function (response) {
                                 return vm.employments(response);
                             });
@@ -143,7 +135,6 @@
         }
 
         function saveChanges() {
-            var self = this;
             applySelectionsToSalaryAdjustmentMap();
 
             if (vm.errors().length !== 0) {

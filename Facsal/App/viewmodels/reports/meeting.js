@@ -38,7 +38,7 @@
                 ]).fail(self.handleError);
             } else {
                 var predicate = breeze.Predicate.create(
-                    'toLower(unitId)', '==', unitId.toLowerCase()),
+                    'toLower(unitId)', '==', unitId),
 
                     departments = unitofwork.departments.find(predicate)
                         .then(function (response) {

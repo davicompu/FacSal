@@ -52,14 +52,14 @@
             return true;
         }
 
-        function attached(view) {
+        function attached() {
             var self = this,
 
                 roles = unitofwork.getAssignableRoles()
                     .then(function (response) {
                         vm.roles(response);
 
-                    assignmentMapVMs = $.map(vm.roles(), function (role) {
+                    var assignmentMapVMs = $.map(vm.roles(), function (role) {
                         return {
                             role: role,
                             isSelected: ko.observable(false)

@@ -1,5 +1,5 @@
-﻿define(['services/utils', 'services/config'],
-    function (utils, config) {
+﻿define(['services/config', 'knockout'],
+    function (config, ko) {
         var foreignKeyInvalidValue = 0;
 
         var self = {
@@ -17,6 +17,7 @@
             extendMeritAdjustmentType(metadataStore);
             extendPerson(metadataStore);
             extendRankType(metadataStore);
+            extendRole(metadataStore);
             extendSalary(metadataStore);
             extendSpecialAdjustmentType(metadataStore);
             extendUnit(metadataStore);
@@ -41,12 +42,15 @@
                     return moment(entity.createdDate()).format('MM/DD/YYYY');
                 });
 
-                entity.formattedStartingBaseAmount = ko.observable(entity.startingBaseAmount()).extend({ currency: [0] });
+                entity.formattedStartingBaseAmount =
+                    ko.observable(entity.startingBaseAmount()).extend({ currency: [0] });
 
-                entity.formattedNewBaseAmount = ko.observable(entity.newBaseAmount()).extend({ currency: [0] });
+                entity.formattedNewBaseAmount =
+                    ko.observable(entity.newBaseAmount()).extend({ currency: [0] });
             };
 
-            metadataStore.registerEntityTypeCtor('BaseSalaryAdjustment', null, initializer);
+            metadataStore.registerEntityTypeCtor(
+                'BaseSalaryAdjustment', null, initializer);
         }
 
         function extendDepartment(metadataStore) {
@@ -82,13 +86,14 @@
                 addHasValidationErrorsProperty(entity);
             };
 
-            metadataStore.registerEntityTypeCtor('MeritAdjustmentType', null, initializer);
+            metadataStore.registerEntityTypeCtor(
+                'MeritAdjustmentType', null, initializer);
         }
 
         function extendPerson(metadataStore) {
             var personCtor = function () {
                 this.id = ko.observable(breeze.core.getUuid());
-            }
+            };
 
             var initializer = function (entity) {
                 addValidationRules(entity);
@@ -127,14 +132,16 @@
                 });
 
                 entity.newEminentAmount = ko.computed(function () {
-                    return entity.eminentAmount() + ((entity.eminentAmount() / entity.totalAmount()) *
-                        (entity.meritIncrease() + entity.specialIncrease())) + entity.eminentIncrease();
+                    return entity.eminentAmount() +
+                        ((entity.eminentAmount() / entity.totalAmount()) *
+                        (entity.meritIncrease() + entity.specialIncrease())) +
+                        entity.eminentIncrease();
                 });
 
                 entity.newTotalAmount = ko.computed(function () {
                     return entity.totalAmount() +
                         entity.meritIncrease() +
-                        entity.specialIncrease() + 0
+                        entity.specialIncrease() +
                         entity.newEminentAmount();
                 });
 
@@ -143,18 +150,22 @@
                 });
 
                 entity.meritPercentIncrease = ko.computed(function () {
-                    return ((entity.meritIncrease() / entity.totalAmount() - 1) * 100).formatNumber(1);
+                    return ((entity.meritIncrease() /
+                        entity.totalAmount() - 1) * 100).formatNumber(1);
                 });
 
                 entity.specialPercentIncrease = ko.computed(function () {
-                    return ((entity.specialIncrease() / entity.totalAmount() - 1) * 100).formatNumber(1);
+                    return ((entity.specialIncrease() /
+                        entity.totalAmount() - 1) * 100).formatNumber(1);
                 });
 
                 entity.eminentPercentIncrease = ko.computed(function () {
-                    return ((entity.eminentIncrease() / entity.totalAmount() - 1) * 100).formatNumber(1);
+                    return ((entity.eminentIncrease() /
+                        entity.totalAmount() - 1) * 100).formatNumber(1);
                 });
 
-                entity.formattedTotalAmount = entity.totalAmount.extend({ computedCurrency: [0] });
+                entity.formattedTotalAmount =
+                    entity.totalAmount.extend({ computedCurrency: [0] });
 
                 entity.formattedAdminAmount = ko.observable(entity.adminAmount())
                     .extend({ currency: [0, entity.adminAmount] });
@@ -184,7 +195,7 @@
                     var increase = entity.meritIncrease() / entity.totalAmount();
 
                     return increase > config.highPercentIncreaseThreshold ||
-                        increase < config.lowPercentIncreaseThreshold
+                        increase < config.lowPercentIncreaseThreshold;
                 });
 
                 entity.meritAdjustmentTypeId
@@ -230,7 +241,7 @@
                         validation: {
                             validator: function (value) {
                                 if (entity.isSpecialAdjustmentNoteRequired()) {
-                                    return value.length > 0
+                                    return value.length > 0;
                                 } else {
                                     return true;
                                 }
@@ -249,7 +260,8 @@
                 addHasValidationErrorsProperty(entity);
             };
 
-            metadataStore.registerEntityTypeCtor('SpecialAdjustmentType', null, initializer);
+            metadataStore.registerEntityTypeCtor(
+                'SpecialAdjustmentType', null, initializer);
         }
 
         function extendUnit(metadataStore) {
@@ -264,7 +276,7 @@
         function extendUser(metadataStore) {
             var userCtor = function () {
                 //this.id = ko.observable(breeze.core.getUuid());
-            }
+            };
 
             var initializer = function (entity) {
                 addValidationRules(entity);
@@ -316,7 +328,9 @@
                         nValidator = {
                             propertyName: propertyName,
                             validator: function (val) {
-                                var error = this.innerValidator.validate(val, { displayName: this.propertyName });
+                                var error =
+                                    this.innerValidator.validate(val,
+                                    { displayName: this.propertyName });
                                 this.message = error ? error.errorMessage : "";
                                 return error === null;
                             },
@@ -341,7 +355,8 @@
                         nValidator = {
                             propertyName: propertyName,
                             validator: function (val) {
-                                var error = this.innerValidator.validate(val, { displayName: this.propertyName });
+                                var error = this.innerValidator.validate(
+                                    val, { displayName: this.propertyName });
                                 this.message = error ? error.errorMessage : "";
                                 return error === null;
                             },

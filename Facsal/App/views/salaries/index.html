@@ -60,8 +60,7 @@
             <tbody data-bind="foreach: salaries">
                 <tr>
                     <td>
-                        <a data-bind="attr: { href: 'salaries/edit/' + id() },
-                            text: person().firstName() + ' ' + person().lastName()"></a>
+                        <a data-bind="attr: { href: 'salaries/edit/' + id() }, text: person().firstName() + ' ' + person().lastName()"></a>
                     </td>
                     <td class="hide-for-small-down" data-bind="text: rankType().name"></td>
                     <td class="hide-for-small-down" data-bind="text: formattedTotalAmount"></td>

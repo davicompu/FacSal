@@ -1,4 +1,5 @@
-﻿define(function () {
+﻿define([],
+    function () {
     return {
         getUrlParameter: getUrlParameter,
         addItemAnimation: addItemAnimation,
@@ -17,7 +18,7 @@
         return decodeURI(
             (RegExp(name + '=' + '(.+?)(&|$)').exec(location.href) || [, null])[1]
         );
-    };
+    }
 
     /**
      * Add items to knockout foreach bindings with an animation
@@ -27,7 +28,7 @@
         if (elem.nodeType === 1) {
             $(elem).addClass('animated fadeInLeft');
         }
-    };
+    }
 
     /**
      * Remove items to knockout foreach bindings with an animation
@@ -40,7 +41,7 @@
                 $(elem).remove();
             }, 500);
         }
-    };
+    }
 
     /** 
      * Get current date
@@ -48,7 +49,7 @@
     */
     function getCurrentDate() {
         return moment.utc().format();
-    };
+    }
 
     /**
      * Provisional version returns validation error messages 
@@ -63,7 +64,7 @@
         } catch (e) { // ignore problem extracting error message 
             return 'Save validation error';
         }
-    };
+    }
 
     /**
      * Return string of an entity's validation error messages 
@@ -78,7 +79,5 @@
         } catch (e) {
             return 'not an entity';
         }
-    };
-
-
+    }
 });

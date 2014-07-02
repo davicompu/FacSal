@@ -32,7 +32,7 @@
             return true;
         }
 
-        function attached(view) {
+        function attached() {
             var self = this,
                 
                 appointmentTypes = unitofwork.appointmentTypes.all()

@@ -2,9 +2,9 @@
     'services/logger', 'plugins/router', 'durandal/system'],
     function (uow, errorhandler, logger, router, system) {
 
-        var unitofwork = uow.create();
+        var unitofwork = uow.create(),
 
-        var vm = {
+            vm = {
             activate: activate,
             attached: attached,
 
@@ -16,10 +16,10 @@
         errorhandler.includeIn(vm);
 
         vm.selectedDepartmentId.subscribe(function (newValue) {
-            if (newValue != 'Choose...') {
+            if (newValue !== 'Choose...') {
                 var users = unitofwork.usersByDepartment(newValue)
                     .then(function (response) {
-                        $.each(response, function (index, value) {
+                        $.each(response, function (index) {
                             response[index].formattedCreatedDate = ko.computed(function () {
                                 return moment(response[index].createdDate).format('MM/DD/YYYY');
                             });
@@ -29,8 +29,6 @@
                     .fail(function (response) {
                         logger.logError(response.statusText, response, system.getModuleId(vm), true);
                     });
-
-                Q.all([users]).fail(self.handleError);
             }
 
 
@@ -44,7 +42,7 @@
             return true;
         }
 
-        function attached(view) {
+        function attached() {
             var self = this;
 
             var units = unitofwork.units.all()

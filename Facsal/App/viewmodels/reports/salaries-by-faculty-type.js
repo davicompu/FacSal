@@ -1,6 +1,5 @@
-﻿define(['services/unitofwork', 'services/errorhandler',
-    'services/config'],
-    function (uow, errorhandler, config) {
+﻿define(['services/unitofwork', 'services/errorhandler'],
+    function (uow, errorhandler) {
 
         var unitofwork = uow.create();
 
@@ -31,7 +30,7 @@
                 ]).fail(self.handleError);
             } else {
                 var predicate = breeze.Predicate.create(
-                    'toLower(unitId)', '==', unitId.toLowerCase()),
+                    'toLower(unitId)', '==', unitId),
 
                     departments = unitofwork.departments.find(predicate)
                         .then(function (response) {

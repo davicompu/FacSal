@@ -1,5 +1,5 @@
-﻿define(['plugins/router', 'services/security', 'knockout', 'jquery'],
-    function (router, security, ko, $) {
+﻿define([],
+    function () {
 
         var session = {
             userName: ko.observable(undefined),
@@ -12,16 +12,10 @@
 
         return session;
 
-        function setUser(user, remember) {
+        function setUser(user) {
             if (user) {
 
                 session.userName(user.userName);
-
-                if (user.hasOwnProperty("accessToken")) {
-                    setAccessToken(user.accessToken, remember);
-                } else if (user.hasOwnProperty("access_token")) {
-                    setAccessToken(user.access_token, remember);
-                }
 
                 var roles = user.userRoles.split(",");
 
@@ -34,7 +28,6 @@
         }
 
         function clearUser() {
-            clearAccessToken();
             session.userName('');
             session.userRoles.removeAll();
             session.isLoggedIn(false);
@@ -50,7 +43,8 @@
                     if (requiredRole.length === 0) {
                         return true;
                     } else {
-                        return $.arrayIntersect(session.userRoles(), requiredRole).length > 0;
+                        return $.arrayIntersect(
+                            session.userRoles(), requiredRole).length > 0;
                     }
                 } else {
                     return $.inArray(requiredRole, session.userRoles()) > -1;

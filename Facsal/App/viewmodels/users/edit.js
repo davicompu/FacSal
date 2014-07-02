@@ -57,7 +57,7 @@
             return true;
         }
 
-        function attached(view) {
+        function attached() {
             var self = this,
 
                 roles = unitofwork.getAssignableRoles()
@@ -65,7 +65,7 @@
                         vm.roles(response);
                     });
 
-                predicate = new breeze.Predicate('id', '==', vm.userId()),
+                var predicate = new breeze.Predicate('id', '==', vm.userId()),
                 expansionCondition = 'roleAssignments',
                 user = unitofwork.users.find(predicate, expansionCondition)
                     .then(function (response) {

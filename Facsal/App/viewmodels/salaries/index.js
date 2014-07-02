@@ -7,17 +7,15 @@
             
             selectedDepartmentId = ko.observable(),
 
-            attached = function (view) {
+            attached = function () {
                 var self = this;
 
-                if (vm.units() == false) {
-                    var units = unitofwork.units.all()
+                if (units() == false) {
+                    unitofwork.units.all()
                         .then(function (response) {
                             self.units(response);
                         });
                 }
-
-                Q.all([units]).fail(self.handleError);
 
                 return true;
             };

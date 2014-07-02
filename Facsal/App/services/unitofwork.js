@@ -97,7 +97,7 @@ define(['services/entitymanagerprovider', 'services/repository', 'durandal/app',
 	                    cache: false,
 	                    dataType: 'json'
 	                });
-	            }
+	            };
 
 	            this.getAssignableRoles = function () {
 	                return $.ajax({
@@ -106,7 +106,7 @@ define(['services/entitymanagerprovider', 'services/repository', 'durandal/app',
 	                    cache: false,
 	                    dataType: 'json'
 	                });
-	            }
+	            };
 
 	            this.personsWithMultipleEmployments = function (departmentId) {
 	                return $.ajax({
@@ -115,7 +115,7 @@ define(['services/entitymanagerprovider', 'services/repository', 'durandal/app',
 	                    cache: false,
 	                    dataType: 'json'
 	                });
-	            }
+	            };
 
 	            this.salariesByFacultyType = function (departmentId) {
 	                return $.ajax({
@@ -124,7 +124,7 @@ define(['services/entitymanagerprovider', 'services/repository', 'durandal/app',
 	                    cache: false,
 	                    dataType: 'json'
 	                });
-	            }
+	            };
 
 	            this.usersByDepartment = function (departmentId) {
 	                return $.ajax({
@@ -133,7 +133,7 @@ define(['services/entitymanagerprovider', 'services/repository', 'durandal/app',
 	                    cache: false,
 	                    dataType: 'json'
 	                });
-	            }
+	            };
 	        };
 
 	        return unitofwork;

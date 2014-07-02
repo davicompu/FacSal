@@ -3,9 +3,9 @@
     paths: {
         'text': '../Scripts/text',
         'durandal': '../Scripts/durandal',
+        'pace': '../Scripts/pace',
         'plugins': '../Scripts/durandal/plugins',
         'transitions': '../Scripts/durandal/transitions',
-        'pace': '../Scripts/pace'
     }
 });
 
@@ -13,8 +13,8 @@ define('jquery', function () { return jQuery; });
 define('knockout', ko);
 
 define(['durandal/app', 'durandal/viewLocator', 'durandal/system',
-    'global/session', 'pace'],
-    function (app, viewLocator, system, session, pace) {
+    'global/session', 'pace', 'services/logger'],
+    function (app, viewLocator, system, session, pace, logger) {
         //>>excludeStart("build", true);
         system.debug(true);
         //>>excludeEnd("build");
