@@ -145,6 +145,12 @@
                         entity.newEminentAmount();
                 });
 
+                entity.meritIncrease.subscribe(function (newValue) {
+                    if (newValue > 0 && entity.meritAdjustmentTypeId() === 1) {
+                        entity.meritAdjustmentTypeId(2);
+                    }
+                });
+
                 entity.percentIncrease = ko.computed(function () {
                     return (entity.newTotalAmount() / entity.totalAmount() - 1);
                 });
