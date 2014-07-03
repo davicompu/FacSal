@@ -40,10 +40,6 @@ namespace SalaryEntities.Entities
 
         public StatusType StatusType { get; set; }
 
-        /* Full name not derived since EF couldn't use CONTAINS on derived 
-         * properties at the time of development. CONTAINS needed for Search 
-         * functionality --> DataFetcher.GetPersonnelSearchForCurrentUser
-        */
         [Display(Name = "Name")]
         public string FullName
         {

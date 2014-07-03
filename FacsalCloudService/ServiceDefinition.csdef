@@ -11,7 +11,7 @@
     </Sites>
     <Endpoints>
       <InputEndpoint name="Endpoint1" protocol="http" port="80" />
-      <InputEndpoint name="Https" protocol="https" port="443" certificate="fundportaltest" />
+      <InputEndpoint name="Https" protocol="https" port="443" certificate="wildcard_obfp" />
     </Endpoints>
     <Imports>
       <Import moduleName="Diagnostics" />
@@ -19,7 +19,7 @@
       <Import moduleName="RemoteForwarder" />
     </Imports>
     <Certificates>
-      <Certificate name="fundportaltest" storeLocation="LocalMachine" storeName="My" />
+      <Certificate name="wildcard_obfp" storeLocation="LocalMachine" storeName="My" />
     </Certificates>
   </WebRole>
 </ServiceDefinition>

@@ -6,7 +6,9 @@
         'pace': '../Scripts/pace',
         'plugins': '../Scripts/durandal/plugins',
         'transitions': '../Scripts/durandal/transitions',
-    }
+    },
+    // Disable default seven second timeout for RequireJs scripts. 
+    waitSeconds: 0
 });
 
 define('jquery', function () { return jQuery; });
