@@ -8,7 +8,37 @@
     <div class="large-12 columns">
         <section data-bind="with: salary">
             <fieldset>
-                <h4 data-bind="text: person().firstName() + ' ' + person().lastName() + ' | ' + person().id()"></h4>
+                <div class="row">
+                    <div class="large-8 columns">
+                        <h4 data-bind="text: person().firstName() + ' ' + person().lastName() + ' | ' + person().id()"></h4>
+                    </div>
+
+                    <div class="large-4 columns">
+                        <p class="right" data-bind="text: person().statusType().name()"></p>
+                    </div>
+                </div>
+
+                <div class="row" data-bind="ifNotIsInRole: 'update-person'">
+                    <div class="large-4 columns end" data-bind="if: leaveTypeId() > 1">
+                        <p data-bind="text: 'Leave status: ' + leaveType().name()"></p>
+                    </div>
+                </div>
+
+                <div class="row hide-on-print" data-bind="ifIsInRole: 'update-person'">
+                    <div class="large-4 columns">
+                        <label>
+                            Status
+                        </label>
+                        <select data-bind="options: $parent.statusTypes,
+                            optionsValue: 'id', optionsText: 'name', optionsCaption: 'Choose...', value: person().statusTypeId"></select>
+                    </div>
+
+                    <div class="large-4 columns end">
+                        <label>Leave</label>
+                        <select data-bind="options: $parent.leaveTypes,
+                            optionsValue: 'id', optionsText: 'name', optionsCaption: 'Choose...', value: leaveTypeId"></select>
+                    </div>
+                </div>
 
                 <div class="row">
                     <div class="large-3 columns">
@@ -25,16 +55,6 @@
 
                     <div class="large-3 columns" data-bind="if: promotionAmount() > 0">
                         <p data-bind="text: 'Promotion and tenure: ' + formattedPromotionAmount()"></p>
-                    </div>
-                </div>
-
-                <div class="row hide-on-print" data-bind="ifIsInRole: 'update-person'">
-                    <div class="large-4 columns end">
-                        <label>
-                            Status
-                        </label>
-                        <select data-bind="options: $parent.statusTypes,
-                            optionsValue: 'id', optionsText: 'name', optionsCaption: 'Choose...', value: person().statusTypeId"></select>
                     </div>
                 </div>
 

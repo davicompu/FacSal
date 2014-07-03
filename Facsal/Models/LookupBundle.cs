@@ -14,6 +14,8 @@ namespace Facsal.Models
         
         public IEnumerable<FacultyType> FacultyTypes { get; set; }
 
+        public IEnumerable<LeaveType> LeaveTypes { get; set; }
+
         public IEnumerable<MeritAdjustmentType> MeritAdjustmentTypes { get; set; }
 
         public IEnumerable<RankType> RankTypes { get; set; }
