@@ -18,13 +18,13 @@
                     </div>
                 </div>
 
-                <div class="row" data-bind="ifNotIsInRole: 'update-person'">
+                <div class="row" data-bind="ifNotIsInRole: 'manage-all'">
                     <div class="large-4 columns end" data-bind="if: leaveTypeId() > 1">
                         <p data-bind="text: 'Leave status: ' + leaveType().name()"></p>
                     </div>
                 </div>
 
-                <div class="row hide-on-print" data-bind="ifIsInRole: 'update-person'">
+                <div class="row hide-on-print" data-bind="ifIsInRole: 'manage-all'">
                     <div class="large-4 columns">
                         <label>
                             Status
@@ -211,7 +211,7 @@
                 </div>
             </fieldset>
 
-            <section data-bind="ifIsInRole: 'update-person'">
+            <section data-bind="ifIsInRole: 'manage-all'">
                 <fieldset>
                     <h4>Promotion and tenure</h4>
 

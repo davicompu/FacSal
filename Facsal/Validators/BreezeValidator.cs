@@ -186,7 +186,7 @@ namespace Facsal.Validators
 
         private bool IsAuthorizedToCreateUser(User user)
         {
-            if (HttpContext.Current.User.IsInRole("create-users"))
+            if (HttpContext.Current.User.IsInRole("manage-all"))
             {
                 return true;
             }
@@ -198,7 +198,7 @@ namespace Facsal.Validators
         #region Update entity authorization methods
         private bool IsAuthorizedToUpdateBaseSalaryAdjustment(BaseSalaryAdjustment adjustment)
         {
-            if (HttpContext.Current.User.IsInRole("update-basesalaries"))
+            if (HttpContext.Current.User.IsInRole("manage-all"))
             {
                 return true;
             }
@@ -208,7 +208,7 @@ namespace Facsal.Validators
 
         private bool IsAuthorizedToUpdateEmployment(Employment employment)
         {
-            if (HttpContext.Current.User.IsInRole("update-employments"))
+            if (HttpContext.Current.User.IsInRole("manage-all"))
             {
                 return true;
             }
@@ -218,7 +218,7 @@ namespace Facsal.Validators
 
         private bool IsAuthorizedToUpdatePerson(Person person)
         {
-            if (HttpContext.Current.User.IsInRole("update-persons"))
+            if (HttpContext.Current.User.IsInRole("manage-all"))
             {
                 return true;
             }
@@ -244,7 +244,8 @@ namespace Facsal.Validators
 
             foreach (var dept in departments)
             {
-                if (HttpContext.Current.User.IsInRole("update-" + dept.Id))
+                if (HttpContext.Current.User.IsInRole("manage-all") ||
+                    HttpContext.Current.User.IsInRole("update-" + dept.Id))
                 {
                     return true;
                 }
@@ -311,7 +312,8 @@ namespace Facsal.Validators
                 .Find(roleAssignment.RoleId)
                 .Name.GetLast(4);
 
-            if (HttpContext.Current.User.IsInRole("manage-users-" + departmentId))
+            if (HttpContext.Current.User.IsInRole("manage-all") ||
+                HttpContext.Current.User.IsInRole("manage-users-" + departmentId))
             {
                 return true;
             }

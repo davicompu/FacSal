@@ -34,6 +34,11 @@ namespace Facsal.Controllers
         [HttpGet]
         public IQueryable<Employment> Employments()
         {
+            if (User.IsInRole("manage-all"))
+            {
+                return UnitOfWork.EmploymentRepository.All();
+            }
+
             var userRoles = Roles.GetRolesForUser();
 
             return UnitOfWork.EmploymentRepository
@@ -44,34 +49,34 @@ namespace Facsal.Controllers
         [HttpGet]
         public IQueryable<Salary> Salaries()
         {
-            //if (User.IsInRole("read-all-entities"))
-            //{
-            //    return UnitOfWork.SalaryRepository.All();
-            //}
+            if (User.IsInRole("manage-all"))
+            {
+                return UnitOfWork.SalaryRepository.All();
+            }
 
             var userRoles = Roles.GetRolesForUser();
 
             return UnitOfWork.SalaryRepository
                 .Find(s => s.Person.Employments
                     .Any(e => userRoles
-                .Contains("read-" + e.DepartmentId)))
+                        .Contains("read-" + e.DepartmentId)))
                 .OrderBy(s => s.RankType.SequenceValue)
                     .ThenBy(s => s.Person.LastName);
         }
 
-        [HttpGet]
-        public IQueryable<Salary> Salaries(string id)
-        {
-            if (User.IsInRole("read-" + id))
-            {
-                return UnitOfWork.SalaryRepository
-                    .Find(s => s.Person.Employments.Any(e => e.DepartmentId == id))
-                    .OrderBy(s => s.RankType.SequenceValue)
-                        .ThenBy(s => s.Person.LastName);
-            }
+        //[HttpGet]
+        //public IQueryable<Salary> Salaries(string id)
+        //{
+        //    if (User.IsInRole("read-" + id))
+        //    {
+        //        return UnitOfWork.SalaryRepository
+        //            .Find(s => s.Person.Employments.Any(e => e.DepartmentId == id))
+        //            .OrderBy(s => s.RankType.SequenceValue)
+        //                .ThenBy(s => s.Person.LastName);
+        //    }
 
-            return new List<Salary>().AsQueryable();
-        }
+        //    return new List<Salary>().AsQueryable();
+        //}
 
         [HttpGet]
         public IQueryable<User> Users()
@@ -89,21 +94,21 @@ namespace Facsal.Controllers
         [HttpGet]
         public LookupBundle GetLookups()
         {
-            //if (User.IsInRole("read-all-entities"))
-            //{
-            //    return new LookupBundle
-            //    {
-            //        AppointmentTypes = UnitOfWork.AppointmentTypeRepository.All(),
-            //        Departments = UnitOfWork.DepartmentRepository.All(),
-            //        FacultyTypes = UnitOfWork.FacultyTypeRepository.All(),
-            //        MeritAdjustmentTypes = UnitOfWork.MeritAdjustmentTypeRepository.All(),
-            //        RankTypes = UnitOfWork.RankTypeRepository.All(),
-            //        Roles = UnitOfWork.RoleRepository.All(),
-            //        SpecialAdjustmentTypes = UnitOfWork.SpecialAdjustmentTypeRepository.All(),
-            //        StatusTypes = UnitOfWork.StatusTypeRepository.All(),
-            //        Units = UnitOfWork.UnitRepository.All(),
-            //    };
-            //}
+            if (User.IsInRole("manage-all"))
+            {
+                return new LookupBundle
+                {
+                    AppointmentTypes = UnitOfWork.AppointmentTypeRepository.All(),
+                    Departments = UnitOfWork.DepartmentRepository.All(),
+                    FacultyTypes = UnitOfWork.FacultyTypeRepository.All(),
+                    MeritAdjustmentTypes = UnitOfWork.MeritAdjustmentTypeRepository.All(),
+                    RankTypes = UnitOfWork.RankTypeRepository.All(),
+                    //Roles = UnitOfWork.RoleRepository.All(),
+                    SpecialAdjustmentTypes = UnitOfWork.SpecialAdjustmentTypeRepository.All(),
+                    StatusTypes = UnitOfWork.StatusTypeRepository.All(),
+                    Units = UnitOfWork.UnitRepository.All(),
+                };
+            }
 
             return new LookupBundle
             {
@@ -113,8 +118,8 @@ namespace Facsal.Controllers
                 FacultyTypes = UnitOfWork.FacultyTypeRepository.All(),
                 MeritAdjustmentTypes = UnitOfWork.MeritAdjustmentTypeRepository.All(),
                 RankTypes = UnitOfWork.RankTypeRepository.All(),
-                Roles = UnitOfWork.RoleAssignmentRepository.Find(ra => ra.User.Pid == User.Identity.Name)
-                    .Select(ra => ra.Role),
+                //Roles = UnitOfWork.RoleAssignmentRepository.Find(ra => ra.User.Pid == User.Identity.Name)
+                //    .Select(ra => ra.Role),
                 SpecialAdjustmentTypes = UnitOfWork.SpecialAdjustmentTypeRepository.All(),
                 StatusTypes = UnitOfWork.StatusTypeRepository.All(),
                 Units = UnitOfWork.RoleAssignmentRepository.Find(ra => ra.User.Pid == User.Identity.Name)
