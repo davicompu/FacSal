@@ -208,7 +208,6 @@
         }
 
         function applySelectionsToEmploymentMap() {
-
         }
 
         function createSalaryAdjustmentHash(salary) {
