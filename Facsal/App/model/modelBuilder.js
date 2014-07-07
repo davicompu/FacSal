@@ -127,8 +127,10 @@
                 addHasValidationErrorsProperty(entity);
 
                 entity.totalAmount = ko.computed(function () {
-                    return entity.baseAmount() + entity.adminAmount() +
-                        entity.eminentAmount() + entity.promotionAmount();
+                    return entity.baseAmount() +
+                        entity.adminAmount() +
+                        entity.eminentAmount() +
+                        entity.promotionAmount();
                 });
 
                 entity.newEminentAmount = ko.computed(function () {
@@ -139,7 +141,9 @@
                 });
 
                 entity.newTotalAmount = ko.computed(function () {
-                    return entity.totalAmount() +
+                    return entity.baseAmount() +
+                        entity.adminAmount() +
+                        entity.promotionAmount();
                         entity.meritIncrease() +
                         entity.specialIncrease() +
                         entity.newEminentAmount();
@@ -169,6 +173,9 @@
                     return ((entity.eminentIncrease() /
                         entity.totalAmount() - 1) * 100).formatNumber(1);
                 });
+
+                entity.formattedBaseAmount =
+                    entity.baseAmount.extend({ computedCurrency: [0] });
 
                 entity.formattedTotalAmount =
                     entity.totalAmount.extend({ computedCurrency: [0] });

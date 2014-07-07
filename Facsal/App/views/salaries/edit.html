@@ -45,11 +45,16 @@
                         <p data-bind="text: 'Starting salary: ' + formattedTotalAmount()"></p>
                     </div>
 
-                    <div class="large-3 columns" data-bind="if: adminAmount() > 0">
+                    <div class="large-2 columns" 
+                        data-bind="if: adminAmount() > 0 || eminentAmount() > 0 || promotionAmount() > 0">
+                        <p data-bind="text: 'Base: ' + formattedBaseAmount()"></p>
+                    </div>
+
+                    <div class="large-2 columns" data-bind="if: adminAmount() > 0">
                         <p data-bind="text: 'Admin: ' + formattedAdminAmount()"></p>
                     </div>
 
-                    <div class="large-3 columns" data-bind="if: eminentAmount() > 0">
+                    <div class="large-2 columns" data-bind="if: eminentAmount() > 0">
                         <p data-bind="text: 'Eminent: ' + formattedEminentAmount()"></p>
                     </div>
 
