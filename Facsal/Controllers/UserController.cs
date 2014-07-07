@@ -20,7 +20,8 @@ namespace Facsal.Controllers
         [HttpGet]
         public IHttpActionResult GetByDepartmentalAccess([FromUri]string id)
         {
-            if (User.IsInRole("manage-users-" + id))
+            if (User.IsInRole("manage-all") ||
+                User.IsInRole("manage-users-" + id))
             {
                 var users = UnitOfWork.UserRepository
                     .Find(u => u.RoleAssignments

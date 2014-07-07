@@ -41,7 +41,8 @@
     }
     else
     {
-        @Scripts.Render("~/Scripts/main-built")
+        <script type="text/javascript" src="/scripts/require.js" data-main="/app/main"></script>
+        @*@Scripts.Render("~/Scripts/main-built")*@
     }
 </body>
 </html>

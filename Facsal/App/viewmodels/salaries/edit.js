@@ -7,13 +7,17 @@
 
             facultyTypes = ko.observableArray(),
 
+            leaveTypes = ko.observableArray(),
+
             meritAdjustmentTypes = ko.observableArray(),
 
             rankTypes = ko.observableArray(),
 
             adjustmentTypes = ko.observableArray(),
 
-            statusTypes = ko.observableArray();
+            statusTypes = ko.observableArray(),
+
+            units = ko.observableArray();
 
         var vm = {
             activate: activate,
@@ -23,13 +27,16 @@
             adjustmentVMs: ko.observableArray(),
             appointmentTypes: appointmentTypes,
             employments: ko.observableArray(),
+            employmentVMs: ko.observableArray(),
             facultyTypes: facultyTypes,
+            leaveTypes: leaveTypes,
             meritAdjustmentTypes: meritAdjustmentTypes,
             rankTypes: rankTypes,
             salary: ko.observable(),
             salaryId: ko.observable(),
             adjustmentTypes: adjustmentTypes,
             statusTypes: statusTypes,
+            units: units,
 
             cancelChanges: cancelChanges,
             saveChanges: saveChanges,
@@ -60,6 +67,11 @@
                     self.facultyTypes(response);
                 });
 
+            var leaveTypes = unitofwork.leaveTypes.all()
+                .then(function (response) {
+                    self.leaveTypes(response);
+                });
+
             var meritAdjustmentTypes = unitofwork.meritAdjustmentTypes.all()
                 .then(function (response) {
                     self.meritAdjustmentTypes(response);
@@ -78,6 +90,11 @@
             var statusTypes = unitofwork.statusTypes.all()
                 .then(function (response) {
                     self.statusTypes(response);
+                });
+
+            var units = unitofwork.units.all()
+                .then(function (response) {
+                    vm.units(response);
                 });
 
             var predicate = new breeze.Predicate('id', '==', vm.salaryId());
@@ -100,12 +117,31 @@
 
                         vm.adjustmentVMs(adjustmentMapVMs);
 
-                        unitofwork.departmentNamesForPerson(salary.person().id())
-                            .then(function (response) {
-                                return vm.employments(response);
-                            });
-
                         vm.salary(salary);
+
+                        var p1 = new breeze.Predicate('personId', '==', vm.salary().person().id()),
+                            expansionProperties = 'department';
+
+                        unitofwork.employments.find(predicate, expansionProperties)
+                            .then(function (response) {
+                                vm.employments(response);
+
+                                var employmentHash = createEmploymentHash(response);
+
+                                var employmentMapVMs = $.map(vm.units(), function (unit) {
+                                        return {
+                                            unit: unit,
+                                            departments: $.map(unit.departments(), function (department) {
+                                                return {
+                                                    department: department,
+                                                    isSelected: ko.observable(!!employmentHash[department.id()])
+                                                }
+                                            })
+                                        }
+                                    });
+
+                                vm.employmentVMs(employmentMapVMs);
+                            });
 
                         vm.errors = ko.validation.group([
                             vm.salary().meritAdjustmentTypeId,
@@ -121,6 +157,7 @@
             Q.all([
                 appointmentTypes,
                 facultyTypes,
+                leaveTypes,
                 meritAdjustmentTypes,
                 rankTypes,
                 salary,
@@ -158,6 +195,20 @@
         function cancelChanges() {
             unitofwork.rollback();
             return router.navigateBack();
+        }
+
+        function createEmploymentHash(employments) {
+            var employmentHash = {};
+
+            $.each(employments, function (index, value) {
+                employmentHash[value.department().id()] = value;
+            });
+
+            return employmentHash;
+        }
+
+        function applySelectionsToEmploymentMap() {
+
         }
 
         function createSalaryAdjustmentHash(salary) {

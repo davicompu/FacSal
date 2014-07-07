@@ -21,6 +21,7 @@
             employmentsUrl: 'employments',
             extendSessionUrl: '/api/session/extend',
             facultyTypesUrl: 'facultyTypes',
+            leaveTypesUrl: 'leaveTypes',
             getAssignableRolesUrl: '/api/role/getAssignableRoles',
             logOutUrl: '/cas/logOut',
             lookupsUrl: 'getLookups',

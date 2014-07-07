@@ -24,7 +24,8 @@ namespace Facsal.Controllers
         [HttpGet]
         public IHttpActionResult GetSalariesByFacultyType([FromUri]string id)
         {
-            if (User.IsInRole("read-" + id))
+            if (User.IsInRole("manage-all") ||
+                User.IsInRole("read-" + id))
             {
                 var salaries = DbContext.Salaries
                     .Where(s => s.Person.Employments.Any(e => e.DepartmentId == id))
@@ -51,7 +52,8 @@ namespace Facsal.Controllers
         [HttpGet]
         public IHttpActionResult GetPersonsWithMultipleEmployments([FromUri] string id)
         {
-            if (User.IsInRole("read-" + id))
+            if (User.IsInRole("manage-all") ||
+                User.IsInRole("read-" + id))
             {
                 var data = DbContext.Persons
                     .Include("Salaries")

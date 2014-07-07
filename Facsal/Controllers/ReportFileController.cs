@@ -24,7 +24,8 @@ namespace Facsal.Controllers
 
         public ActionResult DepartmentMeeting(string id)
         {
-            if (User.IsInRole("read-" + id))
+            if (User.IsInRole("manage-all") ||
+                User.IsInRole("read-" + id))
             {
                 var department = DbContext.Departments
                     .Where(d => d.Id == id)
@@ -56,7 +57,8 @@ namespace Facsal.Controllers
 
             foreach (var department in departments)
             {
-                if (User.IsInRole("read-" + department.Id))
+                if (User.IsInRole("manage-all") ||
+                    User.IsInRole("read-" + department.Id))
                 {
                     authorizedDepartments.Add(department);
                 }

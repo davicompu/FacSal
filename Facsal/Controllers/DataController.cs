@@ -101,6 +101,7 @@ namespace Facsal.Controllers
                     AppointmentTypes = UnitOfWork.AppointmentTypeRepository.All(),
                     Departments = UnitOfWork.DepartmentRepository.All(),
                     FacultyTypes = UnitOfWork.FacultyTypeRepository.All(),
+                    LeaveTypes = UnitOfWork.LeaveTypeRepository.All(),
                     MeritAdjustmentTypes = UnitOfWork.MeritAdjustmentTypeRepository.All(),
                     RankTypes = UnitOfWork.RankTypeRepository.All(),
                     //Roles = UnitOfWork.RoleRepository.All(),
@@ -116,6 +117,7 @@ namespace Facsal.Controllers
                 Departments = UnitOfWork.RoleAssignmentRepository.Find(ra => ra.User.Pid == User.Identity.Name)
                     .Select(ra => ra.Role.Department),
                 FacultyTypes = UnitOfWork.FacultyTypeRepository.All(),
+                LeaveTypes = UnitOfWork.LeaveTypeRepository.All(),
                 MeritAdjustmentTypes = UnitOfWork.MeritAdjustmentTypeRepository.All(),
                 RankTypes = UnitOfWork.RankTypeRepository.All(),
                 //Roles = UnitOfWork.RoleAssignmentRepository.Find(ra => ra.User.Pid == User.Identity.Name)

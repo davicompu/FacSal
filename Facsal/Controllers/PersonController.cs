@@ -21,6 +21,13 @@ namespace Facsal.Controllers
         [HttpGet]
         public IHttpActionResult GetDepartmentNames([FromUri]string id)
         {
+            if (User.IsInRole("manage-all"))
+            {
+                return Ok(UnitOfWork.EmploymentRepository
+                    .Find(e => e.PersonId == id)
+                    .Select(e => e.Department.Name));
+            }
+
             var userRoles = Roles.GetRolesForUser();
 
             var names = UnitOfWork.EmploymentRepository

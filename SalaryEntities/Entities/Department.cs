@@ -27,7 +27,7 @@ namespace SalaryEntities.Entities
 
         public  Unit Unit { get; set; }
 
-        public ICollection<Employment> Employees { get; set; }
+        public ICollection<Employment> Employments { get; set; }
 
         public ICollection<DepartmentModification> Modifications { get; set; }
     }

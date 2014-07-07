@@ -14,6 +14,7 @@
             extendDepartment(metadataStore);
             extendEmployment(metadataStore);
             extendFacultyType(metadataStore);
+            extendLeaveType(metadataStore);
             extendMeritAdjustmentType(metadataStore);
             extendPerson(metadataStore);
             extendRankType(metadataStore);
@@ -80,6 +81,15 @@
             metadataStore.registerEntityTypeCtor('FacultyType', null, initializer);
         }
 
+        function extendLeaveType(metadataStore) {
+            var initializer = function (entity) {
+                addValidationRules(entity);
+                addHasValidationErrorsProperty(entity);
+            };
+
+            metadataStore.registerEntityTypeCtor('LeaveType', null, initializer);
+        }
+
         function extendMeritAdjustmentType(metadataStore) {
             var initializer = function (entity) {
                 addValidationRules(entity);
@@ -135,17 +145,17 @@
 
                 entity.newEminentAmount = ko.computed(function () {
                     return entity.eminentAmount() +
-                        ((entity.eminentAmount() / entity.totalAmount()) *
-                        (entity.meritIncrease() + entity.specialIncrease())) +
-                        entity.eminentIncrease();
+                        entity.eminentAmount() / entity.totalAmount() *
+                        (entity.meritIncrease() + entity.specialIncrease());
                 });
 
                 entity.newTotalAmount = ko.computed(function () {
                     return entity.baseAmount() +
                         entity.adminAmount() +
-                        entity.promotionAmount();
+                        entity.promotionAmount() +
                         entity.meritIncrease() +
                         entity.specialIncrease() +
+                        entity.eminentIncrease() +
                         entity.newEminentAmount();
                 });
 
@@ -174,8 +184,8 @@
                         entity.totalAmount() - 1) * 100).formatNumber(1);
                 });
 
-                entity.formattedBaseAmount =
-                    entity.baseAmount.extend({ computedCurrency: [0] });
+                entity.formattedBaseAmount = ko.observable(entity.baseAmount())
+                    .extend({ currency: [0, entity.baseAmount] });
 
                 entity.formattedTotalAmount =
                     entity.totalAmount.extend({ computedCurrency: [0] });
