@@ -209,7 +209,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CasController.cs" />
     <Compile Include="Controllers\DataController.cs" />
-    <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\ReportFileController.cs" />
@@ -244,6 +243,7 @@
     <Content Include="App\services\sorter.js" />
     <Content Include="App\services\unitofwork.js" />
     <Content Include="App\services\utils.js" />
+    <Content Include="App\viewmodels\employments\edit.js" />
     <Content Include="App\viewmodels\not-found.js" />
     <Content Include="App\viewmodels\persons\create.js" />
     <Content Include="App\viewmodels\reports\base-salary-adjustment.js" />
@@ -259,6 +259,7 @@
     <Content Include="App\viewmodels\users\create.js" />
     <Content Include="App\viewmodels\users\edit.js" />
     <Content Include="App\viewmodels\users\index.js" />
+    <Content Include="App\views\employments\edit.html" />
     <Content Include="App\views\not-found.html" />
     <Content Include="App\views\persons\create.html" />
     <Content Include="App\views\reports\base-salary-adjustment.html" />

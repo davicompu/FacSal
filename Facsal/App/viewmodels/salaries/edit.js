@@ -122,25 +122,9 @@
                         var p1 = new breeze.Predicate('personId', '==', vm.salary().person().id()),
                             expansionProperties = 'department';
 
-                        unitofwork.employments.find(predicate, expansionProperties)
+                        unitofwork.employments.find(p1, expansionProperties)
                             .then(function (response) {
                                 vm.employments(response);
-
-                                var employmentHash = createEmploymentHash(response);
-
-                                var employmentMapVMs = $.map(vm.units(), function (unit) {
-                                        return {
-                                            unit: unit,
-                                            departments: $.map(unit.departments(), function (department) {
-                                                return {
-                                                    department: department,
-                                                    isSelected: ko.observable(!!employmentHash[department.id()])
-                                                }
-                                            })
-                                        }
-                                    });
-
-                                vm.employmentVMs(employmentMapVMs);
                             });
 
                         vm.errors = ko.validation.group([
@@ -195,19 +179,6 @@
         function cancelChanges() {
             unitofwork.rollback();
             return router.navigateBack();
-        }
-
-        function createEmploymentHash(employments) {
-            var employmentHash = {};
-
-            $.each(employments, function (index, value) {
-                employmentHash[value.department().id()] = value;
-            });
-
-            return employmentHash;
-        }
-
-        function applySelectionsToEmploymentMap() {
         }
 
         function createSalaryAdjustmentHash(salary) {

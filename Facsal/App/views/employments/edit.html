@@ -1,0 +1,15 @@
+﻿<section data-bind="foreach: employmentVMs">
+    <div class="row" data-bind="ifIsInRole: 'manage-all'">
+        <div class="large-12 columns">
+            <h5 data-bind="text: unit.name"></h5>
+
+            <!-- ko foreach: departments -->
+            <div>
+                <label>
+                    <input type="checkbox" data-bind="checkedValue: name, checked: isSelected" /> <span data-bind="text: department.name"></span>
+                </label>
+            </div>
+            <!--/ko-->
+        </div>
+    </div>
+</section>
