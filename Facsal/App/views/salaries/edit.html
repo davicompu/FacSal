@@ -148,7 +148,17 @@
             </fieldset>
 
             <fieldset>
-                <h4>Funding</h4>
+                <div class="row">
+                    <div class="large-8 columns">
+                        <h4>Funding</h4>
+                    </div>
+
+                    <div class="large-4 columns">
+                        <p class="right">
+                            <a data-bind="attr: { href: 'employments/edit/' + person().id() }">Edit</a>
+                        </p>
+                    </div>
+                </div>
 
                 <div class="row">
                     <div class="large-12 columns">

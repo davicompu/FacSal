@@ -107,7 +107,7 @@
                             // No existing map, so create one.
                             map = unitofwork.employments.create({
                                 personId: vm.personId(),
-                                departmentId: mapVM.department.id
+                                departmentId: mapVM.department.id()
                             });
                         }
                     } else {

@@ -36,6 +36,14 @@ namespace Facsal.Validators
                             "Unauthorized", HttpStatusCode.Unauthorized);
                     }
                 }
+                else if (entityInfo.Entity.GetType() == typeof(Employment))
+                {
+                    if (!IsAuthorizedToCreateEmploymnet((Employment)entityInfo.Entity))
+                    {
+                        ThrowEntityError("You are not authorized to create employment entities.",
+                            "Unauthorized", HttpStatusCode.Unauthorized);
+                    }
+                }
                 else if (entityInfo.Entity.GetType() == typeof(SpecialSalaryAdjustment))
                 {
                     if (!IsAuthorizedToCreateSpecialSalaryAdjustment((SpecialSalaryAdjustment)entityInfo.Entity))
@@ -122,7 +130,15 @@ namespace Facsal.Validators
             #region EntityState.Deleted
             if (entityInfo.EntityState == EntityState.Deleted)
             {
-                if (entityInfo.Entity.GetType() == typeof(SpecialSalaryAdjustment))
+                if (entityInfo.Entity.GetType() == typeof(Employment))
+                {
+                    if (!IsAuthorizedToDeleteEmployment((Employment)entityInfo.Entity))
+                    {
+                        ThrowEntityError("You are not authorized to delete this employment.",
+                            "Unauthorized", HttpStatusCode.Unauthorized);
+                    }
+                }
+                else if (entityInfo.Entity.GetType() == typeof(SpecialSalaryAdjustment))
                 {
                     if (!IsAuthorizedToDeleteSpecialSalaryAdjustment((SpecialSalaryAdjustment)entityInfo.Entity))
                     {
@@ -164,6 +180,11 @@ namespace Facsal.Validators
         }
 
         #region Create entity authorization methods
+        private bool IsAuthorizedToCreateEmploymnet(Employment employment)
+        {
+            return IsAuthorizedToModifyEmployment(employment);
+        }
+
         private bool IsAuthorizedToCreateRoleAssignment(RoleAssignment roleAssignment)
         {
             if (IsAuthorizedToModifyRoleAssignment(roleAssignment))
@@ -208,12 +229,7 @@ namespace Facsal.Validators
 
         private bool IsAuthorizedToUpdateEmployment(Employment employment)
         {
-            if (HttpContext.Current.User.IsInRole("manage-all"))
-            {
-                return true;
-            }
-
-            return false;
+            return IsAuthorizedToModifyEmployment(employment);
         }
 
         private bool IsAuthorizedToUpdatePerson(Person person)
@@ -271,6 +287,11 @@ namespace Facsal.Validators
         #endregion
 
         #region Delete entity authorization methods
+        private bool IsAuthorizedToDeleteEmployment(Employment employment)
+        {
+            return IsAuthorizedToModifyEmployment(employment);
+        }
+        
         private bool IsAuthorizedToDeleteSpecialSalaryAdjustment(SpecialSalaryAdjustment adjustment)
         {
             if (IsAuthorizedToModifySpecialSalaryAdjustment(adjustment))
@@ -293,6 +314,16 @@ namespace Facsal.Validators
         #endregion
 
         #region Authorization method helpers
+        private bool IsAuthorizedToModifyEmployment(Employment employment)
+        {
+            if (HttpContext.Current.User.IsInRole("manage-all"))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         private bool IsAuthorizedToModifySpecialSalaryAdjustment(SpecialSalaryAdjustment adjustment)
         {
             var salary = DbContext.Salaries

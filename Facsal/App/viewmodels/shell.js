@@ -111,6 +111,12 @@
                     title: 'Reports', nav: true, hash: '#reports/index'
                 },
 
+                // Employments.
+                {
+                    route: 'employments/edit/:personId', moduleId: 'employments/edit',
+                    title: 'Edit employments', nav: false, hash: '#employments/edit'
+                },
+
                 // Persons.
                 {
                     route: 'persons/create', moduleId: 'persons/create',
