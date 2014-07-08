@@ -13,6 +13,7 @@
                 employmentVMs: ko.observableArray(),
                 personId: ko.observable(),
 
+                cancelChanges: cancelChanges,
                 saveChanges: saveChanges,
             };
 
@@ -98,6 +99,11 @@
                     logger.logSuccess('Save successful', response, system.getModuleId(vm), true);
                     return router.navigateBack();
                 });
+        }
+
+        function cancelChanges() {
+            unitofwork.rollback();
+            return router.navigateBack();
         }
 
         function createEmploymentHash(employments) {
