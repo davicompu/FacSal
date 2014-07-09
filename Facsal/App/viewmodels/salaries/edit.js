@@ -133,8 +133,6 @@
                             vm.salary().specialAdjustmentNote,
                             vm.salary().specialSalaryAdjustments
                         ]);
-
-                        return true;
                     }
                 });
 

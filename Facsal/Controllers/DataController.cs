@@ -93,7 +93,6 @@ namespace Facsal.Controllers
                     LeaveTypes = UnitOfWork.LeaveTypeRepository.All(),
                     MeritAdjustmentTypes = UnitOfWork.MeritAdjustmentTypeRepository.All(),
                     RankTypes = UnitOfWork.RankTypeRepository.All(),
-                    //Roles = UnitOfWork.RoleRepository.All(),
                     SpecialAdjustmentTypes = UnitOfWork.SpecialAdjustmentTypeRepository.All(),
                     StatusTypes = UnitOfWork.StatusTypeRepository.All(),
                     Units = UnitOfWork.UnitRepository.All(),
@@ -109,8 +108,6 @@ namespace Facsal.Controllers
                 LeaveTypes = UnitOfWork.LeaveTypeRepository.All(),
                 MeritAdjustmentTypes = UnitOfWork.MeritAdjustmentTypeRepository.All(),
                 RankTypes = UnitOfWork.RankTypeRepository.All(),
-                //Roles = UnitOfWork.RoleAssignmentRepository.Find(ra => ra.User.Pid == User.Identity.Name)
-                //    .Select(ra => ra.Role),
                 SpecialAdjustmentTypes = UnitOfWork.SpecialAdjustmentTypeRepository.All(),
                 StatusTypes = UnitOfWork.StatusTypeRepository.All(),
                 Units = UnitOfWork.RoleAssignmentRepository.Find(ra => ra.User.Pid == User.Identity.Name)
