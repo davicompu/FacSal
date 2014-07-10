@@ -1,15 +1,33 @@
-﻿<section data-bind="foreach: employmentVMs">
-    <div class="row" data-bind="ifIsInRole: 'manage-all'">
-        <div class="large-12 columns">
-            <h5 data-bind="text: unit.name"></h5>
+﻿<div class="row">
+    <div class="large-12 columns">
+        <h2 class="background"><span>EDIT EMPLOYMENTS</span></h2>
+    </div>
+</div>
 
-            <!-- ko foreach: departments -->
-            <div>
-                <label>
-                    <input type="checkbox" data-bind="checkedValue: name, checked: isSelected" /> <span data-bind="text: department.name"></span>
-                </label>
+<div class="row">
+    <div class="large-12 columns" data-bind="foreach: employmentVMs">
+        <fieldset data-bind="ifIsInRole: 'manage-all'">
+            <h4 data-bind="text: unit.name"></h4>
+
+            <!-- ko foreach: departmentRows -->
+            <div class="row" data-bind="foreach: $data">
+                <div class="large-4 columns">
+                    <label>
+                        <input type="checkbox" data-bind="checkedValue: department.id, checked: isSelected" />
+                        <span data-bind="text: department.name"></span>
+                    </label>
+                </div>
             </div>
             <!--/ko-->
+        </fieldset>
+    </div>
+</div>
+
+<section data-bind="with: employmentVMs">
+    <div class="row">
+        <div class="large-12 columns">
+            <span class="save-button" data-bind="click: $parent.saveChanges">Save</span>
+            <span class="cancel-button" data-bind="click: $parent.cancelChanges">Cancel</span>
         </div>
     </div>
 </section>

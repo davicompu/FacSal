@@ -51,7 +51,9 @@ namespace Facsal.Controllers
         {
             if (User.IsInRole("manage-all"))
             {
-                return UnitOfWork.SalaryRepository.All();
+                return UnitOfWork.SalaryRepository.All()
+                    .OrderBy(s => s.RankType.SequenceValue)
+                        .ThenBy(s => s.Person.LastName);
             }
 
             var userRoles = Roles.GetRolesForUser();
@@ -63,20 +65,6 @@ namespace Facsal.Controllers
                 .OrderBy(s => s.RankType.SequenceValue)
                     .ThenBy(s => s.Person.LastName);
         }
-
-        //[HttpGet]
-        //public IQueryable<Salary> Salaries(string id)
-        //{
-        //    if (User.IsInRole("read-" + id))
-        //    {
-        //        return UnitOfWork.SalaryRepository
-        //            .Find(s => s.Person.Employments.Any(e => e.DepartmentId == id))
-        //            .OrderBy(s => s.RankType.SequenceValue)
-        //                .ThenBy(s => s.Person.LastName);
-        //    }
-
-        //    return new List<Salary>().AsQueryable();
-        //}
 
         [HttpGet]
         public IQueryable<User> Users()
@@ -99,12 +87,12 @@ namespace Facsal.Controllers
                 return new LookupBundle
                 {
                     AppointmentTypes = UnitOfWork.AppointmentTypeRepository.All(),
-                    Departments = UnitOfWork.DepartmentRepository.All(),
+                    Departments = UnitOfWork.DepartmentRepository.All()
+                        .OrderBy(d => d.Name),
                     FacultyTypes = UnitOfWork.FacultyTypeRepository.All(),
                     LeaveTypes = UnitOfWork.LeaveTypeRepository.All(),
                     MeritAdjustmentTypes = UnitOfWork.MeritAdjustmentTypeRepository.All(),
                     RankTypes = UnitOfWork.RankTypeRepository.All(),
-                    //Roles = UnitOfWork.RoleRepository.All(),
                     SpecialAdjustmentTypes = UnitOfWork.SpecialAdjustmentTypeRepository.All(),
                     StatusTypes = UnitOfWork.StatusTypeRepository.All(),
                     Units = UnitOfWork.UnitRepository.All(),
@@ -120,12 +108,11 @@ namespace Facsal.Controllers
                 LeaveTypes = UnitOfWork.LeaveTypeRepository.All(),
                 MeritAdjustmentTypes = UnitOfWork.MeritAdjustmentTypeRepository.All(),
                 RankTypes = UnitOfWork.RankTypeRepository.All(),
-                //Roles = UnitOfWork.RoleAssignmentRepository.Find(ra => ra.User.Pid == User.Identity.Name)
-                //    .Select(ra => ra.Role),
                 SpecialAdjustmentTypes = UnitOfWork.SpecialAdjustmentTypeRepository.All(),
                 StatusTypes = UnitOfWork.StatusTypeRepository.All(),
                 Units = UnitOfWork.RoleAssignmentRepository.Find(ra => ra.User.Pid == User.Identity.Name)
-                    .Select(ra => ra.Role.Unit),
+                    .Select(ra => ra.Role.Unit)
+                    .OrderBy(u => u.Name),
             };
         }
     }

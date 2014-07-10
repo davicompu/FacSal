@@ -8,17 +8,20 @@
                 attached: attached,
                 deactivate: deactivate,
 
+                columnLength: ko.observable(3),
                 employments: ko.observableArray(),
                 employmentVMs: ko.observableArray(),
                 personId: ko.observable(),
 
+                cancelChanges: cancelChanges,
                 saveChanges: saveChanges,
             };
 
         return vm;
 
         function activate(personId) {
-            ga('send', 'pageview', { 'page': window.location.href, 'title': document.title });
+            ga('send', 'pageview',
+                { 'page': window.location.href, 'title': document.title });
 
             vm.personId(personId);
 
@@ -40,14 +43,34 @@
                             var employmentHash = createEmploymentHash(response),
 
                                 employmentMapVMs = $.map(units, function (unit) {
+                                    var result = [],
+                                        row,
+                                        colLength = parseInt(vm.columnLength(), 10);
+
+                                    /* Loop through items and push each into a row array that gets
+                                       pushed into the final result.
+                                    */
+                                    for (var i = 0, j = unit.departments().length; i < j; i++) {
+                                        if (i % colLength === 0) {
+                                            if (row) {
+                                                result.push(row);
+                                            }
+                                            row = [];
+                                        }
+                                        row.push({
+                                            department: unit.departments()[i],
+                                            isSelected: ko.observable(!!employmentHash[unit.departments()[i].id()])
+                                        });
+                                    }
+
+                                    // Push the final row.
+                                    if (row) {
+                                        result.push(row);
+                                    }
+
                                     return {
                                         unit: unit,
-                                        departments: $.map(unit.departments(), function (department) {
-                                            return {
-                                                department: department,
-                                                isSelected: ko.observable(!!employmentHash[department.id()])
-                                            }
-                                        })
+                                        departmentRows: result
                                     }
                                 });
 
@@ -78,6 +101,11 @@
                 });
         }
 
+        function cancelChanges() {
+            unitofwork.rollback();
+            return router.navigateBack();
+        }
+
         function createEmploymentHash(employments) {
             var employmentHash = {};
 
@@ -96,27 +124,30 @@
                 employmentHash = createEmploymentHash(employments);
 
             $.each(unitMapVMs, function (index, unitMapVM) {
-                var mapVMs = unitMapVM.departments;
+                var mapVMDepartmentRows = unitMapVM.departmentRows;
 
-                $.each(mapVMs, function (index, mapVM) {
-                    var map = employmentHash[mapVM.department.id()];
+                $.each(mapVMDepartmentRows, function (index, mapVMRow) {
 
-                    if (mapVM.isSelected()) {
-                        // User selected this employment.
-                        if (!map) {
-                            // No existing map, so create one.
-                            map = unitofwork.employments.create({
-                                personId: vm.personId(),
-                                departmentId: mapVM.department.id
-                            });
+                    $.each(mapVMRow, function (index, mapVM) {
+                        var map = employmentHash[mapVM.department.id()];
+
+                        if (mapVM.isSelected()) {
+                            // User selected this employment.
+                            if (!map) {
+                                // No existing map, so create one.
+                                map = unitofwork.employments.create({
+                                    personId: vm.personId(),
+                                    departmentId: mapVM.department.id()
+                                });
+                            }
+                        } else {
+                            // User unselected this adjustment.
+                            if (map) {
+                                // If map exists, delete it.
+                                map.entityAspect.setDeleted();
+                            }
                         }
-                    } else {
-                        // User unselected this adjustment.
-                        if (map) {
-                            // If map exists, delete it.
-                            map.entityAspect.setDeleted();
-                        }
-                    }
+                    });
                 });
             });
         }

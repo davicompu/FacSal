@@ -13,7 +13,7 @@
         errorhandler.includeIn(vm);
 
         vm.throttledSearchString = ko.computed(vm.instantaneousSearchString)
-            .extend({ throttle: 450 });
+            .extend({ throttle: 750 });
 
         vm.throttledSearchString.subscribe(function (newValue) {
             if (!newValue.isNullOrWhiteSpace()) {
