@@ -148,5 +148,14 @@ namespace SalaryEntities.Entities
                 return TotalAmount + MeritIncrease + SpecialIncrease + EminentIncrease;
             }
         }
+
+        [Display(Name = "Total change")]
+        public decimal TotalChange
+        {
+            get
+            {
+                return Math.Round(((decimal.Divide(NewTotalAmount, TotalAmount) - 1) * 100), 1);
+            }
+        }
     }
 }

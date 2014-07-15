@@ -12,7 +12,7 @@ namespace Facsal.Models.Files
 {
     public class MeetingReport : Report
     {
-        const int NUM_COLUMNS = 12;
+        const int NUM_COLUMNS = 15;
         const int SUMMARY_DATA_COLUMNS = 0;
 
         int Row { get; set; }
@@ -108,6 +108,7 @@ namespace Facsal.Models.Files
 
             sheet.Cells[Row, ++column].Value = DataAnnotationsHelper.GetPropertyName<Salary>(s => s.Person.FullName);
             sheet.Cells[Row, ++column].Value = DataAnnotationsHelper.GetPropertyName<Salary>(s => s.RankType.Name);
+            sheet.Cells[Row, ++column].Value = DataAnnotationsHelper.GetPropertyName<Salary>(s => s.AppointmentType.Name);
             sheet.Cells[Row, ++column].Value = DataAnnotationsHelper.GetPropertyName<Salary>(s => s.FullTimeEquivalent);
             sheet.Cells[Row, ++column].Value = DataAnnotationsHelper.GetPropertyName<Salary>(s => s.BaseAmount);
             sheet.Cells[Row, ++column].Value = DataAnnotationsHelper.GetPropertyName<Salary>(s => s.AdminAmount);
@@ -119,9 +120,13 @@ namespace Facsal.Models.Files
             sheet.Cells[Row, ++column].Value =
                 DataAnnotationsHelper.GetPropertyName<Salary>(s => s.SpecialIncrease);
             sheet.Cells[Row, ++column].Value =
+                DataAnnotationsHelper.GetPropertyName<Salary>(s => s.EminentIncrease);
+            sheet.Cells[Row, ++column].Value =
                 DataAnnotationsHelper.GetPropertyName<Salary>(s => s.NewEminentAmount);
             sheet.Cells[Row, ++column].Value =
                 DataAnnotationsHelper.GetPropertyName<Salary>(s => s.NewTotalAmount);
+            sheet.Cells[Row, ++column].Value =
+                DataAnnotationsHelper.GetPropertyName<Salary>(s => s.TotalChange);
             
             return sheet;
         }
@@ -157,16 +162,22 @@ namespace Facsal.Models.Files
                     column = 0;
                     sheet.Cells[Row, ++column].Value = salary.Person.FullName;
                     sheet.Cells[Row, ++column].Value = salary.RankType.Name;
+                    sheet.Cells[Row, ++column].Value = salary.AppointmentType.Name;
                     sheet.Cells[Row, ++column].Value = salary.FullTimeEquivalent;
                     sheet.Cells[Row, ++column].Value = salary.BaseAmount;
                     sheet.Cells[Row, ++column].Value = salary.AdminAmount;
                     sheet.Cells[Row, ++column].Value = salary.EminentAmount;
                     sheet.Cells[Row, ++column].Value = salary.PromotionAmount;
-                    sheet.Cells[Row, ++column].Value = salary.TotalAmount;
+                    sheet.Cells[Row, ++column].FormulaR1C1 = "SUM(RC[-4]:RC[-1])";
                     sheet.Cells[Row, ++column].Value = salary.MeritIncrease;
                     sheet.Cells[Row, ++column].Value = salary.SpecialIncrease;
-                    sheet.Cells[Row, ++column].Value = salary.NewEminentAmount;
-                    sheet.Cells[Row, ++column].Value = salary.NewTotalAmount;
+                    sheet.Cells[Row, ++column].Value = salary.EminentIncrease;
+                    sheet.Cells[Row, ++column].FormulaR1C1 = 
+                        "RC[-6]+(RC[-6]/RC[-4])*(RC[-3]+RC[-2])+RC[-1]";
+                    sheet.Cells[Row, ++column].FormulaR1C1 = 
+                        "RC[-9]+RC[-8]+RC[-6]+RC[-4]+RC[-3]+RC[-2]+RC[-1]";
+                    sheet.Cells[Row, ++column].FormulaR1C1 =
+                        "RC[-1]/RC[-6]-1";
                 }
             }
             #endregion
@@ -192,10 +203,13 @@ namespace Facsal.Models.Files
             sheet.PrinterSettings.FitToWidth = 1;
             sheet.PrinterSettings.FitToHeight = 0;
             ExcelRange range_numberFormatting =
-                sheet.Cells[1, 4, Row, NUM_COLUMNS];
+                sheet.Cells[1, 5, Row, NUM_COLUMNS - 1];
+            ExcelRange range_percentFormatting =
+                sheet.Cells[1, NUM_COLUMNS, Row, NUM_COLUMNS];
 
             //Cell styling
             range_numberFormatting.Style.Numberformat.Format = "_($* #,##0_);_($* (#,##0);_($* \"-\"_);_(@_)";
+            range_percentFormatting.Style.Numberformat.Format = "0.0%";
 
             sheet.Cells.AutoFitColumns();
 

@@ -146,7 +146,8 @@
                 entity.newEminentAmount = ko.computed(function () {
                     return entity.eminentAmount() +
                         entity.eminentAmount() / entity.totalAmount() *
-                        (entity.meritIncrease() + entity.specialIncrease());
+                        (entity.meritIncrease() + entity.specialIncrease()) +
+                        entity.eminentIncrease();
                 });
 
                 entity.newTotalAmount = ko.computed(function () {
@@ -170,18 +171,18 @@
                 });
 
                 entity.meritPercentIncrease = ko.computed(function () {
-                    return ((entity.meritIncrease() /
-                        entity.totalAmount() - 1) * 100).formatNumber(1);
+                    return (entity.meritIncrease() /
+                        entity.totalAmount() * 100).formatNumber(1);
                 });
 
                 entity.specialPercentIncrease = ko.computed(function () {
-                    return ((entity.specialIncrease() /
-                        entity.totalAmount() - 1) * 100).formatNumber(1);
+                    return (entity.specialIncrease() /
+                        entity.totalAmount() * 100).formatNumber(1);
                 });
 
                 entity.eminentPercentIncrease = ko.computed(function () {
-                    return ((entity.eminentIncrease() /
-                        entity.totalAmount() - 1) * 100).formatNumber(1);
+                    return (entity.eminentIncrease() /
+                        entity.totalAmount() * 100).formatNumber(1);
                 });
 
                 entity.formattedBaseAmount = ko.observable(entity.baseAmount())

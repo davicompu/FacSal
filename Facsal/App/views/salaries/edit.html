@@ -173,7 +173,7 @@
             <h4 data-magellan-destination="merit">Merit adjustment</h4>
 
             <div class="row">
-                <div class="large-4 columns end">
+                <div class="large-4 columns">
                     <label class="hide-on-print">
                         Amount<span class="required">*</span>
                         <input type="text" class="hide-on-print"
@@ -182,6 +182,13 @@
                     <p class="print-only">
                         <span class="text-underline">Amount</span>: <span data-bind="text: formattedMeritIncrease"></span>
                     </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="large-4 columns">
+                    <label>Change</label>
+                    <p data-bind="text: meritPercentIncrease() + '%'"></p>
                 </div>
             </div>
 
@@ -216,7 +223,7 @@
             <h4>Special adjustment</h4>
 
             <div class="row">
-                <div class="large-4 columns end">
+                <div class="large-4 columns">
                     <label class="hide-on-print">
                         Amount<span class="required">*</span>
                         <input type="text" class="hide-on-print"
@@ -225,6 +232,13 @@
                     <p class="print-only">
                         <span class="text-underline">Amount</span>: <span data-bind="text: formattedSpecialIncrease"></span>
                     </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="large-4 columns">
+                    <label>Change</label>
+                    <p data-bind="text: specialPercentIncrease() + '%'"></p>
                 </div>
             </div>
 

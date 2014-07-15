@@ -16,6 +16,7 @@ namespace SalaryEntities.Entities
 
         [Required]
         [StringLength(35)]
+        [Display(Name = "Appointment type")]
         public string Name { get; set; }
     }
 }

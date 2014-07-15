@@ -5408,6 +5408,11 @@ label span.required, h5 span.required {
   color: #f04124;
 }
 
+/* line 7, ../sass/app/components/_label.scss */
+label {
+  cursor: default;
+}
+
 /* line 1, ../sass/app/components/_select.scss */
 select {
   background-color: #3a3a3d;
