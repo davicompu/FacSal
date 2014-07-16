@@ -218,8 +218,19 @@
                 entity.isMeritAdjustmentNoteRequired = ko.computed(function () {
                     var increase = entity.meritIncrease() / entity.totalAmount();
 
-                    return increase > config.highPercentIncreaseThreshold ||
+                    var isOutsideThreshold = increase > config.highPercentIncreaseThreshold ||
                         increase < config.lowPercentIncreaseThreshold;
+
+                    var isMeritIncreaseZero = entity.meritIncrease() === 0;
+
+                    var isNotReviewed = entity.meritAdjustmentTypeId() ===
+                        config.meritAdjustmentTypeIdIndicatesNotReviewed;
+
+                    if (isOutsideThreshold && isMeritIncreaseZero && isNotReviewed) {
+                        return false;
+                    }
+
+                    return isOutsideThreshold;
                 });
 
                 entity.meritAdjustmentTypeId
@@ -227,7 +238,7 @@
                     validation: {
                         validator: function (value) {
                             if (entity.meritIncrease() > 0) {
-                                return value > 1;
+                                return value > config.meritAdjustmentTypeIdIndicatesNotReviewed;
                             } else {
                                 return value > 0;
                             }

@@ -5,16 +5,16 @@
     <AzureDeleteDeploymentOnFailure>True</AzureDeleteDeploymentOnFailure>
     <AzureDeploymentLabel>FacsalCloudService</AzureDeploymentLabel>
     <AzureDeploymentReplacementMethod>AutomaticUpgrade</AzureDeploymentReplacementMethod>
-    <AzureSlot>Production</AzureSlot>
-    <AzureEnableRemoteDesktop>True</AzureEnableRemoteDesktop>
+    <AzureSlot>Staging</AzureSlot>
+    <AzureEnableRemoteDesktop>False</AzureEnableRemoteDesktop>
     <AzureEnableWebDeploy>True</AzureEnableWebDeploy>
     <AzureFallbackToDeleteAndRecreateIfUpgradeFails>False</AzureFallbackToDeleteAndRecreateIfUpgradeFails>
-    <AzureHostedServiceLabel>testmerit</AzureHostedServiceLabel>
-    <AzureHostedServiceName>testmerit</AzureHostedServiceName>
+    <AzureHostedServiceLabel>merit</AzureHostedServiceLabel>
+    <AzureHostedServiceName>merit</AzureHostedServiceName>
     <AzureEnableIntelliTrace>False</AzureEnableIntelliTrace>
     <AzureEnableProfiling>False</AzureEnableProfiling>
     <AzureServiceConfiguration>Cloud</AzureServiceConfiguration>
-    <AzureSolutionConfiguration>Debug</AzureSolutionConfiguration>
+    <AzureSolutionConfiguration>Release</AzureSolutionConfiguration>
     <AzureStorageAccountLabel>funddiagnostics</AzureStorageAccountLabel>
     <AzureStorageAccountName>funddiagnostics</AzureStorageAccountName>
     <AzureAppendTimestampToDeploymentLabel>True</AzureAppendTimestampToDeploymentLabel>

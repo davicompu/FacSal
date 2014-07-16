@@ -7,6 +7,7 @@
             logOutCounterSeconds: 1170,
             highPercentIncreaseThreshold: 0.07,
             lowPercentIncreaseThreshold: 0.0125,
+            meritAdjustmentTypeIdIndicatesNotReviewed: 1,
 
             // Authentication Routes.
             siteUrl: "/",
