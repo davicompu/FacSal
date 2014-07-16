@@ -111,7 +111,7 @@ namespace Facsal.Controllers
                 SpecialAdjustmentTypes = UnitOfWork.SpecialAdjustmentTypeRepository.All(),
                 StatusTypes = UnitOfWork.StatusTypeRepository.All(),
                 Units = UnitOfWork.RoleAssignmentRepository.Find(ra => ra.User.Pid == User.Identity.Name)
-                    .Select(ra => ra.Role.Unit)
+                    .Select(ra => ra.Role.Department.Unit)
                     .OrderBy(u => u.Name),
             };
         }

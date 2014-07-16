@@ -5,32 +5,33 @@
         var unitofwork = uow.create(),
 
             vm = {
-            activate: activate,
-            attached: attached,
+                activate: activate,
+                attached: attached,
 
-            selectedDepartmentId: ko.observable(),
-            units: ko.observableArray(),
-            users: ko.observableArray(),
-        };
+                selectedDepartmentId: ko.observable(),
+                units: ko.observableArray(),
+                users: ko.observableArray(),
+            };
 
         errorhandler.includeIn(vm);
 
         vm.selectedDepartmentId.subscribe(function (newValue) {
-            if (newValue !== 'Choose...') {
-                var users = unitofwork.usersByDepartment(newValue)
-                    .then(function (response) {
-                        $.each(response, function (index) {
-                            response[index].formattedCreatedDate = ko.computed(function () {
-                                return moment(response[index].createdDate).format('MM/DD/YYYY');
-                            });
-                        });
-                        vm.users(response);
-                    })
-                    .fail(function (response) {
-                        logger.logError(response.statusText, response, system.getModuleId(vm), true);
-                    });
+            if (newValue === 'Choose...' || newValue === undefined) {
+                return vm.users([]);
             }
 
+            var users = unitofwork.usersByDepartment(newValue)
+                .then(function (response) {
+                    $.each(response, function (index) {
+                        response[index].formattedCreatedDate = ko.computed(function () {
+                            return moment(response[index].createdDate).format('MM/DD/YYYY');
+                        });
+                    });
+                    vm.users(response);
+                })
+                .fail(function (response) {
+                    logger.logError(response.statusText, response, system.getModuleId(vm), true);
+                });
 
             return true;
         });

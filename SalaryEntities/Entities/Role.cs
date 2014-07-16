@@ -21,13 +21,8 @@ namespace SalaryEntities.Entities
 
         public ICollection<RoleAssignment> RoleAssignments { get; set; }
 
-        [ForeignKey("Unit")]
-        public string UnitId { get; set; }
-
         [ForeignKey("Department")]
         public string DepartmentId { get; set; }
-
-        public Unit Unit { get; set; }
 
         public Department Department { get; set; }
     }
