@@ -13,13 +13,58 @@
 
             assignmentVMs: ko.observableArray(),
             columnLength: ko.observable(4),
-            roles: ko.observable(),
+            selectedDepartmentId: ko.observable(),
             user: ko.observable(),
+            units: ko.observableArray(),
             userId: ko.observable(),
 
             cancelChanges: cancelChanges,
             saveChanges: saveChanges,
         };
+
+        vm.selectedDepartmentId.subscribe(function (newValue) {
+            if (newValue === 'Choose...' || newValue === undefined) {
+                return vm.assignmentVMs([]);
+            }
+
+            var p1 = new breeze.Predicate('name', breeze.FilterQueryOp.Contains, newValue),
+
+                roles = unitofwork.roles.find(p1)
+                    .then(function (response) {
+                        var roles = response;
+
+                        var p1 = new breeze.Predicate('id', '==', vm.userId()),
+
+                            p2 = new breeze.Predicate('roleAssignments.role.departmentId', '==', newValue),
+
+                            predicate = breeze.Predicate.and([p1, p2]),
+
+                            expansionCondition = 'roleAssignments',
+
+                            user = unitofwork.users.find(predicate, expansionCondition)
+                                .then(function (response) {
+                                    var user = response[0],
+                                        assignmentHash = createRoleAssignmentHash(user),
+                                        assignmentMapVMs = $.map(roles, function (role) {
+                                            return {
+                                                role: role,
+                                                isSelected: ko.observable(!!assignmentHash[role.id])
+                                            };
+                                        });
+
+                                    vm.assignmentVMs(assignmentMapVMs);
+
+                                    return vm.user(user);
+                                });
+
+                        vm.assignmentVMs(assignmentMapVMs);
+                    })
+                    .fail(function (response) {
+                        logger.logError(response.statusText, response, system.getModuleId(vm), true);
+                    });
+
+            return true;
+        });
 
         vm.assignmentVMRows = ko.computed(function () {
             var result = [],
@@ -60,33 +105,44 @@
         function attached() {
             var self = this,
 
-                roles = unitofwork.getAssignableRoles()
+                units = unitofwork.manageableUnits.all()
                     .then(function (response) {
-                        vm.roles(response);
+                        vm.units(response);
                     });
 
-                var predicate = new breeze.Predicate('id', '==', vm.userId()),
-                expansionCondition = 'roleAssignments',
-                user = unitofwork.users.find(predicate, expansionCondition)
-                    .then(function (response) {
-                        var user = response[0],
-                            assignmentHash = createRoleAssignmentHash(user),
-                            assignmentMapVMs = $.map(vm.roles(), function (role) {
-                                return {
-                                    role: role,
-                                    isSelected: ko.observable(!!assignmentHash[role.id])
-                                };
-                            });
+            //    roles = unitofwork.getAssignableRoles()
+            //        .then(function (response) {
+            //            vm.roles(response);
+            //        });
 
-                        vm.assignmentVMs(assignmentMapVMs);
+            //var p1 = new breeze.Predicate('id', '==', vm.userId()),
 
-                        return vm.user(user);
-                    });
+            //    p2 = new breeze.predicate('roleAssignments.role.departmentId', '==', newValue),
 
-            Q.all([
-                roles,
-                user
-            ]).fail(self.handleError);
+            //    predicate = breeze.Predicate.and([p1, p2]),
+
+            //    expansionCondition = 'roleAssignments',
+
+            //    user = unitofwork.users.find(predicate, expansionCondition)
+            //        .then(function (response) {
+            //            var user = response[0],
+            //                assignmentHash = createRoleAssignmentHash(user),
+            //                assignmentMapVMs = $.map(vm.roles(), function (role) {
+            //                    return {
+            //                        role: role,
+            //                        isSelected: ko.observable(!!assignmentHash[role.id])
+            //                    };
+            //                });
+
+            //            vm.assignmentVMs(assignmentMapVMs);
+
+            //            return vm.user(user);
+            //        });
+
+            //Q.all([
+            //    roles,
+            //    user
+            //]).fail(self.handleError);
 
             return true;
         }
@@ -106,8 +162,8 @@
 
             unitofwork.commit()
                 .then(function (response) {
-                    logger.logSuccess('Save successful', response, system.getModuleId(vm), true);
-                    return router.navigateBack();
+                    return logger.logSuccess('Save successful', response, system.getModuleId(vm), true);
+                    //return router.navigateBack();
                 })
                 .fail(self.handleError);
 

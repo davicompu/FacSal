@@ -6,13 +6,12 @@
 
 <div class="row">
     <div class="large-12 columns">
-        <section data-bind="with: user">
             <fieldset>
                 <h4>User information</h4>
 
                 <div class="row">
                     <div class="large-5 columns end">
-                        <span data-bind="text: 'Pid: ' + pid()"></span>
+                        <span data-bind="text: 'Pid: ' + user.pid()"></span>
                     </div>
                 </div>
             </fieldset>
@@ -20,7 +19,23 @@
             <fieldset>
                 <h4>Departmental roles</h4>
 
-                <!-- ko foreach: $parent.assignmentVMRows -->
+                <div class="row">
+                    <div class="large-6 columns end">
+                        <label for="Unit">
+                            Department
+                        </label>
+                        <select data-bind="value: selectedDepartmentId">
+                            <option disabled="disabled" hidden="hidden" selected="selected">Choose...</option>
+                            <!-- ko foreach: units -->
+                            <optgroup data-bind="attr: { label: name }, foreach: departments">
+                                <option data-bind="attr: { label: name, value: id }, text: name"></option>
+                            </optgroup>
+                            <!--/ko-->
+                        </select>
+                    </div>
+                </div>
+
+                <!-- ko foreach: assignmentVMRows -->
                 <div class="row" data-bind="foreach: $data">
                     <div class="large-3 columns end">
                         <label>
@@ -34,10 +49,9 @@
 
             <div class="row">
                 <div class="large-12 columns">
-                    <span class="save-button" data-bind="click: $parent.saveChanges">Save</span>
-                    <span class="cancel-button" data-bind="click: $parent.cancelChanges">Cancel</span>
+                    <span class="save-button" data-bind="click: saveChanges">Save</span>
+                    <span class="cancel-button" data-bind="click: cancelChanges">Cancel</span>
                 </div>
             </div>
-        </section>
     </div>
 </div>
