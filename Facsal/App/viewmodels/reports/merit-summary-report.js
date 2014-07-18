@@ -94,9 +94,9 @@
 
         function dowloadExcel() {
             if (vm.departmentId()) {
-                window.location.assign('/ReportFile/DepartmentMeeting/' + vm.departmentId());
+                window.location.assign('/ReportFile/DepartmentMeritSummary/' + vm.departmentId());
             } else if (vm.unitId()) {
-                window.location.assign('/ReportFile/UnitMeeting/' + vm.unitId());
+                window.location.assign('/ReportFile/UnitMeritSummary/' + vm.unitId());
             }
         }
 
