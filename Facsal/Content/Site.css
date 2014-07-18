@@ -5607,3 +5607,8 @@ table tbody.department-heading tr td {
     transform: rotate(360deg);
   }
 }
+
+/* line 2, ../sass/app/_shame.scss */
+table.report-table tr.results td {
+  text-align: center;
+}
