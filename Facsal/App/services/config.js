@@ -26,6 +26,7 @@
             getAssignableRolesUrl: '/api/role/getAssignableRoles',
             logOutUrl: '/cas/logOut',
             lookupsUrl: 'getLookups',
+            manageableUnitsUrl: 'getManageableUnits',
             meritAdjustmentTypesUrl: 'meritAdjustmentTypes',
             personsUrl: 'persons',
             personsWithMultipleEmploymentsUrl:
