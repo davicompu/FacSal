@@ -47,6 +47,12 @@ namespace Facsal.Controllers
         }
 
         [HttpGet]
+        public IQueryable<Role> GetRoles()
+        {
+            return UnitOfWork.RoleRepository.All();
+        }
+
+        [HttpGet]
         public IQueryable<Salary> Salaries()
         {
             if (User.IsInRole("manage-all"))

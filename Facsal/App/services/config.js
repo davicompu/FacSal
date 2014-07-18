@@ -31,7 +31,7 @@
             personsWithMultipleEmploymentsUrl:
                 '/api/report/getPersonsWithMultipleEmployments',
             rankTypesUrl: 'rankTypes',
-            rolesUrl: 'roles',
+            rolesUrl: 'getRoles',
             roleAssignmentsUrl: 'roleAssignments',
             salariesUrl: 'salaries',
             //salariesUrl: function (departmentId) {
