@@ -105,7 +105,7 @@ namespace Facsal.Controllers
                         .ThenBy(s => s.Person.LastName)
                     .ToList();
 
-                var report = new MeetingReport(department, salaries);
+                var report = new MeritSummaryReport(department, salaries);
 
                 return File(report.BinaryData, report.FileType, report.FileName);
             }
@@ -113,7 +113,7 @@ namespace Facsal.Controllers
             return new HttpUnauthorizedResult();
         }
 
-               public ActionResult UnitMeritSummary(string id)
+        public ActionResult UnitMeritSummary(string id)
         {
             var departments = DbContext.Departments
                 .Where(d => d.UnitId == id)
@@ -142,7 +142,7 @@ namespace Facsal.Controllers
                     .ThenBy(s => s.Person.LastName)
                     .ToList();
 
-                var report = new MeetingReport(authorizedDepartments, salaries, true);
+                var report = new MeritSummaryReport(authorizedDepartments, salaries, true);
 
                 return File(report.BinaryData, report.FileType, report.FileName);
             }
