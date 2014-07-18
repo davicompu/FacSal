@@ -1,0 +1,62 @@
+﻿<div class="row">
+    <div class="large-12 columns">
+        <h2 class="background"><span>Merit Summary Report</span></h2>
+    </div>
+</div>
+
+<div class="row" data-bind="if: summaryMerit().length > 0">
+    <div class="large-12 columns">
+        <p>
+            <a data-bind="click: downloadExcel">Download Excel version</a>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="large-12 columns">
+        <table class="report-table" data-bind="if: summaryMerit().length > 0">
+            <!-- ko foreach: summaryMerit -->
+            <tbody class="department-heading">
+                <tr>
+                    <td colspan="6" class="text-center" data-bind="text: department"></td>
+                </tr>
+            </tbody>
+
+            <tbody class="thead">
+                <tr class="results">
+                    <td>
+                        Highest  increase
+                    </td>
+                    <td>
+                        Highest  percentage
+                    </td>
+                    <td>
+                        Median  increase
+                    </td>
+                    <td>
+                        Mean increase
+                    </td>
+                    <td>
+                        Lowest increase
+                    </td>
+                    <td>
+                        Lowest percentage
+                    </td>
+                </tr>
+            </tbody>
+
+            <tbody>
+                <tr class="results">
+                    <td data-bind="text: highestMerit.formattedMeritIncrease"></td>
+                    <td data-bind="text: highestMerit.formattedPercentIncrease"></td>
+                    <td data-bind="text: medianMerit"></td>
+                    <td data-bind="text: meanMerit"></td>
+                    <td data-bind="text: lowestMerit.formattedMeritIncrease"></td>
+                    <td data-bind="text: lowestMerit.formattedPercentIncrease"></td>
+
+                </tr>
+            </tbody>
+            <!--/ko-->
+        </table>
+    </div>
+</div>

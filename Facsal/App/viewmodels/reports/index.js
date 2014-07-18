@@ -47,7 +47,8 @@
                     { route: 'base-salary-adjustment', text: 'Faculty with base salary adjustments' },
                     { route: 'multiple-employments', text: 'Faculty with multiple departments' },
                     { route: 'salaries-by-faculty-type', text: 'Salaries by faculty type' },
-                    { route: 'unreviewed', text: 'Unreviewed faculty' }
+                    { route: 'unreviewed', text: 'Unreviewed faculty' },
+                    { route: 'merit-summary-report', text: 'Merit summary report' }
                 ],
 
                 units = unitofwork.units.all()
