@@ -13,13 +13,45 @@
 
             assignmentVMs: ko.observableArray(),
             columnLength: ko.observable(4),
-            roles: ko.observable(),
+            selectedDepartmentId: ko.observable(),
             user: ko.observable(),
+            units: ko.observableArray(),
             userId: ko.observable(),
 
             cancelChanges: cancelChanges,
             saveChanges: saveChanges,
         };
+
+        vm.selectedDepartmentId.subscribe(function (newValue) {
+            if (newValue === 'Choose...' || newValue === undefined) {
+                return vm.assignmentVMs([]);
+            }
+
+            var p1 = new breeze.Predicate('name', breeze.FilterQueryOp.Contains, newValue),
+
+                roles = unitofwork.roles.find(p1)
+                    .then(function (response) {
+                        var roles = response,
+
+                            user = vm.user(),
+
+                            assignmentHash = createRoleAssignmentHash(user),
+
+                            assignmentMapVMs = $.map(roles, function (role) {
+                                return {
+                                    role: role,
+                                    isSelected: ko.observable(!!assignmentHash[role.id()])
+                                };
+                            });
+
+                        vm.assignmentVMs(assignmentMapVMs);
+                    })
+                    .fail(function (response) {
+                        logger.logError(response.statusText, response, system.getModuleId(vm), true);
+                    });
+
+            return true;
+        });
 
         vm.assignmentVMRows = ko.computed(function () {
             var result = [],
@@ -53,46 +85,34 @@
 
         function activate(userId) {
             ga('send', 'pageview', { 'page': window.location.href, 'title': document.title });
+
             vm.userId(userId);
+
             return true;
         }
 
         function attached() {
-            var self = this,
+            var predicate = new breeze.Predicate('id', '==', vm.userId()),
 
-                roles = unitofwork.getAssignableRoles()
-                    .then(function (response) {
-                        vm.roles(response);
-                    });
-
-                var predicate = new breeze.Predicate('id', '==', vm.userId()),
                 expansionCondition = 'roleAssignments',
+
                 user = unitofwork.users.find(predicate, expansionCondition)
                     .then(function (response) {
-                        var user = response[0],
-                            assignmentHash = createRoleAssignmentHash(user),
-                            assignmentMapVMs = $.map(vm.roles(), function (role) {
-                                return {
-                                    role: role,
-                                    isSelected: ko.observable(!!assignmentHash[role.id])
-                                };
-                            });
+                        vm.user(response[0]);
+                    }),
 
-                        vm.assignmentVMs(assignmentMapVMs);
-
-                        return vm.user(user);
+                units = unitofwork.manageableUnits.all()
+                    .then(function (response) {
+                        vm.units(response);
                     });
-
-            Q.all([
-                roles,
-                user
-            ]).fail(self.handleError);
 
             return true;
         }
 
         function deactivate() {
             vm.user(undefined);
+            vm.units(undefined);
+            return true;
         }
 
         function saveChanges() {
@@ -106,8 +126,7 @@
 
             unitofwork.commit()
                 .then(function (response) {
-                    logger.logSuccess('Save successful', response, system.getModuleId(vm), true);
-                    return router.navigateBack();
+                    return logger.logSuccess('Save successful', response, system.getModuleId(vm), true);
                 })
                 .fail(self.handleError);
 
@@ -135,14 +154,14 @@
                 assignmentHash = createRoleAssignmentHash(user);
 
             $.each(mapVMs, function (index, mapVM) {
-                var map = assignmentHash[mapVM.role.id];
+                var map = assignmentHash[mapVM.role.id()];
 
                 if (mapVM.isSelected()) {
                     // User selected this assignment.
                     if (!map) {
                         // No existing map, so create one.
                         map = unitofwork.roleAssignments.create({
-                            roleId: mapVM.role.id,
+                            roleId: mapVM.role.id(),
                             userId: user.id()
                         });
                     }

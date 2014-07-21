@@ -47,6 +47,21 @@ namespace Facsal.Controllers
         }
 
         [HttpGet]
+        public IQueryable<Role> GetRoles()
+        {
+            return UnitOfWork.RoleRepository.All();
+        }
+
+        [HttpGet]
+        public IQueryable<Unit> GetManageableUnits()
+        {
+            return UnitOfWork.RoleAssignmentRepository
+                .Find(ra => ra.User.Pid == User.Identity.Name &&
+                    ra.Role.Name.StartsWith("manage-users-"))
+                .Select(ra => ra.Role.Department.Unit);
+        }
+
+        [HttpGet]
         public IQueryable<Salary> Salaries()
         {
             if (User.IsInRole("manage-all"))
