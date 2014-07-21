@@ -134,12 +134,12 @@ namespace Facsal.DataAccess
             }
             IList<string> roles = principal.Assertion.Attributes[roleAttribute];
 
+            // TODO: Allow stored roles to only be added once.
             IList<string> storedRoles = GetStoredUserRoles();
             foreach (var role in storedRoles)
             {
                 roles.Add(role);
             }
-
 
             if (roles == null)
             {

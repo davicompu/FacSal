@@ -114,13 +114,15 @@
                 // Employments.
                 {
                     route: 'employments/edit/:personId', moduleId: 'employments/edit',
-                    title: 'Edit employments', nav: false, hash: '#employments/edit'
+                    title: 'Edit employments', nav: false, hash: '#employments/edit',
+                    requiredRoles: ['manage-all']
                 },
 
                 // Persons.
                 {
                     route: 'persons/create', moduleId: 'persons/create',
-                    title: 'New employee', nav: false, hash: '#persons/create'
+                    title: 'New employee', nav: false, hash: '#persons/create',
+                    requiredRoles: ['manage-all']
                 },
 
                 // Reports.
@@ -169,15 +171,18 @@
                 // Users.
                 {
                     route: ['users', 'users/index'], moduleId: 'users/index',
-                    title: 'Users', nav: false, hash: '#users/index'
+                    title: 'Users', nav: false, hash: '#users/index',
+                    requiredRoles: ['manage-users']
                 },
                 {
                     route: 'users/edit/:userid', moduleId: 'users/edit',
-                    title: 'Edit user', nav: false, hash: '#users/edit/:salaryid'
+                    title: 'Edit user', nav: false, hash: '#users/edit/:salaryid',
+                    requiredRoles: ['manage-users']
                 },
                 {
                     route: 'users/create', moduleId: 'users/create',
-                    title: 'New user', nav: false, hash: '#users/create'
+                    title: 'New user', nav: false, hash: '#users/create',
+                    requiredRoles: ['manage-users']
                 },
 
                 // Route not found.
