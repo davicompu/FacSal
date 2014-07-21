@@ -153,6 +153,12 @@
                     title: 'Unreviewed faculty report', nav: false,
                     hash: '#reports/unreviewed'
                 },
+                {
+                    route: 'reports/merit-summary-report/:unitid(/:departmentid)',
+                    moduleId: 'reports/merit-summary-report',
+                    title: 'Merit summary report', nav: false,
+                    hash: '#reports/merit-summary-report'
+                },
 
                 // Salaries.
                 {
