@@ -71,13 +71,14 @@ define(['services/entitymanagerprovider', 'services/repository', 'durandal/app',
                     routeconfig.facultyTypesUrl, breeze.FetchStrategy.FromLocalCache);
 	            this.leaveTypes = repository.create(provider, 'LeaveType',
                     routeconfig.leaveTypesUrl, breeze.FetchStrategy.FromLocalCache);
+	            this.manageableUnits = repository.create(provider, 'Unit',
+                    routeconfig.manageableUnitsUrl);
 	            this.meritAdjustmentTypes = repository.create(provider, 'MeritAdjustmentType',
                     routeconfig.meritAdjustmentTypesUrl, breeze.FetchStrategy.FromLocalCache);
 	            this.persons = repository.create(provider, 'Person', routeconfig.personsUrl);
 	            this.rankTypes = repository.create(provider, 'RankType',
                     routeconfig.rankTypesUrl, breeze.FetchStrategy.FromLocalCache);
-	            this.roles = repository.create(provider, 'Role', routeconfig.rolesUrl,
-                    breeze.FetchStrategy.FromLocalCache);
+	            this.roles = repository.create(provider, 'Role', routeconfig.rolesUrl);
 	            this.roleAssignments = repository.create(provider, 'RoleAssignment',
                     routeconfig.roleAssignmentsUrl);
 	            this.salaries = repository.create(provider, 'Salary',

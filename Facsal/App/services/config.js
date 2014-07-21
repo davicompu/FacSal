@@ -26,12 +26,13 @@
             getAssignableRolesUrl: '/api/role/getAssignableRoles',
             logOutUrl: '/cas/logOut',
             lookupsUrl: 'getLookups',
+            manageableUnitsUrl: 'getManageableUnits',
             meritAdjustmentTypesUrl: 'meritAdjustmentTypes',
             personsUrl: 'persons',
             personsWithMultipleEmploymentsUrl:
                 '/api/report/getPersonsWithMultipleEmployments',
             rankTypesUrl: 'rankTypes',
-            rolesUrl: 'roles',
+            rolesUrl: 'getRoles',
             roleAssignmentsUrl: 'roleAssignments',
             salariesUrl: 'salaries',
             //salariesUrl: function (departmentId) {

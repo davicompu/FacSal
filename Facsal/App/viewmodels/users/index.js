@@ -46,7 +46,7 @@
         function attached() {
             var self = this;
 
-            var units = unitofwork.units.all()
+            var units = unitofwork.manageableUnits.all()
                 .then(function (response) {
                     vm.units(response);
                 });
