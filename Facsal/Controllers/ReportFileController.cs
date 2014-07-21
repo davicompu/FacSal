@@ -53,6 +53,7 @@ namespace Facsal.Controllers
         {
             var departments = DbContext.Departments
                 .Where(d => d.UnitId == id)
+                .OrderBy(d=>d.Name)
                 .ToList();
 
             var authorizedDepartments = new List<Department>();
@@ -117,6 +118,7 @@ namespace Facsal.Controllers
         {
             var departments = DbContext.Departments
                 .Where(d => d.UnitId == id)
+                .OrderBy(d=>d.Name)
                 .ToList();
 
             var authorizedDepartments = new List<Department>();

@@ -102,8 +102,8 @@ namespace Facsal.Models.Files
         {
             List<Salary> salariesSorted = salaries_data.OrderBy(x => x.MeritIncrease).ToList();
 
-            int maxIncrease = salariesSorted[(salariesSorted.Count) - 1].MeritIncrease;
-            int minIncrease = salariesSorted[0].MeritIncrease;
+            var maxIncrease = salariesSorted[(salariesSorted.Count) - 1];
+            var minIncrease = salariesSorted[0];
             double median = 0, mean = 0;
             int total = 0;
             foreach (var salary in salariesSorted)
@@ -126,14 +126,22 @@ namespace Facsal.Models.Files
 
             Dictionary<string, double> dictionary =new Dictionary<string, double>();
 
-            dictionary.Add("max_increase", maxIncrease);
-            dictionary.Add("min_increase", minIncrease);
+            dictionary.Add("max_increase", maxIncrease.MeritIncrease);
+            dictionary.Add("max_increase_percentage", getMeritPercentageIncrease(maxIncrease));
+            dictionary.Add("min_increase", minIncrease.MeritIncrease);
+            dictionary.Add("min_increase_percentage", getMeritPercentageIncrease(minIncrease));
             dictionary.Add("median", median);
             dictionary.Add("mean", mean);
 
             return dictionary;
         }
 
+        private double getMeritPercentageIncrease(Salary salary)
+        {
+            double totalAmount = salary.BaseAmount + salary.AdminAmount + salary.EminentAmount + salary.PromotionAmount;
+            double percentage = (double)salary.MeritIncrease / (totalAmount);
+            return percentage;
+        }
 
 
         private ExcelWorksheet WriteTableLabels(ExcelWorksheet sheet)
@@ -183,36 +191,12 @@ namespace Facsal.Models.Files
                 Row++;
                 column = 0;
                 sheet.Cells[Row, ++column].Value = summary["max_increase"];
-                sheet.Cells[Row, ++column].Value = summary["max_increase"];
+                sheet.Cells[Row, ++column].Value = summary["max_increase_percentage"];
                 sheet.Cells[Row, ++column].Value = summary["median"];
                 sheet.Cells[Row, ++column].Value = summary["mean"];
                 sheet.Cells[Row, ++column].Value = summary["min_increase"];
-                sheet.Cells[Row, ++column].Value = summary["min_increase"];
+                sheet.Cells[Row, ++column].Value = summary["min_increase_percentage"];
 
-
-                //foreach (var salary in salaries)
-                //{
-                //    Row++;
-                //    column = 0;
-                //    sheet.Cells[Row, ++column].Value = salary.Person.FullName;
-                //    sheet.Cells[Row, ++column].Value = salary.RankType.Name;
-                //    sheet.Cells[Row, ++column].Value = salary.AppointmentType.Name;
-                //    sheet.Cells[Row, ++column].Value = salary.FullTimeEquivalent;
-                //    sheet.Cells[Row, ++column].Value = salary.BaseAmount;
-                //    sheet.Cells[Row, ++column].Value = salary.AdminAmount;
-                //    sheet.Cells[Row, ++column].Value = salary.EminentAmount;
-                //    sheet.Cells[Row, ++column].Value = salary.PromotionAmount;
-                //    sheet.Cells[Row, ++column].FormulaR1C1 = "SUM(RC[-4]:RC[-1])";
-                //    sheet.Cells[Row, ++column].Value = salary.MeritIncrease;
-                //    sheet.Cells[Row, ++column].Value = salary.SpecialIncrease;
-                //    sheet.Cells[Row, ++column].Value = salary.EminentIncrease;
-                //    sheet.Cells[Row, ++column].FormulaR1C1 =
-                //        "RC[-6]+(RC[-6]/RC[-4])*(RC[-3]+RC[-2])+RC[-1]";
-                //    sheet.Cells[Row, ++column].FormulaR1C1 =
-                //        "RC[-9]+RC[-8]+RC[-6]+RC[-4]+RC[-3]+RC[-2]+RC[-1]";
-                //    sheet.Cells[Row, ++column].FormulaR1C1 =
-                //        "RC[-1]/RC[-6]-1";
-                //}
             }
             #endregion
 
@@ -236,15 +220,29 @@ namespace Facsal.Models.Files
             sheet.PrinterSettings.FitToPage = true;
             sheet.PrinterSettings.FitToWidth = 1;
             sheet.PrinterSettings.FitToHeight = 0;
-            ExcelRange range_numberFormatting =
-                sheet.Cells[1, 1, Row, NUM_COLUMNS - 1];
-            ExcelRange range_percentFormatting =
-                sheet.Cells[1, NUM_COLUMNS, Row, NUM_COLUMNS];
+
+            var currencyFormat = "_($* #,##0_);_($* (#,##0);_($* \"-\"_);_(@_)";
+            var percentageFormat = "0.0%";
+
+            ExcelRange range_highestMeritIncrease = sheet.Cells[1, 1, Row, 1];
+            ExcelRange range_lowestMeritIncrease = sheet.Cells[1, 5, Row, 5];
+
+            ExcelRange range_meritIncreaseMeanMedian = sheet.Cells[1, 3, Row, 4];
+
+            ExcelRange range_highestMeritPercentage = sheet.Cells[1, 2, Row, 2];
+            ExcelRange range_lowestMeritPercentage = sheet.Cells[1, 6, Row, 6];
+
+            
 
             //Cell styling
-            range_numberFormatting.Style.Numberformat.Format = "_($* #,##0_);_($* (#,##0);_($* \"-\"_);_(@_)";
-            range_percentFormatting.Style.Numberformat.Format = "0.0%";
 
+            range_highestMeritIncrease.Style.Numberformat.Format = currencyFormat;
+            range_lowestMeritIncrease.Style.Numberformat.Format = currencyFormat;
+            range_meritIncreaseMeanMedian.Style.Numberformat.Format = currencyFormat;
+
+            range_highestMeritPercentage.Style.Numberformat.Format = percentageFormat;
+            range_lowestMeritPercentage.Style.Numberformat.Format = percentageFormat;
+            
             sheet.Cells.AutoFitColumns();
 
             return sheet;

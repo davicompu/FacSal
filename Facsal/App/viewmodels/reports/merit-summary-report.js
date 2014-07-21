@@ -38,8 +38,8 @@
                         department: row.department.name(),
                         highestMerit: salariesSorted[0],
                         lowestMerit: salariesSorted[salariesSorted.length - 1],
-                        meanMerit: ko.observable(mean).extend({ currency: [2] }),
-                        medianMerit: ko.observable(median).extend({ currency: [2] })
+                        meanMerit: ko.observable(mean).extend({ currency: [0] }),
+                        medianMerit: ko.observable(median).extend({ currency: [0] })
                     });
                 }
             });
