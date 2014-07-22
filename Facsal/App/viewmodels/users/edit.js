@@ -99,12 +99,19 @@
                 user = unitofwork.users.find(predicate, expansionCondition)
                     .then(function (response) {
                         vm.user(response[0]);
-                    }),
+                    });
 
-                units = unitofwork.manageableUnits.all()
+            if (session.userIsInRole('manage-all')) {
+                unitofwork.units.all()
                     .then(function (response) {
                         vm.units(response);
                     });
+            } else {
+                unitofwork.manageableUnits.all()
+                    .then(function (response) {
+                        vm.units(response);
+                    });
+            }
 
             return true;
         }

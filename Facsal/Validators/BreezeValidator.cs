@@ -208,7 +208,7 @@ namespace Facsal.Validators
         private bool IsAuthorizedToCreateUser(User user)
         {
             if (HttpContext.Current.User.IsInRole("manage-all") ||
-                HttpContext.Current.User.IsInRole("create-users"))
+                HttpContext.Current.User.IsInRole("manage-users"))
             {
                 return true;
             }

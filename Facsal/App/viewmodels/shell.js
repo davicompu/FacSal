@@ -172,17 +172,17 @@
                 {
                     route: ['users', 'users/index'], moduleId: 'users/index',
                     title: 'Users', nav: false, hash: '#users/index',
-                    requiredRoles: ['manage-users']
+                    requiredRoles: ['manage-users', 'manage-all']
                 },
                 {
                     route: 'users/edit/:userid', moduleId: 'users/edit',
                     title: 'Edit user', nav: false, hash: '#users/edit/:salaryid',
-                    requiredRoles: ['manage-users']
+                    requiredRoles: ['manage-users', 'manage-all']
                 },
                 {
                     route: 'users/create', moduleId: 'users/create',
                     title: 'New user', nav: false, hash: '#users/create',
-                    requiredRoles: ['manage-users']
+                    requiredRoles: ['manage-users', 'manage-all']
                 },
 
                 // Route not found.

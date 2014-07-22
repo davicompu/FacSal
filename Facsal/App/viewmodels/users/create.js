@@ -81,12 +81,21 @@
         }
 
         function attached() {
-            var self = this,
+            var self = this;
 
-                units = unitofwork.manageableUnits.all()
+            if (session.userIsInRole('manage-all')) {
+                unitofwork.units.all()
                     .then(function (response) {
                         vm.units(response);
                     });
+            } else {
+                var units = unitofwork.manageableUnits.all()
+                    .then(function (response) {
+                        vm.units(response);
+                    });
+
+                Q.all([units]).fail(self.handleError);
+            }
 
             vm.user(unitofwork.users.create());
 

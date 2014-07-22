@@ -1,6 +1,7 @@
 ﻿define(['services/unitofwork', 'services/errorhandler',
-    'services/logger', 'plugins/router', 'durandal/system'],
-    function (uow, errorhandler, logger, router, system) {
+    'services/logger', 'plugins/router', 'durandal/system',
+    'global/session'],
+    function (uow, errorhandler, logger, router, system, session) {
 
         var unitofwork = uow.create(),
 
@@ -46,12 +47,19 @@
         function attached() {
             var self = this;
 
-            var units = unitofwork.manageableUnits.all()
-                .then(function (response) {
-                    vm.units(response);
-                });
+            if (session.userIsInRole('manage-all')) {
+                unitofwork.units.all()
+                    .then(function (response) {
+                        vm.units(response);
+                    });
+            } else {
+                var units = unitofwork.manageableUnits.all()
+                    .then(function (response) {
+                        vm.units(response);
+                    });
 
-            Q.all([units]).fail(self.handleError);
+                Q.all([units]).fail(self.handleError);
+            }
 
             return true;
         }
