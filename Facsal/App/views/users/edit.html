@@ -4,9 +4,9 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="large-12 columns">
-        <section data-bind="with: user">
+<section data-bind="with: user">
+    <div class="row">
+        <div class="large-12 columns">
             <fieldset>
                 <h4>User information</h4>
 
@@ -19,6 +19,22 @@
 
             <fieldset>
                 <h4>Departmental roles</h4>
+
+                <div class="row">
+                    <div class="large-6 columns end">
+                        <label for="Unit">
+                            Department
+                        </label>
+                        <select data-bind="value: $parent.selectedDepartmentId">
+                            <option disabled="disabled" hidden="hidden" selected="selected">Choose...</option>
+                            <!-- ko foreach: $parent.units -->
+                            <optgroup data-bind="attr: { label: name }, foreach: departments">
+                                <option data-bind="attr: { label: name, value: id }, text: name"></option>
+                            </optgroup>
+                            <!--/ko-->
+                        </select>
+                    </div>
+                </div>
 
                 <!-- ko foreach: $parent.assignmentVMRows -->
                 <div class="row" data-bind="foreach: $data">
@@ -38,6 +54,6 @@
                     <span class="cancel-button" data-bind="click: $parent.cancelChanges">Cancel</span>
                 </div>
             </div>
-        </section>
+        </div>
     </div>
-</div>
+</section>
