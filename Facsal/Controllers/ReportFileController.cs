@@ -166,7 +166,6 @@ namespace Facsal.Controllers
                 var salaries = DbContext.Salaries
                     .Include("FacultyType")
                     .Where(s => s.Person.Employments.Any(e => e.DepartmentId == id));
-                    //.ToList();
 
 
                 var report = new SalariesByFacultyTypeReport(department,salaries);
@@ -198,14 +197,9 @@ namespace Facsal.Controllers
             if (authorizedDepartments.Count > 0)
             {
                 var salaries = DbContext.Salaries
-                    //.Include("Person")
-                    //.Include("Person.Employments")
-                    //.Include("RankType")
-                    //.Include("AppointmentType")
+                    .Include("FacultyType")
                     .Where(s => s.Person.Employments.Any(e => e.Department.UnitId == id));
-                    //.OrderBy(s => s.RankType.SequenceValue)
-                    //.ThenBy(s => s.Person.LastName)
-                    //.ToList();
+
 
                 var report = new SalariesByFacultyTypeReport(authorizedDepartments, salaries, true);
 
