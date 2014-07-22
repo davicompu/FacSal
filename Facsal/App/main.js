@@ -46,7 +46,11 @@ define(['durandal/app', 'durandal/viewLocator', 'durandal/system',
                 }
             });
 
-            pace.start();
+            if (Modernizr.csstransitions &&
+                Modernizr.csstransforms &&
+                Modernizr.opacity) {
+                pace.start();
+            }
 
             configureKnockout();
 

@@ -7,6 +7,7 @@
             activate: activate,
 
             instantaneousSearchString: ko.observable(''),
+            isSearching: ko.observable(false),
             searchResults: ko.observableArray(),
         };
 
@@ -29,8 +30,12 @@
                     predicate = breeze.Predicate.or([p1, p2, p3, p4]),
                     expansionProperty = 'person';
 
+                vm.isSearching(true);
+
                 return unitofwork.salaries.find(predicate, expansionProperty)
                     .then(function (response) {
+                        vm.isSearching(false);
+
                         return vm.searchResults(response);
                     });
             }

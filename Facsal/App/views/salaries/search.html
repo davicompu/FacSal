@@ -59,7 +59,7 @@
     </div>
 </div>
 
-<div class="row" data-bind="if: searchResults().length === 0 && throttledSearchString().length > 0">
+<div class="row" data-bind="if: searchResults().length === 0 && throttledSearchString().length > 0 && !isSearching()">
     <div class="large-12 columns">
         No records
     </div>

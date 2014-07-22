@@ -314,6 +314,7 @@
     <Content Include="Scripts\durandal\viewLocator.js" />
     <Content Include="Scripts\jquery.formatCurrency-1.4.0.js" />
     <Content Include="Scripts\knockout.validation.js" />
+    <Content Include="Scripts\modernizr.custom.js" />
     <Content Include="Scripts\pace.js" />
     <Content Include="weyland-config.js" />
     <Content Include="sass\app\components\_fieldset.scss" />
