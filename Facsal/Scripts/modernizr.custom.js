@@ -1,5 +1,5 @@
 /* Modernizr 2.8.3 (Custom Build) | MIT & BSD
- * Build: http://modernizr.com/download/#-opacity-csstransforms-csstransitions-shiv-testprop-testallprops-prefixes-domprefixes
+ * Build: http://modernizr.com/download/#-opacity-csstransforms-csstransitions-localstorage-shiv-testprop-testallprops-prefixes-domprefixes
  */
 ;
 
@@ -171,6 +171,15 @@ window.Modernizr = (function (window, document, undefined) {
         return testPropsAll('transition');
     };
 
+    tests['localstorage'] = function () {
+        try {
+            localStorage.setItem(mod, mod);
+            localStorage.removeItem(mod);
+            return true;
+        } catch (e) {
+            return false;
+        }
+    };
 
 
     for (var feature in tests) {

@@ -3,12 +3,15 @@
 
         //#region Public interface.
         var self = {
+            alwaysRefreshMetadata: false,
             currentCycleYear: 2014,
             logOutCounterSeconds: 1170,
+            metadataRefreshMeasure: 'weeks',
+            metadataRefreshPeriod: 1,
             highPercentIncreaseThreshold: 0.07,
             lowPercentIncreaseThreshold: 0.0125,
             meritAdjustmentTypeIdIndicatesNotReviewed: 1,
-
+            
             // Authentication Routes.
             siteUrl: "/",
             userInfoUrl: "/api/account/getUserInfo",

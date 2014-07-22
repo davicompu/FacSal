@@ -69,11 +69,13 @@ define(['durandal/app', 'services/config'],
 		 * @return {promise}
 		*/
 	    function prepare() {
-	        return masterManager.fetchMetadata()
+	        return Q.fcall(fetchMetadata)
 				.then(function () {
 				    if (self.modelBuilder) {
 				        self.modelBuilder(masterManager.metadataStore);
 				    }
+
+
 
 				    var query = breeze.EntityQuery
 						.from(routeconfig.lookupsUrl);
@@ -84,4 +86,36 @@ define(['durandal/app', 'services/config'],
 		            console.log(error);
 		        });
 	    }
+
+	    function fetchMetadata() {
+
+	        if (Modernizr.localstorage) {
+	            var localMetadata = localStorage.getObject('metadata');
+
+	            if (localMetadata) {
+	                if (moment().diff(localMetadata.lastSaveDate,
+                        routeconfig.metadataRefreshMeasure) >
+                            routeconfig.metadataRefreshPeriod ||
+                        routeconfig.alwaysRefreshMetadata) {
+	                    localStorage.removeItem('metadata');
+	                } else {
+	                    return masterManager.metadataStore.importMetadata(localMetadata.rawMetadata);
+	                }
+	            }
+
+	            return masterManager.fetchMetadata()
+                    .then(function () {
+                        var saveDate = moment().format();
+                        var rawMetadata = masterManager.metadataStore.exportMetadata();
+
+                        localStorage.setObject('metadata',
+                            {
+                                lastSaveDate: saveDate,
+                                rawMetadata: rawMetadata
+                            });
+                    });
+            }
+
+	        return masterManager.fetchMetadata();
+        }
 	});

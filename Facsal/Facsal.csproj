@@ -295,6 +295,7 @@
     <Content Include="Scripts\almond-custom.js" />
     <Content Include="Scripts\breeze.saveErrorExtensions.js" />
     <Content Include="Scripts\chrisjsherm\chrisjsherm.counter.js" />
+    <Content Include="Scripts\chrisjsherm\chrisjsherm.storage.js" />
     <Content Include="Scripts\chrisjsherm\jquery.utilities.js" />
     <Content Include="Scripts\durandal\activator.js" />
     <Content Include="Scripts\durandal\app.js" />
