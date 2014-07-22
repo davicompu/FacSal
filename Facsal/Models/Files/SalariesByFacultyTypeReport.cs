@@ -17,9 +17,6 @@ namespace Facsal.Models.Files
         const int SUMMARY_DATA_COLUMNS = 0;
         private Department department;
         private string[] labels;
-        private object salaries;
-        //private   List<IGrouping<int,Salary>> salaries;
-
 
         int Row { get; set; }
 
@@ -216,12 +213,12 @@ namespace Facsal.Models.Files
         {
             //Header
             sheet.HeaderFooter.FirstHeader.LeftAlignedText = "VIRGINIA TECH\n"
-                + "MEETING REPORT\n" +
+                + "SALARY BY FACULTY TYPE REPORT\n" +
                 "FY " + ConfigurationManager.AppSettings["CycleYear"];
 
             //Footer
             sheet.HeaderFooter.FirstFooter.CenteredText = System.DateTime.Now.ToShortDateString() +
-                " Meeting Report FY " +
+                " Salary By Faculty Report FY " +
                 ConfigurationManager.AppSettings["CycleYear"];
 
             //Printing
