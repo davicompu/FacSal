@@ -41,6 +41,7 @@ namespace Facsal
                   .Include("~/Scripts/foundation/foundation.js")
                   .Include("~/Scripts/foundation/foundation.reveal.js")
                   .Include("~/Scripts/foundation/foundation.topbar.js")
+                  .Include("~/Scripts/foundation/foundation.slider.js")
                   .Include("~/Scripts/moment.js")
                   .Include("~/Scripts/toastr.js")
             );

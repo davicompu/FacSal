@@ -31,6 +31,7 @@
             facultyTypes: facultyTypes,
             leaveTypes: leaveTypes,
             meritAdjustmentTypes: meritAdjustmentTypes,
+            meritSlider:ko.observable(),
             rankTypes: rankTypes,
             salary: ko.observable(),
             salaryId: ko.observable(),
@@ -42,9 +43,24 @@
             saveChanges: saveChanges,
         };
 
-        errorhandler.includeIn(vm);
+        vm.salary.subscribe(function (newValue) {
+   
+            newValue.meritPercentIncrease.subscribe(function (nv) {
+                alert("change:" + nv);
+                vm.meritSlider(nv);
+                $('#meritSlider').foundation('slider', 'set_value', nv);
+            });
 
+            //vm.meritSlider.subscribe(function () {
+            //    alert("Merit");
+            //});
+        });
+
+       
+        errorhandler.includeIn(vm);
+        
         return vm;
+
 
         function activate(salaryId) {
             ga('send', 'pageview', { 'page': window.location.href, 'title': document.title });
@@ -52,10 +68,14 @@
             return true;
         }
 
-        function attached() {
-            var self = this;
+        function attached(view) {
 
+            var self = this;
+            
             $('html,body').animate({ scrollTop: 0 }, 0);
+
+            // Initialize Foundation scripts
+            $(view).foundation();
 
             var appointmentTypes = unitofwork.appointmentTypes.all()
                 .then(function (response) {
