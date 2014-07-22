@@ -14,7 +14,7 @@
 
 <div class="row">
     <div class="large-12 columns">
-        <table class="report-table" data-bind="if: summaryMerit().length > 0">
+        <table data-bind="if: summaryMerit().length > 0">
             <!-- ko foreach: summaryMerit -->
             <tbody class="department-heading">
                 <tr>
@@ -24,22 +24,22 @@
 
             <tbody class="thead">
                 <tr class="results">
-                    <td>
+                    <td class="text-center">
                         Highest  increase
                     </td>
-                    <td>
+                    <td class="text-center">
                         Highest  percentage
                     </td>
-                    <td>
+                    <td class="text-center">
                         Median  increase
                     </td>
-                    <td>
+                    <td class="text-center">
                         Mean increase
                     </td>
-                    <td>
+                    <td class="text-center">
                         Lowest increase
                     </td>
-                    <td>
+                    <td class="text-center">
                         Lowest percentage
                     </td>
                 </tr>
@@ -47,12 +47,18 @@
 
             <tbody>
                 <tr class="results">
-                    <td data-bind="text: highestMerit.formattedMeritIncrease"></td>
-                    <td data-bind="text: highestMerit.formattedPercentIncrease"></td>
-                    <td data-bind="text: medianMerit"></td>
-                    <td data-bind="text: meanMerit"></td>
-                    <td data-bind="text: lowestMerit.formattedMeritIncrease"></td>
-                    <td data-bind="text: lowestMerit.formattedPercentIncrease"></td>
+                    <td class="text-center"
+                        data-bind="text: highestMerit.formattedMeritIncrease"></td>
+                    <td class="text-center"
+                        data-bind="text: highestMerit.formattedPercentIncrease"></td>
+                    <td class="text-center"
+                        data-bind="text: medianMerit"></td>
+                    <td class="text-center"
+                        data-bind="text: meanMerit"></td>
+                    <td class="text-center"
+                        data-bind="text: lowestMerit.formattedMeritIncrease"></td>
+                    <td class="text-center"
+                        data-bind="text: lowestMerit.formattedPercentIncrease"></td>
 
                 </tr>
             </tbody>

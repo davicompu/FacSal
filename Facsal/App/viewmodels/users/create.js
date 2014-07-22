@@ -108,9 +108,10 @@
         }
 
         function deactivate() {
+            vm.assignmentVMs(undefined);
             vm.selectedDepartmentId(undefined);
-            vm.user(undefined);
             vm.units(undefined);
+            vm.user(undefined);
             return true;
         }
 
