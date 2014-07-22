@@ -61,6 +61,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <PublishProfile Include="Profiles\devmeritProduction.azurePubxml" />
     <PublishProfile Include="Profiles\foundationportal-testProduction.azurePubxml" />
   </ItemGroup>
   <!-- Import the target files for this project template -->

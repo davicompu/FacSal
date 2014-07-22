@@ -8,6 +8,10 @@
             deactivate: deactivate,
 
             departmentData: ko.observableArray(),
+            departmentId: ko.observable(),
+            unitId: ko.observable(),
+
+            downloadExcel: dowloadExcel,
         };
 
         errorhandler.includeIn(vm);
@@ -16,6 +20,9 @@
 
         function activate(unitId, departmentId) {
             var self = this;
+            vm.unitId(unitId);
+            vm.departmentId(departmentId);
+
 
             ga('send', 'pageview', { 'page': window.location.href, 'title': document.title });
 
@@ -80,5 +87,13 @@
                     salaries
                 ]).fail(self.handleError);
             });
+        }
+
+        function dowloadExcel() {
+            if (vm.departmentId()) {
+                window.location.assign('/ReportFile/DepartmentSalariesByFacultyType/' + vm.departmentId());
+            } else if (vm.unitId()) {
+                window.location.assign('/ReportFile/UnitSalariesByFacultyType/' + vm.unitId());
+            }
         }
     });

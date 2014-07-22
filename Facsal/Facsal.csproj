@@ -222,6 +222,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Files\SalariesByFacultyTypeReport.cs" />
     <Compile Include="Models\Files\MeritSummaryReport.cs" />
     <Compile Include="Models\Files\MeetingReport.cs" />
     <Compile Include="Models\Files\Report.cs" />
