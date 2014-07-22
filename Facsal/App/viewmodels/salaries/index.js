@@ -1,7 +1,7 @@
-﻿define(['services/unitofwork', 'services/errorhandler',
+﻿define(['global/session', 'services/errorhandler',
     'services/config'],
-    function (uow, errorhandler, config) {
-        var unitofwork = uow.create(),
+    function (session, errorhandler, config) {
+        var unitofwork = session.unitofwork(),
 
             units = ko.observableArray(),
             

@@ -1,10 +1,9 @@
-﻿define(['services/unitofwork', 'services/errorhandler',
-    'services/logger', 'global/session', 'durandal/system',
-    'plugins/router'],
-    function (uow, errorhandler, logger, session, system,
+﻿define(['global/session', 'services/errorhandler',
+    'services/logger', 'durandal/system', 'plugins/router'],
+    function (session, errorhandler, logger, system,
         router) {
 
-        var unitofwork = uow.create();
+        var unitofwork = session.unitofwork();
 
         var vm = {
             activate: activate,
@@ -117,9 +116,11 @@
         }
 
         function deactivate() {
+            vm.assignmentVMs(undefined);
             vm.selectedDepartmentId(undefined);
-            vm.user(undefined);
             vm.units(undefined);
+            vm.user(undefined);
+            vm.userId(undefined);
             return true;
         }
 

@@ -212,7 +212,7 @@
                 entity.formattedNewTotalAmount = entity.newTotalAmount
                     .extend({ computedCurrency: [0] });
 
-                entity.formattedPercentIncrease = ko.observable(entity.percentIncrease())
+                entity.formattedPercentIncrease = entity.percentIncrease
                     .extend({ percent: 1 });
 
                 entity.isMeritAdjustmentNoteRequired = ko.computed(function () {

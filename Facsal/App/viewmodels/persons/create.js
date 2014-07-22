@@ -1,10 +1,10 @@
-﻿define(['services/unitofwork', 'services/errorhandler',
+﻿define(['global/session', 'services/errorhandler',
     'services/logger', 'services/config', 'durandal/system',
     'plugins/router'],
-    function (uow, errorhandler, logger, config, system,
+    function (session, errorhandler, logger, config, system,
         router) {
 
-        var unitofwork = uow.create();
+        var unitofwork = session.unitofwork();
 
         var vm = {
             activate: activate,

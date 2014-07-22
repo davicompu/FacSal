@@ -1,13 +1,16 @@
-﻿define([],
-    function () {
+﻿define(['services/unitofwork'],
+    function (uow) {
 
         var session = {
-            userName: ko.observable(undefined),
             isLoggedIn: ko.observable(false),
-            userRoles: ko.observableArray(),
-            userIsInRole: userIsInRole,
-            setUser: setUser,
+            unitofwork: ko.observable(),
+            userName: ko.observable(undefined),
+
             clearUser: clearUser,
+            initUnitOfWork: initUnitOfWork,
+            setUser: setUser,
+            userIsInRole: userIsInRole,
+            userRoles: ko.observableArray(),
         };
 
         return session;
@@ -50,5 +53,9 @@
                     return $.inArray(requiredRole, session.userRoles()) > -1;
                 }
             }
+        }
+
+        function initUnitOfWork() {
+            session.unitofwork(uow.create());
         }
     });

@@ -1,7 +1,7 @@
-﻿define(['services/unitofwork', 'services/errorhandler'],
-    function (uow, errorhandler) {
+﻿define(['global/session', 'services/errorhandler'],
+    function (session, errorhandler) {
 
-        var unitofwork = uow.create();
+        var unitofwork = session.unitofwork();
 
         var vm = {
             activate: activate,

@@ -1,7 +1,8 @@
-﻿define(['services/unitofwork', 'services/errorhandler',
+﻿define(['global/session', 'services/errorhandler',
     'services/config', 'plugins/router', 'services/logger'],
-    function (uow, errorhandler, config, router, logger) {
-        var unitofwork = uow.create();
+    function (session, errorhandler, config, router, logger) {
+
+        var unitofwork = session.unitofwork();
 
         var vm = {
             activate: activate,
@@ -46,9 +47,9 @@
                     { route: 'meeting', text: 'Meeting' },
                     { route: 'base-salary-adjustment', text: 'Faculty with base salary adjustments' },
                     { route: 'multiple-employments', text: 'Faculty with multiple departments' },
+                    { route: 'merit-summary-report', text: 'Merit summary report' },
                     { route: 'salaries-by-faculty-type', text: 'Salaries by faculty type' },
-                    { route: 'unreviewed', text: 'Unreviewed faculty' },
-                    { route: 'merit-summary-report', text: 'Merit summary report' }
+                    { route: 'unreviewed', text: 'Unreviewed faculty' }
                 ],
 
                 units = unitofwork.units.all()

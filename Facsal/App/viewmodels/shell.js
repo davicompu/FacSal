@@ -199,6 +199,7 @@
                     if (data.userName) {
                         session.setUser(data);
                         viewmodel.username(data.userName);
+                        session.initUnitOfWork();
                         initializeRouting();
                     } else {
                         logger.log("Access denied. Navigation canceled.",
