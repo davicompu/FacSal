@@ -1,12 +1,14 @@
 ﻿define(['services/unitofwork', 'services/errorhandler',
-    'services/logger', 'plugins/router', 'durandal/system'],
-    function (uow, errorhandler, logger, router, system) {
+    'services/logger', 'plugins/router', 'durandal/system',
+    'global/session'],
+    function (uow, errorhandler, logger, router, system, session) {
 
         var unitofwork = uow.create();
 
         var vm = {
             activate: activate,
             attached: attached,
+            deactivate: deactivate,
 
             assignmentVMs: ko.observableArray(),
             columnLength: ko.observable(4),
@@ -106,6 +108,13 @@
             return true;
         }
 
+        function deactivate() {
+            vm.selectedDepartmentId(undefined);
+            vm.user(undefined);
+            vm.units(undefined);
+            return true;
+        }
+
         function saveUser() {
             var self = this;
 
@@ -117,8 +126,8 @@
 
             unitofwork.commit()
                 .then(function (response) {
-                    return logger.logSuccess('Save successful', response, system.getModuleId(vm), true);
-                    //return router.navigateBack();
+                    logger.logSuccess('Save successful', response, system.getModuleId(vm), true);
+                    return router.navigateBack();
                 })
                 .fail(self.handleError);
 

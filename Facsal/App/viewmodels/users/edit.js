@@ -117,6 +117,7 @@
         }
 
         function deactivate() {
+            vm.selectedDepartmentId(undefined);
             vm.user(undefined);
             vm.units(undefined);
             return true;
