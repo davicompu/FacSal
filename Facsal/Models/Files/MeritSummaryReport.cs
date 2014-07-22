@@ -207,12 +207,12 @@ namespace Facsal.Models.Files
         {
             //Header
             sheet.HeaderFooter.FirstHeader.LeftAlignedText = "VIRGINIA TECH\n"
-                + "MEETING REPORT\n" +
+                + "MERIT SUMMARY REPORT\n" +
                 "FY " + ConfigurationManager.AppSettings["CycleYear"];
 
             //Footer
             sheet.HeaderFooter.FirstFooter.CenteredText = System.DateTime.Now.ToShortDateString() +
-                " Meeting Report FY " +
+                " Merit Summary Report FY " +
                 ConfigurationManager.AppSettings["CycleYear"];
 
             //Printing
