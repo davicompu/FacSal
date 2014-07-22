@@ -37,7 +37,7 @@ namespace Facsal.Models.Files
 
             BinaryData = package.GetAsByteArray();
             FileType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-            FileName = "FacSal_MeetingReport_" +
+            FileName = "FacSal_MeritSummaryReport_" +
                 TimeZoneInfo.ConvertTimeBySystemTimeZoneId(
                     System.DateTime.Now, TimeZoneInfo.Local.Id, "Eastern Standard Time").ToString()
                 + ".xlsx";
@@ -92,7 +92,7 @@ namespace Facsal.Models.Files
 
             BinaryData = package.GetAsByteArray();
             FileType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-            FileName = "FacSal_MeetingReport_" +
+            FileName = "FacSal_MeritSummaryReport_" +
                 TimeZoneInfo.ConvertTimeBySystemTimeZoneId(
                     System.DateTime.Now, TimeZoneInfo.Local.Id, "Eastern Standard Time").ToString()
                 + ".xlsx";
