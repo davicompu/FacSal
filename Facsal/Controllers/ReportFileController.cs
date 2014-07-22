@@ -198,10 +198,10 @@ namespace Facsal.Controllers
             if (authorizedDepartments.Count > 0)
             {
                 var salaries = DbContext.Salaries
-                    .Include("Person")
-                    .Include("Person.Employments")
-                    .Include("RankType")
-                    .Include("AppointmentType")
+                    //.Include("Person")
+                    //.Include("Person.Employments")
+                    //.Include("RankType")
+                    //.Include("AppointmentType")
                     .Where(s => s.Person.Employments.Any(e => e.Department.UnitId == id));
                     //.OrderBy(s => s.RankType.SequenceValue)
                     //.ThenBy(s => s.Person.LastName)
