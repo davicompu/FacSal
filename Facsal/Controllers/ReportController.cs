@@ -28,7 +28,8 @@ namespace Facsal.Controllers
                 User.IsInRole("read-" + id))
             {
                 var salaries = DbContext.Salaries
-                    .Where(s => s.Person.Employments.Any(e => e.DepartmentId == id))
+                    .Where(s => s.Person.Employments.Any(e => e.DepartmentId == id) &&
+                        s.Person.StatusTypeId == 1)
                     .GroupBy(s => s.FacultyTypeId)
                     .Select(sg => new
                     {
@@ -58,11 +59,12 @@ namespace Facsal.Controllers
                 var data = DbContext.Persons
                     .Include("Salaries")
                     .Where(p => p.Employments.Count > 1 &&
-                        p.Employments.Any(e => e.DepartmentId == id)
+                        p.Employments.Any(e => e.DepartmentId == id &&
+                        p.StatusTypeId == 1)
                     )
                     .Select(pg => new
                     {
-                        FullName = pg.FullName,
+                        FullName = pg.FirstName + " " + pg.LastName,
                         SalaryId = pg.Salaries.Where(s => s.CycleYear == CycleYear)
                             .FirstOrDefault().Id
                     });

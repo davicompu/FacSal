@@ -3,6 +3,7 @@
 
         //#region Public interface.
         var self = {
+            activeStatusTypeId: 1,
             alwaysRefreshMetadata: false,
             currentCycleYear: 2014,
             logOutCounterSeconds: 1170,
