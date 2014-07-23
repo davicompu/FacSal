@@ -185,6 +185,9 @@
                         entity.totalAmount() * 100).formatNumber(1);
                 });
 
+                entity.formattedBannerBaseAmount = ko.observable(entity.bannerBaseAmount())
+                    .extend({ currency: [0, entity.bannerBaseAmount] });
+
                 entity.formattedBaseAmount = ko.observable(entity.baseAmount())
                     .extend({ currency: [0, entity.baseAmount] });
 

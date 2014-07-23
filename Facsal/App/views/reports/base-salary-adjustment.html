@@ -20,9 +20,6 @@
                         Name
                     </td>
                     <td class="hide-for-small-down">
-                        Date
-                    </td>
-                    <td class="hide-for-small-down">
                         Rank
                     </td>
                     <td class="hide-for-small-down">
@@ -49,16 +46,15 @@
             </tbody>
 
             <tbody data-bind="foreach: adjustments">
-                <tr data-bind="with: salary">
+                <tr>
                     <td>
                         <a data-bind="attr: { href: 'salaries/edit/' + id() }, text: person().firstName() + ' ' + person().lastName()"></a>
                     </td>
-                    <td class="hide-for-small-down" data-bind="text: $parent.formattedCreatedDate"></td>
                     <td class="hide-for-small-down" data-bind="text: rankType().name"></td>
                     <td class="hide-for-small-down" data-bind="text: appointmentType().name"></td>
                     <td class="hide-for-small-down" data-bind="text: fullTimeEquivalent"></td>
-                    <td data-bind="text: $parent.formattedStartingBaseAmount"></td>
-                    <td data-bind="text: $parent.formattedNewBaseAmount"></td>
+                    <td data-bind="text: formattedBannerBaseAmount"></td>
+                    <td data-bind="text: formattedBaseAmount"></td>
                 </tr>
             </tbody>
             <!--/ko-->

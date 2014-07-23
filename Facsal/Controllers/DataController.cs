@@ -32,6 +32,26 @@ namespace Facsal.Controllers
         }
 
         [HttpGet]
+        public IQueryable<Salary> BaseSalaryAdjustments()
+        {
+            if (User.IsInRole("manage-all"))
+            {
+                return UnitOfWork.SalaryRepository
+                    .Find(s => s.BannerBaseAmount != s.BaseAmount);
+            }
+
+            var userRoles = Roles.GetRolesForUser();
+
+            return UnitOfWork.SalaryRepository
+                .Find(s => s.Person.Employments
+                    .Any(e => userRoles
+                        .Contains("read-" + e.DepartmentId)) &&
+                    s.BannerBaseAmount != s.BaseAmount)
+                .OrderBy(s => s.RankType.SequenceValue)
+                    .ThenBy(s => s.Person.LastName);
+        }
+
+        [HttpGet]
         public IQueryable<Employment> Employments()
         {
             if (User.IsInRole("manage-all"))

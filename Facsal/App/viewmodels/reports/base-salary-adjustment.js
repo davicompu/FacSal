@@ -57,16 +57,16 @@
 
             return $.each(departments, function (index, department) {
                 var p1 = breeze.Predicate.create(
-                    'salary.person.employments', 'any', 'departmentId', '==', department.id()),
+                    'person.employments', 'any', 'departmentId', '==', department.id()),
 
                     p2 = breeze.Predicate.create(
-                    'salary.cycleYear', '==', config.currentCycleYear),
+                    'cycleYear', '==', config.currentCycleYear),
 
                     p3 = breeze.Predicate.create(
-                    'salary.person.statusTypeId', '==', config.activeStatusTypeId),
+                    'person.statusTypeId', '==', config.activeStatusTypeId),
 
                     predicate = breeze.Predicate.and([p1, p2, p3]),
-                    expansionCondition = 'salary, salary.person';
+                    expansionCondition = 'person';
 
                 var adjustments = unitofwork.baseSalaryAdjustments.find(predicate, expansionCondition)
                     .then(function (response) {
