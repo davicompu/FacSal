@@ -29,10 +29,23 @@
                     </div>
                 </div>
 
+                <div class="row" data-bind="ifIsInRole: 'manage-all'">
+                    <div class="large-4 columns">
+                        <label>Leave status</label>
+                        <select data-bind="options: $parent.leaveTypes,
+                            optionsValue: 'id', optionsText: 'name', optionsCaption: 'Choose...', value: leaveTypeId"></select>
+                    </div>
+                </div>
+
                 <div class="row" data-bind="ifNotIsInRole: 'manage-all'">
                     <div class="large-2 columns">
                         <label>Starting salary</label>
                         <p data-bind="text: formattedTotalAmount"></p>
+                    </div>
+
+                    <div class="large-2 columns" data-bind="if: totalAmount() !== newTotalAmount()">
+                        <label>New salary</label>
+                        <p data-bind="text: formattedNewTotalAmount"></p>
                     </div>
 
                     <div class="large-2 columns"
@@ -64,12 +77,6 @@
                     </div>
 
                     <div class="large-2 columns">
-                        <label>Leave status</label>
-                        <select data-bind="options: $parent.leaveTypes,
-                            optionsValue: 'id', optionsText: 'name', optionsCaption: 'Choose...', value: leaveTypeId"></select>
-                    </div>
-
-                    <div class="large-2 columns">
                         <label>
                             Base salary
                             <input type="text" data-bind="value: formattedBaseAmount" />
@@ -95,6 +102,11 @@
                             Promotion amount
                             <input type="text" data-bind="value: formattedPromotionAmount" />
                         </label>
+                    </div>
+
+                    <div class="large-2 columns" data-bind="if: totalAmount() !== newTotalAmount()">
+                        <label>New salary</label>
+                        <p data-bind="text: formattedNewTotalAmount"></p>
                     </div>
                 </div>
 
@@ -167,120 +179,120 @@
                         </ul>
                     </div>
                 </div>
-        </fieldset>
+            </fieldset>
 
-        <fieldset>
-            <h4 data-magellan-destination="merit">Merit adjustment</h4>
+            <fieldset>
+                <h4 data-magellan-destination="merit">Merit adjustment</h4>
 
-            <div class="row">
-                <div class="large-4 columns">
-                    <label class="hide-on-print">
-                        Amount<span class="required">*</span>
-                        <input type="text" class="hide-on-print"
-                               data-bind="value: formattedMeritIncrease" />
-                    </label>
-                    <p class="print-only">
-                        <span class="text-underline">Amount</span>: <span data-bind="text: formattedMeritIncrease"></span>
-                    </p>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="large-4 columns">
-                    <label>Change</label>
-                    <p data-bind="text: meritPercentIncrease() + '%'"></p>
-                </div>
-            </div>
-
-            <div class="row hide-on-print">
-                <div class="large-4 columns end">
-                    <label>
-                        Adjustment reason
-                        <span class="required">*</span>
-                    </label>
-                    <select data-bind="options: $parent.meritAdjustmentTypes,
-                        optionsValue: 'id', optionsText: 'name', optionsCaption: 'Choose...', value: meritAdjustmentTypeId"></select>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="large-12 columns">
-                    <label class="hide-on-print">
-                        Brief description of the adjustment
-                        <span class="required" data-bind="visible: isMeritAdjustmentNoteRequired">*</span>
-                        <textarea class="hide-on-print"
-                                  data-bind="value: meritAdjustmentNote"></textarea>
-                    </label>
-                    <p class="print-only">
-                        <span class="text-underline">Brief description of the merit adjustment</span>
-                    </p>
-                    <p class="print-only" data-bind="text: meritAdjustmentNote"></p>
-                </div>
-            </div>
-        </fieldset>
-
-        <fieldset>
-            <h4>Special adjustment</h4>
-
-            <div class="row">
-                <div class="large-4 columns">
-                    <label class="hide-on-print">
-                        Amount<span class="required">*</span>
-                        <input type="text" class="hide-on-print"
-                               data-bind="value: formattedSpecialIncrease" />
-                    </label>
-                    <p class="print-only">
-                        <span class="text-underline">Amount</span>: <span data-bind="text: formattedSpecialIncrease"></span>
-                    </p>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="large-4 columns">
-                    <label>Change</label>
-                    <p data-bind="text: specialPercentIncrease() + '%'"></p>
-                </div>
-            </div>
-
-            <div class="row hide-on-print">
-                <div class="large-4 columns end">
-                    <h5>
-                        Adjustments
-                        <span class="required" data-bind="visible: isSpecialAdjustmentNoteRequired">*</span>
-                    </h5>
-                    <!-- ko foreach: $parent.adjustmentVMs -->
-                    <div>
-                        <label>
-                            <input type="checkbox" data-bind="checkedValue: adjustment, checked: isSelected" /> <span data-bind="text: adjustment.name"></span>
+                <div class="row">
+                    <div class="large-4 columns">
+                        <label class="hide-on-print">
+                            Amount<span class="required">*</span>
+                            <input type="text" class="hide-on-print"
+                                   data-bind="value: formattedMeritIncrease" />
                         </label>
+                        <p class="print-only">
+                            <span class="text-underline">Amount</span>: <span data-bind="text: formattedMeritIncrease"></span>
+                        </p>
                     </div>
-                    <!--/ko-->
-                    <span class="error" data-bind="validationMessage: specialSalaryAdjustments"></span>
                 </div>
-            </div>
+
+                <div class="row">
+                    <div class="large-4 columns">
+                        <label>Change</label>
+                        <p data-bind="text: meritPercentIncrease() + '%'"></p>
+                    </div>
+                </div>
+
+                <div class="row hide-on-print">
+                    <div class="large-4 columns end">
+                        <label>
+                            Adjustment reason
+                            <span class="required">*</span>
+                        </label>
+                        <select data-bind="options: $parent.meritAdjustmentTypes,
+                        optionsValue: 'id', optionsText: 'name', optionsCaption: 'Choose...', value: meritAdjustmentTypeId"></select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="large-12 columns">
+                        <label class="hide-on-print">
+                            Brief description of the adjustment
+                            <span class="required" data-bind="visible: isMeritAdjustmentNoteRequired">*</span>
+                            <textarea class="hide-on-print"
+                                      data-bind="value: meritAdjustmentNote"></textarea>
+                        </label>
+                        <p class="print-only">
+                            <span class="text-underline">Brief description of the merit adjustment</span>
+                        </p>
+                        <p class="print-only" data-bind="text: meritAdjustmentNote"></p>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <h4>Special adjustment</h4>
+
+                <div class="row">
+                    <div class="large-4 columns">
+                        <label class="hide-on-print">
+                            Amount<span class="required">*</span>
+                            <input type="text" class="hide-on-print"
+                                   data-bind="value: formattedSpecialIncrease" />
+                        </label>
+                        <p class="print-only">
+                            <span class="text-underline">Amount</span>: <span data-bind="text: formattedSpecialIncrease"></span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="large-4 columns">
+                        <label>Change</label>
+                        <p data-bind="text: specialPercentIncrease() + '%'"></p>
+                    </div>
+                </div>
+
+                <div class="row hide-on-print">
+                    <div class="large-4 columns end">
+                        <h5>
+                            Adjustments
+                            <span class="required" data-bind="visible: isSpecialAdjustmentNoteRequired">*</span>
+                        </h5>
+                        <!-- ko foreach: $parent.adjustmentVMs -->
+                        <div>
+                            <label>
+                                <input type="checkbox" data-bind="checkedValue: adjustment, checked: isSelected" /> <span data-bind="text: adjustment.name"></span>
+                            </label>
+                        </div>
+                        <!--/ko-->
+                        <span class="error" data-bind="validationMessage: specialSalaryAdjustments"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="large-12 columns">
+                        <label class="hide-on-print">
+                            Brief description of the adjustment
+                            <span class="required" data-bind="visible: isSpecialAdjustmentNoteRequired">*</span>
+                            <textarea class="hide-on-print"
+                                      data-bind="value: specialAdjustmentNote"></textarea>
+                        </label>
+                        <p class="print-only">
+                            <span class="text-underline">Brief description of the special adjustment</span>
+                        </p>
+                        <p class="print-only" data-bind="text: specialAdjustmentNote"></p>
+                    </div>
+                </div>
+            </fieldset>
 
             <div class="row">
                 <div class="large-12 columns">
-                    <label class="hide-on-print">
-                        Brief description of the adjustment
-                        <span class="required" data-bind="visible: isSpecialAdjustmentNoteRequired">*</span>
-                        <textarea class="hide-on-print"
-                                  data-bind="value: specialAdjustmentNote"></textarea>
-                    </label>
-                    <p class="print-only">
-                        <span class="text-underline">Brief description of the special adjustment</span>
-                    </p>
-                    <p class="print-only" data-bind="text: specialAdjustmentNote"></p>
+                    <span class="save-button" data-bind="click: $parent.saveChanges">Save</span>
+                    <span class="cancel-button" data-bind="click: $parent.cancelChanges">Cancel</span>
                 </div>
             </div>
-        </fieldset>
-
-        <div class="row">
-            <div class="large-12 columns">
-                <span class="save-button" data-bind="click: $parent.saveChanges">Save</span>
-                <span class="cancel-button" data-bind="click: $parent.cancelChanges">Cancel</span>
-            </div>
-        </div>
         </section>
     </div>
 </div>

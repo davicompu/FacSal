@@ -1,4 +1,4 @@
-﻿@using System.Web.Optimization
+﻿@*@using System.Web.Optimization*@
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,8 +42,8 @@
     }
     else
     {
-        @*<script type="text/javascript" src="/scripts/require.js" data-main="/app/main"></script>*@
-        @Scripts.Render("~/scripts/main-built")
+        <script type="text/javascript" src="/scripts/require.js" data-main="/app/main"></script>
+        @*@Scripts.Render("~/scripts/main-built")*@
     }
 </body>
 </html>
