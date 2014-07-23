@@ -120,7 +120,6 @@
             vm.selectedDepartmentId(undefined);
             vm.units([]);
             vm.user(undefined);
-            vm.userId(undefined);
             return true;
         }
 
