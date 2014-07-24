@@ -20,13 +20,10 @@ namespace SalaryEntities.Entities
         [ForeignKey("Department")]
         public string DepartmentId { get; set; }
 
-        [ForeignKey("HomeDepartment")]
-        public string HomeDepartmentId { get; set; }
-
         public Person Person { get; set; }
 
         public Department Department { get; set; }
 
-        public Department HomeDepartment { get; set; }
+        public bool IsHomeDepartment { get; set; }
     }
 }

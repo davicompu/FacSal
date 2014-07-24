@@ -13,6 +13,7 @@
                 employments: ko.observableArray(),
                 employmentVMs: ko.observableArray(),
                 personId: ko.observable(),
+                units: ko.observableArray(),
 
                 cancelChanges: cancelChanges,
                 saveChanges: saveChanges,
@@ -35,6 +36,8 @@
 
             unitofwork.units.all()
                 .then(function (response) {
+                    vm.units(response);
+
                     var units = response,
 
                         p1 = new breeze.Predicate('personId', '==', vm.personId());

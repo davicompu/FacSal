@@ -86,6 +86,14 @@
     <Compile Include="Migrations\201407162046418_RemoveUnitFromRole.Designer.cs">
       <DependentUpon>201407162046418_RemoveUnitFromRole.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201407241850071_IsHomeDept.cs" />
+    <Compile Include="Migrations\201407241850071_IsHomeDept.Designer.cs">
+      <DependentUpon>201407241850071_IsHomeDept.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407241924179_DropHomeDeptId.cs" />
+    <Compile Include="Migrations\201407241924179_DropHomeDeptId.Designer.cs">
+      <DependentUpon>201407241924179_DropHomeDeptId.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Repository.cs" />
@@ -123,6 +131,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201407162046418_RemoveUnitFromRole.resx">
       <DependentUpon>201407162046418_RemoveUnitFromRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407241850071_IsHomeDept.resx">
+      <DependentUpon>201407241850071_IsHomeDept.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407241924179_DropHomeDeptId.resx">
+      <DependentUpon>201407241924179_DropHomeDeptId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
