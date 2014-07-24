@@ -47,7 +47,7 @@
             <tbody data-bind="foreach: users">
                 <tr>
                     <td>
-                        <a data-bind="attr: { href: 'users/edit/' + id }, text: pid"></a>
+                        <a data-bind="attr: { href: 'users/edit/' + id + '?departmentid=' + $parent.selectedDepartmentId() }, text: pid"></a>
                     </td>
                     <td data-bind="text: formattedCreatedDate"></td>
                     <td data-bind="text: createdBy"></td>

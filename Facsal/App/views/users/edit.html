@@ -25,13 +25,10 @@
                         <label for="Unit">
                             Department
                         </label>
-                        <select data-bind="value: $parent.selectedDepartmentId">
-                            <option disabled="disabled" hidden="hidden" selected="selected">Choose...</option>
-                            <!-- ko foreach: $parent.units -->
+                        <select data-bind="foreach: $parent.units, value: $parent.selectedDepartmentId">
                             <optgroup data-bind="attr: { label: name }, foreach: departments">
                                 <option data-bind="attr: { label: name, value: id }, text: name"></option>
                             </optgroup>
-                            <!--/ko-->
                         </select>
                     </div>
                 </div>

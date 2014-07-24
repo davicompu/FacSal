@@ -7,47 +7,36 @@
 
         var vm = {
             activate: activate,
-            attached: attached,
             deactivate: deactivate,
 
             assignmentVMs: ko.observableArray(),
             columnLength: ko.observable(4),
             selectedDepartmentId: ko.observable(),
-            user: ko.observable(),
+            roles: ko.observableArray(),
             units: ko.observableArray(),
-            userId: ko.observable(),
+            user: ko.observable(),
 
             cancelChanges: cancelChanges,
             saveChanges: saveChanges,
         };
 
         vm.selectedDepartmentId.subscribe(function (newValue) {
-            if (newValue === 'Choose...' || newValue === undefined) {
-                return vm.assignmentVMs([]);
-            }
+            console.log('Selected department id: ' + newValue);
 
-            var p1 = new breeze.Predicate('name', breeze.FilterQueryOp.Contains, newValue),
+            if (vm.user()) {
+                console.log('New department id: ' + newValue +
+                    '. Fetching roles for department.');
 
-                roles = unitofwork.roles.find(p1)
+                getRoles(newValue)
                     .then(function (response) {
-                        var roles = response,
-
-                            user = vm.user(),
-
-                            assignmentHash = createRoleAssignmentHash(user),
-
-                            assignmentMapVMs = $.map(roles, function (role) {
-                                return {
-                                    role: role,
-                                    isSelected: ko.observable(!!assignmentHash[role.id()])
-                                };
-                            });
-
-                        vm.assignmentVMs(assignmentMapVMs);
-                    })
-                    .fail(function (response) {
-                        logger.logError(response.statusText, response, system.getModuleId(vm), true);
+                        vm.roles(response);
+                    }).then(function() {
+                        return getAssignmentMapVMs(vm.user(),
+                            vm.roles());
+                    }).then(function (response) {
+                        vm.assignmentVMs(response);
                     });
+            }
 
             return true;
         });
@@ -82,45 +71,88 @@
 
         return vm;
 
-        function activate(userId) {
+        function activate(userId, queryString) {
             ga('send', 'pageview', { 'page': window.location.href, 'title': document.title });
 
-            vm.userId(userId);
+            console.log('Route dept: ' + queryString.departmentid);
+            vm.selectedDepartmentId(queryString.departmentid);
 
-            return true;
-        }
+            getManageableUnits()
+                .then(function (response) {
+                    vm.units(response);
+                })
 
-        function attached() {
-            var predicate = new breeze.Predicate('id', '==', vm.userId()),
-
-                expansionCondition = 'roleAssignments',
-
-                user = unitofwork.users.find(predicate, expansionCondition)
-                    .then(function (response) {
-                        vm.user(response[0]);
-                    });
-
-            if (session.userIsInRole('manage-all')) {
-                unitofwork.units.all()
-                    .then(function (response) {
-                        vm.units(response);
-                    });
-            } else {
-                unitofwork.manageableUnits.all()
-                    .then(function (response) {
-                        vm.units(response);
-                    });
-            }
+            getUser(userId)
+                .then(function (response) {
+                    vm.user(response[0]);
+                }).then(function () {
+                    return getRoles(queryString.departmentid);
+                }).then(function (response) {
+                    vm.roles(response);
+                }).then(function() {
+                    return getAssignmentMapVMs(vm.user(),
+                        vm.roles());
+                }).then(function (response) {
+                    vm.assignmentVMs(response);
+                });
 
             return true;
         }
 
         function deactivate() {
             vm.assignmentVMs([]);
-            vm.selectedDepartmentId(undefined);
-            vm.units([]);
             vm.user(undefined);
             return true;
+        }
+
+        function getUser(userId) {
+            var predicate = new breeze.Predicate('id', '==', userId),
+
+                expansionCondition = 'roleAssignments';
+
+            return unitofwork.users.find(predicate, expansionCondition)
+                .then(function (response) {
+                    return response;
+                });
+        }
+
+        function getManageableUnits() {
+            if (session.userIsInRole('manage-all')) {
+                return unitofwork.units.all()
+                    .then(function (response) {
+                        return response;
+                    });
+            } else {
+                return unitofwork.manageableUnits.all()
+                    .then(function (response) {
+                        return response;
+                    });
+            }
+        }
+
+        function getRoles(departmentId) {
+            var p1 = new breeze.Predicate('departmentId', '==', departmentId);
+
+            return unitofwork.roles.find(p1)
+                .then(function (response) {
+                    return response;
+                })
+                .fail(function (response) {
+                    return logger.logError(response.statusText, response, system.getModuleId(vm), true);
+                });
+        }
+
+        function getAssignmentMapVMs(user, roles) {
+            var assignmentHash = createRoleAssignmentHash(user),
+
+            assignmentMapVMs = $.map(roles, function (role) {
+                return {
+                    role: role,
+                    isSelected: ko.observable(!!assignmentHash[role.id()])
+                };
+            });
+
+            return assignmentMapVMs;
         }
 
         function saveChanges() {
