@@ -35,7 +35,8 @@
             rankTypes: rankTypes,
             salary: ko.observable(),
             salaryId: ko.observable(),
-    
+            specialSlider:ko.observable(),
+
             adjustmentTypes: adjustmentTypes,
             statusTypes: statusTypes,
             units: units,
@@ -50,11 +51,20 @@
                 
             });
 
+            newSalary.specialPercentIncrease.subscribe(function (newSpecialPercentage) {
+                vm.specialSlider(newSpecialPercentage);
+            });
+
         });
 
         vm.meritSlider.subscribe(function (newValue) {
             var increase = vm.salary().totalAmount() * (newValue / 100);
             vm.salary().formattedMeritIncrease(increase);
+        });
+
+        vm.specialSlider.subscribe(function (newValue) {
+            var increase = vm.salary().totalAmount() * (newValue / 100);
+            vm.salary().formattedSpecialIncrease(increase);
         });
 
         errorhandler.includeIn(vm);

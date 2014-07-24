@@ -5613,7 +5613,8 @@ table.report-table tr.results td {
   text-align: center;
 }
 
-/* line 9, ../sass/app/_shame.scss */
-#meritSlider {
+
+/* line 8, ../sass/app/_shame.scss */
+.editSalarySliders {
   margin-top: 30px !important;
 }
