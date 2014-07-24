@@ -47,7 +47,6 @@
         vm.salary.subscribe(function (newSalary) {
             vm.meritSlider(newSalary.meritPercentIncrease());
             newSalary.meritPercentIncrease.subscribe(function (newMeritPercentage) {
-                //alert("change:" + newMeritPercentage);
                 vm.meritSlider(newMeritPercentage);
                 
             });
