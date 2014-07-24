@@ -1,47 +1,10 @@
+//For Reports
 table.report-table {
     tr.results td {
         text-align: center;
     }
 }
-
-
-input[type='range']#sliderMerit{
-    margin-top:25px;
-    width:200px;
-}
-input[type='range']#sliderMerit {
-    -webkit-appearance: none;
-    border-radius: 5px;
-    box-shadow: inset 0 0 5px #333;
-    background-color: #999;
-    height: 10px;
-    vertical-align: middle;
-}
-
-input[type='range']#sliderMerit::-moz-range-track {
-    -moz-appearance: none;
-    border-radius: 5px;
-    box-shadow: inset 0 0 5px #333;
-    background-color: #999;
-    height: 10px;
-}
-
-input[type='range']#sliderMerit::-webkit-slider-thumb {
-    -webkit-appearance: none !important;
-    border-radius: 20px;
-    background-color: #FFF;
-    box-shadow: inset 0 0 10px rgba(000,000,000,0.5);
-    border: 1px solid #999;
-    height: 20px;
-    width: 20px;
-}
-
-input[type='range']#sliderMerit::-moz-range-thumb {
-    -moz-appearance: none;
-    border-radius: 20px;
-    background-color: #FFF;
-    box-shadow: inset 0 0 10px rgba(000,000,000,0.5);
-    border: 1px solid #999;
-    height: 20px;
-    width: 20px;
+//For view salaries/edit
+#meritSlider{
+margin-top: 30px !important;
 }

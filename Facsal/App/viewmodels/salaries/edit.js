@@ -45,7 +45,6 @@
         };
 
         vm.salary.subscribe(function (newSalary) {
-            vm.meritSlider(newSalary.meritPercentIncrease());
             newSalary.meritPercentIncrease.subscribe(function (newMeritPercentage) {
                 vm.meritSlider(newMeritPercentage);
                 
@@ -54,11 +53,10 @@
         });
 
         vm.meritSlider.subscribe(function (newValue) {
-            vm.meritSlider(newValue);
             var increase = vm.salary().totalAmount() * (newValue / 100);
-
             vm.salary().formattedMeritIncrease(increase);
         });
+
         errorhandler.includeIn(vm);
         
         return vm;
@@ -72,41 +70,36 @@
             return true;
         }
 
-        function sliderChange(slider) {
-            alert("item: " + vm.meritSlider());
-        }
+        
         function attached(view) {
 
             var self = this;
             
             $('html,body').animate({ scrollTop: 0 }, 0);
 
-            //$(view).foundation({
-            //    slider: {
-            //        on_change: function () {
-            //            var slider = $(this).attr('data-slider');
-            //        }
-            //    }
-            //});
-
-            //$("#sliderMerit").on("change", function () {
-            //    alert("Change"); // 
-            //});
-
-            ko.bindingHandlers.hiddenInput= {
-
-                init: function (element, valueAccessor) {
-
-                    $(element).bind("change", function (event, data, formatted) { //hidden vars don't usually have change events, so we trigger $myElement.trigger("change");
-                        var value = valueAccessor();
-                        value($(this).val()); //rather than $(this).val(), might be best to pass our custom info in data
+           
+            ko.bindingHandlers.slider = {
+                init: function (element, valueAccessor, allBindingsAccessor) {
+                    var options = allBindingsAccessor().sliderOptions || {};
+                    $(element).slider(options);
+                    ko.utils.registerEventHandler(element, "slidechange", function (event, ui) {
+                        var observable = valueAccessor();
+                        observable(ui.value);
+                    });
+                    ko.utils.domNodeDisposal.addDisposeCallback(element, function () {
+                        $(element).slider("destroy");
+                    });
+                    ko.utils.registerEventHandler(element, "slide", function (event, ui) {
+                        var observable = valueAccessor();
+                        observable(ui.value);
                     });
                 },
-                update: function (element, valueAccessor, allBindingsAccessor, viewModel) {
-                    var value = valueAccessor();
-                    $(element).val(value);
-                }
+                update: function (element, valueAccessor) {
+                    var value = ko.utils.unwrapObservable(valueAccessor());
+                    if (isNaN(value)) value = 0;
+                    $(element).slider("value", value);
 
+                }
             };
 
             // Initialize Foundation scripts

@@ -158,14 +158,14 @@
                             <span class="text-underline">Amount</span>: <span data-bind="text: formattedMeritIncrease"></span>
                         </p>
                     </div>
+                    <div class="large-6 end columns">
+                        <div id="meritSlider" style="margin: 10px" data-bind="slider: $parent.meritSlider, sliderOptions: {min: 0, max: 15, range: 'min', step: 0.1}"></div>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="large-1 columns">
                         <label>Change</label>
                         <p data-bind="text: meritPercentIncrease() + '%'"></p>
-                    </div>
-                    <div class="large-4 end columns">
-                        <input id="sliderMerit" class="large-4" type="range" min="0" max="100" step="0.1" data-bind="value: $parent.meritSlider" />
                     </div>
                 </div>
                 <div class="row hide-on-print">

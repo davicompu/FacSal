@@ -283,6 +283,7 @@
     <Content Include="Content\images\icon.png" />
     <Content Include="Content\images\ios-startup-image-landscape.png" />
     <Content Include="Content\images\ios-startup-image-portrait.png" />
+    <Content Include="Content\jquery-ui.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
@@ -313,6 +314,7 @@
     <Content Include="Scripts\durandal\viewEngine.js" />
     <Content Include="Scripts\durandal\viewLocator.js" />
     <Content Include="Scripts\jquery.formatCurrency-1.4.0.js" />
+    <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\knockout.validation.js" />
     <Content Include="Scripts\pace.js" />
     <Content Include="weyland-config.js" />
