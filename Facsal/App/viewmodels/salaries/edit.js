@@ -35,6 +35,7 @@
             rankTypes: rankTypes,
             salary: ko.observable(),
             salaryId: ko.observable(),
+    
             adjustmentTypes: adjustmentTypes,
             statusTypes: statusTypes,
             units: units,
@@ -43,24 +44,28 @@
             saveChanges: saveChanges,
         };
 
-        vm.salary.subscribe(function (newValue) {
-   
-            newValue.meritPercentIncrease.subscribe(function (nv) {
-                alert("change:" + nv);
-                vm.meritSlider(nv);
-                $('#meritSlider').foundation('slider', 'set_value', nv);
+        vm.salary.subscribe(function (newSalary) {
+            vm.meritSlider(newSalary.meritPercentIncrease());
+            newSalary.meritPercentIncrease.subscribe(function (newMeritPercentage) {
+                //alert("change:" + newMeritPercentage);
+                vm.meritSlider(newMeritPercentage);
+                
             });
 
-            //vm.meritSlider.subscribe(function () {
-            //    alert("Merit");
-            //});
         });
 
-       
+        vm.meritSlider.subscribe(function (newValue) {
+            vm.meritSlider(newValue);
+            var increase = vm.salary().totalAmount() * (newValue / 100);
+
+            vm.salary().formattedMeritIncrease(increase);
+        });
         errorhandler.includeIn(vm);
         
         return vm;
 
+
+       
 
         function activate(salaryId) {
             ga('send', 'pageview', { 'page': window.location.href, 'title': document.title });
@@ -68,11 +73,42 @@
             return true;
         }
 
+        function sliderChange(slider) {
+            alert("item: " + vm.meritSlider());
+        }
         function attached(view) {
 
             var self = this;
             
             $('html,body').animate({ scrollTop: 0 }, 0);
+
+            //$(view).foundation({
+            //    slider: {
+            //        on_change: function () {
+            //            var slider = $(this).attr('data-slider');
+            //        }
+            //    }
+            //});
+
+            //$("#sliderMerit").on("change", function () {
+            //    alert("Change"); // 
+            //});
+
+            ko.bindingHandlers.hiddenInput= {
+
+                init: function (element, valueAccessor) {
+
+                    $(element).bind("change", function (event, data, formatted) { //hidden vars don't usually have change events, so we trigger $myElement.trigger("change");
+                        var value = valueAccessor();
+                        value($(this).val()); //rather than $(this).val(), might be best to pass our custom info in data
+                    });
+                },
+                update: function (element, valueAccessor, allBindingsAccessor, viewModel) {
+                    var value = valueAccessor();
+                    $(element).val(value);
+                }
+
+            };
 
             // Initialize Foundation scripts
             $(view).foundation();
@@ -236,5 +272,9 @@
                     }
                 }
             });
+        }
+
+        function updateMeritIncrease(slider) {
+            vm.salary.meritIncrease(slider);
         }
     });
