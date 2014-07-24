@@ -31,9 +31,11 @@
             facultyTypes: facultyTypes,
             leaveTypes: leaveTypes,
             meritAdjustmentTypes: meritAdjustmentTypes,
+            meritSlider:ko.observable(),
             rankTypes: rankTypes,
             salary: ko.observable(),
             salaryId: ko.observable(),
+    
             adjustmentTypes: adjustmentTypes,
             statusTypes: statusTypes,
             units: units,
@@ -42,9 +44,25 @@
             saveChanges: saveChanges,
         };
 
-        errorhandler.includeIn(vm);
+        vm.salary.subscribe(function (newSalary) {
+            newSalary.meritPercentIncrease.subscribe(function (newMeritPercentage) {
+                vm.meritSlider(newMeritPercentage);
+                
+            });
 
+        });
+
+        vm.meritSlider.subscribe(function (newValue) {
+            var increase = vm.salary().totalAmount() * (newValue / 100);
+            vm.salary().formattedMeritIncrease(increase);
+        });
+
+        errorhandler.includeIn(vm);
+        
         return vm;
+
+
+       
 
         function activate(salaryId) {
             ga('send', 'pageview', { 'page': window.location.href, 'title': document.title });
@@ -52,10 +70,40 @@
             return true;
         }
 
-        function attached() {
-            var self = this;
+        
+        function attached(view) {
 
+            var self = this;
+            
             $('html,body').animate({ scrollTop: 0 }, 0);
+
+           
+            ko.bindingHandlers.slider = {
+                init: function (element, valueAccessor, allBindingsAccessor) {
+                    var options = allBindingsAccessor().sliderOptions || {};
+                    $(element).slider(options);
+                    ko.utils.registerEventHandler(element, "slidechange", function (event, ui) {
+                        var observable = valueAccessor();
+                        observable(ui.value);
+                    });
+                    ko.utils.domNodeDisposal.addDisposeCallback(element, function () {
+                        $(element).slider("destroy");
+                    });
+                    ko.utils.registerEventHandler(element, "slide", function (event, ui) {
+                        var observable = valueAccessor();
+                        observable(ui.value);
+                    });
+                },
+                update: function (element, valueAccessor) {
+                    var value = ko.utils.unwrapObservable(valueAccessor());
+                    if (isNaN(value)) value = 0;
+                    $(element).slider("value", value);
+
+                }
+            };
+
+            // Initialize Foundation scripts
+            $(view).foundation();
 
             var appointmentTypes = unitofwork.appointmentTypes.all()
                 .then(function (response) {
@@ -216,5 +264,9 @@
                     }
                 }
             });
+        }
+
+        function updateMeritIncrease(slider) {
+            vm.salary.meritIncrease(slider);
         }
     });
