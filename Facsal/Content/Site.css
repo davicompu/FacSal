@@ -5614,6 +5614,6 @@ table.report-table tr.results td {
 }
 
 /* line 8, ../sass/app/_shame.scss */
-#meritSlider {
+.editSalarySliders {
   margin-top: 30px !important;
 }

@@ -159,7 +159,7 @@
                         </p>
                     </div>
                     <div class="large-6 end columns">
-                        <div id="meritSlider" style="margin: 10px" data-bind="slider: $parent.meritSlider, sliderOptions: {min: 0, max: 15, range: 'min', step: 0.1}"></div>
+                        <div class="editSalarySliders" style="margin: 10px" data-bind="slider: $parent.meritSlider, sliderOptions: {min: 0, max: 15, range: 'min', step: 0.1}"></div>
                     </div>
                 </div>
                 <div class="row">
@@ -205,6 +205,9 @@
                         <p class="print-only">
                             <span class="text-underline">Amount</span>: <span data-bind="text: formattedSpecialIncrease"></span>
                         </p>
+                    </div>
+                    <div class="large-6 end columns">
+                        <div class="editSalarySliders" style="margin: 10px" data-bind="slider: $parent.specialSlider, sliderOptions: {min: 0, max: 15, range: 'min', step: 0.1}"></div>
                     </div>
                 </div>
                 <div class="row">
