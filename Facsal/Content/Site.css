@@ -5607,16 +5607,13 @@ table tbody.department-heading tr td {
     transform: rotate(360deg);
   }
 }
-<<<<<<< HEAD
-=======
 
-/* line 3, ../sass/app/_shame.scss */
+/* line 4, ../sass/app/_shame.scss */
 table.report-table tr.results td {
   text-align: center;
 }
 
-/* line 8, ../sass/app/_shame.scss */
+/* line 9, ../sass/app/_shame.scss */
 #meritSlider {
   margin-top: 30px !important;
 }
->>>>>>> edit-salary-slider
