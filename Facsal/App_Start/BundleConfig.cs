@@ -17,7 +17,8 @@ namespace Facsal
             bundles.Add(
                 new StyleBundle("~/Content/css")
                   .Include("~/Content/durandal.css")
-                  .Include("~/Content/jquery-ui.min.css")
+                  .Include("~/Content/jqueryui/jquery-ui.min.css")
+                  .Include("~/Content/jqueryui/jquery-ui.theme.min.css")
                   .Include("~/Content/toastr.css")
                   .Include("~/Content/Site.css")
             );
