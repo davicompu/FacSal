@@ -4,7 +4,7 @@
         //#region Public interface.
         var self = {
             activeStatusTypeId: 1,
-            alwaysRefreshMetadata: false,
+            alwaysRefreshMetadata: true,
             currentCycleYear: 2014,
             logOutCounterSeconds: 1170,
             metadataRefreshMeasure: 'weeks',

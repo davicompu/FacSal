@@ -12,6 +12,7 @@
                 columnLength: ko.observable(3),
                 employments: ko.observableArray(),
                 employmentVMs: ko.observableArray(),
+                homeDepartmentId: ko.observable('0642'),
                 personId: ko.observable(),
                 units: ko.observableArray(),
 
@@ -136,7 +137,7 @@
                         var map = employmentHash[mapVM.department.id()];
 
                         if (mapVM.isSelected()) {
-                            // User selected this employment.
+                            // User has this employment selected.
                             if (!map) {
                                 // No existing map, so create one.
                                 map = unitofwork.employments.create({
