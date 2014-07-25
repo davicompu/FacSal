@@ -62,9 +62,33 @@
                                             }
                                             row = [];
                                         }
-                                        row.push({
-                                            department: unit.departments()[i],
-                                            isSelected: ko.observable(!!employmentHash[unit.departments()[i].id()])
+
+                                        if (!!employmentHash[unit.departments()[i].id()] &&
+                                            employmentHash[unit.departments()[i].id()].isHomeDepartment()) {
+                                            vm.homeDepartmentId(employmentHash[unit.departments()[i].id()].id());
+                                        }
+                                    
+                                        row.push(function () {
+                                            var o = {
+                                                department: unit.departments()[i],
+                                                isSelected: ko.observable(!!employmentHash[unit.departments()[i].id()])
+                                            };
+
+                                            o.isHomeDepartment = ko.computed(function () {
+                                                if (o.isSelected()) {
+                                                    return o.department.id() === vm.homeDepartmentId();
+                                                } else if (o.department.id() === vm.homeDepartmentId()) {
+                                                    logger.logError('Detected home department change without associated ' +
+                                                        'department employment selection. Rolling back changes.'
+                                                        , null, system.getModuleId(vm), true);
+
+                                                    return unitofwork.rollback();
+                                                }
+
+                                                return false;
+                                            })
+
+                                            return o
                                         });
                                     }
 
@@ -142,7 +166,8 @@
                                 // No existing map, so create one.
                                 map = unitofwork.employments.create({
                                     personId: vm.personId(),
-                                    departmentId: mapVM.department.id()
+                                    departmentId: mapVM.department.id(),
+                                    isHomeDepartment: mapVM.isHomeDepartment()
                                 });
                             }
                         } else {
