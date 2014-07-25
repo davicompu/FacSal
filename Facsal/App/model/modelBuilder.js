@@ -182,7 +182,7 @@
                     },
                     write: function (value) {
                         var increase = entity.totalAmount() * (value / 100);
-                        entity.meritIncrease(increase);
+                        entity.formattedMeritIncrease(increase);
                     }
                 });
 
