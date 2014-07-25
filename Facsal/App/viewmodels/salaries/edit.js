@@ -31,11 +31,9 @@
             facultyTypes: facultyTypes,
             leaveTypes: leaveTypes,
             meritAdjustmentTypes: meritAdjustmentTypes,
-            meritSlider:ko.observable(),
             rankTypes: rankTypes,
             salary: ko.observable(),
             salaryId: ko.observable(),
-            specialSlider:ko.observable(),
 
             adjustmentTypes: adjustmentTypes,
             statusTypes: statusTypes,
@@ -45,34 +43,9 @@
             saveChanges: saveChanges,
         };
 
-        vm.salary.subscribe(function (newSalary) {
-            newSalary.meritPercentIncrease.subscribe(function (newMeritPercentage) {
-                vm.meritSlider(newMeritPercentage);
-                
-            });
-
-            newSalary.specialPercentIncrease.subscribe(function (newSpecialPercentage) {
-                vm.specialSlider(newSpecialPercentage);
-            });
-
-        });
-
-        vm.meritSlider.subscribe(function (newValue) {
-            var increase = vm.salary().totalAmount() * (newValue / 100);
-            vm.salary().formattedMeritIncrease(increase);
-        });
-
-        vm.specialSlider.subscribe(function (newValue) {
-            var increase = vm.salary().totalAmount() * (newValue / 100);
-            vm.salary().formattedSpecialIncrease(increase);
-        });
-
         errorhandler.includeIn(vm);
         
         return vm;
-
-
-       
 
         function activate(salaryId) {
             ga('send', 'pageview', { 'page': window.location.href, 'title': document.title });
@@ -80,38 +53,13 @@
             return true;
         }
 
-        
         function attached(view) {
 
             var self = this;
             
             $('html,body').animate({ scrollTop: 0 }, 0);
 
-           
-            ko.bindingHandlers.slider = {
-                init: function (element, valueAccessor, allBindingsAccessor) {
-                    var options = allBindingsAccessor().sliderOptions || {};
-                    $(element).slider(options);
-                    ko.utils.registerEventHandler(element, "slidechange", function (event, ui) {
-                        var observable = valueAccessor();
-                        observable(ui.value);
-                    });
-                    ko.utils.domNodeDisposal.addDisposeCallback(element, function () {
-                        $(element).slider("destroy");
-                    });
-                    ko.utils.registerEventHandler(element, "slide", function (event, ui) {
-                        var observable = valueAccessor();
-                        observable(ui.value);
-                    });
-                },
-                update: function (element, valueAccessor) {
-                    var value = ko.utils.unwrapObservable(valueAccessor());
-                    if (isNaN(value)) value = 0;
-                    $(element).slider("value", value);
-
-                }
-            };
-
+          
             // Initialize Foundation scripts
             $(view).foundation();
 
@@ -274,9 +222,5 @@
                     }
                 }
             });
-        }
-
-        function updateMeritIncrease(slider) {
-            vm.salary.meritIncrease(slider);
         }
     });
