@@ -170,9 +170,20 @@
                     return (entity.newTotalAmount() / entity.totalAmount() - 1);
                 });
 
-                entity.meritPercentIncrease = ko.computed(function () {
-                    return (entity.meritIncrease() /
+                //entity.meritPercentIncrease = ko.computed(function () {
+                //    return (entity.meritIncrease() /
+                //        entity.totalAmount() * 100).formatNumber(1);
+                //});
+
+                entity.meritPercentIncrease = ko.computed({
+                    read: function () {
+                        return (entity.meritIncrease() /
                         entity.totalAmount() * 100).formatNumber(1);
+                    },
+                    write: function (value) {
+                        var increase = entity.totalAmount() * (value / 100);
+                        entity.meritIncrease(increase);
+                    }
                 });
 
                 entity.specialPercentIncrease = ko.computed(function () {

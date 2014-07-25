@@ -45,27 +45,27 @@
             saveChanges: saveChanges,
         };
 
-        vm.salary.subscribe(function (newSalary) {
-            newSalary.meritPercentIncrease.subscribe(function (newMeritPercentage) {
-                vm.meritSlider(newMeritPercentage);
+        //vm.salary.subscribe(function (newSalary) {
+        //    newSalary.meritPercentIncrease.subscribe(function (newMeritPercentage) {
+        //        vm.meritSlider(newMeritPercentage);
                 
-            });
+        //    });
 
-            newSalary.specialPercentIncrease.subscribe(function (newSpecialPercentage) {
-                vm.specialSlider(newSpecialPercentage);
-            });
+        //    newSalary.specialPercentIncrease.subscribe(function (newSpecialPercentage) {
+        //        vm.specialSlider(newSpecialPercentage);
+        //    });
 
-        });
+        //});
 
-        vm.meritSlider.subscribe(function (newValue) {
-            var increase = vm.salary().totalAmount() * (newValue / 100);
-            vm.salary().formattedMeritIncrease(increase);
-        });
+        //vm.meritSlider.subscribe(function (newValue) {
+        //    var increase = vm.salary().totalAmount() * (newValue / 100);
+        //    vm.salary().formattedMeritIncrease(increase);
+        //});
 
-        vm.specialSlider.subscribe(function (newValue) {
-            var increase = vm.salary().totalAmount() * (newValue / 100);
-            vm.salary().formattedSpecialIncrease(increase);
-        });
+        //vm.specialSlider.subscribe(function (newValue) {
+        //    var increase = vm.salary().totalAmount() * (newValue / 100);
+        //    vm.salary().formattedSpecialIncrease(increase);
+        //});
 
         errorhandler.includeIn(vm);
         
