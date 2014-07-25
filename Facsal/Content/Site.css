@@ -5429,6 +5429,11 @@ select.error {
   margin-bottom: 0 !important;
 }
 
+/* line 1, ../sass/app/components/_slider.scss */
+.edit-salary-slider {
+  margin-top: 1.875em !important;
+}
+
 /* line 1, ../sass/app/components/_reveal.scss */
 #timeoutModal {
   color: #111;
@@ -5606,15 +5611,4 @@ table tbody.department-heading tr td {
     transform: rotate(360deg);
     transform: rotate(360deg);
   }
-}
-
-/* line 4, ../sass/app/_shame.scss */
-table.report-table tr.results td {
-  text-align: center;
-}
-
-
-/* line 8, ../sass/app/_shame.scss */
-.editSalarySliders {
-  margin-top: 30px !important;
 }
