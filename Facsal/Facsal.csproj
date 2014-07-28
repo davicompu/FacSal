@@ -250,6 +250,7 @@
     <Content Include="App\viewmodels\persons\create.js" />
     <Content Include="App\viewmodels\reports\base-salary-adjustment.js" />
     <Content Include="App\viewmodels\reports\index.js" />
+    <Content Include="App\viewmodels\reports\meeting-alternative.js" />
     <Content Include="App\viewmodels\reports\merit-summary-report.js" />
     <Content Include="App\viewmodels\reports\meeting.js" />
     <Content Include="App\viewmodels\reports\multiple-employments.js" />
@@ -267,6 +268,7 @@
     <Content Include="App\views\persons\create.html" />
     <Content Include="App\views\reports\base-salary-adjustment.html" />
     <Content Include="App\views\reports\index.html" />
+    <Content Include="App\views\reports\meeting-alternative.html" />
     <Content Include="App\views\reports\merit-summary-report.html" />
     <Content Include="App\views\reports\meeting.html" />
     <Content Include="App\views\reports\multiple-employments.html" />

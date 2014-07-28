@@ -45,6 +45,7 @@
 
                 reportTypes = [
                     { route: 'meeting', text: 'Meeting' },
+                    { route: 'meeting-alternative', text: 'Meeting Alternative' },
                     { route: 'base-salary-adjustment', text: 'Faculty with base salary adjustments' },
                     { route: 'multiple-employments', text: 'Faculty with multiple departments' },
                     { route: 'merit-summary-report', text: 'Merit summary report' },
