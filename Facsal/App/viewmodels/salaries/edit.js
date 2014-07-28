@@ -59,10 +59,6 @@
             
             $('html,body').animate({ scrollTop: 0 }, 0);
 
-          
-            // Initialize Foundation scripts
-            $(view).foundation();
-
             var appointmentTypes = unitofwork.appointmentTypes.all()
                 .then(function (response) {
                     self.appointmentTypes(response);
