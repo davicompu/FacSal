@@ -266,7 +266,7 @@ namespace Facsal.Controllers
                     .ThenBy(s => s.Person.LastName)
                     .ToList();
 
-                var report = new MeetingAlternativeReport(authorizedDepartments, salaries, true);
+                var report = new MeetingAlternativeReport(authorizedDepartments, salaries, false);
 
                 return File(report.BinaryData, report.FileType, report.FileName);
             }

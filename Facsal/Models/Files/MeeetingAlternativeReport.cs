@@ -12,7 +12,7 @@ namespace Facsal.Models.Files
 {
     public class MeetingAlternativeReport : Report
     {
-        const int NUM_COLUMNS = 15;
+        const int NUM_COLUMNS = 16;
         const int SUMMARY_DATA_COLUMNS = 0;
 
         int Row { get; set; }
@@ -127,6 +127,8 @@ namespace Facsal.Models.Files
                 DataAnnotationsHelper.GetPropertyName<Salary>(s => s.NewTotalAmount);
             sheet.Cells[Row, ++column].Value =
                 DataAnnotationsHelper.GetPropertyName<Salary>(s => s.TotalChange);
+            sheet.Cells[Row, ++column].Value =
+               DataAnnotationsHelper.GetPropertyName<Salary>(s => s.Comments);
             
             return sheet;
         }
@@ -172,6 +174,7 @@ namespace Facsal.Models.Files
                     sheet.Cells[Row, ++column].Value = salary.MeritIncrease;
                     sheet.Cells[Row, ++column].Value = salary.SpecialIncrease;
                     sheet.Cells[Row, ++column].Value = salary.EminentIncrease;
+                    sheet.Cells[Row, ++column].Value = salary.Comments;
                     sheet.Cells[Row, ++column].FormulaR1C1 = 
                         "RC[-6]+(RC[-6]/RC[-4])*(RC[-3]+RC[-2])+RC[-1]";
                     sheet.Cells[Row, ++column].FormulaR1C1 = 
