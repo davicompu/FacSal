@@ -200,17 +200,17 @@
                             <span class="text-underline">Amount</span>: <span data-bind="text: formattedMeritIncrease"></span>
                         </p>
                     </div>
-                    <div class="large-6 end columns">
-                        <div class="edit-salary-slider" style="margin: 10px" data-bind="slider: meritPercentIncrease, sliderOptions: {min: 0, max: 15, range: 'min', step: 0.1}"></div>
-                    </div>
                 </div>
+
                 <div class="row">
-                    <div class="large-1 columns">
+                    <div class="large-1 medium-1 small-12 columns">
                         <label>Change</label>
                         <p data-bind="text: meritPercentIncrease() + '%'"></p>
                     </div>
+                    <div class="large-6 medium-6 small-12 end columns">
+                        <div class="edit-salary-slider" style="margin: 10px" data-bind="slider: meritPercentIncrease, sliderOptions: {min: 0, max: 15, range: 'min', step: 0.1}"></div>
+                    </div>
                 </div>
-
                 <div class="row hide-on-print">
                     <div class="large-4 columns end">
                         <label>
@@ -252,15 +252,15 @@
                             <span class="text-underline">Amount</span>: <span data-bind="text: formattedSpecialIncrease"></span>
                         </p>
                     </div>
-                    <div class="large-6 end columns">
-                        <div class="edit-salary-slider" style="margin: 10px" data-bind="slider: specialPercentIncrease, sliderOptions: {min: 0, max: 15, range: 'min', step: 0.1}"></div>
-                    </div>
                 </div>
 
                 <div class="row">
-                    <div class="large-4 columns">
+                    <div class="large-1 medium-1 small-12 columns">
                         <label>Change</label>
                         <p data-bind="text: specialPercentIncrease() + '%'"></p>
+                    </div>
+                    <div class="large-6 medium-6 small-12 end columns">
+                        <div class="edit-salary-slider" style="margin: 10px" data-bind="slider: specialPercentIncrease, sliderOptions: {min: 0, max: 15, range: 'min', step: 0.1}"></div>
                     </div>
                 </div>
 
