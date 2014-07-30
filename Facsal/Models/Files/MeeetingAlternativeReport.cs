@@ -173,14 +173,14 @@ namespace Facsal.Models.Files
                     sheet.Cells[Row, ++column].FormulaR1C1 = "SUM(RC[-4]:RC[-1])";
                     sheet.Cells[Row, ++column].Value = salary.MeritIncrease;
                     sheet.Cells[Row, ++column].Value = salary.SpecialIncrease;
-                    sheet.Cells[Row, ++column].Value = salary.EminentIncrease;
-                    sheet.Cells[Row, ++column].Value = salary.Comments;
+                    sheet.Cells[Row, ++column].Value = salary.EminentIncrease;                 
                     sheet.Cells[Row, ++column].FormulaR1C1 = 
                         "RC[-6]+(RC[-6]/RC[-4])*(RC[-3]+RC[-2])+RC[-1]";
                     sheet.Cells[Row, ++column].FormulaR1C1 = 
                         "RC[-9]+RC[-8]+RC[-6]+RC[-4]+RC[-3]+RC[-2]+RC[-1]";
                     sheet.Cells[Row, ++column].FormulaR1C1 =
                         "RC[-1]/RC[-6]-1";
+                    sheet.Cells[Row, ++column].Value = salary.Comments;
                 }
             }
             #endregion
