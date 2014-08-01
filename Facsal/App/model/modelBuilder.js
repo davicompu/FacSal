@@ -152,11 +152,9 @@
 
                 entity.newTotalAmount = ko.computed(function () {
                     return entity.baseAmount() +
+                        ((1 - entity.eminentAmount() / entity.totalAmount()) *
+                        (entity.meritIncrease() + entity.specialIncrease())) +
                         entity.adminAmount() +
-                        entity.promotionAmount() +
-                        entity.meritIncrease() +
-                        entity.specialIncrease() +
-                        entity.eminentIncrease() +
                         entity.newEminentAmount();
                 });
 
