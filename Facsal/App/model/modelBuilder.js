@@ -155,7 +155,8 @@
                         ((1 - entity.eminentAmount() / entity.totalAmount()) *
                         (entity.meritIncrease() + entity.specialIncrease())) +
                         entity.adminAmount() +
-                        entity.newEminentAmount();
+                        entity.newEminentAmount() +
+                        entity.promotionAmount();
                 });
 
                 entity.meritIncrease.subscribe(function (newValue) {
