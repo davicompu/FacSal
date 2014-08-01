@@ -34,6 +34,7 @@
             rankTypes: rankTypes,
             salary: ko.observable(),
             salaryId: ko.observable(),
+
             adjustmentTypes: adjustmentTypes,
             statusTypes: statusTypes,
             units: units,
@@ -43,7 +44,7 @@
         };
 
         errorhandler.includeIn(vm);
-
+        
         return vm;
 
         function activate(salaryId) {
@@ -52,9 +53,10 @@
             return true;
         }
 
-        function attached() {
-            var self = this;
+        function attached(view) {
 
+            var self = this;
+            
             $('html,body').animate({ scrollTop: 0 }, 0);
 
             var appointmentTypes = unitofwork.appointmentTypes.all()

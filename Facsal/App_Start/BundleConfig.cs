@@ -17,6 +17,8 @@ namespace Facsal
             bundles.Add(
                 new StyleBundle("~/Content/css")
                   .Include("~/Content/durandal.css")
+                  .Include("~/Content/jqueryui/jquery-ui.min.css")
+                  .Include("~/Content/jqueryui/jquery-ui.theme.min.css")
                   .Include("~/Content/toastr.css")
                   .Include("~/Content/Site.css")
             );
@@ -42,6 +44,8 @@ namespace Facsal
                   .Include("~/Scripts/foundation/foundation.js")
                   .Include("~/Scripts/foundation/foundation.reveal.js")
                   .Include("~/Scripts/foundation/foundation.topbar.js")
+                  .Include("~/Scripts/foundation/foundation.slider.js")
+                  .Include("~/Scripts/jquery-ui.js")
                   .Include("~/Scripts/moment.js")
                   .Include("~/Scripts/toastr.js")
             );
