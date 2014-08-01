@@ -165,7 +165,7 @@ namespace Facsal.Controllers
                         s.Person.StatusTypeId == 1);
 
 
-                var report = new SalariesByFacultyTypeReport(department,salaries);
+                var report = new SalariesByFacultyTypeReport(department, salaries);
 
                 return File(report.BinaryData, report.FileType, report.FileName);
             }
@@ -220,11 +220,14 @@ namespace Facsal.Controllers
                     .Include("Person")
                     .Include("Person.Employments")
                     .Include("RankType")
+                    .Include("MeritAdjustmentType")
+                    .Include("SpecialSalaryAdjustments")
+                    .Include("SpecialSalaryAdjustments.SpecialAdjustmentType")
                     .Include("AppointmentType")
                     .Where(s => s.Person.Employments.Any(e => e.DepartmentId == id) &&
                         s.Person.StatusTypeId == 1)
                     .OrderBy(s => s.RankType.SequenceValue)
-                        .ThenBy(s => s.Person.LastName)
+                    .ThenBy(s => s.Person.LastName)
                     .ToList();
 
                 var report = new MeetingAlternativeReport(department, salaries);
@@ -259,6 +262,9 @@ namespace Facsal.Controllers
                     .Include("Person")
                     .Include("Person.Employments")
                     .Include("RankType")
+                    .Include("SpecialSalaryAdjustments")
+                    .Include("SpecialSalaryAdjustments.SpecialAdjustmentType")
+                    .Include("MeritAdjustmentType")
                     .Include("AppointmentType")
                     .Where(s => s.Person.Employments.Any(e => e.Department.UnitId == id) &&
                         s.Person.StatusTypeId == 1)

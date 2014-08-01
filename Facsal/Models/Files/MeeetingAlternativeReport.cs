@@ -14,10 +14,10 @@ namespace Facsal.Models.Files
     {
         const int NUM_COLUMNS = 16;
         const int SUMMARY_DATA_COLUMNS = 0;
-
         int Row { get; set; }
 
-        public MeetingAlternativeReport(Department department, IEnumerable<Salary> salaries) : base()
+        public MeetingAlternativeReport(Department department, IEnumerable<Salary> salaries)
+            : base()
         {
             ExcelPackage package = new ExcelPackage();
             ExcelWorksheet sheet = package.Workbook.Worksheets.Add(department.Name);
@@ -31,18 +31,20 @@ namespace Facsal.Models.Files
             sheet = WriteDepartmentData(sheet, department, salaries);
             #endregion
 
+            DoTotals(sheet, department);
             sheet = PerformFinalFormatting(sheet);
 
             BinaryData = package.GetAsByteArray();
             FileType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-            FileName = "FacSal_MeetingReport_" + 
+            FileName = "FacSal_MeetingAlternativeReport_" +
                 TimeZoneInfo.ConvertTimeBySystemTimeZoneId(
                     System.DateTime.Now, TimeZoneInfo.Local.Id, "Eastern Standard Time").ToString()
                 + ".xlsx";
-            
+
         }
 
-        public MeetingAlternativeReport(IEnumerable<Department> departments, IEnumerable<Salary> salaries, bool singleSheet) : base()
+        public MeetingAlternativeReport(IEnumerable<Department> departments, IEnumerable<Salary> salaries, bool singleSheet)
+            : base()
         {
             ExcelPackage package = new ExcelPackage();
 
@@ -54,7 +56,7 @@ namespace Facsal.Models.Files
                 Row++;
                 sheet = WriteTableLabels(sheet);
                 #endregion
-                
+
                 foreach (var department in departments)
                 {
                     #region Department Data
@@ -62,7 +64,7 @@ namespace Facsal.Models.Files
                         .Where(s => s.Person.Employments.Any(e => e.DepartmentId == department.Id)));
                     #endregion
                 }
-
+                
                 sheet = PerformFinalFormatting(sheet);
             }
             else
@@ -81,6 +83,7 @@ namespace Facsal.Models.Files
                         .Where(s => s.Person.Employments.Any(e => e.DepartmentId == department.Id)));
                     #endregion
 
+                    DoTotals(sheet,department);
                     sheet = PerformFinalFormatting(sheet);
 
                     Row = 0;
@@ -129,7 +132,7 @@ namespace Facsal.Models.Files
                 DataAnnotationsHelper.GetPropertyName<Salary>(s => s.TotalChange);
             sheet.Cells[Row, ++column].Value =
                DataAnnotationsHelper.GetPropertyName<Salary>(s => s.Comments);
-            
+
             return sheet;
         }
 
@@ -173,18 +176,17 @@ namespace Facsal.Models.Files
                     sheet.Cells[Row, ++column].FormulaR1C1 = "SUM(RC[-4]:RC[-1])";
                     sheet.Cells[Row, ++column].Value = salary.MeritIncrease;
                     sheet.Cells[Row, ++column].Value = salary.SpecialIncrease;
-                    sheet.Cells[Row, ++column].Value = salary.EminentIncrease;                 
-                    sheet.Cells[Row, ++column].FormulaR1C1 = 
+                    sheet.Cells[Row, ++column].Value = salary.EminentIncrease;
+                    sheet.Cells[Row, ++column].FormulaR1C1 =
                         "RC[-6]+(RC[-6]/RC[-4])*(RC[-3]+RC[-2])+RC[-1]";
-                    sheet.Cells[Row, ++column].FormulaR1C1 = 
+                    sheet.Cells[Row, ++column].FormulaR1C1 =
                         "RC[-9]+RC[-8]+RC[-6]+RC[-4]+RC[-3]+RC[-2]+RC[-1]";
                     sheet.Cells[Row, ++column].FormulaR1C1 =
                         "RC[-1]/RC[-6]-1";
-                    sheet.Cells[Row, ++column].Value = salary.Comments;
+                    sheet.Cells[Row, ++column].Value = GetComments(salary);
                 }
             }
             #endregion
-
             return sheet;
         }
 
@@ -208,15 +210,82 @@ namespace Facsal.Models.Files
             ExcelRange range_numberFormatting =
                 sheet.Cells[1, 5, Row, NUM_COLUMNS - 1];
             ExcelRange range_percentFormatting =
-                sheet.Cells[1, NUM_COLUMNS, Row, NUM_COLUMNS];
+                sheet.Cells[1, NUM_COLUMNS - 1, Row, NUM_COLUMNS - 1];
 
+            ExcelRange range_comments =
+                sheet.Cells[1, NUM_COLUMNS, Row-1, NUM_COLUMNS];
             //Cell styling
+            range_comments.Style.WrapText = true;
+
             range_numberFormatting.Style.Numberformat.Format = "_($* #,##0_);_($* (#,##0);_($* \"-\"_);_(@_)";
             range_percentFormatting.Style.Numberformat.Format = "0.0%";
-
             sheet.Cells.AutoFitColumns();
+            //Note: We have to resize comment because AutoFitColumns() make it really narrow
+            sheet.Column(NUM_COLUMNS).Width = 30;
+            return sheet;
+        }
+
+        private String GetComments(Salary salary)
+        {
+            String comment = "";
+
+            if (salary.MeritIncrease > 0)
+            {
+                comment += "Merit Adjustment:";
+                comment += Environment.NewLine;
+                comment += salary.MeritAdjustmentType.Name;
+                comment += Environment.NewLine;
+                comment += "Merit Adjustment Comment:";
+                comment += Environment.NewLine;
+                comment += salary.MeritAdjustmentNote;
+                comment += Environment.NewLine;
+            }
+
+            if (salary.SpecialIncrease > 0)
+            {
+                comment += "Special Adjustment:";
+                comment += Environment.NewLine;
+                foreach (var adjustment in salary.SpecialSalaryAdjustments)
+                {
+                    comment += "-" + adjustment.SpecialAdjustmentType.Name;
+                    comment += Environment.NewLine;
+                }
+                comment += "Special Adjustment Comment:";
+                comment += Environment.NewLine;
+                comment += salary.SpecialAdjustmentNote;
+            }
+
+            return comment;
+        }
+
+        private ExcelWorksheet DoTotals(ExcelWorksheet sheet,Department department)
+        {
+            Row++;
+            int column = 3;
+            sheet.Cells[Row, ++column].Value = department.Name;
+            sheet.Cells[Row, ++column].FormulaR1C1 = "SUM(R[-1]C:R[" + (Row-1)*-1 + "]C)";
+            sheet.Cells[Row, ++column].FormulaR1C1 = "SUM(R[-1]C:R[" + (Row - 1) * -1 + "]C)";
+            sheet.Cells[Row, ++column].FormulaR1C1 = "SUM(R[-1]C:R[" + (Row - 1) * -1 + "]C)";
+            sheet.Cells[Row, ++column].FormulaR1C1 = "SUM(R[-1]C:R[" + (Row - 1) * -1 + "]C)";
+            sheet.Cells[Row, ++column].FormulaR1C1 = "SUM(R[-1]C:R[" + (Row - 1) * -1 + "]C)";
+            sheet.Cells[Row, ++column].FormulaR1C1 = "SUM(R[-1]C:R[" + (Row - 1) * -1 + "]C)";
+            sheet.Cells[Row, ++column].FormulaR1C1 = "SUM(R[-1]C:R[" + (Row - 1) * -1 + "]C)";
+            sheet.Cells[Row, ++column].FormulaR1C1 = "SUM(R[-1]C:R[" + (Row - 1) * -1 + "]C)";
+            sheet.Cells[Row, ++column].FormulaR1C1 = "SUM(R[-1]C:R[" + (Row - 1) * -1 + "]C)";
+            sheet.Cells[Row, ++column].FormulaR1C1 = "SUM(R[-1]C:R[" + (Row - 1) * -1 + "]C)";
+            sheet.Cells[Row, ++column].FormulaR1C1 = "AVERAGE(R[-1]C:R[" + (Row - 1) * -1 + "]C)";
+            //Format
+
+            ExcelRange range_labels = sheet.Cells[Row, 4, Row, NUM_COLUMNS];
+            //range_labels.Style.Font.SetFromFont(new Font("Calibri", 11, FontStyle.Bold));
+            range_labels.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+            range_labels.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+            range_labels.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(200, 200, 200));
+            range_labels.Style.Border.Bottom.Style = OfficeOpenXml.Style.ExcelBorderStyle.Medium;
 
             return sheet;
         }
+
+
     }
 }
