@@ -5,17 +5,23 @@
 </div>
 
 <div class="row">
-    <div class="large-12 columns" data-bind="foreach: employments">
-        <label>
-            <input type="radio" data-bind="attr: { value: departmentId }, checked: $parent.homeDepartmentId" />
-            <span data-bind="text: departmentId"></span>
-        </label>
+    <div class="large-12 columns">
+        <fieldset>
+            <h4>Home department</h4>
+
+            <section data-bind="foreach: employments">
+                <label>
+                    <input type="radio" data-bind="attr: { value: departmentId }, checked: $parent.homeDepartmentId" />
+                    <span data-bind="text: departmentId"></span>
+                </label>
+            </section>
+        </fieldset>
     </div>
 </div>
 
 <div class="row">
     <div class="large-12 columns" data-bind="foreach: employmentVMs">
-        <fieldset data-bind="ifIsInRole: 'manage-all'">
+        <fieldset>
             <h4 data-bind="text: unit.name"></h4>
 
             <!-- ko foreach: departmentRows -->

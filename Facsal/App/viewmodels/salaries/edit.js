@@ -152,6 +152,10 @@
 
         function deactivate() {
             vm.salary(undefined);
+            vm.employments(undefined);
+            vm.employmentVMs(undefined);
+
+            return true;
         }
 
         function saveChanges() {

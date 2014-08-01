@@ -12,7 +12,7 @@
                 columnLength: ko.observable(3),
                 employments: ko.observableArray(),
                 employmentVMs: ko.observableArray(),
-                homeDepartmentId: ko.observable('0642'),
+                homeDepartmentId: ko.observable(),
                 personId: ko.observable(),
                 units: ko.observableArray(),
 
@@ -63,12 +63,16 @@
                                             row = [];
                                         }
 
+                                        // Set home department id property on view model. 
                                         if (!!employmentHash[unit.departments()[i].id()] &&
                                             employmentHash[unit.departments()[i].id()].isHomeDepartment()) {
-                                            vm.homeDepartmentId(employmentHash[unit.departments()[i].id()].id());
+
+                                            console.log('Loop home dept id: ' + employmentHash[unit.departments()[i].id()].departmentId());
+                                            vm.homeDepartmentId(employmentHash[unit.departments()[i].id()].departmentId());
+                                            console.log('VM home dept id: ' + vm.homeDepartmentId());
                                         }
                                     
-                                        row.push(function () {
+                                        row.push((function () {
                                             var o = {
                                                 department: unit.departments()[i],
                                                 isSelected: ko.observable(!!employmentHash[unit.departments()[i].id()])
@@ -77,19 +81,21 @@
                                             o.isHomeDepartment = ko.computed(function () {
                                                 if (o.isSelected()) {
                                                     return o.department.id() === vm.homeDepartmentId();
-                                                } else if (o.department.id() === vm.homeDepartmentId()) {
-                                                    logger.logError('Detected home department change without associated ' +
-                                                        'department employment selection. Rolling back changes.'
-                                                        , null, system.getModuleId(vm), true);
-
-                                                    return unitofwork.rollback();
                                                 }
+                                                //else if (o.department.id() === vm.homeDepartmentId()) {
+                                                //    logger.logError('This department must remain selected while ' +
+                                                //        'designated as the home department. Rolling back changes.'
+                                                //        , null, system.getModuleId(vm), true);
+
+                                                //    deactivate();
+                                                //    return attached();
+                                                //}
 
                                                 return false;
-                                            })
+                                            });
 
-                                            return o
-                                        });
+                                            return o;
+                                        })());
                                     }
 
                                     // Push the final row.
@@ -169,6 +175,11 @@
                                     departmentId: mapVM.department.id(),
                                     isHomeDepartment: mapVM.isHomeDepartment()
                                 });
+                            } else {
+                                if (map.isHomeDepartment() !== mapVM.isHomeDepartment()) {
+                                    // Home department has changed. Update entity.
+                                    map.isHomeDepartment(mapVM.isHomeDepartment());
+                                }
                             }
                         } else {
                             // User unselected this adjustment.
