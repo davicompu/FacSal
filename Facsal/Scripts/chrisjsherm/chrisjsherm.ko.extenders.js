@@ -59,12 +59,13 @@ ko.extenders.currency = function (target, configArray) {
             if (valueToWrite !== current) {
                 rawValueObservable(newValueAsNum);
                 target(valueToWrite);
-            } else {
-                // If the rounded value is the same but a different value was written, force a notification for the current field.
-                if (newValue !== current) {
-                    target.notifySubscribers(valueToWrite);
-                }
             }
+            //else {
+            //    // If the rounded value is the same but a different value was written, force a notification for the current field.
+            //    if (newValue !== current) {
+            //        target.notifySubscribers(valueToWrite);
+            //    }
+            //}
         }
     }).extend({ notify: 'always' });
 
@@ -115,8 +116,52 @@ ko.bindingHandlers.slider = {
     },
     update: function (element, valueAccessor) {
         var value = ko.utils.unwrapObservable(valueAccessor());
-        if (isNaN(value)) value = 0;
+
+        if (isNaN(value)) {
+            value = 0;
+        }
+
         $(element).slider("value", value);
 
     }
 };
+
+ko.bindingHandlers.currencySlider = {
+    init: function (element, valueAccessor, allBindingsAccessor) {
+        var options = allBindingsAccessor().sliderOptions || (function () {
+                console.log('The [sliderOptions] binding was not found on the element.');
+                return {};
+            })(),
+
+            currencyObservable = allBindingsAccessor().currencyObservable || (function () {
+                console.log('The [currencyObservable] binding was not found on the element.');
+                return ko.observable(0);
+            })(),
+            
+            totalObservable = allBindingsAccessor().totalObservable || (function () {
+                console.log('The [totalObservable] binding was not found on the element.');
+                return ko.observable(0);
+            })();
+
+        $(element).slider(options);
+
+        // Triggered on every mouse move during slide.
+        ko.utils.registerEventHandler(element, "slide", function (event, ui) {
+            currencyObservable(Math.round(totalObservable() * (ui.value * .01)));
+        });
+
+        ko.utils.domNodeDisposal.addDisposeCallback(element, function () {
+            $(element).slider("destroy");
+        });
+    },
+    update: function (element, valueAccessor) {
+        var value = ko.utils.unwrapObservable(valueAccessor());
+
+        if (isNaN(value)) {
+            value = 0;
+        }
+
+        $(element).slider("value", value);
+
+    }
+}

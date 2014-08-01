@@ -208,7 +208,7 @@
                         <p data-bind="text: meritPercentIncrease() + '%'"></p>
                     </div>
                     <div class="large-6 medium-6 small-12 end columns">
-                        <div class="edit-salary-slider" style="margin: 10px" data-bind="slider: meritPercentIncrease, sliderOptions: {min: 0, max: 15, range: 'min', step: 0.1}"></div>
+                        <div class="edit-salary-slider" style="margin: 10px" data-bind="currencySlider: meritPercentIncrease, sliderOptions: {min: 0, max: 15, range: 'min', step: 0.1}, currencyObservable: formattedMeritIncrease, totalObservable: totalAmount"></div>
                     </div>
                 </div>
                 <div class="row hide-on-print">
@@ -260,7 +260,9 @@
                         <p data-bind="text: specialPercentIncrease() + '%'"></p>
                     </div>
                     <div class="large-6 medium-6 small-12 end columns">
-                        <div class="edit-salary-slider" style="margin: 10px" data-bind="slider: specialPercentIncrease, sliderOptions: {min: 0, max: 15, range: 'min', step: 0.1}"></div>
+                        <div class="edit-salary-slider" style="margin: 10px" data-bind="currencySlider: specialPercentIncrease,
+                            sliderOptions: {min: 0, max: 15, range: 'min', step: 0.1},
+                            currencyObservable: formattedSpecialIncrease, totalObservable: totalAmount"></div>
                     </div>
                 </div>
 
