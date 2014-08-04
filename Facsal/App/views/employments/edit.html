@@ -12,7 +12,7 @@
             <section data-bind="foreach: employments">
                 <label>
                     <input type="radio" data-bind="attr: { value: departmentId }, checked: $parent.homeDepartmentId" />
-                    <span data-bind="text: departmentId"></span>
+                    <span data-bind="text: department().name"></span>
                 </label>
             </section>
         </fieldset>
