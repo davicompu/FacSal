@@ -38,9 +38,25 @@ namespace Facsal.Validators
                 }
                 else if (entityInfo.Entity.GetType() == typeof(Employment))
                 {
-                    if (!IsAuthorizedToCreateEmploymnet((Employment)entityInfo.Entity))
+                    if (!IsAuthorizedToCreateEmployment((Employment)entityInfo.Entity))
                     {
                         ThrowEntityError("You are not authorized to create employment entities.",
+                            "Unauthorized", HttpStatusCode.Unauthorized);
+                    }
+                }
+                else if (entityInfo.Entity.GetType() == typeof(Person))
+                {
+                    if (!IsAuthorizedToCreatePerson((Person)entityInfo.Entity))
+                    {
+                        ThrowEntityError("You are not authorized to create person entities.",
+                            "Unauthorized", HttpStatusCode.Unauthorized);
+                    }
+                }
+                else if (entityInfo.Entity.GetType() == typeof(Salary))
+                {
+                    if (!IsAuthorizedToCreateSalary((Salary)entityInfo.Entity))
+                    {
+                        ThrowEntityError("You are not authorized to create salary entities.",
                             "Unauthorized", HttpStatusCode.Unauthorized);
                     }
                 }
@@ -180,14 +196,34 @@ namespace Facsal.Validators
         }
 
         #region Create entity authorization methods
-        private bool IsAuthorizedToCreateEmploymnet(Employment employment)
+        private bool IsAuthorizedToCreateEmployment(Employment employment)
         {
             return IsAuthorizedToModifyEmployment(employment);
+        }
+
+        private bool IsAuthorizedToCreatePerson(Person person)
+        {
+            if (HttpContext.Current.User.IsInRole("manage-all"))
+            {
+                return true;
+            }
+
+            return false;
         }
 
         private bool IsAuthorizedToCreateRoleAssignment(RoleAssignment roleAssignment)
         {
             if (IsAuthorizedToModifyRoleAssignment(roleAssignment))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private bool IsAuthorizedToCreateSalary(Salary salary)
+        {
+            if (HttpContext.Current.User.IsInRole("manage-all"))
             {
                 return true;
             }

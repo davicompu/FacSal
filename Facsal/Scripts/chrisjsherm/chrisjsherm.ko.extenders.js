@@ -47,6 +47,8 @@ ko.extenders.currency = function (target, configArray) {
         // Always return the original observable's value.
         read: target,
         write: function (newValue) {
+            newValue = newValue ? newValue : 0;
+
             var current = target(),
                 cleansedValue = parseFloat(newValue.toString().replace(/[^\d.-]/g, '')),
                 newValueAsNum = isNaN(cleansedValue) ? 0 : parseFloat(+cleansedValue),

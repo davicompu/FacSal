@@ -135,8 +135,15 @@ namespace SalaryEntities.Entities
         {
             get
             {
-                return EminentAmount + (EminentAmount / TotalAmount) *
-                    (MeritIncrease + SpecialIncrease) + EminentIncrease;
+                try
+                {
+                    return EminentAmount + (EminentAmount / TotalAmount) *
+                        (MeritIncrease + SpecialIncrease) + EminentIncrease;
+                }
+                catch (DivideByZeroException ex)
+                {
+                    return 0;
+                }
             }
         }
 
@@ -154,7 +161,14 @@ namespace SalaryEntities.Entities
         {
             get
             {
-                return Math.Round(((decimal.Divide(NewTotalAmount, TotalAmount) - 1) * 100), 1);
+                try
+                {
+                    return Math.Round(((decimal.Divide(NewTotalAmount, TotalAmount) - 1) * 100), 1);
+                }
+                catch (DivideByZeroException ex)
+                {
+                    return 0;
+                }
             }
         }
     }
