@@ -188,6 +188,7 @@ namespace Facsal.Validators
             if (saveMap.TryGetValue(typeof(Employment), out employments))
             {
                 var homeDepartmentCount = 0;
+                var deletedHomeDepartment = false;
 
                 employments.ForEach(e => 
                 {
@@ -199,9 +200,16 @@ namespace Facsal.Validators
                     {
                         homeDepartmentCount++;
                     }
+
+                    if (employment.IsHomeDepartment == true &&
+                        e.EntityState == EntityState.Deleted)
+                    {
+                        deletedHomeDepartment = true;
+                    }
                 });
 
-                if (homeDepartmentCount == 0)
+                if (homeDepartmentCount == 0 &&
+                    deletedHomeDepartment)
                 {
                     ThrowEntityError("You must select a home department.",
                         "Bad request", HttpStatusCode.BadRequest);

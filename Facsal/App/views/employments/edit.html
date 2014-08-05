@@ -9,18 +9,18 @@
         <fieldset>
             <h4>Home department</h4>
 
-            <section data-bind="foreach: employmentVMs">
-                <section data-bind="foreach: departmentRows">
-                    <section data-bind="foreach: $data">
-                        <section data-bind="if: isSelected">
+            <!-- ko foreach: employmentVMs -->
+                <!-- ko foreach: departmentRows -->
+                    <!-- ko foreach: $data -->
+                        <!-- ko if: isSelected -->
                             <label>
                                 <input type="radio" data-bind="attr: { value: department.id }, checked: $root.homeDepartmentId" />
                                 <span data-bind="text: department.name"></span>
                             </label>
-                        </section>
-                    </section>
-                </section>
-            </section>
+                        <!--/ko-->
+                    <!--/ko-->
+                <!--/ko-->
+            <!--/ko-->
         </fieldset>
     </div>
 </div>
