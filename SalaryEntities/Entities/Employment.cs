@@ -14,9 +14,11 @@ namespace SalaryEntities.Entities
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
 
+        [Index("IX_PersonAndDepartment", 1, IsUnique = true, IsClustered = false)]
         [ForeignKey("Person")]
         public string PersonId { get; set; }
 
+        [Index("IX_PersonAndDepartment", 2, IsUnique = true, IsClustered = false)]
         [ForeignKey("Department")]
         public string DepartmentId { get; set; }
 

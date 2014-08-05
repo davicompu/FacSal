@@ -81,6 +81,10 @@
                                             o.isHomeDepartment = ko.computed(function () {
                                                 if (o.isSelected()) {
                                                     return o.department.id() === vm.homeDepartmentId();
+                                                } else {
+                                                    ////vm.employments.remove(function (item) {
+                                                    ////    return item.department().id() == o.department.id();
+                                                    //});
                                                 }
                                                 //else if (o.department.id() === vm.homeDepartmentId()) {
                                                 //    logger.logError('This department must remain selected while ' +

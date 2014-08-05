@@ -94,6 +94,10 @@
     <Compile Include="Migrations\201407241924179_DropHomeDeptId.Designer.cs">
       <DependentUpon>201407241924179_DropHomeDeptId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201408051320250_PersonDepartmentEmploymentIndex.cs" />
+    <Compile Include="Migrations\201408051320250_PersonDepartmentEmploymentIndex.Designer.cs">
+      <DependentUpon>201408051320250_PersonDepartmentEmploymentIndex.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Repository.cs" />
@@ -137,6 +141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201407241924179_DropHomeDeptId.resx">
       <DependentUpon>201407241924179_DropHomeDeptId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408051320250_PersonDepartmentEmploymentIndex.resx">
+      <DependentUpon>201408051320250_PersonDepartmentEmploymentIndex.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
