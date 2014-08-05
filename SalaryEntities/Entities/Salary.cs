@@ -50,7 +50,7 @@ namespace SalaryEntities.Entities
         public int? BannerBaseAmount { get; private set; }
 
         [Max(100000000)]
-        [Min(0)]
+        [Min(1)]
         [Display(Name = "Base salary")]
         public int BaseAmount { get; set; }
 
