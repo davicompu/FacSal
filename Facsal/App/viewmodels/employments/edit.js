@@ -129,8 +129,7 @@
             console.log('Attempting save.');
             return unitofwork.commit()
                 .then(function (response) {
-                    logger.logSuccess('Save successful', response, system.getModuleId(vm), true);
-                    return router.navigateBack();
+                    return logger.logSuccess('Save successful', response, system.getModuleId(vm), true);
                 })
                 .fail(function (error) {
                     var rejectedChanges = unitofwork.rollback();
