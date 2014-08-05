@@ -9,6 +9,7 @@
         var vm = {
             activate: activate,
             attached: attached,
+            deactivate: deactivate,
 
             appointmentTypes: ko.observableArray(),
             facultyTypes: ko.observableArray(),
@@ -17,19 +18,10 @@
             rankTypes: ko.observableArray(),
             salary: ko.observable(),
             statusTypes: ko.observableArray(),
-            selectedDepartmentId: ko.observable(),
 
             cancelPerson: cancelPerson,
             savePerson: savePerson,
         };
-
-        vm.selectedDepartmentId.subscribe(function (newValue) {
-            if (newValue === 'Select a department...' || newValue === undefined) {
-                return;
-            }
-
-            initializeEmployment();
-        })
 
         errorhandler.includeIn(vm);
 
@@ -94,6 +86,11 @@
             ]).fail(self.handleError);
 
             return true;
+        }
+
+        function deactivate() {
+            vm.person(undefined);
+            vm.salary(undefined);
         }
 
         function savePerson() {

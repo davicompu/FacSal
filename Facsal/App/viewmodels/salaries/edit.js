@@ -1,6 +1,7 @@
 ﻿define(['global/session', 'services/errorhandler', 'services/logger',
     'plugins/router', 'durandal/system'],
     function (session, errorhandler, logger, router, system) {
+
         var unitofwork = session.unitofwork(),
 
             appointmentTypes = ko.observableArray(),
