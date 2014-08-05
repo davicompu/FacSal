@@ -9,11 +9,17 @@
         <fieldset>
             <h4>Home department</h4>
 
-            <section data-bind="foreach: employments">
-                <label>
-                    <input type="radio" data-bind="attr: { value: departmentId }, checked: $parent.homeDepartmentId" />
-                    <span data-bind="text: department().name"></span>
-                </label>
+            <section data-bind="foreach: employmentVMs">
+                <section data-bind="foreach: departmentRows">
+                    <section data-bind="foreach: $data">
+                        <section data-bind="if: isSelected">
+                            <label>
+                                <input type="radio" data-bind="attr: { value: department.id }, checked: $root.homeDepartmentId" />
+                                <span data-bind="text: department.name"></span>
+                            </label>
+                        </section>
+                    </section>
+                </section>
             </section>
         </fieldset>
     </div>

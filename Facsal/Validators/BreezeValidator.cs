@@ -183,8 +183,39 @@ namespace Facsal.Validators
 
         public Dictionary<Type, List<EntityInfo>> BeforeSaveEntities(Dictionary<Type, List<EntityInfo>> saveMap)
         {
+            List<EntityInfo> employments;
+
+            if (saveMap.TryGetValue(typeof(Employment), out employments))
+            {
+                var homeDepartmentCount = 0;
+
+                employments.ForEach(e => 
+                {
+                    Employment employment = (Employment)e.Entity;
+
+                    if (employment.IsHomeDepartment == true &&
+                        (e.EntityState == EntityState.Added ||
+                        e.EntityState == EntityState.Modified))
+                    {
+                        homeDepartmentCount++;
+                    }
+                });
+
+                if (homeDepartmentCount == 0)
+                {
+                    ThrowEntityError("You must select a home department.",
+                        "Bad request", HttpStatusCode.BadRequest);
+                }
+                else if (homeDepartmentCount > 1)
+                {
+                    ThrowEntityError("You may only select one home department.",
+                        "Bad request", HttpStatusCode.BadRequest);
+                }
+            }
+
             return saveMap;
         }
+
         private AuditEntityBase SetAuditEntityFields(Breeze.ContextProvider.EntityInfo entityInfo)
         {
             var entity = (AuditEntityBase)entityInfo.Entity;

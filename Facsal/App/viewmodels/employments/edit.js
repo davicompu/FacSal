@@ -45,6 +45,9 @@
 
                     unitofwork.employments.find(p1)
                         .then(function (response) {
+
+                            vm.employments(response);
+
                             var employmentHash = createEmploymentHash(response),
 
                                 employmentMapVMs = $.map(units, function (unit) {
@@ -67,9 +70,7 @@
                                         if (!!employmentHash[unit.departments()[i].id()] &&
                                             employmentHash[unit.departments()[i].id()].isHomeDepartment()) {
 
-                                            console.log('Loop home dept id: ' + employmentHash[unit.departments()[i].id()].departmentId());
                                             vm.homeDepartmentId(employmentHash[unit.departments()[i].id()].departmentId());
-                                            console.log('VM home dept id: ' + vm.homeDepartmentId());
                                         }
                                     
                                         row.push((function () {
@@ -80,20 +81,10 @@
 
                                             o.isHomeDepartment = ko.computed(function () {
                                                 if (o.isSelected()) {
+                                                    console.log(o.department.name() + ' is selected.');
+                                                    console.log(o.department.id() === vm.homeDepartmentId());
                                                     return o.department.id() === vm.homeDepartmentId();
-                                                } else {
-                                                    ////vm.employments.remove(function (item) {
-                                                    ////    return item.department().id() == o.department.id();
-                                                    //});
                                                 }
-                                                //else if (o.department.id() === vm.homeDepartmentId()) {
-                                                //    logger.logError('This department must remain selected while ' +
-                                                //        'designated as the home department. Rolling back changes.'
-                                                //        , null, system.getModuleId(vm), true);
-
-                                                //    deactivate();
-                                                //    return attached();
-                                                //}
 
                                                 return false;
                                             });
@@ -113,7 +104,6 @@
                                     }
                                 });
 
-                            vm.employments(response);
                             vm.employmentVMs(employmentMapVMs);
                         });
                 });
@@ -122,8 +112,11 @@
         }
 
         function deactivate() {
-            vm.employments(undefined);
-            vm.employmentVMs(undefined);
+            vm.employments([]);
+            vm.homeDepartmentId(undefined);
+            vm.personId(undefined);
+            vm.employmentVMs([]);
+            vm.units([]);
         }
 
         function saveChanges() {
@@ -133,10 +126,15 @@
                 return logger.log('No changes were detected.', null, system.getModuleId(vm), true);
             }
 
+            console.log('Attempting save.');
             return unitofwork.commit()
                 .then(function (response) {
                     logger.logSuccess('Save successful', response, system.getModuleId(vm), true);
                     return router.navigateBack();
+                })
+                .fail(function (error) {
+                    var rejectedChanges = unitofwork.rollback();
+                    self.handleError(error);
                 });
         }
 
@@ -149,7 +147,7 @@
             var employmentHash = {};
 
             $.each(employments, function (index, value) {
-                employmentHash[value.department().id()] = value;
+                employmentHash[value.departmentId()] = value;
             });
 
             return employmentHash;
