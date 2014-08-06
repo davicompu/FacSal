@@ -64,7 +64,7 @@ namespace Facsal.Models.Files
                         .Where(s => s.Person.Employments.Any(e => e.DepartmentId == department.Id)));
                     #endregion
                 }
-                
+
                 sheet = PerformFinalFormatting(sheet);
             }
             else
@@ -83,7 +83,7 @@ namespace Facsal.Models.Files
                         .Where(s => s.Person.Employments.Any(e => e.DepartmentId == department.Id)));
                     #endregion
 
-                    DoTotals(sheet,department);
+                    DoTotals(sheet, department);
                     sheet = PerformFinalFormatting(sheet);
 
                     Row = 0;
@@ -213,7 +213,7 @@ namespace Facsal.Models.Files
                 sheet.Cells[1, NUM_COLUMNS - 1, Row, NUM_COLUMNS - 1];
 
             ExcelRange range_comments =
-                sheet.Cells[1, NUM_COLUMNS, Row-1, NUM_COLUMNS];
+                sheet.Cells[1, NUM_COLUMNS, Row - 1, NUM_COLUMNS];
             //Cell styling
             range_comments.Style.WrapText = true;
 
@@ -258,12 +258,12 @@ namespace Facsal.Models.Files
             return comment;
         }
 
-        private ExcelWorksheet DoTotals(ExcelWorksheet sheet,Department department)
+        private ExcelWorksheet DoTotals(ExcelWorksheet sheet, Department department)
         {
             Row++;
             int column = 3;
             sheet.Cells[Row, ++column].Value = department.Name;
-            sheet.Cells[Row, ++column].FormulaR1C1 = "SUM(R[-1]C:R[" + (Row-1)*-1 + "]C)";
+            sheet.Cells[Row, ++column].FormulaR1C1 = "SUM(R[-1]C:R[" + (Row - 1) * -1 + "]C)";
             sheet.Cells[Row, ++column].FormulaR1C1 = "SUM(R[-1]C:R[" + (Row - 1) * -1 + "]C)";
             sheet.Cells[Row, ++column].FormulaR1C1 = "SUM(R[-1]C:R[" + (Row - 1) * -1 + "]C)";
             sheet.Cells[Row, ++column].FormulaR1C1 = "SUM(R[-1]C:R[" + (Row - 1) * -1 + "]C)";
@@ -276,12 +276,23 @@ namespace Facsal.Models.Files
             sheet.Cells[Row, ++column].FormulaR1C1 = "AVERAGE(R[-1]C:R[" + (Row - 1) * -1 + "]C)";
             //Format
 
+            ExcelRange range_department = sheet.Cells[Row, 1, Row, 4];
             ExcelRange range_labels = sheet.Cells[Row, 4, Row, NUM_COLUMNS];
+            var department_name = sheet.Cells[Row, 4].Value;
+            range_department.Merge = true;
+            sheet.Cells[Row, 1].Value = department_name;
             //range_labels.Style.Font.SetFromFont(new Font("Calibri", 11, FontStyle.Bold));
-            range_labels.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+            //range_labels.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+            range_department.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Right;
+            range_department.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+            range_department.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(0, 140, 186));
+            range_department.Style.Border.Top.Style = OfficeOpenXml.Style.ExcelBorderStyle.Medium;
+            range_department.Style.Font.SetFromFont(new Font("Calibri", 11, FontStyle.Bold));
+            range_department.Style.Font.Color.SetColor(Color.FromArgb(255, 255, 255));
+            range_labels.Style.Font.Color.SetColor(Color.FromArgb(255, 255, 255));
             range_labels.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
-            range_labels.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(200, 200, 200));
-            range_labels.Style.Border.Bottom.Style = OfficeOpenXml.Style.ExcelBorderStyle.Medium;
+            range_labels.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(0, 140, 186));
+            range_labels.Style.Border.Top.Style = OfficeOpenXml.Style.ExcelBorderStyle.Medium;
 
             return sheet;
         }

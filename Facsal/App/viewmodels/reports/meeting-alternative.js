@@ -11,6 +11,12 @@
             departmentData: ko.observableArray(),
             departmentId: ko.observable(),
             unitId: ko.observable(),
+            showComments: showComments,
+
+            meritAdjustmentTypeComment: ko.observable(),
+            meritAdjustmentNoteComment: ko.observable(),
+            specialAdjustmentTypesComment: ko.observableArray(),
+            specialAdjustmentNoteComment: ko.observable(),
 
             downloadExcel: dowloadExcel,
         };
@@ -19,6 +25,14 @@
 
         return vm;
 
+        function showComments(person) {
+            vm.meritAdjustmentTypeComment(person.meritAdjustmentType().name());
+            vm.meritAdjustmentNoteComment(person.meritAdjustmentNote());
+            vm.specialAdjustmentTypesComment(person.specialSalaryAdjustments());
+            vm.specialAdjustmentNoteComment(person.specialAdjustmentNote());
+            $(document).foundation();
+            $('#Comments').foundation('reveal', 'open');
+        }
         function activate(unitId, departmentId) {
             var self = this;
 
@@ -81,7 +95,7 @@
                     'person.statusTypeId', '==', config.activeStatusTypeId),
 
                     predicate = breeze.Predicate.and([p1, p2, p3]),
-                    expansionCondition = 'person';
+                    expansionCondition = 'person, specialSalaryAdjustments';
 
                 var salaries = unitofwork.salaries.find(predicate, expansionCondition)
                     .then(function (response) {

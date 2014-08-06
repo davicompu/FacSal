@@ -1,6 +1,7 @@
 ﻿//Source: http://browser-update.org/
 var $buoop = {
-    reminder: 24,
+    vs:{i:10,f:30,o:15,s:5.1},
+    reminder: 2,
     onshow: function (infos) {
         showNotification(infos);
     },
@@ -9,7 +10,7 @@ var $buoop = {
     },
     //text: "Your browser " + (this.browser) + " is out of date. Please update it.",
     url:"#",
-    test: true,
+    //test: true,
     newwindow: false
 };
 $buoop.ol = window.onload;
