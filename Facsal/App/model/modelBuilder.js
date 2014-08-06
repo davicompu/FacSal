@@ -323,10 +323,6 @@
         }
 
         function extendUser(metadataStore) {
-            var userCtor = function () {
-                //this.id = ko.observable(breeze.core.getUuid());
-            };
-
             var initializer = function (entity) {
                 addValidationRules(entity);
                 addHasValidationErrorsProperty(entity);
@@ -336,7 +332,7 @@
                 });
             };
 
-            metadataStore.registerEntityTypeCtor('User', userCtor, initializer);
+            metadataStore.registerEntityTypeCtor('User', null, initializer);
         }
 
         //#region Internal Methods

@@ -18,13 +18,20 @@
             <ul class="right">
                 <!-- ko foreach: router.navigationModel -->
                 <li class="menu-item">
-                    <a data-bind="attr: { href: $parent.router.convertRouteToHash('/' + hash) }, text: title"></a>
+                    <a data-bind="attr: { href: $parent.router.convertRouteToHash(hash) }, text: title"></a>
                 </li>
                 <!--/ko-->
 
                 <li class="menu-item"
                     data-bind="ifIsInRole: ['manage-users', 'manage-all']">
                     <a href="/users/index">Users</a>
+                </li>
+
+                <li class="menu-item"
+                    data-bind="ifIsInRole: 'manage-all'">
+                    <a href="/persons/create">
+                        <i class="fa fa-gears fa-lg"></i>
+                    </a>
                 </li>
                 
                 <li class="menu-item">

@@ -9,6 +9,7 @@
         var vm = {
             activate: activate,
             attached: attached,
+            canDeactivate: canDeactivate,
             deactivate: deactivate,
 
             appointmentTypes: ko.observableArray(),
@@ -18,6 +19,7 @@
             rankTypes: ko.observableArray(),
             salary: ko.observable(),
             statusTypes: ko.observableArray(),
+            units: ko.observableArray(),
 
             cancelPerson: cancelPerson,
             savePerson: savePerson,
@@ -29,6 +31,7 @@
 
         function activate() {
             ga('send', 'pageview', { 'page': window.location.href, 'title': document.title });
+
             return true;
         }
 
@@ -36,9 +39,7 @@
 
             $('html,body').animate({ scrollTop: 0 }, 0);
 
-            var self = this,
-                
-                appointmentTypes = unitofwork.appointmentTypes.all()
+            var appointmentTypes = unitofwork.appointmentTypes.all()
                     .then(function (response) {
                         vm.appointmentTypes(response);
                     }),
@@ -63,34 +64,53 @@
                         vm.statusTypes(response);
                     });
 
-            vm.person(unitofwork.persons.create());
+            unitofwork.units.all()
+                .then(function (response) {
+                    vm.units(response);
 
-            vm.salary(unitofwork.salaries.create({
-                personId: vm.person().id(),
-                cycleYear: config.currentCycleYear,
-                meritAdjustmentTypeId: config.meritAdjustmentTypeIdIndicatesNotReviewed
-            }));
+                    Q.fcall(initializePerson)
+                        .then(function () {
+                            vm.errors = ko.validation.group([
+                                vm.person().pid,
+                                vm.person().firstName,
+                                vm.person().lastName
+                            ]);
+                        });
+                });
 
-            vm.errors = ko.validation.group([
-                vm.person().pid,
-                vm.person().firstName,
-                vm.person().lastName
-            ]);
+            return true;
+        }
 
-            Q.all([
-                appointmentTypes,
-                facultyTypes,
-                leaveTypes,
-                rankTypes,
-                statusTypes
-            ]).fail(self.handleError);
+        function canDeactivate() {
+            if (unitofwork.hasChanges()) {
+                return confirm('You have unsaved changes. Do you want to discard them?');
+            }
 
             return true;
         }
 
         function deactivate() {
+            if (unitofwork.hasChanges()) {
+                unitofwork.rollback();
+            }
+
             vm.person(undefined);
-            vm.salary(undefined);
+        }
+
+        function initializePerson() {
+            var person = unitofwork.persons.create();
+
+            person.salaries.push(unitofwork.salaries.create({
+                personId: person.id(),
+                cycleYear: config.currentCycleYear,
+                meritAdjustmentTypeId: config.meritAdjustmentTypeIdIndicatesNotReviewed
+            }));
+
+            person.employments.push(unitofwork.employments.create({
+                isHomeDepartment: true
+            }));
+
+            return vm.person(person);
         }
 
         function savePerson() {
@@ -102,8 +122,6 @@
                 return;
             }
 
-            vm.person().salary = vm.salary();
-
             if (!unitofwork.hasChanges()) {
                 return logger.log('No changes were detected.', null, system.getModuleId(vm), true);
             }
@@ -111,7 +129,6 @@
             unitofwork.commit()
                 .then(function (response) {
                     logger.logSuccess('Save successful', response, system.getModuleId(vm), true);
-                    router.navigate('/employments/edit/' + vm.person().id())
                 })
                 .fail(self.handleError);
 
@@ -120,6 +137,5 @@
 
         function cancelPerson() {
             unitofwork.rollback();
-            return router.navigateBack();
         }
     });

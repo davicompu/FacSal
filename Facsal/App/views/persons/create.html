@@ -44,16 +44,46 @@
 
                 <div class="row">
                     <div class="large-6 columns end">
-                        <label>
+                        <p>
                             Status <select data-bind="options: $parent.statusTypes,
                             optionsValue: 'id', optionsText: 'name', value: statusTypeId"></select>
-                        </label>
+                        </p>
                     </div>
                 </div>
             </fieldset>
 
-            <fieldset data-bind="with: $parent.salary">
+            <fieldset data-bind="foreach: employments">
+                <h4>Employment</h4>
+
+                <div class="row">
+                    <div class="large-6 columns">
+                        <label>
+                            Home department
+                        </label>
+                        <select data-bind="value: departmentId">
+                            <option selected="selected">Select a department...</option>
+                            <!-- ko foreach: $parents[1].units -->
+                            <optgroup data-bind="attr: { label: name }, foreach: departments">
+                                <option data-bind="attr: { label: name, value: id }, text: name"></option>
+                            </optgroup>
+                            <!--/ko-->
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset data-bind="foreach: salaries">
                 <h4>Salary information</h4>
+
+                <div class="row">
+                    <div class="large-4 columns">
+                        <p>
+                            <label>
+                                Cycle year: <span data-bind="text: cycleYear"></span>
+                            </label>
+                        </p>
+                    </div>
+                </div>
 
                 <div class="row">
                     <div class="large-4 columns">
