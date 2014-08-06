@@ -20,7 +20,9 @@
         };
 
         vm.selectedDepartmentId.subscribe(function (newValue) {
-            if (newValue === 'Choose...' || newValue === undefined) {
+            if (newValue === '' ||
+                newValue === 'Choose...' ||
+                newValue === undefined) {
                 return vm.assignmentVMs([]);
             }
 
