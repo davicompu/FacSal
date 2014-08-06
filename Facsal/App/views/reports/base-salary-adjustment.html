@@ -5,7 +5,7 @@
 </div>
 
 <div class="row">
-    <div class="large-12 columns">
+    <div class="large-12 columns table-container">
         <table data-bind="if: departmentData().length > 0">
             <!-- ko foreach: departmentData -->
             <tbody class="department-heading">
@@ -13,7 +13,7 @@
                     <td colspan="7" class="text-center" data-bind="text: department.name"></td>
                 </tr>
             </tbody>
-            
+
             <tbody class="thead" data-bind="if: adjustments.length > 0">
                 <tr>
                     <td>
