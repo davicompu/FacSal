@@ -5193,6 +5193,21 @@ th.hide-for-touch {
   margin-left: 0.9375rem;
 }
 
+/* line 1, ../sass/app/components/_dialog-comments.scss */
+h2.title-comments {
+  color: #600;
+}
+
+/* line 5, ../sass/app/components/_dialog-comments.scss */
+p.category {
+  color: #008cba;
+}
+
+/* line 9, ../sass/app/components/_dialog-comments.scss */
+p.category-content {
+  color: #3a3a3d;
+}
+
 /* line 2, ../sass/app/components/_fieldset.scss */
 fieldset {
   background-color: #3a3a3d;
@@ -5444,23 +5459,28 @@ select.error {
 }
 
 /* line 1, ../sass/app/components/_table.scss */
+.table-container {
+  overflow: auto;
+}
+
+/* line 5, ../sass/app/components/_table.scss */
 table {
   border-collapse: separate;
   width: 100%;
 }
-/* line 5, ../sass/app/components/_table.scss */
+/* line 9, ../sass/app/components/_table.scss */
 table thead, table .thead {
   background-color: #660000;
 }
-/* line 9, ../sass/app/components/_table.scss */
+/* line 13, ../sass/app/components/_table.scss */
 table thead tr th, table thead tr td, table .thead tr th, table .thead tr td {
   color: #dfdfdf;
 }
-/* line 15, ../sass/app/components/_table.scss */
+/* line 19, ../sass/app/components/_table.scss */
 table tbody.department-heading {
   background-color: #3a3a3d;
 }
-/* line 19, ../sass/app/components/_table.scss */
+/* line 23, ../sass/app/components/_table.scss */
 table tbody.department-heading tr td {
   color: #dfdfdf;
 }

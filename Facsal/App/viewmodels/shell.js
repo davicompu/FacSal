@@ -161,6 +161,11 @@
                     title: 'Merit summary report', nav: false,
                     hash: '#reports/merit-summary-report'
                 },
+                {
+                    route: 'reports/meeting-alternative/:unitid(/:departmentid)',
+                    moduleId: 'reports/meeting-alternative',
+                    title: 'Meeting Alternative report', nav: false, hash: '#reports/meeting-alternative'
+                },
 
                 // Salaries.
                 {
