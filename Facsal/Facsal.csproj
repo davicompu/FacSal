@@ -343,6 +343,7 @@
     <Content Include="Scripts\jquery.ui.touch-punch.js" />
     <Content Include="Scripts\knockout-3.1.0.debug.js" />
     <Content Include="Scripts\knockout-3.1.0.js" />
+    <Content Include="Scripts\jquery.ui.touch-punch.min.js" />
     <Content Include="Scripts\knockout.validation.js" />
     <Content Include="Scripts\modernizr.custom.js" />
     <Content Include="Scripts\pace.js" />
