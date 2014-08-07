@@ -9,15 +9,15 @@
         <section data-bind="with: salary">
             <fieldset>
                 <div class="row">
-                    <div class="large-8 columns">
+                    <div class="large-8 medium-6 columns">
                         <h4 data-bind="text: person().firstName() + ' ' + person().lastName() + ' | ' + person().id()"></h4>
                     </div>
 
-                    <div class="large-4 columns hide-for-medium-down" data-bind="ifNotIsInRole: 'manage-all'">
+                    <div class="large-4 medium-6 columns hide-for-medium-down" data-bind="ifNotIsInRole: 'manage-all'">
                         <span class="right" data-bind="text: person().statusType().name()"></span>
                     </div>
 
-                    <div class="large-2 columns" data-bind="ifIsInRole: 'manage-all'">
+                    <div class="large-2 medium-6 columns" data-bind="ifIsInRole: 'manage-all'">
                         <select data-bind="options: $parent.statusTypes,
                             optionsValue: 'id', optionsText: 'name', optionsCaption: 'Choose...', value: person().statusTypeId"></select>
                     </div>
@@ -71,52 +71,52 @@
                 </div>
 
                 <div class="row" data-bind="ifIsInRole: 'manage-all'">
-                    <div class="large-2 columns">
+                    <div class="large-2 medium-4 columns">
                         <label>Starting salary</label>
                         <p data-bind="text: formattedTotalAmount"></p>
                     </div>
 
-                    <div class="large-2 columns">
+                    <div class="large-2 medium-4 columns">
                         <label>Leave status</label>
                         <select data-bind="options: $parent.leaveTypes,
                             optionsValue: 'id', optionsText: 'name', optionsCaption: 'Choose...', value: leaveTypeId"></select>
                     </div>
-                    <div class="large-2 columns">
+                    <div class="large-2 medium-4 columns">
                         <label>
                             Base salary
                             <input type="text" data-bind="value: formattedBaseAmount" />
                         </label>
                     </div>
 
-                    <div class="large-2 columns">
+                    <div class="large-2 medium-4 columns">
                         <label>
                             Admin salary
                             <input type="text" data-bind="value: formattedAdminAmount" />
                         </label>
                     </div>
 
-                    <div class="large-2 columns">
+                    <div class="large-2 medium-4 columns">
                         <label>
                             Eminent salary
                             <input type="text" data-bind="value: formattedEminentAmount" />
                         </label>
                     </div>
 
-                    <div class="large-2 columns">
+                    <div class="large-2  medium-4 columns">
                         <label>
                             Promotion amount
                             <input type="text" data-bind="value: formattedPromotionAmount" />
                         </label>
                     </div>
 
-                    <div class="large-2 columns">
+                    <div class="large-2 medium-4 columns">
                         <label>New salary</label>
                         <p data-bind="text: formattedNewTotalAmount"></p>
                     </div>
                 </div>
 
                 <div class="row hide-on-print">
-                    <div class="large-4 columns">
+                    <div class="large-4 medium-12 columns">
                         <label>
                             Classification
                         </label>
@@ -124,7 +124,7 @@
                         optionsValue: 'id', optionsText: 'name', optionsCaption: 'Choose...', value: facultyTypeId"></select>
                     </div>
 
-                    <div class="large-4 columns">
+                    <div class="large-4 medium-6 columns">
                         <label>
                             Rank
                         </label>
@@ -132,7 +132,7 @@
                         optionsValue: 'id', optionsText: 'name', optionsCaption: 'Choose...', value: rankTypeId"></select>
                     </div>
 
-                    <div class="large-4 columns">
+                    <div class="large-4 medium-6 columns">
                         <label>
                             Appointment
                         </label>
@@ -142,7 +142,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="large-8 columns">
+                    <div class="large-8 medium-6 columns">
                         <label class="hide-on-print">
                             Title
                             <input name="Title" type="text" class="hide-on-print" data-bind="value: title" />
@@ -152,7 +152,7 @@
                         </p>
                     </div>
 
-                    <div class="large-3 columns end">
+                    <div class="large-3 medium-6 columns end">
                         <label class="hide-on-print">
                             Full-time equivalent<span class="required">*</span>
                             <input type="text" class="hide-on-print" data-bind="value: fullTimeEquivalent" />
