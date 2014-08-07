@@ -1,7 +1,7 @@
 ﻿//Source: http://browser-update.org/
 var $buoop = {
-    vs:{i:10,f:30,o:15,s:5.1},
-    reminder: 2,
+    vs:{i:10, f:30, o:22, s:5.1, c:35},
+    reminder: 24,
     onshow: function (infos) {
         showNotification(infos);
     },
