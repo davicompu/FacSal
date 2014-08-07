@@ -340,6 +340,7 @@
     <Content Include="Scripts\durandal\viewLocator.js" />
     <Content Include="Scripts\jquery.formatCurrency-1.4.0.js" />
     <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery.ui.touch-punch.js" />
     <Content Include="Scripts\knockout-3.1.0.debug.js" />
     <Content Include="Scripts\knockout-3.1.0.js" />
     <Content Include="Scripts\knockout.validation.js" />

@@ -6,9 +6,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ChrisJSherm.Filters;
 
 namespace SalaryEntities.Entities
 {
+    [EitherPropertyGreaterThanZero("BaseAmount", "EminentAmount",
+        "Either the base amount or eminent amount must be greater than zero.")]
     public class Salary : AuditEntityBase
     {
         [Key]
@@ -50,7 +53,7 @@ namespace SalaryEntities.Entities
         public int? BannerBaseAmount { get; private set; }
 
         [Max(100000000)]
-        [Min(1)]
+        [Min(0)]
         [Display(Name = "Base salary")]
         public int BaseAmount { get; set; }
 

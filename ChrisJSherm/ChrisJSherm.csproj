@@ -99,7 +99,8 @@
     <Compile Include="Extensions\HtmlMenuExtensions.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
     <Compile Include="Extensions\TypeSwitch.cs" />
-    <Compile Include="Filters\ConditionalRequireAttribute.cs" />
+    <Compile Include="Filters\ConditionalRequireNoteAttribute.cs" />
+    <Compile Include="Filters\EitherPropertyGreaterThan.cs" />
     <Compile Include="Filters\RequireHttpsWebApiAttribute.cs" />
     <Compile Include="Filters\ValidateModelAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
